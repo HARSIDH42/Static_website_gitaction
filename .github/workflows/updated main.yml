@@ -40,58 +40,58 @@ jobs:
           from pathlib import Path
           import re
           from groq import Groq
-
+          
           # Initialize Groq client
           client = Groq(api_key=os.environ["GROQ_API_KEY"])
-
+          
           prompt = """
-          You are designing a complete, **image-free, aesthetic e-commerce website**.
+          You are designing a complete, image-free, aesthetic e-commerce website.
           The website should feel premium, clean, and highly readable. Focus on typography, spacing, subtle geometric accents, and hierarchy.
           Include OpenTelemetry tags on interactive elements.
-
+          
           Requirements:
-
+          
           1. Homepage (index.html)
              - Hero section: centered headline (serif), subheading (sans-serif)
              - Primary CTA button: accent color, bold text, hover effect
              - Featured products grid (3–4 columns) with placeholder boxes, product name (serif, bold), price (monospace), optional OpenTelemetry: data-otel="featured-product-<id>"
              - Subtle lines or geometric separators
-
+          
           2. Product Listing Page (products.html)
              - Grid layout (3–4 columns)
              - Product cards: placeholder box, name, price, description, Add to Cart button with data-otel="add-to-cart-<id>"
              - Filter/Sort bar: minimal text links or symbols
-
+          
           3. Product Detail Page (product.html)
              - Two-column layout: left placeholder, right product info
              - Add to Cart button: accent color, bold, hover invert effect, optional OpenTelemetry tags
-
+          
           4. Typography
              - Headings: elegant serif, thin, wide letter-spacing
              - Body: clean sans-serif
              - Monospace: SKU, price, technical info
-
+          
           5. Color Palette
              - Monochrome base (white, light gray, black)
              - Accent color: Deep Forest Green, Charcoal, Bronze
-
+          
           6. Responsiveness
              - Fully mobile-friendly and readable
-
+          
           7. Output
              - Return each file separately:
           ---filename.ext---
-           <file content>
+          <file content>
              - Files to generate: index.html, products.html, product.html, styles.css, scripts.js
           """
-
+          
           # Generate updated UI content using Groq chat completion
           response = client.chat.completions.create(
               messages=[{"role": "user", "content": prompt}],
-              model="llama-3.3-70b-versatile"
+              model="meta-llama/llama-4-maverick-17b-128e-instruct"  # Updated model
           )
           output = response.choices[0].message.content
-
+          
           # Parse Groq's output to write files
           matches = re.findall(r"---(.*?)---\n(.*?)(?=(?:---|$))", output, re.DOTALL)
           for filename, content in matches:
@@ -99,24 +99,24 @@ jobs:
               filepath.parent.mkdir(parents=True, exist_ok=True)
               with open(filepath, "w", encoding="utf-8") as f:
                   f.write(content.strip())
-
+          
           # Git commit and push changes
           subprocess.run(["git", "config", "--global", "user.name", "groq-bot"])
           subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
           subprocess.run(["git", "add", "."])
-          subprocess.run(["git", "commit", "-m", "🤖 Groq AI updated e-commerce website UI"])
+          subprocess.run(["git", "commit", "-m", "🤖 Groq AI updated e-commerce website UI"], check=False)
           subprocess.run(["git", "push"])
-          EOF
-
-      # 5️⃣ Configure AWS credentials for deployment
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
-
-      # 6️⃣ Deploy updated repo to S3
-      - name: Deploy to S3
-        run: |
-          aws s3 sync . s3://staticwebzsitegit --delete
+                    EOF
+          
+                # 5️⃣ Configure AWS credentials for deployment
+                - name: Configure AWS Credentials
+                  uses: aws-actions/configure-aws-credentials@v4
+                  with:
+                    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                    aws-region: us-east-2
+          
+                # 6️⃣ Deploy updated repo to S3
+                - name: Deploy to S3
+                  run: |
+                    aws s3 sync . s3://staticwebzsitegit --delete
