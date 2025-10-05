@@ -27,9 +27,9 @@ jobs:
       # 3️⃣ Install dependencies
       - name: Install Dependencies
         run: |
-          pip install google-generativeai
+          pip install --upgrade google-generativeai
 
-      # 4️⃣ Run Gemini AI to auto-update README.md (or other files)
+      # 4️⃣ Run Gemini AI to auto-update README.md (or create if missing)
       - name: Run Gemini AI Code Update
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -41,7 +41,7 @@ jobs:
 
           # Configure Gemini
           genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-          model = genai.GenerativeModel("gemini-1.5-flash")
+          model = genai.GenerativeModel("models/gemini-1.5-flash-latest")
 
           prompt = """
           Read the README.md file.
@@ -50,6 +50,11 @@ jobs:
           and Argo CD workflow integration.
           Return the complete updated README content.
           """
+
+          # Ensure README.md exists
+          if not os.path.exists("README.md"):
+              with open("README.md", "w", encoding="utf-8") as f:
+                  f.write("# Project README\n")
 
           # Read file
           with open("README.md", "r", encoding="utf-8") as f:
@@ -81,7 +86,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
-      # 6️⃣ Deploy updated site to S3
+      # 6️⃣ Deploy updated repo to S3
       - name: Deploy to S3
         run: |
           aws s3 sync . s3://staticwebzsitegit --delete
