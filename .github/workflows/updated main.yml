@@ -29,7 +29,6 @@ jobs:
         run: |
           pip install --upgrade groq
 
-      # 4️⃣ Run Groq AI to auto-update website UI
       - name: Run Groq AI to Update Website UI
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
