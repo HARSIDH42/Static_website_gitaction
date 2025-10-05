@@ -88,7 +88,7 @@ jobs:
           # Generate updated UI content using Groq chat completion
           response = client.chat.completions.create(
               messages=[{"role": "user", "content": prompt}],
-              model="meta-llama/llama-4-maverick-17b-128e-instruct"  # Updated model
+              model="llama-4-maverick-17b-128e-instruct"  # Updated model
           )
           output = response.choices[0].message.content
           
