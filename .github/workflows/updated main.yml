@@ -9,26 +9,23 @@ jobs:
   ai-commit-deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # allows workflow to push changes
+      contents: write
 
     steps:
-      # 1️⃣ Checkout repository
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2️⃣ Set up Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # 3️⃣ Install dependencies
       - name: Install Dependencies
         run: |
           pip install --upgrade google-generativeai
-      # 4️⃣ Run Gemini AI to auto-update website UI
+
       - name: Run Gemini AI to Update Website UI
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -39,39 +36,41 @@ jobs:
           import subprocess
           from pathlib import Path
           import re
-          # Configure Gemini
+
           genai.configure(api_key=os.environ["GEMINI_API_KEY"])
           model = genai.GenerativeModel("gemini-2.5-flash")
+
           prompt = """
           You are updating the UI of a static website project.
-          - Modernize the layout, colors, and typography to be clean and professional.
-          - Make the homepage visually appealing with responsive design.
-          - Optimize images and assets for fast loading.
-          - Update navigation, buttons, and sections for clarity and user experience.
-          - Ensure the website is mobile-friendly and accessible.
-          - Provide the full HTML/CSS/JS content for each file that needs modification.
-          Return each file as:
+          - Modernize layout, colors, typography, and responsiveness.
+          - Return each file in the format:
           ---filename.ext---
           <file content>
           """
-          # Generate updated UI content
+
           response = model.generate_content(prompt)
           output = response.text
-          # Parse Gemini's output to write files
-          matches = re.findall(r"---(.*?)---\n(.*?)(?=(?:---|$))", output, re.DOTALL)
+
+          # Regex to safely extract filename + content
+          matches = re.findall(r"---\s*(.*?)\s*---\s*\n(.*?)(?=(?:---|$))", output, re.DOTALL)
+
           for filename, content in matches:
-              filepath = Path(filename.strip())
+              filename = filename.strip()
+              if not filename:
+                  continue  # skip if Gemini returned empty filename
+              filepath = Path(filename)
               filepath.parent.mkdir(parents=True, exist_ok=True)
               with open(filepath, "w", encoding="utf-8") as f:
                   f.write(content.strip())
-          # Git commit and push changes
-          subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
-          subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
-          subprocess.run(["git", "add", "."])
-          subprocess.run(["git", "commit", "-m", "🤖 Gemini AI updated website UI"])
-          subprocess.run(["git", "push"])
+
+          # Git commit and push
+          subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"], check=True)
+          subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"], check=True)
+          subprocess.run(["git", "add", "."], check=True)
+          subprocess.run(["git", "commit", "-m", "🤖 Gemini AI updated website UI"], check=False)
+          subprocess.run(["git", "push"], check=True)
           EOF
-      # 5️⃣ Configure AWS credentials for deployment
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -79,7 +78,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
-      # 6️⃣ Deploy updated repo to S3
       - name: Deploy to S3
         run: |
-          aws s3 sync . s3://staticwebzsitegit --delete
+          aws s3 sync . s3://staticwebzsitegit --delete --exclude ".git/*" --exclude ".github/*"
