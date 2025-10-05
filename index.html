@@ -4,40 +4,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Modern Static Website</title>
+    <!-- Google Fonts: Poppins for headings, Open Sans for body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Favicon (optional, add your own) -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">YourBrandName</a>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+
     <main>
-        <section id="home">
-            <h1>Welcome to Our Website</h1>
-            <p>This is a professional website with a clean and modern design.</p>
-            <button>Learn More</button>
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Elevate Your Digital Presence</h1>
+                    <p>We craft stunning, responsive, and high-performing websites tailored to your vision and goals. Discover the difference a professional touch makes.</p>
+                    <a href="#contact" class="btn btn-primary">Get Started Today</a>
+                    <a href="#features" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
         </section>
-        <section id="about">
-            <h2>About Us</h2>
-            <p>We are a team of professionals dedicated to providing high-quality services.</p>
+
+        <section id="features" class="features-section section-padding">
+            <div class="container">
+                <h2 class="section-title">Why Choose Us?</h2>
+                <p class="section-subtitle">We focus on delivering exceptional value and results for our clients.</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <img src="https://via.placeholder.com/60/007bff/ffffff?text=⚡" alt="Fast Loading Icon" class="feature-icon">
+                        <h3>Blazing Fast Performance</h3>
+                        <p>Optimized code and assets ensure your website loads quickly, enhancing user experience and SEO.</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://via.placeholder.com/60/007bff/ffffff?text=📱" alt="Responsive Design Icon" class="feature-icon">
+                        <h3>Fully Responsive Design</h3>
+                        <p>Your site will look perfect on any device, from desktops to tablets and smartphones.</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://via.placeholder.com/60/007bff/ffffff?text=✨" alt="Modern Aesthetics Icon" class="feature-icon">
+                        <h3>Modern Aesthetics</h3>
+                        <p>Clean, professional, and visually appealing designs that reflect your brand's unique identity.</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://via.placeholder.com/60/007bff/ffffff?text=🤝" alt="Client Focus Icon" class="feature-icon">
+                        <h3>Client-Centric Approach</h3>
+                        <p>We work closely with you through every step to ensure your vision comes to life.</p>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section id="contact">
-            <h2>Get in Touch</h2>
-            <p>Contact us at <a href="mailto:info@example.com">info@example.com</a> or call us at 123-456-7890.</p>
+
+        <section id="about" class="about-section section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">About Our Mission</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://via.placeholder.com/500x350/e0e0e0/333333?text=About+Us+Image" alt="Team working collaboratively" loading="lazy">
+                    </div>
+                    <div class="about-text">
+                        <p>Our mission is to empower businesses and individuals with a strong, effective online presence. We believe that a well-designed website is not just a digital brochure, but a powerful tool for growth and connection.</p>
+                        <p>With a passion for design and a commitment to technical excellence, we strive to deliver solutions that are not only beautiful but also functional, accessible, and scalable. We are dedicated to continuous learning and staying ahead of industry trends to provide you with the best possible service.</p>
+                        <a href="#contact" class="btn btn-primary">Join Our Journey</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services-section section-padding">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">We offer a range of services to meet your specific needs.</p>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <img src="https://via.placeholder.com/80/007bff/ffffff?text=💻" alt="Web Design Icon" class="service-icon">
+                        <h3>Custom Web Design</h3>
+                        <p>Bespoke website designs crafted from scratch to perfectly match your brand and objectives.</p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://via.placeholder.com/80/007bff/ffffff?text=⚙️" alt="Web Development Icon" class="service-icon">
+                        <h3>Frontend Development</h3>
+                        <p>Bringing designs to life with clean, efficient, and modern HTML, CSS, and JavaScript.</p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://via.placeholder.com/80/007bff/ffffff?text=🚀" alt="SEO Optimization Icon" class="service-icon">
+                        <h3>SEO Optimization</h3>
+                        <p>Ensuring your website is visible to search engines and ranks higher for relevant keywords.</p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://via.placeholder.com/80/007bff/ffffff?text=🌐" alt="Maintenance Icon" class="service-icon">
+                        <h3>Website Maintenance</h3>
+                        <p>Ongoing support, updates, and security checks to keep your website running smoothly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials-section section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">What Our Clients Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-item">
+                        <p class="quote">"Working with YourBrandName was a fantastic experience. They transformed our outdated site into a modern masterpiece. Highly recommend!"</p>
+                        <div class="client-info">
+                            <img src="https://via.placeholder.com/60/cccccc/333333?text=JS" alt="Client Avatar - Jane Smith" class="client-avatar">
+                            <cite>Jane Smith, CEO of InnovateCorp</cite>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="quote">"Professional, responsive, and incredibly talented. Our new website has significantly improved our online engagement and sales."</p>
+                        <div class="client-info">
+                            <img src="https://via.placeholder.com/60/cccccc/333333?text=MB" alt="Client Avatar - Mark Brown" class="client-avatar">
+                            <cite>Mark Brown, Founder of FutureTech</cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section section-padding">
+            <div class="container">
+                <h2 class="section-title">Ready to Start Your Project?</h2>
+                <p class="section-subtitle">We'd love to hear from you. Send us a message and let's create something amazing together.</p>
+                <form class="contact-form" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Tell us about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2024 Professional Website</p>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>YourBrandName</h3>
+                    <p>Modern Solutions for Your Digital World.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect With Us</h4>
+                    <ul>
+                        <li><a href="#" aria-label="Facebook"><img src="https://via.placeholder.com/24/ffffff/000000?text=F" alt="Facebook Icon"></a></li>
+                        <li><a href="#" aria-label="Twitter"><img src="https://via.placeholder.com/24/ffffff/000000?text=T" alt="Twitter Icon"></a></li>
+                        <li><a href="#" aria-label="LinkedIn"><img src="https://via.placeholder.com/24/ffffff/000000?text=L" alt="LinkedIn Icon"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 YourBrandName. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
-    <script src="script.js"></script>
+
+    <!-- Main JS File -->
+    <script src="js/script.js"></script>
 </body>
 </html>
 ```
-
-### styles.css

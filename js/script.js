@@ -1,57 +1,61 @@
 ```javascript
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Mobile Navigation Toggle
-    const navToggle = document.querySelector('.nav-toggle');
+    const menuToggle = document.querySelector('.menu-toggle');
     const mainNav = document.querySelector('.main-nav');
-    const navLinks = document.querySelectorAll('.nav-link'); // Get all nav links
+    const navLinks = document.querySelectorAll('.main-nav a');
 
-    if (navToggle && mainNav) {
-        navToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            navToggle.classList.toggle('active');
-            navToggle.setAttribute('aria-expanded', navToggle.classList.contains('active'));
-        });
+    // Toggle mobile menu
+    menuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
+        menuToggle.classList.toggle('active'); // Animate hamburger icon
+        // Set aria-expanded for accessibility
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+    });
 
-        // Close nav when a link is clicked (for smooth scrolling)
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
-                    navToggle.classList.remove('active');
-                    navToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        });
-    }
-
-    // 2. Update current year in footer
-    const currentYearSpan = document.getElementById('currentYear');
-    if (currentYearSpan) {
-        currentYearSpan.textContent = new Date().getFullYear();
-    }
-
-    // 3. Smooth scrolling for internal links (optional, can be done with CSS scroll-behavior: smooth)
-    // If you enable 'scroll-behavior: smooth;' in CSS, you might not need this JS.
-    // This JS offers more control/polyfill for older browsers.
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-                // Adjust scroll position to account for fixed header
-                const headerOffset = document.querySelector('.main-header').offsetHeight;
-                const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-                const offsetPosition = elementPosition - headerOffset - 20; // -20px for extra padding
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
+    // Close mobile menu when a link is clicked
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
             }
         });
     });
+
+    // Optional: Add active class to current navigation link on scroll
+    const sections = document.querySelectorAll('section');
+    const navLi = document.querySelectorAll('.main-nav ul li a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - sectionHeight / 3) { // Adjust offset for better accuracy
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLi.forEach(li => {
+            li.classList.remove('active');
+            if (li.getAttribute('href').includes(current)) {
+                li.classList.add('active');
+            }
+        });
+    });
+
+    // Optional: Smooth scroll for internal links (if browser doesn't support scroll-behavior: smooth)
+    // You can remove this if 'scroll-behavior: smooth' in CSS is sufficient.
+    // document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    //     anchor.addEventListener('click', function (e) {
+    //         e.preventDefault();
+
+    //         document.querySelector(this.getAttribute('href')).scrollIntoView({
+    //             behavior: 'smooth'
+    //         });
+    //     });
+    // });
 });
 ```
