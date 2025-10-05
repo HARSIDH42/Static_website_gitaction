@@ -85,12 +85,21 @@ jobs:
              - Files to generate: index.html, products.html, product.html, styles.css, scripts.js
           """
           
-          # Generate updated UI content using Groq chat completion
-          response = client.chat.completions.create(
+          # Generate updated UI content using streaming Groq chat completion
+          completion = client.chat.completions.create(
+              model="meta-llama/llama-4-maverick-17b-128e-instruct",
               messages=[{"role": "user", "content": prompt}],
-              model="llama-4-maverick-17b-128e-instruct"  # Updated model
+              temperature=1,
+              max_completion_tokens=1024,
+              top_p=1,
+              stream=True,
+              stop=None
           )
-          output = response.choices[0].message.content
+          
+          output = ""
+          for chunk in completion:
+              output += chunk.choices[0].delta.content or ""
+              print(chunk.choices[0].delta.content or "", end="")
           
           # Parse Groq's output to write files
           matches = re.findall(r"---(.*?)---\n(.*?)(?=(?:---|$))", output, re.DOTALL)
