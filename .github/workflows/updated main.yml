@@ -1,4 +1,4 @@
-name: Groq AI Auto Commit and Deploy
+name: Gemini AI Auto Commit and Deploy
 
 on:
   push:
@@ -27,112 +27,59 @@ jobs:
       # 3️⃣ Install dependencies
       - name: Install Dependencies
         run: |
-          pip install --upgrade groq
-
-      # 4️⃣ Run Groq AI to auto-update website UI
-      - name: Run Groq AI to Update Website UI
+          pip install --upgrade google-generativeai
+      # 4️⃣ Run Gemini AI to auto-update website UI
+      - name: Run Gemini AI to Update Website UI
         env:
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python << 'EOF'
           import os
+          import google.generativeai as genai
           import subprocess
           from pathlib import Path
           import re
-          from groq import Groq
-          
-          # Initialize Groq client
-          client = Groq(api_key=os.environ["GROQ_API_KEY"])
-          
+          # Configure Gemini
+          genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+          model = genai.GenerativeModel("gemini-2.5-flash")
           prompt = """
-          You are designing a complete, image-free, aesthetic e-commerce website.
-          The website should feel premium, clean, and highly readable. Focus on typography, spacing, subtle geometric accents, and hierarchy.
-          Include OpenTelemetry tags on interactive elements.
-          
-          Requirements:
-          
-          1. Homepage (index.html)
-             - Hero section: centered headline (serif), subheading (sans-serif)
-             - Primary CTA button: accent color, bold text, hover effect
-             - Featured products grid (3–4 columns) with placeholder boxes, product name (serif, bold), price (monospace), optional OpenTelemetry: data-otel="featured-product-<id>"
-             - Subtle lines or geometric separators
-          
-          2. Product Listing Page (products.html)
-             - Grid layout (3–4 columns)
-             - Product cards: placeholder box, name, price, description, Add to Cart button with data-otel="add-to-cart-<id>"
-             - Filter/Sort bar: minimal text links or symbols
-          
-          3. Product Detail Page (product.html)
-             - Two-column layout: left placeholder, right product info
-             - Add to Cart button: accent color, bold, hover invert effect, optional OpenTelemetry tags
-          
-          4. Typography
-             - Headings: elegant serif, thin, wide letter-spacing
-             - Body: clean sans-serif
-             - Monospace: SKU, price, technical info
-          
-          5. Color Palette
-             - Monochrome base (white, light gray, black)
-             - Accent color: Deep Forest Green, Charcoal, Bronze
-          
-          6. Responsiveness
-             - Fully mobile-friendly and readable
-          
-          7. Output
-             - Return each file separately:
+          You are updating the UI of a static website project.
+          - Modernize the layout, colors, and typography to be clean and professional.
+          - Make the homepage visually appealing with responsive design.
+          - Optimize images and assets for fast loading.
+          - Update navigation, buttons, and sections for clarity and user experience.
+          - Ensure the website is mobile-friendly and accessible.
+          - Provide the full HTML/CSS/JS content for each file that needs modification.
+          Return each file as:
           ---filename.ext---
           <file content>
-             - Files to generate: index.html, products.html, product.html, styles.css, scripts.js
           """
-          
-          # Streaming Groq completion
-          completion = client.chat.completions.create(
-              model="meta-llama/llama-4-maverick-17b-128e-instruct",
-              messages=[{"role": "user", "content": prompt}],
-              temperature=1,
-              max_completion_tokens=1024,
-              top_p=1,
-              stream=True,
-              stop=None
-          )
-          
-          output = ""
-          for chunk in completion:
-              output += chunk.choices[0].delta.content or ""
-              print(chunk.choices[0].delta.content or "", end="")
-          
-          # Parse output and write files, track updated files
-          updated_files = []
+          # Generate updated UI content
+          response = model.generate_content(prompt)
+          output = response.text
+          # Parse Gemini's output to write files
           matches = re.findall(r"---(.*?)---\n(.*?)(?=(?:---|$))", output, re.DOTALL)
           for filename, content in matches:
               filepath = Path(filename.strip())
               filepath.parent.mkdir(parents=True, exist_ok=True)
               with open(filepath, "w", encoding="utf-8") as f:
                   f.write(content.strip())
-              updated_files.append(str(filepath))
-          
-          # Git commit and push only the updated files
-          subprocess.run(["git", "config", "--global", "user.name", "groq-bot"])
+          # Git commit and push changes
+          subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
           subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
-          if updated_files:
-              subprocess.run(["git", "add"] + updated_files)
-              try:
-                  subprocess.run(["git", "diff", "--cached", "--quiet"], check=True)
-                  print("No changes to commit.")
-              except subprocess.CalledProcessError:
-                  subprocess.run(["git", "commit", "-m", "🤖 Groq AI updated e-commerce website UI"])
-                  subprocess.run(["git", "push"])
+          subprocess.run(["git", "add", "."])
+          subprocess.run(["git", "commit", "-m", "🤖 Gemini AI updated website UI"])
+          subprocess.run(["git", "push"])
           EOF
-          
-                # 5️⃣ Configure AWS credentials for deployment
-                - name: Configure AWS Credentials
-                  uses: aws-actions/configure-aws-credentials@v4
-                  with:
-                    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                    aws-region: us-east-2
-          
-                # 6️⃣ Deploy updated repo to S3
-                - name: Deploy to S3
-                  run: |
-                    aws s3 sync . s3://staticwebzsitegit --delete
+      # 5️⃣ Configure AWS credentials for deployment
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+
+      # 6️⃣ Deploy updated repo to S3
+      - name: Deploy to S3
+        run: |
+          aws s3 sync . s3://staticwebzsitegit --delete
