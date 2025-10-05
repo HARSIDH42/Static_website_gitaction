@@ -45,9 +45,6 @@ jobs:
           model = genai.GenerativeModel("gemini-2.5-flash")
           prompt = """
           You are updating the UI of a static website project.
-          - Modernize the layout, colors, and typography to be clean and professional.
-          - Make the homepage visually appealing with responsive design.
-          - Optimize images and assets for fast loading.
           - Update navigation, buttons, and sections for clarity and user experience.
           - Ensure the website is mobile-friendly and accessible.
           - Make it as an ecommerce website with all features in it.
