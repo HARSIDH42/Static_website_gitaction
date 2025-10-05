@@ -50,6 +50,8 @@ jobs:
           - Optimize images and assets for fast loading.
           - Update navigation, buttons, and sections for clarity and user experience.
           - Ensure the website is mobile-friendly and accessible.
+          - Make it as an ecommerce website with all features in it.
+          - add cart feature
           - Provide the full HTML/CSS/JS content for each file that needs modification.
           Return each file as:
           ---filename.ext---
