@@ -29,50 +29,55 @@ jobs:
         run: |
           pip install --upgrade groq
 
-      # 4️⃣ Run Groq AI to Update Website UI
+      # 4️⃣ Run Groq AI to auto-update website UI
       - name: Run Groq AI to Update Website UI
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           python << 'EOF'
-import os
-import subprocess
-from pathlib import Path
-import re
-from groq import Groq
+          import os
+          import subprocess
+          from pathlib import Path
+          import re
+          from groq import Groq
 
-# Initialize Groq client
-client = Groq(api_key=os.environ["GROQ_API_KEY"])
+          # Initialize Groq client
+          client = Groq(api_key=os.environ["GROQ_API_KEY"])
 
-prompt = """
-UI Design Prompt: Image-Free, High-End E-commerce
-Design a sophisticated, image-free e-commerce website UI for a brand selling high-quality, exclusive products...
-Return each file as:
----filename.ext---
-<file content>
-"""
+          prompt = """
+          You are updating the UI of a static website project.
+          - Modernize the layout, colors, and typography to be clean and professional.
+          - Make the homepage visually appealing with responsive design.
+          - Optimize images and assets for fast loading.
+          - Update navigation, buttons, and sections for clarity and user experience.
+          - Ensure the website is mobile-friendly and accessible.
+          - Provide the full HTML/CSS/JS content for each file that needs modification.
+          Return each file as:
+          ---filename.ext---
+          <file content>
+          """
 
-# Generate updated UI content using Groq chat completion
-response = client.chat.completions.create(
-    messages=[{"role": "user", "content": prompt}],
-    model="llama-3.3-70b-versatile"
-)
-output = response.choices[0].message.content
+          # Generate updated UI content using Groq chat completion
+          response = client.chat.completions.create(
+              messages=[{"role": "user", "content": prompt}],
+              model="llama-3.3-70b-versatile"
+          )
+          output = response.choices[0].message.content
 
-# Parse Groq's output to write files
-matches = re.findall(r"---(.*?)---\n(.*?)(?=(?:---|$))", output, re.DOTALL)
-for filename, content in matches:
-    filepath = Path(filename.strip())
-    filepath.parent.mkdir(parents=True, exist_ok=True)
-    with open(filepath, "w", encoding="utf-8") as f:
-        f.write(content.strip())
+          # Parse Groq's output to write files
+          matches = re.findall(r"---(.*?)---\n(.*?)(?=(?:---|$))", output, re.DOTALL)
+          for filename, content in matches:
+              filepath = Path(filename.strip())
+              filepath.parent.mkdir(parents=True, exist_ok=True)
+              with open(filepath, "w", encoding="utf-8") as f:
+                  f.write(content.strip())
 
-# Git commit and push changes if there are any
-subprocess.run(["git", "config", "--global", "user.name", "groq-bot"])
-subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
-subprocess.run(["git", "add", "."])
-subprocess.run(["git", "commit", "-m", "🤖 Groq AI updated website UI"], check=False)
-subprocess.run(["git", "push"])
+          # Git commit and push changes
+          subprocess.run(["git", "config", "--global", "user.name", "groq-bot"])
+          subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
+          subprocess.run(["git", "add", "."])
+          subprocess.run(["git", "commit", "-m", "🤖 Groq AI updated website UI"])
+          subprocess.run(["git", "push"])
           EOF
 
       # 5️⃣ Configure AWS credentials for deployment
