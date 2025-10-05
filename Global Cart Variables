@@ -1,0 +1,7 @@
+let cart = []; // Array to store cart items: { id, name, price, image, quantity }
+    const cartCountSpan = document.querySelector('.cart-count');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    const navList = document.querySelector('.nav-list');
+
+    //

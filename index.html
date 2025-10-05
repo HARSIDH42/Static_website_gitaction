@@ -4,200 +4,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Static Website</title>
-    <!-- Google Fonts: Poppins for headings, Open Sans for body text -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-    <!-- Main CSS File -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Favicon (optional, add your own) -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>E-commerce Store - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Rz9iJ8+E4qW92Gk9C+D+U0n9gZqWJj3z+P2L/Qn0mB/K/N/X0v2B2Y9LgJz4VwK7+Q6Wq8Zg+Lz+X9JmQ+Q" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header class="main-header">
-        <div class="container">
-            <a href="index.html" class="logo">YourBrandName</a>
-            <button class="menu-toggle" aria-label="Toggle navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#features">Features</a></li>
+        <div class="container header-content">
+            <a href="index.html" class="logo" aria-label="E-commerce Store Home">MyShop</a>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="#products">Products</a></li>
                     <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+                <div class="nav-icons">
+                    <a href="cart.html" class="cart-icon" aria-label="View shopping cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" aria-live="polite">0</span>
+                    </a>
+                    <button class="menu-toggle" aria-label="Open navigation menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
 
     <main>
-        <section id="hero" class="hero-section">
+        <section class="hero-section" aria-labelledby="hero-title">
             <div class="container">
-                <div class="hero-content">
-                    <h1>Elevate Your Digital Presence</h1>
-                    <p>We craft stunning, responsive, and high-performing websites tailored to your vision and goals. Discover the difference a professional touch makes.</p>
-                    <a href="#contact" class="btn btn-primary">Get Started Today</a>
-                    <a href="#features" class="btn btn-secondary">Learn More</a>
+                <h1 id="hero-title">Discover Our Latest Collection</h1>
+                <p>High-quality products for every need. Shop now and experience the difference!</p>
+                <a href="#products" class="btn btn-primary">Shop Now</a>
+            </div>
+        </section>
+
+        <section id="products" class="products-section container" aria-labelledby="products-heading">
+            <h2 id="products-heading">Featured Products</h2>
+            <div class="product-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card" data-product-id="1" data-product-name="Stylish Smartwatch" data-product-price="199.99" data-product-image="https://via.placeholder.com/300x200/50B1B9/FFFFFF?text=Smartwatch">
+                    <img src="https://via.placeholder.com/300x200/50B1B9/FFFFFF?text=Smartwatch" alt="Stylish Smartwatch">
+                    <h3>Stylish Smartwatch</h3>
+                    <p class="product-price">$199.99</p>
+                    <button class="btn btn-secondary add-to-cart">Add to Cart</button>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="product-card" data-product-id="2" data-product-name="Premium Headphones" data-product-price="129.50" data-product-image="https://via.placeholder.com/300x200/F0C157/FFFFFF?text=Headphones">
+                    <img src="https://via.placeholder.com/300x200/F0C157/FFFFFF?text=Headphones" alt="Premium Headphones">
+                    <h3>Premium Headphones</h3>
+                    <p class="product-price">$129.50</p>
+                    <button class="btn btn-secondary add-to-cart">Add to Cart</button>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="product-card" data-product-id="3" data-product-name="Wireless Mouse" data-product-price="29.99" data-product-image="https://via.placeholder.com/300x200/A0D9D5/FFFFFF?text=Mouse">
+                    <img src="https://via.placeholder.com/300x200/A0D9D5/FFFFFF?text=Mouse" alt="Wireless Mouse">
+                    <h3>Wireless Mouse</h3>
+                    <p class="product-price">$29.99</p>
+                    <button class="btn btn-secondary add-to-cart">Add to Cart</button>
+                </div>
+
+                <!-- Product Card 4 -->
+                <div class="product-card" data-product-id="4" data-product-name="Portable SSD" data-product-price="89.99" data-product-image="https://via.placeholder.com/300x200/F08A5D/FFFFFF?text=SSD">
+                    <img src="https://via.placeholder.com/300x200/F08A5D/FFFFFF?text=SSD" alt="Portable SSD">
+                    <h3>Portable SSD</h3>
+                    <p class="product-price">$89.99</p>
+                    <button class="btn btn-secondary add-to-cart">Add to Cart</button>
+                </div>
+
+                <!-- Product Card 5 -->
+                <div class="product-card" data-product-id="5" data-product-name="Ergonomic Keyboard" data-product-price="75.00" data-product-image="https://via.placeholder.com/300x200/B8D8F0/FFFFFF?text=Keyboard">
+                    <img src="https://via.placeholder.com/300x200/B8D8F0/FFFFFF?text=Keyboard" alt="Ergonomic Keyboard">
+                    <h3>Ergonomic Keyboard</h3>
+                    <p class="product-price">$75.00</p>
+                    <button class="btn btn-secondary add-to-cart">Add to Cart</button>
+                </div>
+
+                <!-- Product Card 6 -->
+                <div class="product-card" data-product-id="6" data-product-name="USB-C Hub" data-product-price="35.99" data-product-image="https://via.placeholder.com/300x200/CCEEFF/FFFFFF?text=USB+Hub">
+                    <img src="https://via.placeholder.com/300x200/CCEEFF/FFFFFF?text=USB+Hub" alt="USB-C Hub">
+                    <h3>USB-C Hub</h3>
+                    <p class="product-price">$35.99</p>
+                    <button class="btn btn-secondary add-to-cart">Add to Cart</button>
                 </div>
             </div>
         </section>
 
-        <section id="features" class="features-section section-padding">
+        <section id="about" class="about-section" aria-labelledby="about-heading">
             <div class="container">
-                <h2 class="section-title">Why Choose Us?</h2>
-                <p class="section-subtitle">We focus on delivering exceptional value and results for our clients.</p>
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <img src="https://via.placeholder.com/60/007bff/ffffff?text=⚡" alt="Fast Loading Icon" class="feature-icon">
-                        <h3>Blazing Fast Performance</h3>
-                        <p>Optimized code and assets ensure your website loads quickly, enhancing user experience and SEO.</p>
-                    </div>
-                    <div class="feature-item">
-                        <img src="https://via.placeholder.com/60/007bff/ffffff?text=📱" alt="Responsive Design Icon" class="feature-icon">
-                        <h3>Fully Responsive Design</h3>
-                        <p>Your site will look perfect on any device, from desktops to tablets and smartphones.</p>
-                    </div>
-                    <div class="feature-item">
-                        <img src="https://via.placeholder.com/60/007bff/ffffff?text=✨" alt="Modern Aesthetics Icon" class="feature-icon">
-                        <h3>Modern Aesthetics</h3>
-                        <p>Clean, professional, and visually appealing designs that reflect your brand's unique identity.</p>
-                    </div>
-                    <div class="feature-item">
-                        <img src="https://via.placeholder.com/60/007bff/ffffff?text=🤝" alt="Client Focus Icon" class="feature-icon">
-                        <h3>Client-Centric Approach</h3>
-                        <p>We work closely with you through every step to ensure your vision comes to life.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="about-section section-padding bg-light">
-            <div class="container">
-                <h2 class="section-title">About Our Mission</h2>
-                <div class="about-content">
-                    <div class="about-image">
-                        <img src="https://via.placeholder.com/500x350/e0e0e0/333333?text=About+Us+Image" alt="Team working collaboratively" loading="lazy">
-                    </div>
-                    <div class="about-text">
-                        <p>Our mission is to empower businesses and individuals with a strong, effective online presence. We believe that a well-designed website is not just a digital brochure, but a powerful tool for growth and connection.</p>
-                        <p>With a passion for design and a commitment to technical excellence, we strive to deliver solutions that are not only beautiful but also functional, accessible, and scalable. We are dedicated to continuous learning and staying ahead of industry trends to provide you with the best possible service.</p>
-                        <a href="#contact" class="btn btn-primary">Join Our Journey</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="services-section section-padding">
-            <div class="container">
-                <h2 class="section-title">Our Services</h2>
-                <p class="section-subtitle">We offer a range of services to meet your specific needs.</p>
-                <div class="service-grid">
-                    <div class="service-item">
-                        <img src="https://via.placeholder.com/80/007bff/ffffff?text=💻" alt="Web Design Icon" class="service-icon">
-                        <h3>Custom Web Design</h3>
-                        <p>Bespoke website designs crafted from scratch to perfectly match your brand and objectives.</p>
-                    </div>
-                    <div class="service-item">
-                        <img src="https://via.placeholder.com/80/007bff/ffffff?text=⚙️" alt="Web Development Icon" class="service-icon">
-                        <h3>Frontend Development</h3>
-                        <p>Bringing designs to life with clean, efficient, and modern HTML, CSS, and JavaScript.</p>
-                    </div>
-                    <div class="service-item">
-                        <img src="https://via.placeholder.com/80/007bff/ffffff?text=🚀" alt="SEO Optimization Icon" class="service-icon">
-                        <h3>SEO Optimization</h3>
-                        <p>Ensuring your website is visible to search engines and ranks higher for relevant keywords.</p>
-                    </div>
-                    <div class="service-item">
-                        <img src="https://via.placeholder.com/80/007bff/ffffff?text=🌐" alt="Maintenance Icon" class="service-icon">
-                        <h3>Website Maintenance</h3>
-                        <p>Ongoing support, updates, and security checks to keep your website running smoothly.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="testimonials" class="testimonials-section section-padding bg-light">
-            <div class="container">
-                <h2 class="section-title">What Our Clients Say</h2>
-                <div class="testimonial-grid">
-                    <div class="testimonial-item">
-                        <p class="quote">"Working with YourBrandName was a fantastic experience. They transformed our outdated site into a modern masterpiece. Highly recommend!"</p>
-                        <div class="client-info">
-                            <img src="https://via.placeholder.com/60/cccccc/333333?text=JS" alt="Client Avatar - Jane Smith" class="client-avatar">
-                            <cite>Jane Smith, CEO of InnovateCorp</cite>
-                        </div>
-                    </div>
-                    <div class="testimonial-item">
-                        <p class="quote">"Professional, responsive, and incredibly talented. Our new website has significantly improved our online engagement and sales."</p>
-                        <div class="client-info">
-                            <img src="https://via.placeholder.com/60/cccccc/333333?text=MB" alt="Client Avatar - Mark Brown" class="client-avatar">
-                            <cite>Mark Brown, Founder of FutureTech</cite>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact-section section-padding">
-            <div class="container">
-                <h2 class="section-title">Ready to Start Your Project?</h2>
-                <p class="section-subtitle">We'd love to hear from you. Send us a message and let's create something amazing together.</p>
-                <form class="contact-form" action="#" method="POST">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required placeholder="Your Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message:</label>
-                        <textarea id="message" name="message" rows="6" required placeholder="Tell us about your project..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
+                <h2 id="about-heading">About MyShop</h2>
+                <p>Welcome to MyShop, your one-stop destination for high-quality electronics and gadgets. We are committed to providing the best products at competitive prices, coupled with excellent customer service.</p>
+                <p>Our mission is to make technology accessible and enjoyable for everyone. We carefully curate our selection to ensure reliability, innovation, and value. Shop with confidence!</p>
+                <a href="#" class="btn btn-primary">Learn More</a>
             </div>
         </section>
     </main>
 
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>YourBrandName</h3>
-                    <p>Modern Solutions for Your Digital World.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#hero">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <h4>Connect With Us</h4>
-                    <ul>
-                        <li><a href="#" aria-label="Facebook"><img src="https://via.placeholder.com/24/ffffff/000000?text=F" alt="Facebook Icon"></a></li>
-                        <li><a href="#" aria-label="Twitter"><img src="https://via.placeholder.com/24/ffffff/000000?text=T" alt="Twitter Icon"></a></li>
-                        <li><a href="#" aria-label="LinkedIn"><img src="https://via.placeholder.com/24/ffffff/000000?text=L" alt="LinkedIn Icon"></a></li>
-                    </ul>
+    <footer class="main-footer" id="contact">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h3>MyShop</h3>
+                <p>Quality products, exceptional service.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 YourBrandName. All rights reserved.</p>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#products">Shop</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
             </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:info@myshop.com">info@myshop.com</a></p>
+                <p>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                <p>Address: 123 E-commerce St, Online City, Global</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 MyShop. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Main JS File -->
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
 ```

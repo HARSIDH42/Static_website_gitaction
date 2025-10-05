@@ -1,0 +1,20 @@
+const saveCart = () => {
+        localStorage.setItem('ecommerceCart', JSON.stringify(cart));
+    };
+
+    const loadCart = () => {
+        const storedCart = localStorage.getItem('ecommerceCart');
+        if (storedCart) {
+            cart = JSON.parse(storedCart);
+        }
+        updateCartCount();
+    };
+
+    const updateCartCount = () => {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        if (cartCountSpan) { // Check if the element exists (it's on both index and cart pages)
+            cartCountSpan.textContent = totalItems;
+        }
+    };
+
+    //

@@ -1,0 +1,10 @@
+loadCart(); // Load cart on every page load
+    if (document.body.classList.contains('cart-page')) { // Add a class to your body on cart.html like <body class="cart-page">
+         renderCartPage();
+    }
+    // Alternatively, check for the presence of cart-specific elements:
+    if (document.getElementById('cart-items-container')) {
+        renderCartPage();
+    }
+});
+```

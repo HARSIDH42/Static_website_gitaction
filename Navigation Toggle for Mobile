@@ -1,0 +1,27 @@
+if (menuToggle && navList) {
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            const isExpanded = mainNav.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+        });
+
+        // Close menu when a navigation link is clicked (for single-page navigation or redirect)
+        navList.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // Close menu if clicked outside (optional, but good for UX)
+        document.addEventListener('click', (event) => {
+            if (!mainNav.contains(event.target) && !menuToggle.contains(event.target) && mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
+    //
