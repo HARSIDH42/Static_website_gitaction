@@ -1,4 +1,4 @@
-name: Gemini AI Auto Commit and Deploy
+name: Groq AI Auto Commit and Deploy
 
 on:
   push:
@@ -27,23 +27,22 @@ jobs:
       # 3️⃣ Install dependencies
       - name: Install Dependencies
         run: |
-          pip install --upgrade google-generativeai
+          pip install --upgrade groq
 
-      # 4️⃣ Run Gemini AI to auto-update website UI
-      - name: Run Gemini AI to Update Website UI
+      # 4️⃣ Run Groq AI to auto-update website UI
+      - name: Run Groq AI to Update Website UI
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           python << 'EOF'
           import os
-          import google.generativeai as genai
+          import groq
           import subprocess
           from pathlib import Path
           import re
 
-          # Configure Gemini
-          genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-          model = genai.GenerativeModel("gemini-2.5-flash")
+          # Configure Groq
+          client = groq.Client(api_key=os.environ["GROQ_API_KEY"])
 
           prompt = """
           You are updating the UI of a static website project.
@@ -59,10 +58,10 @@ jobs:
           """
 
           # Generate updated UI content
-          response = model.generate_content(prompt)
+          response = client.generate(prompt=prompt)
           output = response.text
 
-          # Parse Gemini's output to write files
+          # Parse Groq's output to write files
           matches = re.findall(r"---(.*?)---\n(.*?)(?=(?:---|$))", output, re.DOTALL)
           for filename, content in matches:
               filepath = Path(filename.strip())
@@ -71,10 +70,10 @@ jobs:
                   f.write(content.strip())
 
           # Git commit and push changes
-          subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
+          subprocess.run(["git", "config", "--global", "user.name", "groq-bot"])
           subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
           subprocess.run(["git", "add", "."])
-          subprocess.run(["git", "commit", "-m", "🤖 Gemini AI updated website UI"])
+          subprocess.run(["git", "commit", "-m", "🤖 Groq AI updated website UI"])
           subprocess.run(["git", "push"])
           EOF
 
