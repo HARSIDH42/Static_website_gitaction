@@ -36,13 +36,13 @@ jobs:
         run: |
           python << 'EOF'
           import os
-          import groq
           import subprocess
           from pathlib import Path
           import re
+          from groq import Groq
 
-          # Configure Groq
-          client = groq.Client(api_key=os.environ["GROQ_API_KEY"])
+          # Initialize Groq client
+          client = Groq(api_key=os.environ["GROQ_API_KEY"])
 
           prompt = """
           You are updating the UI of a static website project.
@@ -57,9 +57,12 @@ jobs:
           <file content>
           """
 
-          # Generate updated UI content
-          response = client.generate(prompt=prompt)
-          output = response.text
+          # Generate updated UI content using Groq chat completion
+          response = client.chat.completions.create(
+              messages=[{"role": "user", "content": prompt}],
+              model="llama-3.3-70b-versatile"
+          )
+          output = response.choices[0].message.content
 
           # Parse Groq's output to write files
           matches = re.findall(r"---(.*?)---\n(.*?)(?=(?:---|$))", output, re.DOTALL)
