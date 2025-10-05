@@ -29,8 +29,8 @@ jobs:
         run: |
           pip install --upgrade google-generativeai
 
-      # 4️⃣ Run Gemini AI to auto-update README.md (or create if missing)
-      - name: Run Gemini AI Code Update
+      # 4️⃣ Run Gemini AI to auto-update website UI
+      - name: Run Gemini AI to Update Website UI
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
@@ -38,45 +38,43 @@ jobs:
           import os
           import google.generativeai as genai
           import subprocess
+          from pathlib import Path
+          import re
 
           # Configure Gemini
           genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-          model = genai.GenerativeModel("gemini-2.5-flash")  # ✅ Updated model
+          model = genai.GenerativeModel("gemini-2.5-flash")
 
           prompt = """
           You are updating the UI of a static website project.
           - Modernize the layout, colors, and typography to be clean and professional.
           - Make the homepage visually appealing with responsive design.
-          - Optimize images and assets for fast loading.  
+          - Optimize images and assets for fast loading.
           - Update navigation, buttons, and sections for clarity and user experience.
           - Ensure the website is mobile-friendly and accessible.
-           - Return the full HTML/CSS/JS content for the website files that need modification.
+          - Provide the full HTML/CSS/JS content for each file that needs modification.
+          Return each file as:
+          ---filename.ext---
+          <file content>
           """
 
-          # Ensure README.md exists
-          if not os.path.exists("README.md"):
-              with open("README.md", "w", encoding="utf-8") as f:
-                  f.write("# Project README\n")
+          # Generate updated UI content
+          response = model.generate_content(prompt)
+          output = response.text
 
-          # Read file
-          with open("README.md", "r", encoding="utf-8") as f:
-              readme_content = f.read()
+          # Parse Gemini's output to write files
+          matches = re.findall(r"---(.*?)---\n(.*?)(?=(?:---|$))", output, re.DOTALL)
+          for filename, content in matches:
+              filepath = Path(filename.strip())
+              filepath.parent.mkdir(parents=True, exist_ok=True)
+              with open(filepath, "w", encoding="utf-8") as f:
+                  f.write(content.strip())
 
-          # Generate new content
-          response = model.generate_content(
-              f"Current README:\n{readme_content}\n\n{prompt}"
-          )
-          new_readme = response.text
-
-          # Save updated file
-          with open("README.md", "w", encoding="utf-8") as f:
-              f.write(new_readme)
-
-          # Git commit and push
+          # Git commit and push changes
           subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
           subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
-          subprocess.run(["git", "add", "README.md"])
-          subprocess.run(["git", "commit", "-m", "🤖 Gemini AI updated README with S3 deployment guide"])
+          subprocess.run(["git", "add", "."])
+          subprocess.run(["git", "commit", "-m", "🤖 Gemini AI updated website UI"])
           subprocess.run(["git", "push"])
           EOF
 
