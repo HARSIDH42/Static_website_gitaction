@@ -101,24 +101,27 @@ jobs:
               output += chunk.choices[0].delta.content or ""
               print(chunk.choices[0].delta.content or "", end="")
           
-          # Parse output and write files
+          # Parse output and write files, track updated files
+          updated_files = []
           matches = re.findall(r"---(.*?)---\n(.*?)(?=(?:---|$))", output, re.DOTALL)
           for filename, content in matches:
               filepath = Path(filename.strip())
               filepath.parent.mkdir(parents=True, exist_ok=True)
               with open(filepath, "w", encoding="utf-8") as f:
                   f.write(content.strip())
+              updated_files.append(str(filepath))
           
-          # Git commit and push only if there are changes
+          # Git commit and push only the updated files
           subprocess.run(["git", "config", "--global", "user.name", "groq-bot"])
           subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
-          subprocess.run(["git", "add", "."])
-          try:
-              subprocess.run(["git", "diff", "--cached", "--quiet"], check=True)
-              print("No changes to commit.")
-          except subprocess.CalledProcessError:
-              subprocess.run(["git", "commit", "-m", "🤖 Groq AI updated e-commerce website UI"])
-              subprocess.run(["git", "push"])
+          if updated_files:
+              subprocess.run(["git", "add"] + updated_files)
+              try:
+                  subprocess.run(["git", "diff", "--cached", "--quiet"], check=True)
+                  print("No changes to commit.")
+              except subprocess.CalledProcessError:
+                  subprocess.run(["git", "commit", "-m", "🤖 Groq AI updated e-commerce website UI"])
+                  subprocess.run(["git", "push"])
           EOF
           
                 # 5️⃣ Configure AWS credentials for deployment
