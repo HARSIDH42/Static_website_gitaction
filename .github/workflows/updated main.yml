@@ -45,13 +45,37 @@ jobs:
           client = Groq(api_key=os.environ["GROQ_API_KEY"])
 
           prompt = """
-          You are updating the UI of a static website project.
-          - Modernize the layout, colors, and typography to be clean and professional.
-          - Make the homepage visually appealing with responsive design.
-          - Optimize images and assets for fast loading.
-          - Update navigation, buttons, and sections for clarity and user experience.
-          - Ensure the website is mobile-friendly and accessible.
-          - Provide the full HTML/CSS/JS content for each file that needs modification.
+         UI Design Prompt: Image-Free, High-End E-commerce
+         Design a sophisticated, image-free e-commerce website UI for a brand selling high-quality, exclusive products (e.g., luxury watches, artisanal coffee, or minimalist stationery). The design must rely entirely on premium typography, refined color use, clean layout, and subtle geometric accents to convey value, quality, and exclusivity.
+          Core Aesthetic & Branding
+          Brand Vibe: Exclusive, Architectural, and Deliberate. The interface should feel structured and editorial, treating product details with the reverence of museum text or a high-fashion catalog.
+          Image Restriction: Strictly no images or raster graphics. Product representation must be achieved through detailed descriptions, price formatting, and simple placeholder boxes or geometric outlines.
+          Focus: Detail and Information Hierarchy. The design's success is measured by how effectively it makes text-based information (Name, Price, Material, Story) feel premium and engaging.
+
+          Technical & Design Requirements
+          Color Palette: Use a monochromatic base (Black and White/Very Light Gray), accented by a single, deep, non-vibrant accent color (e.g., Deep Forest Green, Charcoal, or Aged Bronze) to highlight key actions and prices.
+          
+          Typography:
+          Headings/Display: A highly distinctive, elegant serif (for luxury and heritage). Use thin weights and wide letter-spacing.
+          Body/Product Details: A clean, highly readable modern sans-serif (for clarity and function).
+          Use fixed-width (monospace) font specifically for product SKUs, prices, or dates to add a technical/architectural feel.  
+          Product Card Representation:
+          Instead of a photo, use a simple, square or rectangular outline box on the card.
+          Place the Product Name (Serif, Bold) and Price (Monospace) outside the outline box, creating tension and focus.
+          Key Page Focus Areas
+          Homepage Hero:
+          Feature a single, centered Hero Headline using an enormous, thin-weight serif font.
+          Below the headline, use a call-to-action button styled purely with the accent color and bold text.
+          Use fine horizontal and vertical lines to frame the hero content area.
+          Product Listing Page (Grid):
+          Must use a strict, spacious grid (3 or 4 columns).
+          Include a Filter/Sort Bar that uses minimal text links and uses small, simple vector dots or triangles for active states.
+          Product Detail Page (PDP):
+          Layout should be a two-column split.
+          Left Column (Visual Slot): A large, empty square/rectangle outline.
+          Right Column (Details): Highly organized information: Product Name (Huge), Price (Monospace, Accent Color), Description, and structured data blocks (e.g., "Materials: Brass," "Weight: 450g").
+          "Add to Cart" Button: Use the accent color background, bold sans-serif text, and a hover state that simply inverts the color.
+
           Return each file as:
           ---filename.ext---
           <file content>
