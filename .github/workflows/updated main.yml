@@ -44,11 +44,13 @@ jobs:
           model = genai.GenerativeModel("gemini-2.5-flash")  # ✅ Updated model
 
           prompt = """
-          Read the README.md file.
-          If it lacks a 'Deployment' section, append one describing
-          deployment to AWS S3, Terraform infrastructure setup,
-          and Argo CD workflow integration.
-          Return the complete updated README content.
+          You are updating the UI of a static website project.
+          - Modernize the layout, colors, and typography to be clean and professional.
+          - Make the homepage visually appealing with responsive design.
+          - Optimize images and assets for fast loading.  
+          - Update navigation, buttons, and sections for clarity and user experience.
+          - Ensure the website is mobile-friendly and accessible.
+           - Return the full HTML/CSS/JS content for the website files that need modification.
           """
 
           # Ensure README.md exists
