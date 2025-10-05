@@ -80,8 +80,8 @@ jobs:
 
           7. Output
              - Return each file separately:
----filename.ext---
-  <file content>
+          ---filename.ext---
+           <file content>
              - Files to generate: index.html, products.html, product.html, styles.css, scripts.js
           """
 
