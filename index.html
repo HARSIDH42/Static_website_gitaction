@@ -4,195 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A modern, clean, and professional static website template designed for responsiveness and performance.">
-    <meta name="keywords" content="static website, modern UI, responsive design, web development, HTML, CSS, JavaScript">
-    <meta name="author" content="Your Company Name">
-    <title>Modern Static Website</title>
-
-    <!-- Preload critical fonts for faster loading -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@404,600,700&family=Open+Sans:wght@300,400,600&display=swap" as="style" crossorigin>
-
-    <!-- Link to Google Fonts (Poppins for headings, Open Sans for body) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400,600,700&family=Open+Sans:wght@300,400,600&display=swap" rel="stylesheet">
-
-    <!-- Link to your main stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Favicon (optional, but good practice) -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <title>Professional Website</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="main-header">
-        <div class="container">
-            <a href="#" class="logo" aria-label="Modern Website Home">YourLogo</a>
-            <button class="nav-toggle" aria-label="toggle navigation" aria-expanded="false">
-                <span class="hamburger"></span>
-            </button>
-            <nav class="main-nav">
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#about" class="nav-link">About Us</a></li>
-                    <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
-                    <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
-                    <li class="nav-item"><a href="#contact" class="nav-link button-outline">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
-
     <main>
-        <section id="home" class="hero-section">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Crafting Modern Digital Experiences</h1>
-                    <p class="lead">We build beautiful, responsive, and performant websites that captivate your audience and elevate your brand.</p>
-                    <a href="#services" class="button primary">Explore Our Services</a>
-                    <a href="#contact" class="button secondary">Get a Quote</a>
-                </div>
-                <!-- Optimized image: use WebP for modern browsers, JPG for fallback.
-                     Specify width/height to prevent layout shift. Lazy loading. -->
-                <img src="images/hero-image.webp" alt="Creative team collaborating on a digital project"
-                     width="600" height="400" class="hero-image" loading="lazy"
-                     onerror="this.onerror=null; this.src='images/hero-image.jpg';">
-            </div>
+        <section id="home">
+            <h1>Welcome to Our Website</h1>
+            <p>This is a professional website with a clean and modern design.</p>
+            <button>Learn More</button>
         </section>
-
-        <section id="about" class="about-section section-padding">
-            <div class="container">
-                <div class="about-grid">
-                    <div class="about-image">
-                        <img src="images/about-us.webp" alt="Team members discussing ideas in a modern office"
-                             width="500" height="350" loading="lazy"
-                             onerror="this.onerror=null; this.src='images/about-us.jpg';">
-                    </div>
-                    <div class="about-content">
-                        <h2>Who We Are</h2>
-                        <p>At **Your Company Name**, we are passionate about creating web solutions that are not just functional but truly outstanding. Our team of dedicated designers and developers works tirelessly to bring your vision to life, ensuring every detail is perfect.</p>
-                        <p>We believe in transparent communication, agile development, and delivering projects that exceed expectations. From concept to launch, we're with you every step of the way.</p>
-                        <a href="#contact" class="button primary">Learn More</a>
-                    </div>
-                </div>
-            </div>
+        <section id="about">
+            <h2>About Us</h2>
+            <p>We are a team of professionals dedicated to providing high-quality services.</p>
         </section>
-
-        <section id="services" class="services-section section-padding background-light">
-            <div class="container">
-                <h2>Our Core Services</h2>
-                <p class="section-subtitle">We offer a comprehensive range of services to help your business thrive online.</p>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <img src="images/icon-web-design.svg" alt="Web Design Icon" width="64" height="64" class="service-icon" loading="lazy">
-                        <h3>Web Design</h3>
-                        <p>Stunning, user-friendly designs that captivate your audience and reflect your brand identity.</p>
-                    </div>
-                    <div class="service-card">
-                        <img src="images/icon-development.svg" alt="Web Development Icon" width="64" height="64" class="service-icon" loading="lazy">
-                        <h3>Web Development</h3>
-                        <p>Robust, scalable, and high-performance websites built with the latest technologies.</p>
-                    </div>
-                    <div class="service-card">
-                        <img src="images/icon-seo.svg" alt="SEO Optimization Icon" width="64" height="64" class="service-icon" loading="lazy">
-                        <h3>SEO Optimization</h3>
-                        <p>Improve your search engine rankings and attract more organic traffic to your site.</p>
-                    </div>
-                    <div class="service-card">
-                        <img src="images/icon-mobile.svg" alt="Mobile Responsiveness Icon" width="64" height="64" class="service-icon" loading="lazy">
-                        <h3>Mobile Responsiveness</h3>
-                        <p>Ensuring your website looks and functions perfectly on all devices, from desktop to mobile.</p>
-                    </div>
-                    <div class="service-card">
-                        <img src="images/icon-maintenance.svg" alt="Website Maintenance Icon" width="64" height="64" class="service-icon" loading="lazy">
-                        <h3>Website Maintenance</h3>
-                        <p>Ongoing support, updates, and security to keep your website running smoothly.</p>
-                    </div>
-                    <div class="service-card">
-                        <img src="images/icon-strategy.svg" alt="Digital Strategy Icon" width="64" height="64" class="service-icon" loading="lazy">
-                        <h3>Digital Strategy</h3>
-                        <p>Expert guidance to craft a compelling online presence and achieve your business goals.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="portfolio" class="portfolio-section section-padding">
-            <div class="container">
-                <h2>Our Recent Work</h2>
-                <p class="section-subtitle">Explore a selection of our latest projects that showcase our expertise and creativity.</p>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="images/portfolio-1.webp" alt="Website screenshot of a modern e-commerce store"
-                             width="400" height="280" loading="lazy"
-                             onerror="this.onerror=null; this.src='images/portfolio-1.jpg';">
-                        <h3>E-commerce Redesign</h3>
-                        <p>A sleek, performance-driven online store for fashion brand.</p>
-                        <a href="#" class="button button-small">View Project</a>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/portfolio-2.webp" alt="Website screenshot of a corporate business site"
-                             width="400" height="280" loading="lazy"
-                             onerror="this.onerror=null; this.src='images/portfolio-2.jpg';">
-                        <h3>Corporate Business Site</h3>
-                        <p>Professional and engaging web presence for a financial consultancy.</p>
-                        <a href="#" class="button button-small">View Project</a>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="images/portfolio-3.webp" alt="Website screenshot of a personal portfolio or blog"
-                             width="400" height="280" loading="lazy"
-                             onerror="this.onerror=null; this.src='images/portfolio-3.jpg';">
-                        <h3>Creative Portfolio</h3>
-                        <p>Showcasing an artist's work with an intuitive and immersive experience.</p>
-                        <a href="#" class="button button-small">View Project</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="cta" class="cta-section section-padding background-primary">
-            <div class="container">
-                <h2>Ready to Start Your Project?</h2>
-                <p class="section-subtitle">Let's discuss how we can help you achieve your digital goals.</p>
-                <a href="#contact" class="button button-cta">Get Your Free Consultation</a>
-            </div>
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <p>Contact us at <a href="mailto:info@example.com">info@example.com</a> or call us at 123-456-7890.</p>
         </section>
     </main>
-
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>YourLogo</h3>
-                    <p>Modern solutions for your digital presence. Crafting experiences that matter.</p>
-                </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Connect With Us</h3>
-                    <ul>
-                        <li><a href="mailto:info@yourcompany.com">info@yourcompany.com</a></li>
-                        <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
-                        <li class="social-links">
-                            <a href="#" aria-label="Facebook"><img src="images/icon-facebook.svg" alt="Facebook" width="24" height="24"></a>
-                            <a href="#" aria-label="Twitter"><img src="images/icon-twitter.svg" alt="Twitter" width="24" height="24"></a>
-                            <a href="#" aria-label="LinkedIn"><img src="images/icon-linkedin.svg" alt="LinkedIn" width="24" height="24"></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> Your Company Name. All rights reserved.</p>
-            </div>
-        </div>
+    <footer>
+        <p>&copy; 2024 Professional Website</p>
     </footer>
-
-    <!-- Link to your JavaScript file -->
-    <script src="js/script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
 ```
+
+### styles.css
