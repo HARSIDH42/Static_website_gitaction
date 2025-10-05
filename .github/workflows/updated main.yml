@@ -1,4 +1,4 @@
-name: Deploy to S3
+name: Gemini AI Auto Commit and Deploy
 
 on:
   push:
@@ -6,12 +6,74 @@ on:
       - main
 
 jobs:
-  deploy:
+  ai-commit-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # allows workflow to push changes
+
     steps:
+      # 1️⃣ Checkout repository
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
+      # 2️⃣ Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 3️⃣ Install dependencies
+      - name: Install Dependencies
+        run: |
+          pip install google-generativeai
+
+      # 4️⃣ Run Gemini AI to auto-update README.md (or other files)
+      - name: Run Gemini AI Code Update
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python << 'EOF'
+          import os
+          import google.generativeai as genai
+          import subprocess
+
+          # Configure Gemini
+          genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+          model = genai.GenerativeModel("gemini-1.5-flash")
+
+          prompt = """
+          Read the README.md file.
+          If it lacks a 'Deployment' section, append one describing
+          deployment to AWS S3, Terraform infrastructure setup,
+          and Argo CD workflow integration.
+          Return the complete updated README content.
+          """
+
+          # Read file
+          with open("README.md", "r", encoding="utf-8") as f:
+              readme_content = f.read()
+
+          # Generate new content
+          response = model.generate_content(
+              f"Current README:\n{readme_content}\n\n{prompt}"
+          )
+          new_readme = response.text
+
+          # Save updated file
+          with open("README.md", "w", encoding="utf-8") as f:
+              f.write(new_readme)
+
+          # Git commit and push
+          subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
+          subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
+          subprocess.run(["git", "add", "README.md"])
+          subprocess.run(["git", "commit", "-m", "🤖 Gemini AI updated README with S3 deployment guide"])
+          subprocess.run(["git", "push"])
+          EOF
+
+      # 5️⃣ Configure AWS credentials for deployment
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -19,6 +81,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
+      # 6️⃣ Deploy updated site to S3
       - name: Deploy to S3
         run: |
-          aws s3 sync . s3://staticwebzsitegit  --delete
+          aws s3 sync . s3://staticwebzsitegit --delete
