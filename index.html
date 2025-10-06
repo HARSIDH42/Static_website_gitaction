@@ -1,131 +1,171 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELEVATE HOME - High-End Home Goods</title>
+    <title>Home - Minimalist Home Goods</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts - Inter for a clean sans-serif -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo">ELEVATE HOME</a>
+    <header>
+        <div class="container header-content">
+            <div class="logo"><a href="index.html">ELEVATE HOME</a></div>
             <nav>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="products.html">Shop</a></li>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
-                    <li><a href="#">Cart (0)</a></li>
                 </ul>
             </nav>
+            <div class="header-icons">
+                <a href="#" class="icon">[Search Icon]</a>
+                <a href="#" class="icon">[Cart Icon]</a>
+            </div>
         </div>
     </header>
 
     <main>
-        <section class="hero">
-            <img src="assets/images/hero-main.jpg" alt="Minimalist living room with high-end furniture" class="hero-image">
-            <div class="hero-content">
-                <h1>Crafting Serenity, Elevating Spaces.</h1>
-                <p>Discover timeless design and exceptional quality for your home.</p>
-                <a href="products.html" class="btn">Shop The Collection</a>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container text-center">
+                <div class="hero-image-container">
+                    <div class="image-placeholder aspect-ratio-2-1" style="max-height: 500px;"></div>
+                </div>
+                <h1>Elevate Your Home with Timeless Design</h1>
+                <p class="lead">
+                    Curated collection of high-end home goods designed for minimalist living.
+                    Discover pieces that bring tranquility and sophistication to every space.
+                </p>
+                <a href="shop.html" class="btn">Explore Our Collection</a>
             </div>
         </section>
 
-        <section class="section-padding">
+        <!-- Featured Categories -->
+        <section class="featured-categories">
             <div class="container">
-                <h2 class="section-title">Featured Products</h2>
-                <div class="product-grid">
-                    <article class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-vase.jpg" alt="Ceramic Minimalist Vase" class="product-card-image">
-                            <h3 class="product-card-title">Sculptural Ceramic Vase</h3>
-                            <p class="product-card-price">$89.00</p>
-                        </a>
-                        <a href="product-detail.html" class="btn btn-secondary">View Product</a>
-                    </article>
-
-                    <article class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-bowl.jpg" alt="Hand-thrown Earth Bowl" class="product-card-image">
-                            <h3 class="product-card-title">Artisan Stoneware Bowl</h3>
-                            <p class="product-card-price">$65.00</p>
-                        </a>
-                        <a href="product-detail.html" class="btn btn-secondary">View Product</a>
-                    </article>
-
-                    <article class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-lamp.jpg" alt="Minimalist Table Lamp" class="product-card-image">
-                            <h3 class="product-card-title">Modern Minimalist Lamp</h3>
-                            <p class="product-card-price">$199.00</p>
-                        </a>
-                        <a href="product-detail.html" class="btn btn-secondary">View Product</a>
-                    </article>
-
-                    <article class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-cushion.jpg" alt="Linen Decorative Cushion" class="product-card-image">
-                            <h3 class="product-card-title">Natural Linen Cushion</h3>
-                            <p class="product-card-price">$55.00</p>
-                        </a>
-                        <a href="product-detail.html" class="btn btn-secondary">View Product</a>
-                    </article>
+                <h2 class="text-center">Our Curated Categories</h2>
+                <div class="category-grid">
+                    <div class="category-item">
+                        <div class="image-placeholder aspect-ratio-4-3"></div>
+                        <h3>Living Room Essentials</h3>
+                        <p>Sophisticated pieces for your central gathering space, designed for comfort and style.</p>
+                        <a href="shop.html?category=living" class="btn-outline">Shop Now</a>
+                    </div>
+                    <div class="category-item">
+                        <div class="image-placeholder aspect-ratio-4-3"></div>
+                        <h3>Bedroom Serenity</h3>
+                        <p>Create a peaceful retreat with our tranquil designs and premium comfort solutions.</p>
+                        <a href="shop.html?category=bedroom" class="btn-outline">Shop Now</a>
+                    </div>
+                    <div class="category-item">
+                        <div class="image-placeholder aspect-ratio-4-3"></div>
+                        <h3>Dining & Kitchen</h3>
+                        <p>Elegance and functionality meet in our collection for culinary spaces and shared meals.</p>
+                        <a href="shop.html?category=dining" class="btn-outline">Shop Now</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="about-section">
+        <!-- New Arrivals / Bestsellers Section -->
+        <section class="product-showcase">
             <div class="container">
-                <h2 class="section-title">Our Philosophy</h2>
-                <p>At ELEVATE HOME, we believe in the power of thoughtful design to transform living spaces into sanctuaries. We curate a collection of high-end home goods, focusing on natural materials, impeccable craftsmanship, and timeless aesthetics. Each piece is selected to bring harmony, beauty, and function into your home, reflecting a commitment to quality and sustainable living.</p>
-                <p>Experience the difference of truly elevated living.</p>
-                <a href="#" class="btn btn-secondary" style="margin-top: var(--spacing-lg);">Learn More</a>
+                <h2 class="text-center">New Arrivals</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-card-image">
+                            <div class="image-placeholder aspect-ratio-1-1"></div>
+                        </div>
+                        <div class="product-card-content">
+                            <h3><a href="product.html">Minimalist Oak Coffee Table</a></h3>
+                            <p class="price">$599.00</p>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-image">
+                            <div class="image-placeholder aspect-ratio-1-1"></div>
+                        </div>
+                        <div class="product-card-content">
+                            <h3><a href="product.html">Ceramic Diffuser Vase</a></h3>
+                            <p class="price">$85.00</p>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-image">
+                            <div class="image-placeholder aspect-ratio-1-1"></div>
+                        </div>
+                        <div class="product-card-content">
+                            <h3><a href="product.html">Handwoven Wool Rug</a></h3>
+                            <p class="price">$320.00</p>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-image">
+                            <div class="image-placeholder aspect-ratio-1-1"></div>
+                        </div>
+                        <div class="product-card-content">
+                            <h3><a href="product.html">Abstract Ceramic Planter</a></h3>
+                            <p class="price">$120.00</p>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Snippet -->
+        <section class="about-snippet" style="background-color: var(--color-secondary-accent);">
+            <div class="container text-center py-lg">
+                <h2>Our Philosophy</h2>
+                <p class="lead" style="max-width: 700px; margin: 0 auto var(--spacing-lg);">
+                    We believe in fewer, better things. Each item in our collection is thoughtfully
+                    designed for enduring beauty, exceptional quality, and sustainable living.
+                    Discover pieces that transcend trends and bring a sense of calm elegance to your home.
+                </p>
+                <a href="#" class="btn-outline">Learn More About Us</a>
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section class="newsletter-signup py-lg">
+            <div class="container text-center">
+                <h2>Stay Updated</h2>
+                <p>Sign up for our newsletter for exclusive offers and design inspiration.</p>
+                <form class="newsletter-form">
+                    <div class="form-group">
+                        <input type="email" placeholder="Your email address" aria-label="Email address" required>
+                    </div>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-section">
-                <h4>ELEVATE HOME</h4>
-                <p>Curated design for the modern home. Timeless aesthetics, enduring quality.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Shop</h4>
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-nav">
                 <ul>
-                    <li><a href="products.html">All Products</a></li>
-                    <li><a href="#">Furniture</a></li>
-                    <li><a href="#">Decor</a></li>
-                    <li><a href="#">Textiles</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Customer Service</h4>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>
             </div>
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Pinterest</a></li>
-                    <li><a href="#">Facebook</a></li>
-                </ul>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">[Facebook]</a>
+                <a href="#" aria-label="Instagram">[Instagram]</a>
+                <a href="#" aria-label="Pinterest">[Pinterest]</a>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 ELEVATE HOME. All rights reserved.</p>
+            <p>&copy; 2023 Elevate Home. All rights reserved.</p>
         </div>
     </footer>
 </body>
 </html>
-```
