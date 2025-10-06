@@ -1,0 +1,52 @@
+// IMPORTANT: Replace 'https://api.example.com/feedback' with your actual API endpoint
+            const API_ENDPOINT = 'https://api.example.com/feedback'; 
+
+            fetch(API_ENDPOINT, {
+                method: 'POST', // Use POST method for sending new data
+                headers: {
+                    'Content-Type': 'application/json', // Specify content type
+                    'Accept': 'application/json' // Expect JSON response
+                },
+                body: JSON.stringify(feedbackData) // Convert JS object to JSON string
+            })
+            .then(response => {
+                if (!response.ok) { // Check if the request was successful
+                    // Throw an error for bad HTTP responses (e.g., 404, 500)
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json(); // Parse the JSON response
+            })
+            .then(data => {
+                console.log('Feedback submitted successfully:', data);
+                // You might want to display a different message or UI based on API success/failure
+            })
+            .catch(error => {
+                console.error('Error submitting feedback:', error);
+                // Display an error message to the user if API submission fails
+                feedbackThanksMessage.textContent = 'Failed to send feedback. Please try again later.';
+                feedbackThanksMessage.style.backgroundColor = '#f8d7da'; // Light red for error
+                feedbackThanksMessage.style.borderColor = '#dc3545'; // Red border
+                feedbackThanksMessage.style.color = '#721c24'; // Dark red text
+            });
+            */
+
+            // Display a thank-you message dynamically
+            feedbackThanksMessage.textContent = 'Thank you for your feedback!';
+            // Ensure original success styling is applied in case of prior error message
+            feedbackThanksMessage.style.backgroundColor = ''; 
+            feedbackThanksMessage.style.borderColor = '';
+            feedbackThanksMessage.style.color = '';
+            feedbackThanksMessage.classList.add('show'); // Make the message visible
+
+            // Clear the form fields after submission
+            feedbackNameInput.value = '';
+            feedbackMessageInput.value = '';
+
+            // Hide the thank-you message after a few seconds
+            setTimeout(() => {
+                feedbackThanksMessage.classList.remove('show'); // Fade out and hide
+            }, 5000); // Message will disappear after 5 seconds
+        });
+    }
+});
+```

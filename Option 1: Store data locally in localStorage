@@ -1,0 +1,10 @@
+// Retrieve existing feedbacks or initialize an empty array
+            let feedbacks = JSON.parse(localStorage.getItem('customerFeedbacks')) || [];
+            feedbacks.push(feedbackData); // Add the new feedback
+            localStorage.setItem('customerFeedbacks', JSON.stringify(feedbacks)); // Store updated array
+            
+            console.log('Feedback stored locally:', feedbackData);
+            console.log('All stored feedbacks:', feedbacks);
+
+            /*
+            //

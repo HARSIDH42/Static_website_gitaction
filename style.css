@@ -1,459 +1,153 @@
 ```css
-/* Custom Properties (CSS Variables) for Easy Theming */
-:root {
-    --primary-color: #4CAF50; /* A vibrant green */
-    --secondary-color: #3f51b5; /* A deep blue */
-    --accent-color: #FFC107; /* An amber yellow */
-    --text-color: #333333;
-    --light-text-color: #666666;
-    --background-color: #f8f9fa;
-    --card-background: #ffffff;
-    --border-color: #e0e0e0;
-    --shadow-light: rgba(0, 0, 0, 0.08);
-    --shadow-medium: rgba(0, 0, 0, 0.12);
+/* 
+ * IMPORTANT: This CSS is designed to be added to your existing project.
+ * It uses specific class names to minimize conflicts with existing styles.
+ * If your site uses very specific colors or typography, you may need to
+ * adjust the values below to match your brand guidelines.
+ */
 
-    --font-family-body: 'Inter', sans-serif;
-    --font-family-heading: 'Inter', sans-serif;
-}
-
-/* Base Styles & Resets */
-*, *::before, *::after {
+/* Basic reset for the feedback component only, ensures consistent box model */
+.feedback-container *, 
+.feedback-container *::before, 
+.feedback-container *::after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
-html {
-    scroll-behavior: smooth;
+/* Base styles for the feedback container */
+.feedback-container {
+    max-width: 600px; /* Limits the width of the feedback form */
+    margin: 40px auto; /* Centers the container horizontally with vertical spacing */
+    padding: 30px;
+    background-color: #ffffff; /* Clean white background */
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* Uses system fonts for neutrality */
+    color: #333; /* Dark gray text for readability */
+    line-height: 1.6; /* Improved line height for body text */
 }
 
-body {
-    font-family: var(--font-family-body);
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem; /* Consistent padding on sides */
-}
-
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-ul {
-    list-style: none;
-}
-
-h1, h2, h3 {
-    font-family: var(--font-family-heading);
-    color: var(--text-color);
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-h1 {
-    font-size: 3rem;
-    line-height: 1.2;
-}
-
-h2 {
-    font-size: 2.2rem;
+/* Heading for the feedback section */
+.feedback-container h2 {
     text-align: center;
-    margin-bottom: 3rem;
-    color: var(--secondary-color);
+    color: #333; /* Matches general text color */
+    margin-bottom: 25px;
+    font-size: 1.8em; /* A prominent heading size */
+    font-weight: bold; /* Ensures heading stands out */
 }
 
-h3 {
-    font-size: 1.5rem;
+/* Styling for individual form groups (label + input/textarea) */
+.feedback-form .form-group {
+    margin-bottom: 20px; /* Space between form fields */
 }
 
-p {
-    margin-bottom: 1rem;
+/* Labels for form inputs */
+.feedback-form label {
+    display: block; /* Makes labels stack above inputs */
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555; /* Slightly lighter than main text for labels */
+    font-size: 0.95em;
 }
 
-/* Card Styling */
-.card {
-    background-color: var(--card-background);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px var(--shadow-light);
-    padding: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Styling for text input and textarea */
+.feedback-form input[type="text"],
+.feedback-form textarea {
+    width: 100%; /* Full width within the container */
+    padding: 12px;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded input corners */
+    font-size: 1em;
+    line-height: 1.5;
+    color: #333;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transitions for focus */
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px var(--shadow-medium);
+/* Focus states for input and textarea for accessibility and UX */
+.feedback-form input[type="text"]:focus,
+.feedback-form textarea:focus {
+    border-color: #007bff; /* Primary blue for focus border */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle blue glow */
+    outline: none; /* Removes default browser outline */
 }
 
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 0.8rem 1.8rem;
-    border-radius: 50px; /* Pill-shaped button */
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+/* Specific styling for the textarea */
+.feedback-form textarea {
+    resize: vertical; /* Allows vertical resizing only */
+    min-height: 100px; /* Ensures a decent starting height */
+}
+
+/* Styling for the submit button */
+.feedback-form .submit-button {
+    display: block; /* Makes the button take full width */
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #007bff; /* Primary blue button color */
+    color: white; /* White text on button */
     border: none;
-    cursor: pointer;
-    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer; /* Indicates it's clickable */
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transitions for hover/focus */
 }
 
-.btn-primary {
-    background-color: var(--primary-color);
-    color: #ffffff;
-    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+/* Hover state for the submit button */
+.feedback-form .submit-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* Slightly larger shadow on hover */
 }
 
-.btn-primary:hover {
-    background-color: #43a047; /* Darker shade of green */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(76, 175, 80, 0.4);
-    text-decoration: none;
+/* Focus state for the submit button */
+.feedback-form .submit-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Stronger blue glow for focus */
 }
 
-/* Header & Navigation */
-header {
-    background-color: var(--card-background);
-    box-shadow: 0 2px 4px var(--shadow-light);
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-}
-
-.logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    text-decoration: none;
-    margin-right: 1.5rem; /* Space between logo and nav on desktop */
-}
-
-.nav-links {
-    display: flex;
-    gap: 2rem;
-}
-
-.nav-links li a {
-    color: var(--light-text-color);
-    font-weight: 500;
-    font-size: 1.05rem;
-    padding: 0.5rem 0;
-    position: relative;
-    transition: color 0.3s ease;
-}
-
-.nav-links li a:hover {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-/* Underline effect on hover */
-.nav-links li a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: width 0.3s ease;
-}
-
-.nav-links li a:hover::after {
-    width: 100%;
-}
-
-/* Hamburger Menu Toggle (CSS-only) */
-.nav-toggle {
-    display: none; /* Hide checkbox */
-}
-
-.nav-toggle-label {
-    display: none; /* Hidden by default, shown on mobile */
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    position: relative;
-    z-index: 1001; /* Ensure it's above other elements */
-}
-
-.nav-toggle-label span,
-.nav-toggle-label span::before,
-.nav-toggle-label span::after {
-    display: block;
-    background-color: var(--text-color);
-    height: 3px;
-    width: 100%;
-    border-radius: 3px;
-    position: absolute;
-    transition: all 0.3s ease-in-out;
-}
-
-.nav-toggle-label span::before,
-.nav-toggle-label span::after {
-    content: '';
-}
-
-.nav-toggle-label span::before {
-    top: -8px;
-}
-
-.nav-toggle-label span::after {
-    top: 8px;
-}
-
-/* Hamburger animation */
-.nav-toggle:checked + .nav-toggle-label span {
-    transform: rotate(45deg);
-}
-
-.nav-toggle:checked + .nav-toggle-label span::before {
-    transform: rotate(90deg) translate(-8px);
-    opacity: 0;
-}
-
-.nav-toggle:checked + .nav-toggle-label span::after {
-    transform: rotate(90deg) translate(8px);
-    top: 0;
-}
-
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1500x800/2196f3/ffffff?text=Hero+Background') no-repeat center center/cover;
-    color: #ffffff;
+/* Styling for the thank you message */
+.feedback-thanks-message {
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #e9f7ef; /* Light green background for success */
+    border: 1px solid #28a745; /* Green border */
+    border-radius: 5px;
+    color: #155724; /* Dark green text */
     text-align: center;
-    padding: 8rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 500px;
+    font-size: 1.1em;
+    font-weight: bold;
+    display: none; /* Hidden by default, shown by JavaScript */
+    opacity: 0; /* Starts transparent for fade-in effect */
+    transition: opacity 0.5s ease-in-out; /* Smooth fade transition */
 }
 
-.hero h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    color: #ffffff;
-    font-weight: 700;
+/* Class to show the thank you message */
+.feedback-thanks-message.show {
+    display: block; /* Makes the message visible */
+    opacity: 1; /* Fades it in */
 }
 
-.hero p {
-    font-size: 1.3rem;
-    max-width: 800px;
-    margin: 0 auto 2.5rem auto;
-    opacity: 0.9;
-}
-
-/* Features Section */
-.features {
-    padding: 6rem 0;
-    background-color: var(--background-color);
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
-}
-
-.feature-item {
-    text-align: center;
-}
-
-.feature-item h3 {
-    color: var(--secondary-color);
-    margin-top: 1.5rem;
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
-}
-
-/* Placeholder for icons - replace with actual icon fonts/SVGs */
-.feature-item i {
-    font-size: 2rem;
-    color: var(--primary-color);
-}
-.icon-easy::before { content: '✨'; font-size: 1.8em; } /* Example using emoji for placeholder */
-.icon-fast::before { content: '🚀'; font-size: 1.8em; }
-.icon-support::before { content: '📞'; font-size: 1.8em; }
-
-
-/* Testimonials Section */
-.testimonials {
-    padding: 6rem 0;
-    background-color: var(--card-background);
-}
-
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
-}
-
-.testimonial-item {
-    padding: 2.5rem; /* More padding for testimonials */
-    font-style: italic;
-    color: var(--light-text-color);
-    position: relative;
-}
-
-.testimonial-item p::before {
-    content: '“';
-    font-size: 3rem;
-    line-height: 0.5;
-    color: var(--accent-color);
-    position: absolute;
-    left: 1.5rem;
-    top: 1rem;
-}
-
-.testimonial-item p {
-    margin-bottom: 1.5rem;
-    padding-top: 1rem; /* Space for the quote icon */
-}
-
-.testimonial-author {
-    display: block;
-    font-weight: 500;
-    color: var(--text-color);
-    font-style: normal;
-    text-align: right;
-    margin-top: 1rem;
-}
-
-/* Footer */
-footer {
-    background-color: var(--secondary-color);
-    color: #ffffff;
-    text-align: center;
-    padding: 2.5rem 0;
-    font-size: 0.9rem;
-}
-
-footer p {
-    margin: 0;
-}
-
-
-/* Media Queries for Responsiveness */
-@media (max-width: 992px) {
-    .hero h1 {
-        font-size: 3rem;
-    }
-
-    h2 {
-        font-size: 1.8rem;
-    }
-
-    .nav-links {
-        gap: 1.5rem;
-    }
-}
-
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 1rem;
-    }
-
-    /* Show hamburger icon */
-    .nav-toggle-label {
-        display: block;
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 100%; /* Position below header */
-        right: 0;
-        background-color: var(--card-background);
-        box-shadow: 0 4px 8px var(--shadow-medium);
-        flex-direction: column;
-        width: 100%;
-        max-width: 300px;
-        transform: translateX(100%); /* Start off-screen */
-        transition: transform 0.3s ease-in-out;
-        padding: 1rem 0;
-        border-radius: 0 0 8px 8px;
-        z-index: 999; /* Below toggle label, above content */
-    }
-
-    .nav-links li {
-        width: 100%;
-        text-align: center;
-    }
-
-    .nav-links li a {
-        display: block;
-        padding: 0.8rem 1.5rem;
-        color: var(--text-color);
-    }
-
-    .nav-links li a:hover {
-        background-color: var(--background-color);
-        color: var(--primary-color);
-    }
-
-    /* Open nav when checkbox is checked */
-    .nav-toggle:checked ~ .nav-links {
-        transform: translateX(0); /* Slide into view */
-    }
-
-    .hero {
-        padding: 6rem 0;
-        min-height: 400px;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero p {
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-    }
-
-    .feature-grid, .testimonial-grid {
-        grid-template-columns: 1fr; /* Stack columns on small screens */
+    .feedback-container {
+        margin: 20px; /* Smaller margins on smaller screens */
+        padding: 20px;
     }
 }
 
 @media (max-width: 480px) {
-    h1 {
-        font-size: 2rem;
+    .feedback-container {
+        margin: 15px;
+        padding: 15px;
     }
 
-    h2 {
-        font-size: 1.5rem;
+    .feedback-container h2 {
+        font-size: 1.5em; /* Smaller heading on very small screens */
     }
 
-    .btn {
-        padding: 0.7rem 1.4rem;
-        font-size: 0.9rem;
-    }
-
-    .logo {
-        font-size: 1.5rem;
+    .feedback-form input[type="text"],
+    .feedback-form textarea,
+    .feedback-form .submit-button {
+        font-size: 0.95em; /* Slightly smaller text for inputs/buttons */
+        padding: 10px;
     }
 }
 ```
