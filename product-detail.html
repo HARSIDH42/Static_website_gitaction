@@ -1,245 +1,183 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Detail - E-Shop</title>
+    <title>Abstract Ceramic Vase | Elegance Home</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header class="main-header">
+    <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">E-Shop</a>
-            <nav class="main-nav">
-                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <ul class="nav-list">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop.html" class="active">Shop</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">Categories <i class="fas fa-caret-down"></i></a>
-                        <div class="dropdown-content">
-                            <a href="shop.html?category=electronics">Electronics</a>
-                            <a href="shop.html?category=apparel">Apparel</a>
-                            <a href="shop.html?category=home-goods">Home Goods</a>
-                            <a href="shop.html?category=books">Books</a>
-                        </div>
-                    </li>
-                    <li><a href="index.html#about">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+            <a href="index.html" class="logo">Elegance Home</a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="products.html">Shop</a></li>
+                    <li><a href="index.html#featured-collections">Collections</a></li>
+                    <li><a href="index.html#about-us">About</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
-            <div class="nav-icons">
-                <a href="#" class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></a>
-                <a href="#" class="icon-btn" aria-label="User Account"><i class="fas fa-user"></i></a>
-                <a href="cart.html" class="icon-btn cart-icon" aria-label="Shopping Cart">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
-                </a>
+            <div class="header-icons">
+                <a href="#" aria-label="Search"><i class="fas fa-search"></i></a>
+                <a href="#" aria-label="Account"><i class="fas fa-user"></i></a>
+                <a href="#" aria-label="Shopping Cart"><i class="fas fa-shopping-cart"></i></a>
             </div>
         </div>
     </header>
 
-    <main class="product-detail-page">
-        <section class="product-detail-section section-padding">
-            <div class="container">
-                <div class="product-overview">
-                    <div class="product-images">
-                        <div class="main-image">
-                            <img id="main-product-image" src="https://images.unsplash.com/photo-1526170375885-4d8ccd82bcf9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Vintage Camera - Main View">
-                        </div>
-                        <div class="thumbnail-gallery">
-                            <img src="https://images.unsplash.com/photo-1526170375885-4d8ccd82bcf9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Vintage Camera - Thumbnail 1" class="thumbnail active">
-                            <img src="https://images.unsplash.com/photo-1510125424574-d4f1347087e5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Vintage Camera - Thumbnail 2" class="thumbnail">
-                            <img src="https://images.unsplash.com/photo-1517743015579-3d19129e9243?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Vintage Camera - Thumbnail 3" class="thumbnail">
-                        </div>
+    <main>
+        <div class="container">
+            <nav class="pdp-breadcrumbs" aria-label="Breadcrumb">
+                <ol class="sr-only">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Shop</a></li>
+                    <li>Abstract Ceramic Vase</li>
+                </ol>
+                <a href="index.html">Home</a> <span>/</span>
+                <a href="products.html">Shop</a> <span>/</span>
+                <span>Abstract Ceramic Vase</span>
+            </nav>
+
+            <div class="product-detail-layout">
+                <div class="product-images">
+                    <div class="main-image">
+                        <img id="mainProductImage" src="assets/images/product-vase.jpg" alt="Abstract Ceramic Vase - Main View">
                     </div>
-                    <div class="product-info">
-                        <h1 id="product-name">Vintage Camera</h1>
-                        <div class="product-rating">
-                            <span class="stars" role="img" aria-label="4 out of 5 stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-                            </span>
-                            <span>(120 Reviews)</span>
-                        </div>
-                        <p class="product-price" id="product-price">$299.00</p>
-                        <p class="product-description" id="product-description">
-                            Capture timeless memories with our beautifully crafted vintage camera. This classic piece combines retro aesthetics with modern functionality, perfect for enthusiasts and collectors alike. Features include manual controls, a high-quality lens, and a durable leather finish.
-                        </p>
-                        
-                        <div class="product-options">
-                            <div class="option-group">
-                                <label for="color-select">Color:</label>
-                                <select id="color-select" aria-label="Select product color">
-                                    <option value="black">Black</option>
-                                    <option value="brown">Brown</option>
-                                    <option value="silver">Silver</option>
-                                </select>
-                            </div>
-                            <div class="option-group">
-                                <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" value="1" min="1" max="10" aria-label="Product quantity">
-                            </div>
-                        </div>
-                        <button class="button primary-button add-to-cart-btn" 
-                                data-product-id="101" 
-                                data-product-name="Vintage Camera" 
-                                data-product-price="299.00" 
-                                data-product-image="https://images.unsplash.com/photo-1526170375885-4d8ccd82bcf9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <a href="shop.html" class="button secondary-button">Continue Shopping</a>
+                    <div class="thumbnail-gallery">
+                        <img src="assets/images/product-vase.jpg" alt="Abstract Ceramic Vase - Front" class="active">
+                        <img src="assets/images/product-vase-alt1.jpg" alt="Abstract Ceramic Vase - Side View">
+                        <img src="assets/images/product-vase-alt2.jpg" alt="Abstract Ceramic Vase - Close-up texture">
+                        <img src="assets/images/product-vase.jpg" alt="Abstract Ceramic Vase - Lifestyle shot">
                     </div>
                 </div>
 
-                <div class="product-tabs">
-                    <div class="tab-buttons">
-                        <button class="tab-button active" data-tab="description">Description</button>
-                        <button class="tab-button" data-tab="specifications">Specifications</button>
-                        <button class="tab-button" data-tab="reviews">Reviews (<span id="review-count">3</span>)</button>
-                    </div>
-                    <div class="tab-content">
-                        <div id="description" class="tab-pane active">
-                            <h3>Product Details</h3>
-                            <p>This exquisite vintage camera is more than just a device; it's a statement. Crafted with high-grade aluminum alloy and genuine leather accents, it offers a tactile experience unlike any modern digital camera. The advanced optical system ensures crisp, vibrant images, while its user-friendly interface makes it accessible to both amateur and professional photographers. Ideal for street photography, portraits, and capturing the essence of everyday life with a touch of nostalgia.</p>
-                            <ul>
-                                <li><strong>Sensor:</strong> 24MP Full-Frame Equivalent</li>
-                                <li><strong>Lens Mount:</strong> Manual Focus Prime Lens</li>
-                                <li><strong>Shutter Speed:</strong> 1/4000s - 30s</li>
-                                <li><strong>ISO Range:</strong> 100-25600</li>
-                                <li><strong>Connectivity:</strong> Bluetooth, Wi-Fi</li>
-                                <li><strong>Battery Life:</strong> Up to 500 shots per charge</li>
-                            </ul>
-                        </div>
-                        <div id="specifications" class="tab-pane">
-                            <h3>Technical Specifications</h3>
-                            <table>
-                                <tr><td><strong>Model No.</strong></td><td>ES-VC2023</td></tr>
-                                <tr><td><strong>Material</strong></td><td>Aluminum Alloy, Genuine Leather</td></tr>
-                                <tr><td><strong>Dimensions</strong></td><td>120mm x 75mm x 45mm</td></tr>
-                                <tr><td><strong>Weight</strong></td><td>450g (body only)</td></tr>
-                                <tr><td><strong>Storage</strong></td><td>SD Card Slot (up to 256GB)</td></tr>
-                                <tr><td><strong>Included Accessories</strong></td><td>Leather Strap, USB-C Cable, Lens Cap</td></tr>
-                                <tr><td><strong>Warranty</strong></td><td>1 Year Manufacturer</td></tr>
-                            </table>
-                        </div>
-                        <div id="reviews" class="tab-pane">
-                            <h3>Customer Reviews</h3>
-                            <div class="reviews-list" id="customer-reviews">
-                                <div class="review-item">
-                                    <div class="review-header">
-                                        <strong>John Doe</strong>
-                                        <span class="stars" role="img" aria-label="5 out of 5 stars">
-                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                        </span>
-                                        <span class="review-date">Oct 26, 2023</span>
-                                    </div>
-                                    <p class="review-text">Absolutely love this camera! It feels amazing in hand and takes stunning photos. The vintage look is a huge bonus.</p>
-                                </div>
-                                <div class="review-item">
-                                    <div class="review-header">
-                                        <strong>Jane Smith</strong>
-                                        <span class="stars" role="img" aria-label="4 out of 5 stars">
-                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-                                        </span>
-                                        <span class="review-date">Oct 20, 2023</span>
-                                    </div>
-                                    <p class="review-text">Great camera, takes a bit of getting used to the manual focus but the results are worth it. Build quality is top-notch.</p>
-                                </div>
-                                <div class="review-item">
-                                    <div class="review-header">
-                                        <strong>Peter Jones</strong>
-                                        <span class="stars" role="img" aria-label="5 out of 5 stars">
-                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                        </span>
-                                        <span class="review-date">Oct 15, 2023</span>
-                                    </div>
-                                    <p class="review-text">Highly recommend! Perfect for capturing unique moments. The design is a real head-turner.</p>
-                                </div>
-                            </div>
+                <div class="product-info">
+                    <h1>Abstract Ceramic Vase</h1>
+                    <p class="product-price">$120.00</p>
+                    <p class="product-description">
+                        Introduce a touch of contemporary elegance to your home with our Abstract Ceramic Vase. Handcrafted with a unique, organic shape and a matte finish, this vase is a statement piece even without florals. Perfect for minimalist and modern interiors.
+                    </p>
 
-                            <h4>Write a Review</h4>
-                            <form id="review-form" class="review-form">
-                                <div class="form-group">
-                                    <label for="review-name">Your Name:</label>
-                                    <input type="text" id="review-name" required aria-label="Your name for review">
-                                </div>
-                                <div class="form-group">
-                                    <label for="review-rating">Your Rating:</label>
-                                    <div class="star-rating" id="review-rating" role="radiogroup" aria-label="Your rating">
-                                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
-                                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
-                                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
-                                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
-                                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"><i class="fas fa-star"></i></label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="review-text">Your Review:</label>
-                                    <textarea id="review-text" rows="5" required aria-label="Your review text"></textarea>
-                                </div>
-                                <button type="submit" class="button primary-button">Submit Review</button>
-                            </form>
+                    <div class="product-options">
+                        <div class="option-group">
+                            <label for="color">Color</label>
+                            <select id="color">
+                                <option value="cream">Cream White</option>
+                                <option value="terracotta">Soft Terracotta</option>
+                                <option value="sage">Muted Sage</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="size">Size</label>
+                            <select id="size">
+                                <option value="small">Small (15cm H)</option>
+                                <option value="medium">Medium (25cm H)</option>
+                                <option value="large">Large (35cm H)</option>
+                            </select>
                         </div>
                     </div>
+
+                    <div class="quantity-selector">
+                        <label for="quantity" class="sr-only">Quantity</label>
+                        <button id="minus-btn" aria-label="Decrease quantity">-</button>
+                        <input type="number" id="quantity" value="1" min="1" aria-live="polite">
+                        <button id="plus-btn" aria-label="Increase quantity">+</button>
+                    </div>
+
+                    <button class="btn add-to-cart-btn">Add to Cart</button>
+
+                    <p style="font-size: 0.9em; color: var(--color-text-muted);">
+                        <i class="fas fa-truck" style="margin-right: 5px;"></i> Free shipping on orders over $200.
+                        <br><i class="fas fa-sync-alt" style="margin-right: 5px; margin-top: 10px;"></i> Easy 30-day returns.
+                    </p>
                 </div>
             </div>
-        </section>
+
+            <section class="related-products section">
+                <h2 class="section-title">You Might Also Like</h2>
+                <div class="grid">
+                    <div class="grid-item">
+                        <a href="#">
+                            <img src="assets/images/product-lamp.jpg" alt="Minimalist Floor Lamp">
+                            <h3>Minimalist Floor Lamp</h3>
+                            <p class="price">$350.00</p>
+                        </a>
+                    </div>
+                    <div class="grid-item">
+                        <a href="#">
+                            <img src="assets/images/product-cushion.jpg" alt="Linen Blend Cushion">
+                            <h3>Linen Blend Cushion</h3>
+                            <p class="price">$65.00</p>
+                        </a>
+                    </div>
+                    <div class="grid-item">
+                        <a href="#">
+                            <img src="assets/images/product-table.jpg" alt="Oakwood Side Table">
+                            <h3>Oakwood Side Table</h3>
+                            <p class="price">$280.00</p>
+                        </a>
+                    </div>
+                    <div class="grid-item">
+                        <a href="#">
+                            <img src="assets/images/product-bowl.jpg" alt="Hand-crafted Wooden Bowl">
+                            <h3>Hand-crafted Wooden Bowl</h3>
+                            <p class="price">$85.00</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
-    <footer class="main-footer">
+    <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h4>E-Shop</h4>
-                    <p>Your one-stop shop for everything you need. Quality products, fast shipping, and exceptional service.</p>
-                </div>
-                <div class="footer-column">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Customer Service</h4>
-                    <ul>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Shipping & Returns</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Connect With Us</h4>
-                    <div class="social-icons">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <p>Subscribe to our newsletter for updates:</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
-                        <button type="submit" class="button primary-button">Subscribe</button>
-                    </form>
+            <div class="footer-column">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="products.html">All Products</a></li>
+                    <li><a href="products.html?category=living">Living Room</a></li>
+                    <li><a href="products.html?category=bedroom">Bedroom</a></li>
+                    <li><a href="products.html?category=decor">Decor</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <p>Stay updated with our latest collections.</p>
+                <p><a href="#">hello@elegancehome.com</a></p>
+                <div style="margin-top: var(--spacing-s);">
+                    <a href="#" aria-label="Instagram" style="margin-right: var(--spacing-s);"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 E-Shop. All rights reserved.</p>
-            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Elegance Home. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
-```

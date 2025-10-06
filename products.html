@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elegance Home | High-End Home Goods</title>
+    <title>Shop All Products | Elegance Home</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -19,8 +18,8 @@
             <nav class="nav-menu">
                 <ul>
                     <li><a href="products.html">Shop</a></li>
-                    <li><a href="#featured-collections">Collections</a></li>
-                    <li><a href="#about-us">About</a></li>
+                    <li><a href="index.html#featured-collections">Collections</a></li>
+                    <li><a href="index.html#about-us">About</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
@@ -33,51 +32,64 @@
     </header>
 
     <main>
-        <section class="hero">
-            <img src="assets/images/hero-main.jpg" alt="Minimalist living room with high-end furniture and decor" class="hero-image">
-            <div class="hero-content">
-                <h1>Crafting Serenity, Defining Style.</h1>
-                <p>Discover thoughtfully curated home essentials that blend timeless design with exceptional quality.</p>
-                <a href="products.html" class="btn">Shop Our Collections</a>
+        <section class="plp-header">
+            <div class="container">
+                <h1>All Products</h1>
+                <p>Explore our full range of exquisite home goods, designed for timeless appeal.</p>
             </div>
         </section>
 
-        <section id="featured-collections" class="section">
-            <div class="container">
-                <h2 class="section-title">Our Curated Collections</h2>
-                <div class="grid">
-                    <div class="grid-item">
-                        <a href="products.html?category=living">
-                            <img src="assets/images/category-living.jpg" alt="Minimalist living room furniture">
-                            <h3 class="category-name">Living Room</h3>
-                        </a>
-                    </div>
-                    <div class="grid-item">
-                        <a href="products.html?category=dining">
-                            <img src="assets/images/category-dining.jpg" alt="Elegant dining room setup">
-                            <h3 class="category-name">Dining Room</h3>
-                        </a>
-                    </div>
-                    <div class="grid-item">
-                        <a href="products.html?category=bedroom">
-                            <img src="assets/images/category-bedroom.jpg" alt="Serene bedroom with soft linens">
-                            <h3 class="category-name">Bedroom</h3>
-                        </a>
-                    </div>
-                    <div class="grid-item">
-                        <a href="products.html?category=decor">
-                            <img src="assets/images/category-decor.jpg" alt="Artistic decorative vase">
-                            <h3 class="category-name">Home Decor</h3>
-                        </a>
-                    </div>
+        <div class="container">
+            <div class="plp-filters-sort">
+                <button class="filter-toggle" aria-label="Toggle filters" aria-expanded="false">
+                    <i class="fas fa-filter"></i> Filters
+                </button>
+                <div class="sort-options">
+                    <label for="sort-by" class="sr-only">Sort By:</label>
+                    <select id="sort-by">
+                        <option value="featured">Featured</option>
+                        <option value="price-asc">Price, low to high</option>
+                        <option value="price-desc">Price, high to low</option>
+                        <option value="newest">Newest Arrivals</option>
+                    </select>
                 </div>
             </div>
-        </section>
 
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">New Arrivals</h2>
-                <div class="grid">
+            <div class="plp-main-content">
+                <aside class="sidebar-filters">
+                    <div class="filter-group">
+                        <h4>Category</h4>
+                        <ul>
+                            <li><label><input type="checkbox" name="category" value="living"> Living Room</label></li>
+                            <li><label><input type="checkbox" name="category" value="dining"> Dining Room</label></li>
+                            <li><label><input type="checkbox" name="category" value="bedroom"> Bedroom</label></li>
+                            <li><label><input type="checkbox" name="category" value="decor"> Home Decor</label></li>
+                            <li><label><input type="checkbox" name="category" value="lighting"> Lighting</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Price Range</h4>
+                        <ul>
+                            <li><label><input type="checkbox" name="price" value="0-100"> Under $100</label></li>
+                            <li><label><input type="checkbox" name="price" value="100-300"> $100 - $300</label></li>
+                            <li><label><input type="checkbox" name="price" value="300-500"> $300 - $500</label></li>
+                            <li><label><input type="checkbox" name="price" value="500+"> Over $500</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Material</h4>
+                        <ul>
+                            <li><label><input type="checkbox" name="material" value="wood"> Wood</label></li>
+                            <li><label><input type="checkbox" name="material" value="ceramic"> Ceramic</label></li>
+                            <li><label><input type="checkbox" name="material" value="metal"> Metal</label></li>
+                            <li><label><input type="checkbox" name="material" value="linen"> Linen</label></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <div class="plp-product-grid">
                     <div class="grid-item">
                         <a href="product-detail.html">
                             <img src="assets/images/product-vase.jpg" alt="Abstract Ceramic Vase">
@@ -106,18 +118,37 @@
                             <p class="price">$280.00</p>
                         </a>
                     </div>
+                    <div class="grid-item">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-chair.jpg" alt="Modern Lounge Chair">
+                            <h3>Modern Lounge Chair</h3>
+                            <p class="price">$799.00</p>
+                        </a>
+                    </div>
+                    <div class="grid-item">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-bowl.jpg" alt="Hand-crafted Wooden Bowl">
+                            <h3>Hand-crafted Wooden Bowl</h3>
+                            <p class="price">$85.00</p>
+                        </a>
+                    </div>
+                    <div class="grid-item">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-candle.jpg" alt="Scented Soy Candle">
+                            <h3>Scented Soy Candle</h3>
+                            <p class="price">$45.00</p>
+                        </a>
+                    </div>
+                    <div class="grid-item">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-mirror.jpg" alt="Round Wall Mirror">
+                            <h3>Round Wall Mirror</h3>
+                            <p class="price">$195.00</p>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <section id="about-us" class="about-section">
-            <div class="container about-content">
-                <h2 class="section-title">Our Philosophy</h2>
-                <p>At Elegance Home, we believe your living space should be a sanctuary—a reflection of your personal style and a haven of comfort. We meticulously source high-quality materials and work with skilled artisans to bring you pieces that are not only beautiful but built to last.</p>
-                <p>Our commitment to minimalist design ensures each item seamlessly integrates into your home, enhancing its natural beauty with understated elegance. Discover the art of intentional living with Elegance Home.</p>
-                <a href="#" class="btn btn-secondary" style="margin-top: var(--spacing-m);">Learn More</a>
-            </div>
-        </section>
+        </div>
     </main>
 
     <footer class="footer">
