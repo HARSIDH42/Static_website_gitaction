@@ -1,67 +1,72 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Navigation Toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const closeBtn = document.getElementById('close-mobile-nav-btn');
+    const mobileNav = document.getElementById('mobile-nav');
 
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            navToggle.setAttribute('aria-expanded', navMenu.classList.contains('active'));
+    if (hamburgerBtn && mobileNav) {
+        hamburgerBtn.addEventListener('click', () => {
+            mobileNav.classList.add('is-open');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
         });
     }
 
-    // Product Detail Page (PDP) Image Gallery
-    const mainImage = document.getElementById('mainProductImage');
-    const thumbnails = document.querySelectorAll('.thumbnail-gallery img');
+    if (closeBtn && mobileNav) {
+        closeBtn.addEventListener('click', () => {
+            mobileNav.classList.remove('is-open');
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+    }
 
-    if (mainImage && thumbnails.length > 0) {
-        thumbnails.forEach(thumbnail => {
+    // Optional: Close mobile nav when a link is clicked
+    const mobileNavLinks = mobileNav.querySelectorAll('a');
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNav.classList.remove('is-open');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // PDP image gallery functionality
+    const mainProductImage = document.getElementById('main-product-image');
+    const thumbnailImages = document.querySelectorAll('.thumbnail-images img');
+
+    if (mainProductImage && thumbnailImages.length > 0) {
+        thumbnailImages.forEach(thumbnail => {
             thumbnail.addEventListener('click', () => {
-                // Update main image source
-                mainImage.src = thumbnail.src;
-                mainImage.alt = thumbnail.alt;
+                // Update main image src
+                mainProductImage.src = thumbnail.src;
+                mainProductImage.alt = thumbnail.alt;
 
-                // Update active state for thumbnails
-                thumbnails.forEach(t => t.classList.remove('active'));
+                // Remove 'active' class from all thumbnails
+                thumbnailImages.forEach(thumb => thumb.classList.remove('active'));
+                // Add 'active' class to the clicked thumbnail
                 thumbnail.classList.add('active');
             });
         });
-        // Set initial active state for the first thumbnail
-        if (thumbnails[0]) {
-            thumbnails[0].classList.add('active');
-        }
+
+        // Set the first thumbnail as active by default
+        thumbnailImages[0].classList.add('active');
     }
 
-    // PLP Filter Toggle (for mobile)
-    const filterToggle = document.querySelector('.filter-toggle');
-    const sidebarFilters = document.querySelector('.sidebar-filters');
+    // Quantity selector functionality
+    const quantityInput = document.getElementById('quantity-input');
+    const decreaseQuantityBtn = document.getElementById('decrease-quantity');
+    const increaseQuantityBtn = document.getElementById('increase-quantity');
 
-    if (filterToggle && sidebarFilters) {
-        filterToggle.addEventListener('click', () => {
-            sidebarFilters.classList.toggle('active');
-            filterToggle.setAttribute('aria-expanded', sidebarFilters.classList.contains('active'));
-        });
-    }
-
-    // Quantity Selector
-    const quantityInput = document.getElementById('quantity');
-    const minusBtn = document.getElementById('minus-btn');
-    const plusBtn = document.getElementById('plus-btn');
-
-    if (quantityInput && minusBtn && plusBtn) {
-        minusBtn.addEventListener('click', () => {
+    if (quantityInput && decreaseQuantityBtn && increaseQuantityBtn) {
+        decreaseQuantityBtn.addEventListener('click', () => {
             let currentValue = parseInt(quantityInput.value);
             if (currentValue > 1) {
                 quantityInput.value = currentValue - 1;
             }
         });
 
-        plusBtn.addEventListener('click', () => {
+        increaseQuantityBtn.addEventListener('click', () => {
             let currentValue = parseInt(quantityInput.value);
             quantityInput.value = currentValue + 1;
         });
 
-        // Ensure quantity is always at least 1 and a valid number
+        // Ensure quantity input is always a number and at least 1
         quantityInput.addEventListener('change', () => {
             let currentValue = parseInt(quantityInput.value);
             if (isNaN(currentValue) || currentValue < 1) {

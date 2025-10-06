@@ -3,197 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop All Products | Elegance Home</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Shop All - Serafina Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo">Elegance Home</a>
-            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav class="nav-menu">
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">Serafina Home</a>
+            </div>
+            <nav class="main-nav">
                 <ul>
                     <li><a href="products.html">Shop</a></li>
-                    <li><a href="index.html#featured-collections">Collections</a></li>
+                    <li><a href="index.html#featured-products">Collections</a></li>
                     <li><a href="index.html#about-us">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div class="header-icons">
-                <a href="#" aria-label="Search"><i class="fas fa-search"></i></a>
-                <a href="#" aria-label="Account"><i class="fas fa-user"></i></a>
-                <a href="#" aria-label="Shopping Cart"><i class="fas fa-shopping-cart"></i></a>
+            <div class="nav-icons">
+                <button aria-label="Search"><img src="assets/images/icon_search.svg" alt="Search"></button>
+                <button aria-label="Account"><img src="assets/images/icon_account.svg" alt="Account"></button>
+                <button aria-label="Cart"><img src="assets/images/icon_cart.svg" alt="Cart"></button>
+            </div>
+            <div class="hamburger-menu">
+                <button id="hamburger-btn" aria-label="Open menu"><img src="assets/images/icon_hamburger.svg" alt="Menu"></button>
             </div>
         </div>
     </header>
 
+    <!-- Mobile Navigation -->
+    <div id="mobile-nav" class="mobile-nav">
+        <div class="mobile-nav-header">
+            <div class="logo">
+                <a href="index.html">Serafina Home</a>
+            </div>
+            <button id="close-mobile-nav-btn" class="close-btn" aria-label="Close menu">
+                <img src="assets/images/icon_close.svg" alt="Close">
+            </button>
+        </div>
+        <ul>
+            <li><a href="products.html">Shop</a></li>
+            <li><a href="index.html#featured-products">Collections</a></li>
+            <li><a href="index.html#about-us">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="#">Account</a></li>
+            <li><a href="#">Cart</a></li>
+        </ul>
+    </div>
+
     <main>
         <section class="plp-header">
             <div class="container">
-                <h1>All Products</h1>
-                <p>Explore our full range of exquisite home goods, designed for timeless appeal.</p>
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a> <span>/</span> <span>Shop All</span>
+                </div>
+                <h1>Shop All Home Goods</h1>
             </div>
         </section>
 
-        <div class="container">
-            <div class="plp-filters-sort">
-                <button class="filter-toggle" aria-label="Toggle filters" aria-expanded="false">
-                    <i class="fas fa-filter"></i> Filters
-                </button>
+        <section class="section plp-main">
+            <div class="container" style="display: flex; flex-direction: column;">
                 <div class="sort-options">
-                    <label for="sort-by" class="sr-only">Sort By:</label>
-                    <select id="sort-by">
+                    <label for="sort-by">Sort By:</label>
+                    <select id="sort-by" name="sort-by">
                         <option value="featured">Featured</option>
-                        <option value="price-asc">Price, low to high</option>
-                        <option value="price-desc">Price, high to low</option>
                         <option value="newest">Newest Arrivals</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
                     </select>
                 </div>
-            </div>
-
-            <div class="plp-main-content">
-                <aside class="sidebar-filters">
-                    <div class="filter-group">
-                        <h4>Category</h4>
-                        <ul>
-                            <li><label><input type="checkbox" name="category" value="living"> Living Room</label></li>
-                            <li><label><input type="checkbox" name="category" value="dining"> Dining Room</label></li>
-                            <li><label><input type="checkbox" name="category" value="bedroom"> Bedroom</label></li>
-                            <li><label><input type="checkbox" name="category" value="decor"> Home Decor</label></li>
-                            <li><label><input type="checkbox" name="category" value="lighting"> Lighting</label></li>
-                        </ul>
-                    </div>
-
-                    <div class="filter-group">
-                        <h4>Price Range</h4>
-                        <ul>
-                            <li><label><input type="checkbox" name="price" value="0-100"> Under $100</label></li>
-                            <li><label><input type="checkbox" name="price" value="100-300"> $100 - $300</label></li>
-                            <li><label><input type="checkbox" name="price" value="300-500"> $300 - $500</label></li>
-                            <li><label><input type="checkbox" name="price" value="500+"> Over $500</label></li>
-                        </ul>
-                    </div>
-
-                    <div class="filter-group">
-                        <h4>Material</h4>
-                        <ul>
-                            <li><label><input type="checkbox" name="material" value="wood"> Wood</label></li>
-                            <li><label><input type="checkbox" name="material" value="ceramic"> Ceramic</label></li>
-                            <li><label><input type="checkbox" name="material" value="metal"> Metal</label></li>
-                            <li><label><input type="checkbox" name="material" value="linen"> Linen</label></li>
-                        </ul>
-                    </div>
-                </aside>
-
-                <div class="plp-product-grid">
-                    <div class="grid-item">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-vase.jpg" alt="Abstract Ceramic Vase">
-                            <h3>Abstract Ceramic Vase</h3>
-                            <p class="price">$120.00</p>
-                        </a>
-                    </div>
-                    <div class="grid-item">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-lamp.jpg" alt="Minimalist Floor Lamp">
-                            <h3>Minimalist Floor Lamp</h3>
-                            <p class="price">$350.00</p>
-                        </a>
-                    </div>
-                    <div class="grid-item">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-cushion.jpg" alt="Linen Blend Cushion">
-                            <h3>Linen Blend Cushion</h3>
-                            <p class="price">$65.00</p>
-                        </a>
-                    </div>
-                    <div class="grid-item">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-table.jpg" alt="Oakwood Side Table">
-                            <h3>Oakwood Side Table</h3>
-                            <p class="price">$280.00</p>
-                        </a>
-                    </div>
-                    <div class="grid-item">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-chair.jpg" alt="Modern Lounge Chair">
-                            <h3>Modern Lounge Chair</h3>
-                            <p class="price">$799.00</p>
-                        </a>
-                    </div>
-                    <div class="grid-item">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-bowl.jpg" alt="Hand-crafted Wooden Bowl">
-                            <h3>Hand-crafted Wooden Bowl</h3>
-                            <p class="price">$85.00</p>
-                        </a>
-                    </div>
-                    <div class="grid-item">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-candle.jpg" alt="Scented Soy Candle">
-                            <h3>Scented Soy Candle</h3>
-                            <p class="price">$45.00</p>
-                        </a>
-                    </div>
-                    <div class="grid-item">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-mirror.jpg" alt="Round Wall Mirror">
-                            <h3>Round Wall Mirror</h3>
-                            <p class="price">$195.00</p>
-                        </a>
-                    </div>
+                <div class="product-grid">
+                    <a href="product-detail.html" class="product-card">
+                        <div class="product-card-image">
+                            <img src="assets/images/product_item_linen_sofa.webp" alt="Linen Modular Sofa">
+                        </div>
+                        <div class="product-card-info">
+                            <h3>Linen Modular Sofa</h3>
+                            <p class="price">$2,499</p>
+                        </div>
+                    </a>
+                    <a href="product-detail.html" class="product-card">
+                        <div class="product-card-image">
+                            <img src="assets/images/product_item_ceramic_vase.webp" alt="Hand-Thrown Ceramic Vase">
+                        </div>
+                        <div class="product-card-info">
+                            <h3>Hand-Thrown Ceramic Vase</h3>
+                            <p class="price">$120</p>
+                        </div>
+                    </a>
+                    <a href="product-detail.html" class="product-card">
+                        <div class="product-card-image">
+                            <img src="assets/images/product_item_wool_rug.webp" alt="Woven Wool Area Rug">
+                        </div>
+                        <div class="product-card-info">
+                            <h3>Woven Wool Area Rug</h3>
+                            <p class="price">$780</p>
+                        </div>
+                    </a>
+                    <a href="product-detail.html" class="product-card">
+                        <div class="product-card-image">
+                            <img src="assets/images/product_item_oak_table.webp" alt="Solid Oak Coffee Table">
+                        </div>
+                        <div class="product-card-info">
+                            <h3>Solid Oak Coffee Table</h3>
+                            <p class="price">$899</p>
+                        </div>
+                    </a>
+                    <a href="product-detail.html" class="product-card">
+                        <div class="product-card-image">
+                            <img src="assets/images/product_item_terracotta_planter.webp" alt="Terracotta Indoor Planter">
+                        </div>
+                        <div class="product-card-info">
+                            <h3>Terracotta Indoor Planter</h3>
+                            <p class="price">$55</p>
+                        </div>
+                    </a>
+                    <a href="product-detail.html" class="product-card">
+                        <div class="product-card-image">
+                            <img src="assets/images/product_item_brass_lamp.webp" alt="Minimalist Brass Table Lamp">
+                        </div>
+                        <div class="product-card-info">
+                            <h3>Minimalist Brass Table Lamp</h3>
+                            <p class="price">$280</p>
+                        </div>
+                    </a>
+                    <a href="product-detail.html" class="product-card">
+                        <div class="product-card-image">
+                            <img src="assets/images/product_item_linen_bedding.webp" alt="Organic Linen Bedding Set">
+                        </div>
+                        <div class="product-card-info">
+                            <h3>Organic Linen Bedding Set</h3>
+                            <p class="price">$350</p>
+                        </div>
+                    </a>
+                    <a href="product-detail.html" class="product-card">
+                        <div class="product-card-image">
+                            <img src="assets/images/product_item_wood_serving_board.webp" alt="Hand-Carved Wood Serving Board">
+                        </div>
+                        <div class="product-card-info">
+                            <h3>Hand-Carved Wood Serving Board</h3>
+                            <p class="price">$75</p>
+                        </div>
+                    </a>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-column">
-                <h4>Shop</h4>
-                <ul>
-                    <li><a href="products.html">All Products</a></li>
-                    <li><a href="products.html?category=living">Living Room</a></li>
-                    <li><a href="products.html?category=bedroom">Bedroom</a></li>
-                    <li><a href="products.html?category=decor">Decor</a></li>
-                </ul>
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h4>Serafina Home</h4>
+                <p>Curating beauty for your everyday.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><img src="assets/images/icon_facebook.svg" alt="Facebook" style="filter: invert(100%) brightness(150%); height: 1.2rem; width: 1.2rem;"></a>
+                    <a href="#" aria-label="Instagram"><img src="assets/images/icon_instagram.svg" alt="Instagram" style="filter: invert(100%) brightness(150%); height: 1.2rem; width: 1.2rem;"></a>
+                    <a href="#" aria-label="Pinterest"><img src="assets/images/icon_pinterest.svg" alt="Pinterest" style="filter: invert(100%) brightness(150%); height: 1.2rem; width: 1.2rem;"></a>
+                </div>
             </div>
-            <div class="footer-column">
-                <h4>About Us</h4>
-                <ul>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Careers</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
+            <div class="footer-col">
                 <h4>Customer Service</h4>
                 <ul>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Help & FAQs</a></li>
                     <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">Contact Us</a></li>
                 </ul>
             </div>
-            <div class="footer-column">
-                <h4>Connect</h4>
-                <p>Stay updated with our latest collections.</p>
-                <p><a href="#">hello@elegancehome.com</a></p>
-                <div style="margin-top: var(--spacing-s);">
-                    <a href="#" aria-label="Instagram" style="margin-right: var(--spacing-s);"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                </div>
+            <div class="footer-col">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Ethical Sourcing</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Stay Connected</h4>
+                <p>Sign up for exclusive offers and design inspiration.</p>
+                <!-- Newsletter form would go here -->
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 Elegance Home. All rights reserved.</p>
+            &copy; 2023 Serafina Home. All rights reserved.
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
