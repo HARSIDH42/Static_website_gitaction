@@ -46,6 +46,7 @@ jobs:
           prompt = """
           - add a feedback system in it
           - add cart html
+          - change it in the index.html
           Return each file as:
           ---filename.ext---
           <file content>
