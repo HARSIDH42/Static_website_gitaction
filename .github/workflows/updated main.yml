@@ -46,6 +46,7 @@ jobs:
           prompt = """
           - Propose a non-disruptive customer feedback solution that integrates 
           - seamlessly without altering the existing website UI or features.
+          - create a feedback system in it
           Return each file as:
           ---filename.ext---
           <file content>
