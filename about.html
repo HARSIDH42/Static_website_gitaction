@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart - EleganceStore</title>
+    <title>About Us - EleganceStore</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -26,7 +26,7 @@
                             <li><a href="shop.html?category=books">Books</a></li>
                         </ul>
                     </li>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="about.html" class="nav-link active">About Us</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
@@ -47,28 +47,65 @@
         </div>
     </header>
 
-    <main class="container page-content cart-page">
-        <section class="cart-section">
-            <h1 class="section-title">Your Shopping Cart</h1>
-            <div id="cart-items-container">
-                <!-- Cart items will be dynamically loaded here by JavaScript -->
-                <p class="empty-cart-message" style="display: none;">Your cart is empty. <a href="shop.html">Start shopping!</a></p>
-            </div>
+    <main class="container page-content about-page">
+        <section class="about-hero text-center">
+            <h1>About EleganceStore</h1>
+            <p class="lead">Your trusted partner for quality products and an exceptional shopping experience.</p>
+        </section>
 
-            <div class="cart-summary">
-                <div class="summary-item">
-                    <span>Subtotal:</span> <span id="cart-subtotal">$0.00</span>
+        <section class="our-story section-padding">
+            <div class="content-left">
+                <img src="https://images.unsplash.com/photo-1510127034233-ddf4e9a11756?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Our Story" class="img-fluid">
+            </div>
+            <div class="content-right">
+                <h2 class="section-title">Our Story</h2>
+                <p>EleganceStore was founded in 2023 with a simple vision: to create an online shopping destination where customers could find high-quality products that blend style, functionality, and affordability. We believe that everyone deserves access to well-crafted goods that enhance their daily lives.</p>
+                <p>Starting as a small team with a passion for e-commerce, we've grown into a thriving online store, carefully curating our collections to meet the diverse needs and tastes of our global customer base. Our journey is driven by a commitment to excellence and a constant desire to innovate.</p>
+            </div>
+        </section>
+
+        <section class="our-mission section-padding bg-light-gray">
+            <div class="content-left">
+                <h2 class="section-title">Our Mission & Values</h2>
+                <p><strong>Quality & Craftsmanship:</strong> We handpick products from trusted suppliers known for their attention to detail and durable materials. We believe in selling items that last.</p>
+                <p><strong>Customer Focus:</strong> Our customers are at the heart of everything we do. We strive to provide exceptional service, easy navigation, and a seamless shopping experience from start to finish.</p>
+                <p><strong>Innovation:</strong> The world of e-commerce is always evolving, and so are we. We continuously seek new ways to improve our platform, expand our product offerings, and provide value.</p>
+                <p><strong>Integrity:</strong> Honesty and transparency guide our business practices. We aim to build lasting relationships based on trust with both our customers and partners.</p>
+            </div>
+            <div class="content-right">
+                <img src="https://images.unsplash.com/photo-1516574136458-7e44e2b0ca8c?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Our Mission" class="img-fluid">
+            </div>
+        </section>
+
+        <section class="our-team section-padding">
+            <h2 class="section-title text-center">Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member-card">
+                    <img src="https://randomuser.me/api/portraits/men/80.jpg" alt="Jane Doe - CEO" class="team-member-avatar">
+                    <h3>John Doe</h3>
+                    <p class="role">CEO & Founder</p>
+                    <p>With a background in tech and retail, John leads our vision for a customer-centric shopping experience.</p>
                 </div>
-                <div class="summary-item">
-                    <span>Shipping:</span> <span>Calculated at checkout</span>
+                <div class="team-member-card">
+                    <img src="https://randomuser.me/api/portraits/women/62.jpg" alt="Jane Doe - Head of Marketing" class="team-member-avatar">
+                    <h3>Jane Smith</h3>
+                    <p class="role">Head of Marketing</p>
+                    <p>Jane drives our brand strategy, ensuring our message of quality and elegance reaches our audience.</p>
                 </div>
-                <div class="summary-item total">
-                    <span>Total:</span> <span id="cart-total">$0.00</span>
+                <div class="team-member-card">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Mike Johnson - Lead Developer" class="team-member-avatar">
+                    <h3>Mike Johnson</h3>
+                    <p class="role">Lead Developer</p>
+                    <p>Mike is the architect behind our seamless website, constantly optimizing for performance and user experience.</p>
                 </div>
-                <div class="cart-actions">
-                    <a href="shop.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
-                    <a href="checkout.html" class="btn btn-primary btn-checkout">Proceed to Checkout <i class="fas fa-arrow-right"></i></a>
-                </div>
+            </div>
+        </section>
+
+        <section class="cta-banner section-padding text-center">
+            <div class="container">
+                <h2>Ready to Explore Our Products?</h2>
+                <p>Discover elegance and quality in every item.</p>
+                <a href="shop.html" class="btn btn-primary btn-large">Start Shopping Now</a>
             </div>
         </section>
     </main>

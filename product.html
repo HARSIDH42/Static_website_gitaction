@@ -1,0 +1,301 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="productTitle">Product Detail - EleganceStore</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">EleganceStore</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="shop.html" class="nav-link">Shop</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">Categories <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="shop.html?category=electronics">Electronics</a></li>
+                            <li><a href="shop.html?category=clothing">Clothing</a></li>
+                            <li><a href="shop.html?category=home-decor">Home Decor</a></li>
+                            <li><a href="shop.html?category=books">Books</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <div class="search-box">
+                    <input type="text" placeholder="Search..." aria-label="Search products">
+                    <button type="submit" aria-label="Perform search"><i class="fas fa-search"></i></button>
+                </div>
+                <a href="#" class="icon-btn" aria-label="User Account"><i class="fas fa-user"></i></a>
+                <a href="cart.html" class="icon-btn cart-icon" aria-label="Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="menu-toggle" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container page-content product-detail-page">
+        <section class="breadcrumb" aria-label="breadcrumb">
+            <a href="index.html">Home</a> &gt; <a href="shop.html">Shop</a> &gt; <span id="breadcrumbProductName">Product Name</span>
+        </section>
+
+        <section class="product-detail-section">
+            <div class="product-images">
+                <img id="mainProductImage" src="https://images.unsplash.com/photo-1505740420928-5e560c06a244?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wireless Headphones" class="main-image">
+                <div class="thumbnail-gallery">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06a244?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wireless Headphones thumbnail 1" class="thumbnail active">
+                    <img src="https://images.unsplash.com/photo-1546197262-d49d95f87766?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wireless Headphones thumbnail 2" class="thumbnail">
+                    <img src="https://images.unsplash.com/photo-1583091993466-285640776b1f?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wireless Headphones thumbnail 3" class="thumbnail">
+                </div>
+            </div>
+            <div class="product-info">
+                <h1 id="productDetailName">Wireless Headphones</h1>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                    <span>(4.2 / 5 stars - <a href="#customer-reviews">15 Reviews</a>)</span>
+                </div>
+                <p class="product-price" id="productDetailPrice">$89.99</p>
+                <p class="product-description" id="productDetailDescription">Immerse yourself in crystal-clear audio with our premium wireless headphones. Featuring ergonomic design, long-lasting battery, and superior sound quality, they are perfect for music lovers and professionals alike. Enjoy seamless connectivity and ultimate comfort.</p>
+
+                <div class="product-options">
+                    <div class="option-group">
+                        <label for="color-select">Color:</label>
+                        <select id="color-select" aria-label="Select product color">
+                            <option value="black">Black</option>
+                            <option value="silver">Silver</option>
+                            <option value="blue">Blue</option>
+                        </select>
+                    </div>
+                    <div class="option-group">
+                        <label for="quantity-select">Quantity:</label>
+                        <input type="number" id="quantity-select" value="1" min="1" max="10" aria-label="Select quantity">
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary btn-add-to-cart-detail" data-product-id="101" data-product-name="Wireless Headphones" data-product-price="89.99" data-product-image="https://images.unsplash.com/photo-1505740420928-5e560c06a244?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" aria-label="Add Wireless Headphones to cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn btn-secondary btn-buy-now">Buy Now</button>
+                </div>
+
+                <div class="product-meta">
+                    <p><strong>SKU:</strong> ELG-HP-001</p>
+                    <p><strong>Category:</strong> Electronics</p>
+                    <p><strong>Tags:</strong> headphones, wireless, audio, tech</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="customer-reviews" class="customer-reviews section-padding bg-light-gray">
+            <h2 class="section-title">Customer Reviews</h2>
+            <div class="review-summary">
+                <div class="review-average">
+                    <p>Overall Rating</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span>4.2 / 5</span>
+                    </div>
+                    <p><span class="review-count">15</span> Reviews</p>
+                </div>
+                <div class="review-breakdown">
+                    <div class="star-row">
+                        <span>5 Stars</span>
+                        <div class="progress-bar"><div style="width: 70%;"></div></div>
+                        <span>(10)</span>
+                    </div>
+                    <div class="star-row">
+                        <span>4 Stars</span>
+                        <div class="progress-bar"><div style="width: 20%;"></div></div>
+                        <span>(3)</span>
+                    </div>
+                    <div class="star-row">
+                        <span>3 Stars</span>
+                        <div class="progress-bar"><div style="width: 10%;"></div></div>
+                        <span>(1)</span>
+                    </div>
+                    <div class="star-row">
+                        <span>2 Stars</span>
+                        <div class="progress-bar"><div style="width: 0%;"></div></div>
+                        <span>(0)</span>
+                    </div>
+                    <div class="star-row">
+                        <span>1 Star</span>
+                        <div class="progress-bar"><div style="width: 0%;"></div></div>
+                        <span>(0)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-list">
+                <article class="review-card">
+                    <div class="review-header">
+                        <div class="review-author-info">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Reviewer Alice B." class="customer-avatar-small">
+                            <h4>Alice B.</h4>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-date">Reviewed on October 26, 2023</p>
+                    <p class="review-text">"Absolutely love these headphones! The sound quality is phenomenal, and they're so comfortable for long wear. Battery life is also impressive."</p>
+                </article>
+                <article class="review-card">
+                    <div class="review-header">
+                        <div class="review-author-info">
+                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Reviewer Mark T." class="customer-avatar-small">
+                            <h4>Mark T.</h4>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-date">Reviewed on October 20, 2023</p>
+                    <p class="review-text">"Great value for the price. Connectivity is quick, and they look stylish. Wish the bass was a little stronger, but overall very satisfied."</p>
+                </article>
+                <article class="review-card">
+                    <div class="review-header">
+                        <div class="review-author-info">
+                            <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Reviewer Jessica L." class="customer-avatar-small">
+                            <h4>Jessica L.</h4>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-date">Reviewed on October 15, 2023</p>
+                    <p class="review-text">"Fantastic headphones for my daily commute. Noise cancellation is decent, and they stay put even when I'm active."</p>
+                </article>
+            </div>
+
+            <div class="write-review-section">
+                <h3>Write Your Own Review</h3>
+                <form class="review-form">
+                    <div class="form-group">
+                        <label for="review-name">Your Name:</label>
+                        <input type="text" id="review-name" name="review-name" required aria-label="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="review-rating">Your Rating:</label>
+                        <div class="star-rating" aria-label="Rate this product">
+                            <input type="radio" id="star5" name="rating" value="5" aria-label="5 stars">
+                            <label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star4" name="rating" value="4" aria-label="4 stars">
+                            <label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star3" name="rating" value="3" aria-label="3 stars">
+                            <label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star2" name="rating" value="2" aria-label="2 stars">
+                            <label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star1" name="rating" value="1" aria-label="1 star">
+                            <label for="star1" title="1 star"><i class="fas fa-star"></i></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="review-comment">Your Review:</label>
+                        <textarea id="review-comment" name="review-comment" rows="5" required aria-label="Your review comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="related-products section-padding">
+            <h2 class="section-title">You Might Also Like</h2>
+            <div class="product-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card" data-product-id="102" data-product-name="Smartwatch Pro" data-product-price="199.99" data-product-image="https://images.unsplash.com/photo-1523275335684-638919f54b6b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                    <a href="product.html?id=102" class="product-link">
+                        <img src="https://images.unsplash.com/photo-1523275335684-638919f54b6b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Smartwatch Pro">
+                        <h3>Smartwatch Pro</h3>
+                    </a>
+                    <p class="product-price">$199.99</p>
+                    <button class="btn btn-add-to-cart" aria-label="Add Smartwatch Pro to cart">Add to Cart</button>
+                </div>
+                <!-- Product Card 2 -->
+                <div class="product-card" data-product-id="103" data-product-name="Designer Handbag" data-product-price="120.00" data-product-image="https://images.unsplash.com/photo-1566410313501-fe6d655f483c?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                    <a href="product.html?id=103" class="product-link">
+                        <img src="https://images.unsplash.com/photo-1566410313501-fe6d655f483c?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Designer Handbag">
+                        <h3>Designer Handbag</h3>
+                    </a>
+                    <p class="product-price">$120.00</p>
+                    <button class="btn btn-add-to-cart" aria-label="Add Designer Handbag to cart">Add to Cart</button>
+                </div>
+                <!-- Product Card 3 -->
+                <div class="product-card" data-product-id="104" data-product-name="Cozy Knitted Sweater" data-product-price="45.50" data-product-image="https://images.unsplash.com/photo-1628173437299-db069b2d832b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                    <a href="product.html?id=104" class="product-link">
+                        <img src="https://images.unsplash.com/photo-1628173437299-db069b2d832b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cozy Knitted Sweater">
+                        <h3>Cozy Knitted Sweater</h3>
+                    </a>
+                    <p class="product-price">$45.50</p>
+                    <button class="btn btn-add-to-cart" aria-label="Add Cozy Knitted Sweater to cart">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>EleganceStore</h3>
+                <p>Your ultimate destination for quality products and exceptional service.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <address>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Ecom Street, Suite 456, City, Country</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@elegancestore.com">info@elegancestore.com</a></p>
+                </address>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2023 EleganceStore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js" defer></script>
+</body>
+</html>
+```

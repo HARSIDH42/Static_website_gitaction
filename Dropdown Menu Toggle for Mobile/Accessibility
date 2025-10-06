@@ -1,0 +1,22 @@
+dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation(); // Prevent closing the main nav if it's open
+            const parentDropdown = toggle.closest('.dropdown');
+            parentDropdown.classList.toggle('active');
+            // Toggle ARIA expanded attribute
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', !isExpanded);
+        });
+
+        // Close dropdown if clicked outside
+        document.addEventListener('click', (e) => {
+            if (!toggle.closest('.dropdown').contains(e.target)) {
+                toggle.closest('.dropdown').classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+
+
+    //

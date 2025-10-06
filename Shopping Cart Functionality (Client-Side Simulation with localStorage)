@@ -1,0 +1,60 @@
+const CART_STORAGE_KEY = 'eleganceStoreCart';
+    let cart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
+
+    // Function to update cart count in header
+    function updateCartCount() {
+        const cartCountElement = document.querySelector('.cart-count');
+        if (cartCountElement) {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+        }
+    }
+
+    // Function to save cart to localStorage
+    function saveCart() {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+        updateCartCount();
+    }
+
+    // Function to add item to cart
+    function addToCart(productId, name, price, image, quantity = 1) {
+        const existingItem = cart.find(item => item.id === productId);
+
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            cart.push({ id: productId, name, price, image, quantity });
+        }
+        saveCart();
+        alert(`${name} added to cart! Quantity: ${quantity}`);
+    }
+
+    // Event listeners for "Add to Cart" buttons on product listing pages
+    document.querySelectorAll('.btn-add-to-cart').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const productCard = e.target.closest('.product-card');
+            if (productCard) {
+                const id = productCard.dataset.productId;
+                const name = productCard.dataset.productName;
+                const price = parseFloat(productCard.dataset.productPrice);
+                const image = productCard.dataset.productImage;
+                addToCart(id, name, price, image);
+            }
+        });
+    });
+
+    // Event listener for "Add to Cart" button on product detail page
+    const productDetailAddToCartBtn = document.querySelector('.btn-add-to-cart-detail');
+    if (productDetailAddToCartBtn) {
+        productDetailAddToCartBtn.addEventListener('click', (e) => {
+            const id = productDetailAddToCartBtn.dataset.productId;
+            const name = productDetailAddToCartBtn.dataset.productName;
+            const price = parseFloat(productDetailAddToCartBtn.dataset.productPrice);
+            const image = productDetailAddToCartBtn.dataset.productImage;
+            const quantityInput = document.getElementById('quantity-select');
+            const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+            addToCart(id, name, price, image, quantity);
+        });
+    }
+
+    //

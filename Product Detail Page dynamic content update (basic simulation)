@@ -1,0 +1,89 @@
+function loadProductDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        // This would normally fetch from an API. For static, we hardcode data.
+        const productsData = [
+            {
+                id: "101",
+                name: "Wireless Headphones",
+                price: 89.99,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06a244?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                description: "Immerse yourself in crystal-clear audio with our premium wireless headphones. Featuring ergonomic design, long-lasting battery, and superior sound quality, they are perfect for music lovers and professionals alike. Enjoy seamless connectivity and ultimate comfort.",
+                thumbnails: [
+                    "https://images.unsplash.com/photo-1505740420928-5e560c06a244?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "https://images.unsplash.com/photo-1546197262-d49d95f87766?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "https://images.unsplash.com/photo-1583091993466-285640776b1f?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                ]
+            },
+            {
+                id: "102",
+                name: "Smartwatch Pro",
+                price: 199.99,
+                image: "https://images.unsplash.com/photo-1523275335684-638919f54b6b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                description: "Stay connected and track your fitness goals with the Smartwatch Pro. Features include heart rate monitoring, GPS, notifications, and a sleek design. Compatible with iOS and Android.",
+                thumbnails: [
+                    "https://images.unsplash.com/photo-1523275335684-638919f54b6b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "https://images.unsplash.com/photo-1579586337278-f7392260655d?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "https://images.unsplash.com/photo-1527814050091-c11649983995?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                ]
+            },
+            {
+                id: "103",
+                name: "Designer Handbag",
+                price: 120.00,
+                image: "https://images.unsplash.com/photo-1566410313501-fe6d655f483c?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                description: "Elevate your style with our elegant designer handbag. Crafted from premium leather with meticulous details, this bag is both chic and practical for any occasion. Spacious interior and durable construction.",
+                thumbnails: [
+                    "https://images.unsplash.com/photo-1566410313501-fe6d655f483c?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "https://images.unsplash.com/photo-1596701047605-65476d052d9a?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "https://images.unsplash.com/photo-1597087612660-3947ca61f77d?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                ]
+            }
+            // Add more product data as needed
+        ];
+
+        const product = productsData.find(p => p.id === productId);
+
+        if (product) {
+            document.getElementById('productTitle').textContent = `${product.name} - EleganceStore`;
+            document.getElementById('breadcrumbProductName').textContent = product.name;
+            document.getElementById('mainProductImage').src = product.image;
+            document.getElementById('mainProductImage').alt = product.name;
+            document.getElementById('productDetailName').textContent = product.name;
+            document.getElementById('productDetailPrice').textContent = `$${product.price.toFixed(2)}`;
+            document.getElementById('productDetailDescription').textContent = product.description;
+
+            // Update Add to Cart button data attributes
+            if (productDetailAddToCartBtn) {
+                productDetailAddToCartBtn.dataset.productId = product.id;
+                productDetailAddToCartBtn.dataset.productName = product.name;
+                productDetailAddToCartBtn.dataset.productPrice = product.price.toFixed(2);
+                productDetailAddToCartBtn.dataset.productImage = product.image;
+            }
+
+            const thumbnailGallery = document.querySelector('.thumbnail-gallery');
+            if (thumbnailGallery) {
+                thumbnailGallery.innerHTML = ''; // Clear existing thumbnails
+                product.thumbnails.forEach((thumbUrl, index) => {
+                    const img = document.createElement('img');
+                    img.src = thumbUrl;
+                    img.alt = `${product.name} thumbnail ${index + 1}`;
+                    img.classList.add('thumbnail');
+                    if (index === 0) img.classList.add('active'); // First thumbnail is active
+                    img.addEventListener('click', () => {
+                        document.getElementById('mainProductImage').src = thumbUrl;
+                        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                        img.classList.add('active');
+                    });
+                    thumbnailGallery.appendChild(img);
+                });
+            }
+        } else if (document.querySelector('.product-detail-page')) {
+            // Handle product not found, e.g., redirect to shop or show message
+            document.getElementById('productTitle').textContent = 'Product Not Found - EleganceStore';
+            document.querySelector('.product-detail-section').innerHTML = '<p style="text-align: center; font-size: 1.5em; padding: 50px;">Product not found.</p>';
+        }
+    }
+
+    //
