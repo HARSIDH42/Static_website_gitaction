@@ -49,6 +49,7 @@ jobs:
           - Ensure the website is mobile-friendly and accessible.
           - Make it as an ecommerce website with all features in it.
           - add more features related to ecommerce like customer feedback
+          - Remove all the image place holders.
           - Provide the full HTML/CSS/JS content for each file that needs modification.
           Return each file as:
           ---filename.ext---
