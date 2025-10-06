@@ -44,8 +44,6 @@ jobs:
           genai.configure(api_key=os.environ["GEMINI_API_KEY"])
           model = genai.GenerativeModel("gemini-2.5-flash")
           prompt = """
-          You are updating the UI of a static website project.
-          - Dont  make many changes on it add customer feedback on it dont touch any features existing
           Return each file as:
           ---filename.ext---
           <file content>
