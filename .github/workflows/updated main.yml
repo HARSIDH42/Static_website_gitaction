@@ -44,7 +44,8 @@ jobs:
           genai.configure(api_key=os.environ["GEMINI_API_KEY"])
           model = genai.GenerativeModel("gemini-2.5-flash")
           prompt = """
-            Propose a non-disruptive customer feedback solution that integrates seamlessly without altering the existing website UI or features.
+          - Propose a non-disruptive customer feedback solution that integrates 
+          - seamlessly without altering the existing website UI or features.
           Return each file as:
           ---filename.ext---
           <file content>
