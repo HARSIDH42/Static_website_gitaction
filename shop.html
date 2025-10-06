@@ -4,87 +4,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop - EleganceStore</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Shop - E-Shop</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header class="main-header">
-        <div class="container header-content">
-            <a href="index.html" class="logo">EleganceStore</a>
+        <div class="container">
+            <a href="index.html" class="logo">E-Shop</a>
             <nav class="main-nav">
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="shop.html" class="nav-link active">Shop</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html" class="active">Shop</a></li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">Categories <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="shop.html?category=electronics">Electronics</a></li>
-                            <li><a href="shop.html?category=clothing">Clothing</a></li>
-                            <li><a href="shop.html?category=home-decor">Home Decor</a></li>
-                            <li><a href="shop.html?category=books">Books</a></li>
-                        </ul>
+                        <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">Categories <i class="fas fa-caret-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="shop.html?category=electronics">Electronics</a>
+                            <a href="shop.html?category=apparel">Apparel</a>
+                            <a href="shop.html?category=home-goods">Home Goods</a>
+                            <a href="shop.html?category=books">Books</a>
+                        </div>
                     </li>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
-            <div class="header-icons">
-                <div class="search-box">
-                    <input type="text" placeholder="Search..." aria-label="Search products">
-                    <button type="submit" aria-label="Perform search"><i class="fas fa-search"></i></button>
-                </div>
+            <div class="nav-icons">
+                <a href="#" class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></a>
                 <a href="#" class="icon-btn" aria-label="User Account"><i class="fas fa-user"></i></a>
                 <a href="cart.html" class="icon-btn cart-icon" aria-label="Shopping Cart">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
                 </a>
-                <button class="menu-toggle" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
-                </button>
             </div>
         </div>
     </header>
 
-    <main class="container page-content">
-        <section class="shop-header text-center">
-            <h1>Our Products</h1>
-            <p>Explore our wide range of high-quality products.</p>
+    <main class="shop-page">
+        <section class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1528698827574-3b6b71858ce1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+            <div class="container">
+                <h1>Our Products</h1>
+                <p>Find the perfect items for your lifestyle.</p>
+            </div>
         </section>
 
-        <div class="shop-layout">
+        <div class="container shop-content section-padding">
             <aside class="sidebar">
-                <h3>Filter by Category</h3>
-                <ul class="category-filter-list">
-                    <li><a href="shop.html" class="filter-link active">All</a></li>
-                    <li><a href="shop.html?category=electronics" class="filter-link">Electronics</a></li>
-                    <li><a href="shop.html?category=clothing" class="filter-link">Clothing</a></li>
-                    <li><a href="shop.html?category=home-decor" class="filter-link">Home Decor</a></li>
-                    <li><a href="shop.html?category=books" class="filter-link">Books</a></li>
-                </ul>
-
-                <h3>Filter by Price</h3>
-                <div class="price-range">
-                    <input type="range" min="0" max="500" value="0" id="minPrice" aria-label="Minimum price filter">
-                    <input type="range" min="0" max="500" value="500" id="maxPrice" aria-label="Maximum price filter">
-                    <div class="price-display">
-                        $<span id="minPriceValue">0</span> - $<span id="maxPriceValue">500</span>
-                    </div>
-                    <button class="btn btn-secondary btn-small mt-2">Apply Price Filter</button>
+                <h3>Filters</h3>
+                <div class="filter-group">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="shop.html?category=all">All Products</a></li>
+                        <li><a href="shop.html?category=electronics">Electronics</a></li>
+                        <li><a href="shop.html?category=apparel">Apparel</a></li>
+                        <li><a href="shop.html?category=home-goods">Home Goods</a></li>
+                        <li><a href="shop.html?category=books">Books</a></li>
+                    </ul>
                 </div>
-
-                <h3>Brands</h3>
-                <ul class="brand-filter-list">
-                    <li><input type="checkbox" id="brand1" value="BrandA"><label for="brand1">Brand A</label></li>
-                    <li><input type="checkbox" id="brand2" value="BrandB"><label for="brand2">Brand B</label></li>
-                    <li><input type="checkbox" id="brand3" value="BrandC"><label for="brand3">Brand C</label></li>
-                </ul>
+                <div class="filter-group">
+                    <h4>Price Range</h4>
+                    <input type="range" min="0" max="1000" value="500" class="slider" id="priceRange">
+                    <p>Price: $<span id="priceValue">500</span></p>
+                    <button class="button small-button">Apply</button>
+                </div>
+                <div class="filter-group">
+                    <h4>Brands</h4>
+                    <select aria-label="Select brand">
+                        <option value="">All Brands</option>
+                        <option value="brandA">Brand A</option>
+                        <option value="brandB">Brand B</option>
+                        <option value="brandC">Brand C</option>
+                    </select>
+                    <button class="button small-button">Apply</button>
+                </div>
             </aside>
-
-            <section class="product-listing">
+            <div class="main-products-area">
                 <div class="sort-options">
-                    <label for="sort-by">Sort By:</label>
+                    <label for="sort-by">Sort by:</label>
                     <select id="sort-by" aria-label="Sort products by">
                         <option value="default">Default</option>
                         <option value="price-asc">Price: Low to High</option>
@@ -94,109 +95,130 @@
                     </select>
                 </div>
                 <div class="product-grid">
-                    <!-- Products will be dynamically loaded or hardcoded here -->
-                    <div class="product-card" data-product-id="101" data-product-name="Wireless Headphones" data-product-price="89.99" data-product-image="https://images.unsplash.com/photo-1505740420928-5e560c06a244?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                        <a href="product.html?id=101" class="product-link">
-                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06a244?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wireless Headphones">
+                    <!-- Products will be dynamically loaded here or listed statically -->
+                    <div class="product-card">
+                        <a href="product-detail.html?id=101">
+                            <img src="https://images.unsplash.com/photo-1526170375885-4d8ccd82bcf9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Vintage Camera" loading="lazy">
+                            <h3>Vintage Camera</h3>
+                            <p class="price">$299.00</p>
+                        </a>
+                        <button class="button add-to-cart-btn" data-product-id="101" data-product-name="Vintage Camera" data-product-price="299.00" data-product-image="https://images.unsplash.com/photo-1526170375885-4d8ccd82bcf9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-detail.html?id=102">
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b8988a87629?q=80&w=1950&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wireless Headphones" loading="lazy">
                             <h3>Wireless Headphones</h3>
+                            <p class="price">$149.99</p>
                         </a>
-                        <p class="product-price">$89.99</p>
-                        <button class="btn btn-add-to-cart" aria-label="Add Wireless Headphones to cart">Add to Cart</button>
+                        <button class="button add-to-cart-btn" data-product-id="102" data-product-name="Wireless Headphones" data-product-price="149.99" data-product-image="https://images.unsplash.com/photo-1598327105666-5b8988a87629?q=80&w=1950&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
                     </div>
-                    <div class="product-card" data-product-id="102" data-product-name="Smartwatch Pro" data-product-price="199.99" data-product-image="https://images.unsplash.com/photo-1523275335684-638919f54b6b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                        <a href="product.html?id=102" class="product-link">
-                            <img src="https://images.unsplash.com/photo-1523275335684-638919f54b6b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Smartwatch Pro">
-                            <h3>Smartwatch Pro</h3>
+                    <div class="product-card">
+                        <a href="product-detail.html?id=103">
+                            <img src="https://images.unsplash.com/photo-1579309831969-905c11f7acdd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Smartwatch" loading="lazy">
+                            <h3>Smartwatch</h3>
+                            <p class="price">$199.50</p>
                         </a>
-                        <p class="product-price">$199.99</p>
-                        <button class="btn btn-add-to-cart" aria-label="Add Smartwatch Pro to cart">Add to Cart</button>
+                        <button class="button add-to-cart-btn" data-product-id="103" data-product-name="Smartwatch" data-product-price="199.50" data-product-image="https://images.unsplash.com/photo-1579309831969-905c11f7acdd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
                     </div>
-                    <div class="product-card" data-product-id="103" data-product-name="Designer Handbag" data-product-price="120.00" data-product-image="https://images.unsplash.com/photo-1566410313501-fe6d655f483c?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                        <a href="product.html?id=103" class="product-link">
-                            <img src="https://images.unsplash.com/photo-1566410313501-fe6d655f483c?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Designer Handbag">
-                            <h3>Designer Handbag</h3>
+                    <div class="product-card">
+                        <a href="product-detail.html?id=104">
+                            <img src="https://images.unsplash.com/photo-1601712437640-c3d324682029?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Designer Coffee Mug" loading="lazy">
+                            <h3>Designer Coffee Mug</h3>
+                            <p class="price">$25.00</p>
                         </a>
-                        <p class="product-price">$120.00</p>
-                        <button class="btn btn-add-to-cart" aria-label="Add Designer Handbag to cart">Add to Cart</button>
+                        <button class="button add-to-cart-btn" data-product-id="104" data-product-name="Designer Coffee Mug" data-product-price="25.00" data-product-image="https://images.unsplash.com/photo-1601712437640-c3d324682029?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
                     </div>
-                    <div class="product-card" data-product-id="104" data-product-name="Cozy Knitted Sweater" data-product-price="45.50" data-product-image="https://images.unsplash.com/photo-1628173437299-db069b2d832b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                        <a href="product.html?id=104" class="product-link">
-                            <img src="https://images.unsplash.com/photo-1628173437299-db069b2d832b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cozy Knitted Sweater">
-                            <h3>Cozy Knitted Sweater</h3>
+                    <div class="product-card">
+                        <a href="product-detail.html?id=105">
+                            <img src="https://images.unsplash.com/photo-1507646872016-df5366c3a35d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Leather Wallet" loading="lazy">
+                            <h3>Leather Wallet</h3>
+                            <p class="price">$75.00</p>
                         </a>
-                        <p class="product-price">$45.50</p>
-                        <button class="btn btn-add-to-cart" aria-label="Add Cozy Knitted Sweater to cart">Add to Cart</button>
+                        <button class="button add-to-cart-btn" data-product-id="105" data-product-name="Leather Wallet" data-product-price="75.00" data-product-image="https://images.unsplash.com/photo-1507646872016-df5366c3a35d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
                     </div>
-                    <div class="product-card" data-product-id="105" data-product-name="Modern Desk Lamp" data-product-price="75.00" data-product-image="https://images.unsplash.com/photo-1549488344-93e157790b7c?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                        <a href="product.html?id=105" class="product-link">
-                            <img src="https://images.unsplash.com/photo-1549488344-93e157790b7c?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Modern Desk Lamp">
-                            <h3>Modern Desk Lamp</h3>
+                    <div class="product-card">
+                        <a href="product-detail.html?id=106">
+                            <img src="https://images.unsplash.com/photo-1549298492-3d76e311f621?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Running Shoes" loading="lazy">
+                            <h3>Running Shoes</h3>
+                            <p class="price">$110.00</p>
                         </a>
-                        <p class="product-price">$75.00</p>
-                        <button class="btn btn-add-to-cart" aria-label="Add Modern Desk Lamp to cart">Add to Cart</button>
+                        <button class="button add-to-cart-btn" data-product-id="106" data-product-name="Running Shoes" data-product-price="110.00" data-product-image="https://images.unsplash.com/photo-1549298492-3d76e311f621?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
                     </div>
-                    <div class="product-card" data-product-id="106" data-product-name="Classic Novel Set" data-product-price="35.99" data-product-image="https://images.unsplash.com/photo-1532012197247-efd8547d6e4b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                        <a href="product.html?id=106" class="product-link">
-                            <img src="https://images.unsplash.com/photo-1532012197247-efd8547d6e4b?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Classic Novel Set">
-                            <h3>Classic Novel Set</h3>
+                    <div class="product-card">
+                        <a href="product-detail.html?id=107">
+                            <img src="https://images.unsplash.com/photo-1512496015867-b35242777176?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Classic Book Set" loading="lazy">
+                            <h3>Classic Book Set</h3>
+                            <p class="price">$85.00</p>
                         </a>
-                        <p class="product-price">$35.99</p>
-                        <button class="btn btn-add-to-cart" aria-label="Add Classic Novel Set to cart">Add to Cart</button>
+                        <button class="button add-to-cart-btn" data-product-id="107" data-product-name="Classic Book Set" data-product-price="85.00" data-product-image="https://images.unsplash.com/photo-1512496015867-b35242777176?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-detail.html?id=108">
+                            <img src="https://images.unsplash.com/photo-1582234031765-6804561d361c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gaming Mouse" loading="lazy">
+                            <h3>Gaming Mouse</h3>
+                            <p class="price">$59.99</p>
+                        </a>
+                        <button class="button add-to-cart-btn" data-product-id="108" data-product-name="Gaming Mouse" data-product-price="59.99" data-product-image="https://images.unsplash.com/photo-1582234031765-6804561d361c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">Add to Cart</button>
                     </div>
                 </div>
-            </section>
+                <div class="pagination">
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">&raquo;</a>
+                </div>
+            </div>
         </div>
     </main>
 
     <footer class="main-footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <h3>EleganceStore</h3>
-                <p>Your ultimate destination for quality products and exceptional service.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>E-Shop</h4>
+                    <p>Your one-stop shop for everything you need. Quality products, fast shipping, and exceptional service.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect With Us</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <p>Subscribe to our newsletter for updates:</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
+                        <button type="submit" class="button primary-button">Subscribe</button>
+                    </form>
                 </div>
             </div>
-            <div class="footer-col">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Customer Service</h3>
-                <ul>
-                    <li><a href="#">Order Tracking</a></li>
-                    <li><a href="#">Returns & Refunds</a></li>
-                    <li><a href="#">Shipping Info</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Contact Info</h3>
-                <address>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Ecom Street, Suite 456, City, Country</p>
-                    <p><i class="fas fa-phone"></i> <a href="tel:+1234567890">+1 (234) 567-890</a></p>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@elegancestore.com">info@elegancestore.com</a></p>
-                </address>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2023 EleganceStore. All rights reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2023 E-Shop. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
 ```

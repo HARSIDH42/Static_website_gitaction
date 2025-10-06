@@ -1,0 +1,33 @@
+const dropdownBtn = document.querySelector('.dropbtn');
+    if (dropdownBtn) {
+        dropdownBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdownContent = this.nextElementSibling;
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+            // Close other open dropdowns if any
+            document.querySelectorAll('.dropdown-content').forEach(content => {
+                if (content !== dropdownContent && content.style.display === 'block') {
+                    content.style.display = 'none';
+                    content.previousElementSibling.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Toggle current dropdown
+            dropdownContent.style.display = isExpanded ? 'none' : 'block';
+            this.setAttribute('aria-expanded', !isExpanded);
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.dropbtn') && !event.target.closest('.dropdown-content')) {
+                document.querySelectorAll('.dropdown-content').forEach(content => {
+                    content.style.display = 'none';
+                    content.previousElementSibling.setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+    }
+
+
+    //

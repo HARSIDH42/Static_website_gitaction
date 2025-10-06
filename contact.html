@@ -4,178 +4,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - EleganceStore</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Contact Us - E-Shop</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header class="main-header">
-        <div class="container header-content">
-            <a href="index.html" class="logo">EleganceStore</a>
+        <div class="container">
+            <a href="index.html" class="logo">E-Shop</a>
             <nav class="main-nav">
+                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="shop.html" class="nav-link">Shop</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">Categories <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="shop.html?category=electronics">Electronics</a></li>
-                            <li><a href="shop.html?category=clothing">Clothing</a></li>
-                            <li><a href="shop.html?category=home-decor">Home Decor</a></li>
-                            <li><a href="shop.html?category=books">Books</a></li>
-                        </ul>
+                        <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">Categories <i class="fas fa-caret-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="shop.html?category=electronics">Electronics</a>
+                            <a href="shop.html?category=apparel">Apparel</a>
+                            <a href="shop.html?category=home-goods">Home Goods</a>
+                            <a href="shop.html?category=books">Books</a>
+                        </div>
                     </li>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
                 </ul>
             </nav>
-            <div class="header-icons">
-                <div class="search-box">
-                    <input type="text" placeholder="Search..." aria-label="Search products">
-                    <button type="submit" aria-label="Perform search"><i class="fas fa-search"></i></button>
-                </div>
+            <div class="nav-icons">
+                <a href="#" class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></a>
                 <a href="#" class="icon-btn" aria-label="User Account"><i class="fas fa-user"></i></a>
                 <a href="cart.html" class="icon-btn cart-icon" aria-label="Shopping Cart">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
                 </a>
-                <button class="menu-toggle" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
-                </button>
             </div>
         </div>
     </header>
 
-    <main class="container page-content contact-page">
-        <section class="contact-hero text-center">
-            <h1>Get in Touch</h1>
-            <p class="lead">We'd love to hear from you. Whether you have a question, feedback, or just want to say hello, our team is ready to help.</p>
-        </section>
-
-        <section class="contact-grid section-padding">
-            <div class="contact-info-col">
-                <h2 class="section-title">Our Contact Details</h2>
-                <div class="contact-detail-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h3>Our Location</h3>
-                        <p>EleganceStore Headquarters</p>
-                        <p>123 Ecom Street, Suite 456</p>
-                        <p>City, State, 12345</p>
-                        <p>Country</p>
-                    </div>
-                </div>
-                <div class="contact-detail-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <h3>Phone Support</h3>
-                        <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
-                        <p>Mon - Fri: 9:00 AM - 6:00 PM (EST)</p>
-                    </div>
-                </div>
-                <div class="contact-detail-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h3>Email Us</h3>
-                        <p><a href="mailto:support@elegancestore.com">support@elegancestore.com</a></p>
-                        <p>We typically respond within 24 hours.</p>
-                    </div>
-                </div>
-                <div class="social-links mt-4">
-                    <h3>Follow Us</h3>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-
-            <div class="contact-form-col">
-                <h2 class="section-title">Send Us a Message</h2>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required aria-label="Your Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" name="email" required aria-label="Your Email Address">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required aria-label="Subject of your message">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" name="message" rows="6" required aria-label="Your Message"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-large">Send Message</button>
-                </form>
+    <main class="contact-page">
+        <section class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1596526117565-d41c88806201?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>We're here to help! Reach out with any questions or feedback.</p>
             </div>
         </section>
 
-        <section class="map-section section-padding bg-light-gray">
-            <h2 class="section-title text-center">Find Us on the Map</h2>
-            <div class="map-container">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.21041926671!2d-122.41941578468161!3d37.7749297797587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064a9b2b549%3A0x6a9f60c7a978f6a9!2sGolden%20Gate%20Bridge!5e0!3m2!1sen!2sus!4v1678912345678!5m2!1sen!2sus"
-                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                    title="Our office location on Google Maps">
-                </iframe>
+        <section class="contact-section section-padding">
+            <div class="container">
+                <div class="contact-layout">
+                    <div class="contact-form-container">
+                        <h2>Send Us a Message</h2>
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Your Name:</label>
+                                <input type="text" id="name" name="name" required aria-required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Your Email:</label>
+                                <input type="email" id="email" name="email" required aria-required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject:</label>
+                                <input type="text" id="subject" name="subject" required aria-required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message:</label>
+                                <textarea id="message" name="message" rows="6" required aria-required="true"></textarea>
+                            </div>
+                            <button type="submit" class="button primary-button">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="contact-info">
+                        <h2>Our Details</h2>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>123 E-Shop Avenue, Suite 100, Cityville, ST 12345</p>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <p><a href="tel:+1-800-123-4567">+1 (800) 123-4567</a></p>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <p><a href="mailto:support@eshop.com">support@eshop.com</a></p>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <p>Mon - Fri: 9:00 AM - 6:00 PM EST</p>
+                        </div>
+                        <div class="map-placeholder">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.208104866632!2d-122.41941558468165!3d37.77492957975924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858087e5b5e3f3%3A0x777b7f1e5f2e6e1e!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1678234567890!5m2!1sen!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Our location on Google Maps"></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <footer class="main-footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <h3>EleganceStore</h3>
-                <p>Your ultimate destination for quality products and exceptional service.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>E-Shop</h4>
+                    <p>Your one-stop shop for everything you need. Quality products, fast shipping, and exceptional service.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect With Us</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <p>Subscribe to our newsletter for updates:</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
+                        <button type="submit" class="button primary-button">Subscribe</button>
+                    </form>
                 </div>
             </div>
-            <div class="footer-col">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Customer Service</h3>
-                <ul>
-                    <li><a href="#">Order Tracking</a></li>
-                    <li><a href="#">Returns & Refunds</a></li>
-                    <li><a href="#">Shipping Info</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Contact Info</h3>
-                <address>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Ecom Street, Suite 456, City, Country</p>
-                    <p><i class="fas fa-phone"></i> <a href="tel:+1234567890">+1 (234) 567-890</a></p>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@elegancestore.com">info@elegancestore.com</a></p>
-                </address>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2023 EleganceStore. All rights reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2023 E-Shop. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
 ```

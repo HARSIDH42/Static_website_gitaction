@@ -1,0 +1,54 @@
+let cart = JSON.parse(localStorage.getItem('eShopCart')) || [];
+
+    function updateCartCount() {
+        const cartCountElement = document.querySelector('.cart-count');
+        if (cartCountElement) {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+            cartCountElement.style.display = totalItems > 0 ? 'block' : 'none';
+        }
+    }
+
+    function saveCart() {
+        localStorage.setItem('eShopCart', JSON.stringify(cart));
+        updateCartCount();
+    }
+
+    function addToCart(product) {
+        const existingItem = cart.find(item => item.id === product.id);
+        if (existingItem) {
+            existingItem.quantity += product.quantity;
+        } else {
+            cart.push(product);
+        }
+        saveCart();
+        alert(`${product.name} added to cart!`);
+    }
+
+    // Event listeners for "Add to Cart" buttons
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const productId = e.currentTarget.dataset.productId;
+            const productName = e.currentTarget.dataset.productName;
+            const productPrice = parseFloat(e.currentTarget.dataset.productPrice);
+            const productImage = e.currentTarget.dataset.productImage;
+            const quantityInput = document.getElementById('quantity'); // Only on product-detail.html
+            const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+
+            if (isNaN(productPrice) || productPrice <= 0) {
+                console.error("Invalid product price:", e.currentTarget.dataset.productPrice);
+                alert("Failed to add product to cart: Invalid price.");
+                return;
+            }
+
+            addToCart({
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage,
+                quantity: quantity
+            });
+        });
+    });
+
+    //

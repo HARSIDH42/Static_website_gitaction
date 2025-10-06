@@ -1,30 +1,20 @@
-const menuToggle = document.querySelector('.menu-toggle');
-    const mainNav = document.querySelector('.main-nav');
-    const navLinks = document.querySelectorAll('.main-nav .nav-link');
-    const dropdownToggles = document.querySelectorAll('.main-nav .dropdown-toggle');
+const navToggle = document.querySelector('.nav-toggle');
+    const navList = document.querySelector('.nav-list');
 
-    if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            menuToggle.querySelector('i').classList.toggle('fa-bars');
-            menuToggle.querySelector('i').classList.toggle('fa-times');
-            // Close all dropdowns when menu is toggled
-            document.querySelectorAll('.dropdown.active').forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
+    if (navToggle && navList) {
+        navToggle.addEventListener('click', () => {
+            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !isExpanded);
+            navList.classList.toggle('active');
         });
 
-        // Close mobile menu when a nav link is clicked
-        navLinks.forEach(link => {
-            if (!link.classList.contains('dropdown-toggle')) {
-                link.addEventListener('click', () => {
-                    if (mainNav.classList.contains('active')) {
-                        mainNav.classList.remove('active');
-                        menuToggle.querySelector('i').classList.remove('fa-times');
-                        menuToggle.querySelector('i').classList.add('fa-bars');
-                    }
-                });
-            }
+        // Close nav when a link is clicked (for single-page navigation or on mobile)
+        navList.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navList.classList.contains('active')) {
+                    navToggle.click(); // Simulate click to close
+                }
+            });
         });
     }
 
