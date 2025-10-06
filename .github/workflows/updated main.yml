@@ -49,7 +49,6 @@ jobs:
             - Mandatory Constraint: ABSOLUTELY MUST use only the images and assets present in the assets/images/ directory in the repository.
              - Pages: Include required layouts for Homepage, Product Listing Page (PLP), and Product Detail Page (PDP).
             - Ensure the design is fully responsive and conversion-focused.
-            -DONT ADD ANY IMAGES
           Return each file as:
           ---filename.ext---
           <file content>
