@@ -1,202 +1,171 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop - Crafted Elegance for Your Spaces</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Shop All Products - ELEVATE HOME</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header class="header">
-        <div class="container header__container">
-            <a href="index.html" class="logo">
-                <img src="assets/images/logo.png" alt="Elegance Home Goods Logo">
-            </a>
-            <nav class="nav" id="main-nav">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="index.html">Home</a></li>
-                    <li class="nav__item"><a href="products.html" class="active">Shop</a></li>
-                    <li class="nav__item"><a href="#">About</a></li>
-                    <li class="nav__item"><a href="#">Contact</a></li>
+        <div class="container">
+            <a href="index.html" class="logo">ELEVATE HOME</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html" class="active">Shop</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Cart (0)</a></li>
                 </ul>
             </nav>
-            <div class="header__actions">
-                <button class="header__action-btn" aria-label="Search">
-                    <img src="assets/images/icon-search.svg" alt="Search">
-                </button>
-                <button class="header__action-btn" aria-label="Shopping Cart">
-                    <img src="assets/images/icon-cart.svg" alt="Cart">
-                </button>
-                <button class="menu-toggle" aria-label="Toggle navigation" id="menu-toggle">
-                    <img src="assets/images/icon-menu.svg" alt="Menu">
-                </button>
-            </div>
         </div>
     </header>
 
     <main>
+        <div class="breadcrumb">
+            <div class="container">
+                <a href="index.html">Home</a> <span>/</span> <span>Shop All</span>
+            </div>
+        </div>
+
         <section class="plp-header">
             <div class="container">
-                <h1>Our Collection</h1>
-                <p>Curated pieces designed to bring beauty and tranquility to your home.</p>
+                <h1>All Products</h1>
+                <p>Explore our curated collection of timeless home essentials.</p>
             </div>
         </section>
 
-        <section class="section">
-            <div class="container">
-                <div class="plp-controls">
-                    <button class="plp-controls__filter-btn">
-                        Filter <img src="assets/images/icon-filter.svg" alt="" style="height: 16px; width: 16px; vertical-align: middle; margin-left: 5px;">
-                    </button>
-                    <select class="plp-controls__sort-select" aria-label="Sort products by">
-                        <option value="default">Sort by: Featured</option>
-                        <option value="price-asc">Price: Low to High</option>
-                        <option value="price-desc">Price: High to Low</option>
-                        <option value="name-asc">Alphabetical: A-Z</option>
-                        <option value="name-desc">Alphabetical: Z-A</option>
-                    </select>
-                </div>
+        <section class="container section-padding" style="padding-top: 0;">
+            <div class="plp-options">
+                <label for="sort-by">Sort By:</label>
+                <select id="sort-by">
+                    <option value="featured">Featured</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="newest">Newest Arrivals</option>
+                </select>
+            </div>
 
-                <div class="product-grid">
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/plp-product-1.jpg" alt="Artisan Crafted Mug" class="product-card__image">
-                            <h3 class="product-card__name">Artisan Crafted Mug</h3>
-                            <p class="product-card__price">$32.00</p>
-                        </a>
-                        <div class="product-card__actions">
-                            <button class="btn btn--outline">Quick Add</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/plp-product-2.jpg" alt="Minimalist Desk Lamp" class="product-card__image">
-                            <h3 class="product-card__name">Minimalist Desk Lamp</h3>
-                            <p class="product-card__price">$180.00</p>
-                        </a>
-                        <div class="product-card__actions">
-                            <button class="btn btn--outline">Quick Add</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/plp-product-3.jpg" alt="Ceramic Planter Set" class="product-card__image">
-                            <h3 class="product-card__name">Ceramic Planter Set</h3>
-                            <p class="product-card__price">$95.00</p>
-                        </a>
-                        <div class="product-card__actions">
-                            <button class="btn btn--outline">Quick Add</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/plp-product-4.jpg" alt="Woven Area Rug" class="product-card__image">
-                            <h3 class="product-card__name">Hand-Woven Area Rug</h3>
-                            <p class="product-card__price">$450.00</p>
-                        </a>
-                        <div class="product-card__actions">
-                            <button class="btn btn--outline">Quick Add</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/plp-product-5.jpg" alt="Linen Cushion Cover" class="product-card__image">
-                            <h3 class="product-card__name">Linen Cushion Cover</h3>
-                            <p class="product-card__price">$55.00</p>
-                        </a>
-                        <div class="product-card__actions">
-                            <button class="btn btn--outline">Quick Add</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/plp-product-6.jpg" alt="Abstract Sculptural Decor" class="product-card__image">
-                            <h3 class="product-card__name">Abstract Sculptural Decor</h3>
-                            <p class="product-card__price">$110.00</p>
-                        </a>
-                        <div class="product-card__actions">
-                            <button class="btn btn--outline">Quick Add</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/plp-product-7.jpg" alt="Wooden Serving Board" class="product-card__image">
-                            <h3 class="product-card__name">Acacia Wood Serving Board</h3>
-                            <p class="product-card__price">$70.00</p>
-                        </a>
-                        <div class="product-card__actions">
-                            <button class="btn btn--outline">Quick Add</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/plp-product-8.jpg" alt="Concrete Coaster Set" class="product-card__image">
-                            <h3 class="product-card__name">Concrete Coaster Set</h3>
-                            <p class="product-card__price">$40.00</p>
-                        </a>
-                        <div class="product-card__actions">
-                            <button class="btn btn--outline">Quick Add</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Pagination could go here -->
-                <div class="text-center" style="margin-top: var(--spacing-xxl);">
-                    <a href="#" class="btn btn--outline">Load More</a>
-                </div>
+            <div class="product-grid">
+                <!-- Product Card 1 -->
+                <article class="product-card">
+                    <a href="product-detail.html">
+                        <img src="assets/images/product-vase.jpg" alt="Ceramic Minimalist Vase" class="product-card-image">
+                        <h3 class="product-card-title">Sculptural Ceramic Vase</h3>
+                        <p class="product-card-price">$89.00</p>
+                    </a>
+                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
+                </article>
+
+                <!-- Product Card 2 -->
+                <article class="product-card">
+                    <a href="product-detail.html">
+                        <img src="assets/images/product-bowl.jpg" alt="Hand-thrown Earth Bowl" class="product-card-image">
+                        <h3 class="product-card-title">Artisan Stoneware Bowl</h3>
+                        <p class="product-card-price">$65.00</p>
+                    </a>
+                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
+                </article>
+
+                <!-- Product Card 3 -->
+                <article class="product-card">
+                    <a href="product-detail.html">
+                        <img src="assets/images/product-lamp.jpg" alt="Minimalist Table Lamp" class="product-card-image">
+                        <h3 class="product-card-title">Modern Minimalist Lamp</h3>
+                        <p class="product-card-price">$199.00</p>
+                    </a>
+                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
+                </article>
+
+                <!-- Product Card 4 -->
+                <article class="product-card">
+                    <a href="product-detail.html">
+                        <img src="assets/images/product-cushion.jpg" alt="Linen Decorative Cushion" class="product-card-image">
+                        <h3 class="product-card-title">Natural Linen Cushion</h3>
+                        <p class="product-card-price">$55.00</p>
+                    </a>
+                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
+                </article>
+
+                <!-- More Product Cards (duplicate for demonstration) -->
+                <article class="product-card">
+                    <a href="product-detail.html">
+                        <img src="assets/images/product-vase.jpg" alt="Abstract Stone Sculpture" class="product-card-image">
+                        <h3 class="product-card-title">Abstract Stone Sculpture</h3>
+                        <p class="product-card-price">$120.00</p>
+                    </a>
+                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
+                </article>
+                <article class="product-card">
+                    <a href="product-detail.html">
+                        <img src="assets/images/product-bowl.jpg" alt="Ceramic Plate Set" class="product-card-image">
+                        <h3 class="product-card-title">Organic Ceramic Plate Set</h3>
+                        <p class="product-card-price">$140.00</p>
+                    </a>
+                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
+                </article>
+                <article class="product-card">
+                    <a href="product-detail.html">
+                        <img src="assets/images/product-lamp.jpg" alt="Floor Reading Lamp" class="product-card-image">
+                        <h3 class="product-card-title">Sculptural Floor Lamp</h3>
+                        <p class="product-card-price">$280.00</p>
+                    </a>
+                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
+                </article>
+                <article class="product-card">
+                    <a href="product-detail.html">
+                        <img src="assets/images/product-cushion.jpg" alt="Wool Throw Blanket" class="product-card-image">
+                        <h3 class="product-card-title">Hand-Woven Wool Throw</h3>
+                        <p class="product-card-price">$110.00</p>
+                    </a>
+                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
+                </article>
             </div>
         </section>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <div class="footer__grid">
-                <div class="footer__column">
-                    <h4>Elegance Home Goods</h4>
-                    <p>Crafted elegance for your spaces. Discover timeless pieces that elevate your home.</p>
-                    <div class="footer__social-links">
-                        <a href="#" aria-label="Facebook"><img src="assets/images/icon-facebook.svg" alt="Facebook"></a>
-                        <a href="#" aria-label="Instagram"><img src="assets/images/icon-instagram.svg" alt="Instagram"></a>
-                        <a href="#" aria-label="Twitter"><img src="assets/images/icon-twitter.svg" alt="Twitter"></a>
-                    </div>
-                </div>
-                <div class="footer__column">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="products.html">Shop</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer__column">
-                    <h4>Customer Service</h4>
-                    <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Shipping & Returns</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer__column">
-                    <h4>Newsletter</h4>
-                    <p>Stay updated with our latest collections and exclusive offers.</p>
-                    <form action="#" method="post">
-                        <input type="email" placeholder="Your email address" aria-label="Email for newsletter" style="padding: var(--spacing-xs); border: 1px solid var(--color-border); background-color: var(--color-white); width: 100%; margin-bottom: var(--spacing-sm);">
-                        <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
-                    </form>
-                </div>
+            <div class="footer-section">
+                <h4>ELEVATE HOME</h4>
+                <p>Curated design for the modern home. Timeless aesthetics, enduring quality.</p>
             </div>
-            <div class="footer__bottom">
-                <p class="footer__copyright">&copy; 2023 Elegance Home Goods. All rights reserved.</p>
+            <div class="footer-section">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="products.html">All Products</a></li>
+                    <li><a href="#">Furniture</a></li>
+                    <li><a href="#">Decor</a></li>
+                    <li><a href="#">Textiles</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 ELEVATE HOME. All rights reserved.</p>
+        </div>
     </footer>
-
-    <script>
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('main-nav').classList.toggle('is-open');
-        });
-    </script>
 </body>
 </html>
+```

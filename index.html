@@ -1,171 +1,131 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Crafted Elegance for Your Spaces</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>ELEVATE HOME - High-End Home Goods</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header class="header">
-        <div class="container header__container">
-            <a href="index.html" class="logo">
-                <img src="assets/images/logo.png" alt="Elegance Home Goods Logo">
-            </a>
-            <nav class="nav" id="main-nav">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="index.html" class="active">Home</a></li>
-                    <li class="nav__item"><a href="products.html">Shop</a></li>
-                    <li class="nav__item"><a href="#">About</a></li>
-                    <li class="nav__item"><a href="#">Contact</a></li>
+        <div class="container">
+            <a href="index.html" class="logo">ELEVATE HOME</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="products.html">Shop</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Cart (0)</a></li>
                 </ul>
             </nav>
-            <div class="header__actions">
-                <button class="header__action-btn" aria-label="Search">
-                    <img src="assets/images/icon-search.svg" alt="Search">
-                </button>
-                <button class="header__action-btn" aria-label="Shopping Cart">
-                    <img src="assets/images/icon-cart.svg" alt="Cart">
-                </button>
-                <button class="menu-toggle" aria-label="Toggle navigation" id="menu-toggle">
-                    <img src="assets/images/icon-menu.svg" alt="Menu">
-                </button>
-            </div>
         </div>
     </header>
 
     <main>
-        <section class="hero" style="background-image: url('assets/images/hero-bg.jpg');">
-            <div class="container hero__content">
-                <h1 class="hero__title">CRAFTED ELEGANCE FOR YOUR SPACES</h1>
-                <p class="hero__subtitle">Discover timeless pieces that blend artistry with functionality, designed to elevate every corner of your home.</p>
-                <a href="products.html" class="btn">Explore Collections</a>
+        <section class="hero">
+            <img src="assets/images/hero-main.jpg" alt="Minimalist living room with high-end furniture" class="hero-image">
+            <div class="hero-content">
+                <h1>Crafting Serenity, Elevating Spaces.</h1>
+                <p>Discover timeless design and exceptional quality for your home.</p>
+                <a href="products.html" class="btn">Shop The Collection</a>
             </div>
         </section>
 
-        <section class="section section--light-bg">
+        <section class="section-padding">
             <div class="container">
-                <div class="section__header">
-                    <h2 class="section__title">Featured Collections</h2>
-                    <p class="section__subtitle">Hand-picked selections that embody our commitment to quality and minimalist design.</p>
-                </div>
+                <h2 class="section-title">Featured Products</h2>
                 <div class="product-grid">
-                    <div class="product-card">
+                    <article class="product-card">
                         <a href="product-detail.html">
-                            <img src="assets/images/featured-product-1.jpg" alt="Minimalist Ceramic Vase" class="product-card__image">
-                            <h3 class="product-card__name">Ceramic Serenity Vase</h3>
-                            <p class="product-card__price">$85.00</p>
+                            <img src="assets/images/product-vase.jpg" alt="Ceramic Minimalist Vase" class="product-card-image">
+                            <h3 class="product-card-title">Sculptural Ceramic Vase</h3>
+                            <p class="product-card-price">$89.00</p>
                         </a>
-                        <div class="product-card__actions">
-                            <a href="#" class="btn btn--outline">View Details</a>
-                        </div>
-                    </div>
-                    <div class="product-card">
+                        <a href="product-detail.html" class="btn btn-secondary">View Product</a>
+                    </article>
+
+                    <article class="product-card">
                         <a href="product-detail.html">
-                            <img src="assets/images/featured-product-2.jpg" alt="Wooden Side Table" class="product-card__image">
-                            <h3 class="product-card__name">Solid Oak Side Table</h3>
-                            <p class="product-card__price">$299.00</p>
+                            <img src="assets/images/product-bowl.jpg" alt="Hand-thrown Earth Bowl" class="product-card-image">
+                            <h3 class="product-card-title">Artisan Stoneware Bowl</h3>
+                            <p class="product-card-price">$65.00</p>
                         </a>
-                        <div class="product-card__actions">
-                            <a href="#" class="btn btn--outline">View Details</a>
-                        </div>
-                    </div>
-                    <div class="product-card">
+                        <a href="product-detail.html" class="btn btn-secondary">View Product</a>
+                    </article>
+
+                    <article class="product-card">
                         <a href="product-detail.html">
-                            <img src="assets/images/featured-product-3.jpg" alt="Textured Throw Blanket" class="product-card__image">
-                            <h3 class="product-card__name">Organic Cotton Throw</h3>
-                            <p class="product-card__price">$120.00</p>
+                            <img src="assets/images/product-lamp.jpg" alt="Minimalist Table Lamp" class="product-card-image">
+                            <h3 class="product-card-title">Modern Minimalist Lamp</h3>
+                            <p class="product-card-price">$199.00</p>
                         </a>
-                        <div class="product-card__actions">
-                            <a href="#" class="btn btn--outline">View Details</a>
-                        </div>
-                    </div>
-                    <div class="product-card">
+                        <a href="product-detail.html" class="btn btn-secondary">View Product</a>
+                    </article>
+
+                    <article class="product-card">
                         <a href="product-detail.html">
-                            <img src="assets/images/featured-product-4.jpg" alt="Abstract Canvas Art" class="product-card__image">
-                            <h3 class="product-card__name">Abstract Earth Canvas</h3>
-                            <p class="product-card__price">$350.00</p>
+                            <img src="assets/images/product-cushion.jpg" alt="Linen Decorative Cushion" class="product-card-image">
+                            <h3 class="product-card-title">Natural Linen Cushion</h3>
+                            <p class="product-card-price">$55.00</p>
                         </a>
-                        <div class="product-card__actions">
-                            <a href="#" class="btn btn--outline">View Details</a>
-                        </div>
-                    </div>
+                        <a href="product-detail.html" class="btn btn-secondary">View Product</a>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section class="section">
-            <div class="container about-cta">
-                <div class="about-cta__image">
-                    <img src="assets/images/about-us-snapshot.jpg" alt="Artisan working on a ceramic piece">
-                </div>
-                <div class="about-cta__content">
-                    <h2 class="about-cta__title">Our Philosophy: Simple. Sustainable. Sophisticated.</h2>
-                    <p class="about-cta__text">At Elegance Home Goods, we believe in the power of thoughtfully designed objects to transform living spaces. Each piece in our collection is meticulously crafted, focusing on natural materials, enduring quality, and a minimalist aesthetic that complements any home. We are committed to sustainability, ensuring our products are not only beautiful but also kind to the planet.</p>
-                    <a href="#" class="btn btn--outline">Learn More About Us</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="section section--light-bg text-center">
+        <section class="about-section">
             <div class="container">
-                <h2 class="section__title">Find Your Perfect Piece</h2>
-                <p class="section__subtitle">Explore our full range of curated home essentials and decor.</p>
-                <a href="products.html" class="btn">Shop All Products</a>
+                <h2 class="section-title">Our Philosophy</h2>
+                <p>At ELEVATE HOME, we believe in the power of thoughtful design to transform living spaces into sanctuaries. We curate a collection of high-end home goods, focusing on natural materials, impeccable craftsmanship, and timeless aesthetics. Each piece is selected to bring harmony, beauty, and function into your home, reflecting a commitment to quality and sustainable living.</p>
+                <p>Experience the difference of truly elevated living.</p>
+                <a href="#" class="btn btn-secondary" style="margin-top: var(--spacing-lg);">Learn More</a>
             </div>
         </section>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <div class="footer__grid">
-                <div class="footer__column">
-                    <h4>Elegance Home Goods</h4>
-                    <p>Crafted elegance for your spaces. Discover timeless pieces that elevate your home.</p>
-                    <div class="footer__social-links">
-                        <a href="#" aria-label="Facebook"><img src="assets/images/icon-facebook.svg" alt="Facebook"></a>
-                        <a href="#" aria-label="Instagram"><img src="assets/images/icon-instagram.svg" alt="Instagram"></a>
-                        <a href="#" aria-label="Twitter"><img src="assets/images/icon-twitter.svg" alt="Twitter"></a>
-                    </div>
-                </div>
-                <div class="footer__column">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="products.html">Shop</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer__column">
-                    <h4>Customer Service</h4>
-                    <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Shipping & Returns</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer__column">
-                    <h4>Newsletter</h4>
-                    <p>Stay updated with our latest collections and exclusive offers.</p>
-                    <form action="#" method="post">
-                        <input type="email" placeholder="Your email address" aria-label="Email for newsletter" style="padding: var(--spacing-xs); border: 1px solid var(--color-border); background-color: var(--color-white); width: 100%; margin-bottom: var(--spacing-sm);">
-                        <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
-                    </form>
-                </div>
+            <div class="footer-section">
+                <h4>ELEVATE HOME</h4>
+                <p>Curated design for the modern home. Timeless aesthetics, enduring quality.</p>
             </div>
-            <div class="footer__bottom">
-                <p class="footer__copyright">&copy; 2023 Elegance Home Goods. All rights reserved.</p>
+            <div class="footer-section">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="products.html">All Products</a></li>
+                    <li><a href="#">Furniture</a></li>
+                    <li><a href="#">Decor</a></li>
+                    <li><a href="#">Textiles</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 ELEVATE HOME. All rights reserved.</p>
+        </div>
     </footer>
-
-    <script>
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('main-nav').classList.toggle('is-open');
-        });
-    </script>
 </body>
 </html>
+```

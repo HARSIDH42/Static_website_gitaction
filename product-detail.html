@@ -1,161 +1,120 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Name - Crafted Elegance for Your Spaces</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Sculptural Ceramic Vase - ELEVATE HOME</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header class="header">
-        <div class="container header__container">
-            <a href="index.html" class="logo">
-                <img src="assets/images/logo.png" alt="Elegance Home Goods Logo">
-            </a>
-            <nav class="nav" id="main-nav">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="index.html">Home</a></li>
-                    <li class="nav__item"><a href="products.html" class="active">Shop</a></li>
-                    <li class="nav__item"><a href="#">About</a></li>
-                    <li class="nav__item"><a href="#">Contact</a></li>
+        <div class="container">
+            <a href="index.html" class="logo">ELEVATE HOME</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html" class="active">Shop</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Cart (0)</a></li>
                 </ul>
             </nav>
-            <div class="header__actions">
-                <button class="header__action-btn" aria-label="Search">
-                    <img src="assets/images/icon-search.svg" alt="Search">
-                </button>
-                <button class="header__action-btn" aria-label="Shopping Cart">
-                    <img src="assets/images/icon-cart.svg" alt="Cart">
-                </button>
-                <button class="menu-toggle" aria-label="Toggle navigation" id="menu-toggle">
-                    <img src="assets/images/icon-menu.svg" alt="Menu">
-                </button>
-            </div>
         </div>
     </header>
 
     <main>
-        <div class="breadcrumbs">
+        <div class="breadcrumb">
             <div class="container">
-                <a href="index.html">Home</a>
-                <span>/</span>
-                <a href="products.html">Shop</a>
-                <span>/</span>
-                <a href="#">Decor</a>
-                <span>/</span>
-                <span>Ceramic Serenity Vase</span>
+                <a href="index.html">Home</a> <span>/</span> <a href="products.html">Shop All</a> <span>/</span> <span>Sculptural Ceramic Vase</span>
             </div>
         </div>
 
         <section class="product-detail-section">
-            <div class="container product-detail__grid">
-                <div class="product-detail__gallery">
-                    <img src="assets/images/pdp-main-image.jpg" alt="Ceramic Serenity Vase - Main View" class="product-detail__main-image" id="main-product-image">
-                    <div class="product-detail__thumbnails">
-                        <img src="assets/images/pdp-thumb-1.jpg" alt="Ceramic Serenity Vase - Front" class="product-detail__thumbnail active" data-image="assets/images/pdp-main-image.jpg">
-                        <img src="assets/images/pdp-thumb-2.jpg" alt="Ceramic Serenity Vase - Side" class="product-detail__thumbnail" data-image="assets/images/pdp-thumb-2.jpg">
-                        <img src="assets/images/pdp-thumb-3.jpg" alt="Ceramic Serenity Vase - Detail" class="product-detail__thumbnail" data-image="assets/images/pdp-thumb-3.jpg">
-                        <img src="assets/images/pdp-thumb-4.jpg" alt="Ceramic Serenity Vase - Styled" class="product-detail__thumbnail" data-image="assets/images/pdp-thumb-4.jpg">
+            <div class="container">
+                <div class="product-detail-layout">
+                    <div class="product-images">
+                        <div class="main-image">
+                            <img src="assets/images/product-detail-main.jpg" alt="Sculptural Ceramic Vase - Main View" id="main-product-image">
+                        </div>
+                        <div class="thumbnail-images">
+                            <img src="assets/images/product-detail-main.jpg" alt="Vase thumbnail 1" class="active" data-image="assets/images/product-detail-main.jpg">
+                            <img src="assets/images/product-detail-alt1.jpg" alt="Vase thumbnail 2" data-image="assets/images/product-detail-alt1.jpg">
+                            <img src="assets/images/product-detail-alt2.jpg" alt="Vase thumbnail 3" data-image="assets/images/product-detail-alt2.jpg">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h1>Sculptural Ceramic Vase</h1>
+                        <span class="product-price">$89.00</span>
+                        <p class="product-description">
+                            An exquisite piece of artistry, this sculptural ceramic vase brings a touch of modern elegance to any space. Hand-formed with a unique organic silhouette and a beautifully muted, matte finish, it serves as a captivating focal point whether holding a single stem or standing alone as a statement decor item.
+                        </p>
+                        
+                        <div class="product-options">
+                            <div class="qty-selector">
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" value="1" min="1">
+                            </div>
+                            <button class="btn add-to-cart-btn">Add to Cart</button>
+                        </div>
+
+                        <div class="product-meta-details">
+                            <h3>Product Details</h3>
+                            <div class="detail-item">
+                                <h4>Description</h4>
+                                <div class="detail-content">
+                                    <p>Crafted from high-quality stoneware, this vase showcases a tactile, unglazed exterior that highlights the natural beauty of the ceramic. Its minimalist form allows it to blend seamlessly with various interior styles, from Scandinavian to contemporary. Perfect for dried botanicals or as a standalone art piece.</p>
+                                    <ul>
+                                        <li>Material: High-fired stoneware</li>
+                                        <li>Finish: Matte, unglazed</li>
+                                        <li>Dimensions: 10" H x 6" W</li>
+                                        <li>Care: Wipe clean with a soft, dry cloth. Not waterproof for fresh flowers.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="detail-item">
+                                <h4>Shipping & Returns</h4>
+                                <div class="detail-content">
+                                    <p><strong>Shipping:</strong> We offer complimentary standard shipping on all orders over $150. Expedited options are available at checkout. Please allow 3-7 business days for delivery.</p>
+                                    <p><strong>Returns:</strong> We want you to be delighted with your purchase. If you're not entirely satisfied, you may return eligible items within 30 days of receipt for a full refund or exchange. Items must be in their original condition and packaging.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="product-detail__info">
-                    <h1 class="product-detail__title">Ceramic Serenity Vase</h1>
-                    <p class="product-detail__price">$85.00</p>
-                    <p class="product-detail__short-description">
-                        An exquisitely handcrafted ceramic vase, designed with a minimalist aesthetic to complement any modern living space. Its soft, matte finish and subtle texture add a touch of organic elegance. Perfect for a single stem or a small bouquet.
-                    </p>
-                    <div class="product-detail__quantity">
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
-                    </div>
-                    <div class="product-detail__actions">
-                        <button class="btn">Add to Cart</button>
-                        <button class="btn btn--outline">Buy Now</button>
-                    </div>
-                    <div class="product-detail__meta">
-                        <p class="product-detail__meta-item"><strong>SKU:</strong> CVS001</p>
-                        <p class="product-detail__meta-item"><strong>Category:</strong> Decor, Vases</p>
-                        <p class="product-detail__meta-item"><strong>Material:</strong> High-fired Ceramic</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="product-detail__description section section--light-bg">
-            <div class="container">
-                <h3>Product Details</h3>
-                <p>
-                    The Serenity Vase is a testament to the beauty of simplicity and expert craftsmanship. Each vase is individually thrown by skilled artisans, ensuring unique character and unparalleled quality. The subtle variations in its finish reflect the handmade nature of the piece, making your vase truly one-of-a-kind. Its neutral tone and clean lines allow it to effortlessly integrate into various interior design styles, from Scandinavian minimalist to bohemian chic.
-                </p>
-                <p>
-                    We use only non-toxic, lead-free glazes, and sustainable firing practices. This vase is not only a decorative item but a piece of functional art, designed to be cherished for years to come.
-                </p>
-                <ul>
-                    <li>Dimensions: 10" H x 6" W</li>
-                    <li>Weight: 2.5 lbs</li>
-                    <li>Care: Wipe with a soft, damp cloth.</li>
-                </ul>
-            </div>
-        </section>
+                <div class="related-products section-padding">
+                    <h2 class="section-title">You Might Also Like</h2>
+                    <div class="product-grid">
+                        <article class="product-card">
+                            <a href="#">
+                                <img src="assets/images/product-bowl.jpg" alt="Artisan Stoneware Bowl" class="product-card-image">
+                                <h3 class="product-card-title">Artisan Stoneware Bowl</h3>
+                                <p class="product-card-price">$65.00</p>
+                            </a>
+                            <a href="#" class="btn btn-secondary">View Product</a>
+                        </article>
 
-        <section class="product-detail__shipping section">
-            <div class="container">
-                <h3>Shipping & Returns</h3>
-                <p>
-                    <strong>Shipping:</strong> We offer complimentary standard shipping on all orders over $150 within the continental United States. Expedited shipping options are available at checkout. Orders typically ship within 2-3 business days.
-                </p>
-                <p>
-                    <strong>Returns:</strong> We want you to be completely satisfied with your purchase. If for any reason you are not, you may return eligible items within 30 days of receipt for a full refund or exchange. Items must be in their original condition and packaging. Please see our full <a href="#">Returns Policy</a> for more details.
-                </p>
-            </div>
-        </section>
+                        <article class="product-card">
+                            <a href="#">
+                                <img src="assets/images/product-lamp.jpg" alt="Modern Minimalist Lamp" class="product-card-image">
+                                <h3 class="product-card-title">Modern Minimalist Lamp</h3>
+                                <p class="product-card-price">$199.00</p>
+                            </a>
+                            <a href="#" class="btn btn-secondary">View Product</a>
+                        </article>
 
-        <section class="related-products section section--light-bg">
-            <div class="container">
-                <div class="section__header">
-                    <h2 class="section__title">You Might Also Like</h2>
-                    <p class="section__subtitle">Explore other pieces that complement the Ceramic Serenity Vase.</p>
-                </div>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/related-product-1.jpg" alt="Minimalist Candle Holder" class="product-card__image">
-                            <h3 class="product-card__name">Minimalist Candle Holder</h3>
-                            <p class="product-card__price">$45.00</p>
-                        </a>
-                        <div class="product-card__actions">
-                            <a href="#" class="btn btn--outline">View Details</a>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/related-product-2.jpg" alt="Wooden Coaster Set" class="product-card__image">
-                            <h3 class="product-card__name">Teak Wood Coaster Set</h3>
-                            <p class="product-card__price">$30.00</p>
-                        </a>
-                        <div class="product-card__actions">
-                            <a href="#" class="btn btn--outline">View Details</a>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/related-product-3.jpg" alt="Artisan Trinket Dish" class="product-card__image">
-                            <h3 class="product-card__name">Artisan Trinket Dish</h3>
-                            <p class="product-card__price">$28.00</p>
-                        </a>
-                        <div class="product-card__actions">
-                            <a href="#" class="btn btn--outline">View Details</a>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/related-product-4.jpg" alt="Small Plant Pot" class="product-card__image">
-                            <h3 class="product-card__name">Terra Cotta Plant Pot</h3>
-                            <p class="product-card__price">$25.00</p>
-                        </a>
-                        <div class="product-card__actions">
-                            <a href="#" class="btn btn--outline">View Details</a>
-                        </div>
+                        <article class="product-card">
+                            <a href="#">
+                                <img src="assets/images/product-cushion.jpg" alt="Natural Linen Cushion" class="product-card-image">
+                                <h3 class="product-card-title">Natural Linen Cushion</h3>
+                                <p class="product-card-price">$55.00</p>
+                            </a>
+                            <a href="#" class="btn btn-secondary">View Product</a>
+                        </article>
                     </div>
                 </div>
             </div>
@@ -164,66 +123,72 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="footer__grid">
-                <div class="footer__column">
-                    <h4>Elegance Home Goods</h4>
-                    <p>Crafted elegance for your spaces. Discover timeless pieces that elevate your home.</p>
-                    <div class="footer__social-links">
-                        <a href="#" aria-label="Facebook"><img src="assets/images/icon-facebook.svg" alt="Facebook"></a>
-                        <a href="#" aria-label="Instagram"><img src="assets/images/icon-instagram.svg" alt="Instagram"></a>
-                        <a href="#" aria-label="Twitter"><img src="assets/images/icon-twitter.svg" alt="Twitter"></a>
-                    </div>
-                </div>
-                <div class="footer__column">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="products.html">Shop</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer__column">
-                    <h4>Customer Service</h4>
-                    <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Shipping & Returns</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer__column">
-                    <h4>Newsletter</h4>
-                    <p>Stay updated with our latest collections and exclusive offers.</p>
-                    <form action="#" method="post">
-                        <input type="email" placeholder="Your email address" aria-label="Email for newsletter" style="padding: var(--spacing-xs); border: 1px solid var(--color-border); background-color: var(--color-white); width: 100%; margin-bottom: var(--spacing-sm);">
-                        <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
-                    </form>
-                </div>
+            <div class="footer-section">
+                <h4>ELEVATE HOME</h4>
+                <p>Curated design for the modern home. Timeless aesthetics, enduring quality.</p>
             </div>
-            <div class="footer__bottom">
-                <p class="footer__copyright">&copy; 2023 Elegance Home Goods. All rights reserved.</p>
+            <div class="footer-section">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="products.html">All Products</a></li>
+                    <li><a href="#">Furniture</a></li>
+                    <li><a href="#">Decor</a></li>
+                    <li><a href="#">Textiles</a></li>
+                </ul>
             </div>
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 ELEVATE HOME. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('main-nav').classList.toggle('is-open');
-        });
+        // PDP Image Gallery Interaction
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainImage = document.getElementById('main-product-image');
+            const thumbnails = document.querySelectorAll('.thumbnail-images img');
 
-        // Product thumbnail gallery interaction
-        document.querySelectorAll('.product-detail__thumbnail').forEach(thumbnail => {
-            thumbnail.addEventListener('click', function() {
-                // Remove active class from all thumbnails
-                document.querySelectorAll('.product-detail__thumbnail').forEach(t => t.classList.remove('active'));
-                // Add active class to clicked thumbnail
-                this.classList.add('active');
-                // Change main image source
-                document.getElementById('main-product-image').src = this.dataset.image;
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    // Update main image source
+                    mainImage.src = this.dataset.image;
+
+                    // Remove active class from all thumbnails
+                    thumbnails.forEach(t => t.classList.remove('active'));
+
+                    // Add active class to clicked thumbnail
+                    this.classList.add('active');
+                });
+            });
+
+            // Product Details Accordion
+            const detailItems = document.querySelectorAll('.detail-item h4');
+
+            detailItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const parent = this.closest('.detail-item');
+                    parent.classList.toggle('active');
+                });
             });
         });
     </script>
 </body>
 </html>
+```
