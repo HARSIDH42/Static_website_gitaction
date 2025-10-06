@@ -45,6 +45,7 @@ jobs:
           model = genai.GenerativeModel("gemini-2.5-flash")
           prompt = """
           - add a feedback system in it
+          - add cart html
           Return each file as:
           ---filename.ext---
           <file content>
