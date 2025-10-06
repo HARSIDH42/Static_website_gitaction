@@ -1,146 +1,164 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart - E-Shop</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Your Shopping Cart</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; background-color: #f4f4f4; }
+        .container { max-width: 960px; margin: auto; padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; margin-bottom: 30px; }
+        .cart-items { border-top: 1px solid #eee; padding-top: 20px; }
+        .cart-item { display: flex; align-items: center; border-bottom: 1px solid #eee; padding: 15px 0; }
+        .cart-item:last-child { border-bottom: none; }
+        .item-image img { width: 80px; height: 80px; object-fit: cover; border-radius: 5px; margin-right: 20px; }
+        .item-details { flex-grow: 1; }
+        .item-details h3 { margin: 0 0 5px 0; color: #333; font-size: 1.1em; }
+        .item-details p { margin: 0; color: #777; font-size: 0.9em; }
+        .item-price { font-weight: bold; color: #007bff; width: 100px; text-align: right; }
+        .item-quantity { display: flex; align-items: center; width: 120px; justify-content: flex-end; }
+        .item-quantity input { width: 40px; text-align: center; padding: 5px; border: 1px solid #ccc; border-radius: 4px; margin: 0 5px; }
+        .item-quantity button { background-color: #007bff; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; }
+        .item-quantity button:hover { background-color: #0056b3; }
+        .remove-item { background-color: #dc3545; color: white; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px; margin-left: 15px; }
+        .remove-item:hover { background-color: #c82333; }
+
+        .cart-summary { margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; text-align: right; }
+        .cart-summary div { margin-bottom: 10px; font-size: 1.1em; }
+        .cart-summary .total { font-size: 1.4em; font-weight: bold; color: #333; }
+        .checkout-btn { background-color: #28a745; color: white; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 1.2em; margin-top: 20px; }
+        .checkout-btn:hover { background-color: #218838; }
+        .empty-cart-message { text-align: center; color: #777; font-size: 1.2em; padding: 50px 0; }
+        .back-to-shop { display: block; text-align: center; margin-top: 30px; color: #007bff; text-decoration: none; }
+        .back-to-shop:hover { text-decoration: underline; }
+
+    </style>
 </head>
 <body>
-    <header class="main-header">
-        <div class="container">
-            <a href="index.html" class="logo">E-Shop</a>
-            <nav class="main-nav">
-                <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <ul class="nav-list">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">Categories <i class="fas fa-caret-down"></i></a>
-                        <div class="dropdown-content">
-                            <a href="shop.html?category=electronics">Electronics</a>
-                            <a href="shop.html?category=apparel">Apparel</a>
-                            <a href="shop.html?category=home-goods">Home Goods</a>
-                            <a href="shop.html?category=books">Books</a>
-                        </div>
-                    </li>
-                    <li><a href="index.html#about">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="nav-icons">
-                <a href="#" class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></a>
-                <a href="#" class="icon-btn" aria-label="User Account"><i class="fas fa-user"></i></a>
-                <a href="cart.html" class="icon-btn cart-icon" aria-label="Shopping Cart">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
-                </a>
+    <div class="container">
+        <h1>Your Shopping Cart</h1>
+
+        <div class="cart-items" id="cartItems">
+            <!-- Example Cart Item (will be populated dynamically in a real app) -->
+            <div class="cart-item" data-id="101">
+                <div class="item-image">
+                    <img src="https://via.placeholder.com/80x80?text=Product+A" alt="Product A">
+                </div>
+                <div class="item-details">
+                    <h3>Awesome Product A</h3>
+                    <p>Color: Red, Size: M</p>
+                </div>
+                <div class="item-price">$29.99</div>
+                <div class="item-quantity">
+                    <button class="quantity-btn" data-action="decrease">-</button>
+                    <input type="number" value="1" min="1" readonly>
+                    <button class="quantity-btn" data-action="increase">+</button>
+                </div>
+                <button class="remove-item">Remove</button>
             </div>
+
+            <div class="cart-item" data-id="102">
+                <div class="item-image">
+                    <img src="https://via.placeholder.com/80x80?text=Product+B" alt="Product B">
+                </div>
+                <div class="item-details">
+                    <h3>Super Widget B</h3>
+                    <p>Material: Aluminum</p>
+                </div>
+                <div class="item-price">$12.50</div>
+                <div class="item-quantity">
+                    <button class="quantity-btn" data-action="decrease">-</button>
+                    <input type="number" value="2" min="1" readonly>
+                    <button class="quantity-btn" data-action="increase">+</button>
+                </div>
+                <button class="remove-item">Remove</button>
+            </div>
+
+            <div class="cart-item" data-id="103">
+                <div class="item-image">
+                    <img src="https://via.placeholder.com/80x80?text=Product+C" alt="Product C">
+                </div>
+                <div class="item-details">
+                    <h3>Fancy Gadget C</h3>
+                    <p>Wireless, Rechargeable</p>
+                </div>
+                <div class="item-price">$75.00</div>
+                <div class="item-quantity">
+                    <button class="quantity-btn" data-action="decrease">-</button>
+                    <input type="number" value="1" min="1" readonly>
+                    <button class="quantity-btn" data-action="increase">+</button>
+                </div>
+                <button class="remove-item">Remove</button>
+            </div>
+
+            <!-- If the cart is empty, you could show this: -->
+            <!-- <p class="empty-cart-message">Your cart is currently empty. Start shopping!</p> -->
         </div>
-    </header>
 
-    <main class="cart-page">
-        <section class="page-banner" style="background-image: url('https://images.unsplash.com/photo-1579298245158-df718d6a8a07?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-            <div class="container">
-                <h1>Your Shopping Cart</h1>
-                <p>Review your items before checkout.</p>
-            </div>
-        </section>
-
-        <section class="cart-section section-padding">
-            <div class="container">
-                <div class="cart-layout">
-                    <div class="cart-items" id="cart-items-container">
-                        <h2>Items in Your Cart</h2>
-                        <div class="cart-empty-message" style="display: none;">
-                            <p>Your cart is empty. <a href="shop.html">Start shopping!</a></p>
-                        </div>
-                        <!-- Cart items will be dynamically loaded here by JavaScript -->
-                    </div>
-                    
-                    <div class="cart-summary">
-                        <h2>Order Summary</h2>
-                        <div class="summary-details">
-                            <div class="summary-row">
-                                <span>Subtotal:</span>
-                                <span id="cart-subtotal">$0.00</span>
-                            </div>
-                            <div class="summary-row">
-                                <span>Shipping:</span>
-                                <span id="cart-shipping">$0.00</span>
-                            </div>
-                            <div class="summary-row total">
-                                <span>Total:</span>
-                                <span id="cart-total">$0.00</span>
-                            </div>
-                        </div>
-                        <div class="promo-code">
-                            <label for="promo">Have a promo code?</label>
-                            <input type="text" id="promo" placeholder="Enter code" aria-label="Promo code input">
-                            <button class="button small-button">Apply</button>
-                        </div>
-                        <a href="checkout.html" class="button primary-button checkout-button">Proceed to Checkout</a>
-                        <a href="shop.html" class="button secondary-button continue-shopping-button">Continue Shopping</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h4>E-Shop</h4>
-                    <p>Your one-stop shop for everything you need. Quality products, fast shipping, and exceptional service.</p>
-                </div>
-                <div class="footer-column">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Customer Service</h4>
-                    <ul>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Shipping & Returns</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Connect With Us</h4>
-                    <div class="social-icons">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <p>Subscribe to our newsletter for updates:</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
-                        <button type="submit" class="button primary-button">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 E-Shop. All rights reserved.</p>
-            </div>
+        <div class="cart-summary">
+            <div>Subtotal: <span id="cartSubtotal">$129.99</span></div>
+            <div>Shipping: <span id="cartShipping">$5.00</span></div>
+            <div class="total">Total: <span id="cartTotal">$134.99</span></div>
+            <button class="checkout-btn">Proceed to Checkout</button>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
+        <a href="product_detail.html" class="back-to-shop">Continue Shopping</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartItemsContainer = document.getElementById('cartItems');
+
+            // Function to update cart totals (placeholder logic)
+            function updateCartTotals() {
+                let subtotal = 0;
+                document.querySelectorAll('.cart-item').forEach(item => {
+                    const priceText = item.querySelector('.item-price').textContent;
+                    const price = parseFloat(priceText.replace('$', ''));
+                    const quantity = parseInt(item.querySelector('.item-quantity input').value);
+                    subtotal += price * quantity;
+                });
+
+                document.getElementById('cartSubtotal').textContent = `$${subtotal.toFixed(2)}`;
+                const shipping = 5.00; // Example fixed shipping
+                document.getElementById('cartShipping').textContent = `$${shipping.toFixed(2)}`;
+                document.getElementById('cartTotal').textContent = `$${(subtotal + shipping).toFixed(2)}`;
+
+                if (subtotal === 0) {
+                    cartItemsContainer.innerHTML = '<p class="empty-cart-message">Your cart is currently empty. Start shopping!</p>';
+                    document.querySelector('.cart-summary').style.display = 'none';
+                } else {
+                    document.querySelector('.cart-summary').style.display = 'block';
+                }
+            }
+
+            // Event listeners for quantity buttons
+            cartItemsContainer.addEventListener('click', (event) => {
+                if (event.target.classList.contains('quantity-btn')) {
+                    const button = event.target;
+                    const input = button.parentNode.querySelector('input[type="number"]');
+                    let quantity = parseInt(input.value);
+
+                    if (button.dataset.action === 'decrease' && quantity > 1) {
+                        quantity--;
+                    } else if (button.dataset.action === 'increase') {
+                        quantity++;
+                    }
+                    input.value = quantity;
+                    updateCartTotals(); // Recalculate totals
+                }
+
+                // Event listener for remove item buttons
+                if (event.target.classList.contains('remove-item')) {
+                    const itemToRemove = event.target.closest('.cart-item');
+                    itemToRemove.remove();
+                    updateCartTotals(); // Recalculate totals
+                }
+            });
+
+            // Initial calculation of totals
+            updateCartTotals();
+        });
+    </script>
 </body>
 </html>
-```

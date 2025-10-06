@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Name - Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .container { max-width: 960px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .product-image { text-align: center; margin-bottom: 20px; }
+        .product-image img { max-width: 100%; height: auto; border-radius: 8px; }
+        .product-info h1 { color: #333; }
+        .product-info p { color: #555; }
+        .price { font-size: 1.5em; color: #007bff; font-weight: bold; margin-bottom: 15px; }
+        .add-to-cart-btn { background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; }
+        .add-to-cart-btn:hover { background-color: #218838; }
+
+        /* Feedback System Styles */
+        .feedback-section { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; }
+        .feedback-section h2 { color: #333; margin-bottom: 20px; }
+        .review { border: 1px solid #eee; padding: 15px; margin-bottom: 15px; border-radius: 5px; background-color: #f9f9f9; }
+        .review-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .reviewer-name { font-weight: bold; color: #007bff; }
+        .review-date { font-size: 0.9em; color: #777; }
+        .star-rating { color: #ffc107; font-size: 1.1em; margin-bottom: 5px; }
+        .review-comment { color: #333; }
+
+        .feedback-form { margin-top: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f0f8ff; }
+        .feedback-form label { display: block; margin-bottom: 8px; font-weight: bold; }
+        .feedback-form input[type="text"],
+        .feedback-form input[type="email"],
+        .feedback-form textarea,
+        .feedback-form select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .feedback-form textarea { resize: vertical; min-height: 100px; }
+        .feedback-form button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .feedback-form button:hover { background-color: #0056b3; }
+        .star-input-container { margin-bottom: 15px; }
+        .star-input-container label { margin-right: 10px; display: inline-block; }
+        .star-input { cursor: pointer; font-size: 1.5em; color: #ccc; }
+        .star-input:hover, .star-input.selected { color: #ffc107; }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="product-image">
+            <img src="https://via.placeholder.com/600x400?text=Awesome+Product" alt="Awesome Product Image">
+        </div>
+        <div class="product-info">
+            <h1>Awesome Product X</h1>
+            <p class="price">$99.99</p>
+            <p>
+                This is an amazing product that will revolutionize your daily life.
+                It's made with high-quality materials and designed for durability and performance.
+                Perfect for anyone looking for a premium experience.
+            </p>
+            <ul>
+                <li>Feature 1: Super Durable</li>
+                <li>Feature 2: Easy to Use</li>
+                <li>Feature 3: Stylish Design</li>
+                <li>Feature 4: Long-lasting Battery (if applicable)</li>
+            </ul>
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <a href="cart.html" style="margin-left: 10px;">Go to Cart</a>
+        </div>
+
+        <div class="feedback-section">
+            <h2>Customer Reviews</h2>
+
+            <!-- Existing Reviews -->
+            <div class="review">
+                <div class="review-header">
+                    <span class="reviewer-name">Jane Doe</span>
+                    <span class="review-date">January 15, 2023</span>
+                </div>
+                <div class="star-rating">
+                    &#9733;&#9733;&#9733;&#9733;&#9734; (4/5 stars)
+                </div>
+                <p class="review-comment">
+                    "This product exceeded my expectations! The quality is fantastic and it works exactly as described.
+                    Highly recommend it to everyone."
+                </p>
+            </div>
+
+            <div class="review">
+                <div class="review-header">
+                    <span class="reviewer-name">John Smith</span>
+                    <span class="review-date">February 20, 2023</span>
+                </div>
+                <div class="star-rating">
+                    &#9733;&#9733;&#9733;&#9733;&#9733; (5/5 stars)
+                </div>
+                <p class="review-comment">
+                    "Absolutely love it! The best purchase I've made all year.
+                    Shipping was fast too. Would give more stars if I could!"
+                </p>
+            </div>
+
+            <div class="review">
+                <div class="review-header">
+                    <span class="reviewer-name">Alice Johnson</span>
+                    <span class="review-date">March 5, 2023</span>
+                </div>
+                <div class="star-rating">
+                    &#9733;&#9733;&#9733;&#9734;&#9734; (3/5 stars)
+                </div>
+                <p class="review-comment">
+                    "It's okay. Does the job, but nothing spectacular. Expected a bit more for the price.
+                    Might be better for others."
+                </p>
+            </div>
+
+            <!-- Feedback Submission Form -->
+            <div class="feedback-form">
+                <h3>Write a Review</h3>
+                <form action="/submit-review" method="POST">
+                    <label for="reviewerName">Your Name:</label>
+                    <input type="text" id="reviewerName" name="reviewerName" required>
+
+                    <label for="reviewerEmail">Your Email (Optional):</label>
+                    <input type="email" id="reviewerEmail" name="reviewerEmail">
+
+                    <label for="rating">Your Rating:</label>
+                    <div class="star-input-container">
+                        <span class="star-input" data-value="1">&#9733;</span>
+                        <span class="star-input" data-value="2">&#9733;</span>
+                        <span class="star-input" data-value="3">&#9733;</span>
+                        <span class="star-input" data-value="4">&#9733;</span>
+                        <span class="star-input" data-value="5">&#9733;</span>
+                        <input type="hidden" id="rating" name="rating" value="0" required>
+                    </div>
+
+                    <label for="reviewComment">Your Review:</label>
+                    <textarea id="reviewComment" name="reviewComment" placeholder="Share your thoughts on the product..." required></textarea>
+
+                    <button type="submit">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const stars = document.querySelectorAll('.star-input');
+            const ratingInput = document.getElementById('rating');
+
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const value = parseInt(star.dataset.value);
+                    ratingInput.value = value;
+
+                    stars.forEach(s => {
+                        if (parseInt(s.dataset.value) <= value) {
+                            s.classList.add('selected');
+                        } else {
+                            s.classList.remove('selected');
+                        }
+                    });
+                });
+
+                star.addEventListener('mouseover', () => {
+                    const value = parseInt(star.dataset.value);
+                    stars.forEach(s => {
+                        if (parseInt(s.dataset.value) <= value) {
+                            s.classList.add('selected-hover');
+                        } else {
+                            s.classList.remove('selected-hover');
+                        }
+                    });
+                });
+
+                star.addEventListener('mouseout', () => {
+                    stars.forEach(s => s.classList.remove('selected-hover'));
+                });
+            });
+        });
+    </script>
+</body>
+</html>
