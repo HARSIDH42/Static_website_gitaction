@@ -1,0 +1,3 @@
+This is an example text file.
+It contains a few lines of dummy content to demonstrate the file return format.
+You can imagine this being any simple text document.
