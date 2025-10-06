@@ -1,0 +1,17 @@
+/**
+     * Attaches event listeners and checks initial state.
+     */
+    function init() {
+        document.addEventListener('keydown', handleKeyboardTrigger);
+        checkUrlParameterTrigger();
+    }
+
+    // Run initialization once the DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+})();
+```

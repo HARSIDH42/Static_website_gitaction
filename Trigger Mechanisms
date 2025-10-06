@@ -1,0 +1,25 @@
+/**
+     * Keyboard shortcut listener.
+     * @param {KeyboardEvent} event
+     */
+    function handleKeyboardTrigger(event) {
+        if (event.key === KEY_TRIGGER.key &&
+            event.ctrlKey === KEY_TRIGGER.ctrlKey &&
+            event.shiftKey === KEY_TRIGGER.shiftKey &&
+            !widgetLoaded) { // Only trigger if widget is not already open
+            event.preventDefault(); // Prevent browser defaults (e.g., search)
+            showFeedbackWidget();
+        }
+    }
+
+    /**
+     * Checks for URL parameter trigger on page load.
+     */
+    function checkUrlParameterTrigger() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get(URL_PARAM_TRIGGER) === 'true' && !widgetLoaded) {
+            showFeedbackWidget();
+        }
+    }
+
+    //

@@ -1,0 +1,61 @@
+/**
+     * Displays the feedback widget.
+     */
+    async function showFeedbackWidget() {
+        if (widgetContainer) {
+            widgetContainer.style.display = 'flex'; // Show if already created
+            return;
+        }
+
+        widgetContainer = document.createElement('div');
+        widgetContainer.id = 'feedback-widget-container';
+        widgetContainer.className = 'feedback-widget-hidden'; // Start hidden
+        document.body.appendChild(widgetContainer);
+
+        try {
+            const htmlContent = await fetchHtml(`${WIDGET_BASE_PATH}feedback-widget.html`);
+            widgetContainer.innerHTML = htmlContent;
+            loadCSS(`${WIDGET_BASE_PATH}feedback-widget.css`);
+            await loadScript(`${WIDGET_BASE_PATH}feedback-widget.js`);
+
+            // Initialize the widget's JS logic once loaded
+            if (window.initializeFeedbackWidget) {
+                window.initializeFeedbackWidget({
+                    container: widgetContainer,
+                    onClose: hideFeedbackWidget // Pass hide function to widget
+                });
+            }
+            widgetLoaded = true;
+            // Add a small delay for CSS transition if desired
+            setTimeout(() => {
+                widgetContainer.classList.remove('feedback-widget-hidden');
+            }, 10); // Small delay to allow CSS transition
+        } catch (error) {
+            console.error('Failed to load feedback widget:', error);
+            document.body.removeChild(widgetContainer);
+            widgetContainer = null;
+        }
+    }
+
+    /**
+     * Hides and removes the feedback widget.
+     */
+    function hideFeedbackWidget() {
+        if (widgetContainer) {
+            widgetContainer.classList.add('feedback-widget-hidden');
+            // Remove after transition
+            widgetContainer.addEventListener('transitionend', () => {
+                if (widgetContainer && widgetContainer.classList.contains('feedback-widget-hidden')) {
+                     document.body.removeChild(widgetContainer);
+                     widgetContainer = null;
+                     widgetLoaded = false;
+                     // Clean up any event listeners from the widget's JS if necessary
+                     if (window.cleanupFeedbackWidget) {
+                         window.cleanupFeedbackWidget();
+                     }
+                }
+            }, { once: true });
+        }
+    }
+
+    //
