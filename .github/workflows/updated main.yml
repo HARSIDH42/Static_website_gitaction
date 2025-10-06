@@ -45,12 +45,7 @@ jobs:
           model = genai.GenerativeModel("gemini-2.5-flash")
           prompt = """
           You are updating the UI of a static website project.
-          - Update navigation, buttons, and sections for clarity and user experience.
-          - Ensure the website is mobile-friendly and accessible.
-          - Make it as an ecommerce website with all features in it.
-          - add more features related to ecommerce like customer feedback
-          - Remove all the image place holders.
-          - Provide the full HTML/CSS/JS content for each file that needs modification.
+          - Dont  make many changes on it add customer feedback on it dont touch any features existing
           Return each file as:
           ---filename.ext---
           <file content>
