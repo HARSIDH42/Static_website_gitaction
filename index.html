@@ -3,153 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>High-End Home Goods - Homepage</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts link for Inter is in style.css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Home - Crafted Elegance for Your Spaces</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo">Haven & Home</a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="product-listing.html">Shop</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+        <div class="container header__container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Elegance Home Goods Logo">
+            </a>
+            <nav class="nav" id="main-nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="active">Home</a></li>
+                    <li class="nav__item"><a href="products.html">Shop</a></li>
+                    <li class="nav__item"><a href="#">About</a></li>
+                    <li class="nav__item"><a href="#">Contact</a></li>
                 </ul>
             </nav>
-            <div class="nav-icons">
-                <span class="fas fa-search"></span>
-                <span class="fas fa-user"></span>
-                <span class="fas fa-shopping-bag"></span>
+            <div class="header__actions">
+                <button class="header__action-btn" aria-label="Search">
+                    <img src="assets/images/icon-search.svg" alt="Search">
+                </button>
+                <button class="header__action-btn" aria-label="Shopping Cart">
+                    <img src="assets/images/icon-cart.svg" alt="Cart">
+                </button>
+                <button class="menu-toggle" aria-label="Toggle navigation" id="menu-toggle">
+                    <img src="assets/images/icon-menu.svg" alt="Menu">
+                </button>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="hero-section">
-            <div class="hero-content">
-                <h1>Crafted Elegance for Your Space</h1>
-                <p>Discover timeless pieces that blend minimalist design with unparalleled quality. Elevate your home with our exclusive collection.</p>
-                <a href="product-listing.html" class="hero-button">Explore Collection</a>
+        <section class="hero" style="background-image: url('assets/images/hero-bg.jpg');">
+            <div class="container hero__content">
+                <h1 class="hero__title">CRAFTED ELEGANCE FOR YOUR SPACES</h1>
+                <p class="hero__subtitle">Discover timeless pieces that blend artistry with functionality, designed to elevate every corner of your home.</p>
+                <a href="products.html" class="btn">Explore Collections</a>
             </div>
         </section>
 
-        <section class="section-padding">
-            <div class="container text-center">
-                <h2>Featured Products</h2>
-                <p>Curated selections to inspire your living spaces.</p>
-
+        <section class="section section--light-bg">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">Featured Collections</h2>
+                    <p class="section__subtitle">Hand-picked selections that embody our commitment to quality and minimalist design.</p>
+                </div>
                 <div class="product-grid">
                     <div class="product-card">
                         <a href="product-detail.html">
-                            <div class="product-card-image-placeholder">
-                                <!-- Placeholder: Assumes image from assets/images/product-1.jpg -->
-                                Product Image 1
-                            </div>
+                            <img src="assets/images/featured-product-1.jpg" alt="Minimalist Ceramic Vase" class="product-card__image">
+                            <h3 class="product-card__name">Ceramic Serenity Vase</h3>
+                            <p class="product-card__price">$85.00</p>
                         </a>
-                        <div class="product-card-info">
-                            <h3>Minimalist Ceramic Vase</h3>
-                            <p class="price">$120.00</p>
-                            <button class="add-to-cart-btn">Add to Cart</button>
+                        <div class="product-card__actions">
+                            <a href="#" class="btn btn--outline">View Details</a>
                         </div>
                     </div>
-
                     <div class="product-card">
                         <a href="product-detail.html">
-                            <div class="product-card-image-placeholder">
-                                <!-- Placeholder: Assumes image from assets/images/product-2.jpg -->
-                                Product Image 2
-                            </div>
+                            <img src="assets/images/featured-product-2.jpg" alt="Wooden Side Table" class="product-card__image">
+                            <h3 class="product-card__name">Solid Oak Side Table</h3>
+                            <p class="product-card__price">$299.00</p>
                         </a>
-                        <div class="product-card-info">
-                            <h3>Hand-Woven Wool Rug</h3>
-                            <p class="price">$599.00</p>
-                            <button class="add-to-cart-btn">Add to Cart</button>
+                        <div class="product-card__actions">
+                            <a href="#" class="btn btn--outline">View Details</a>
                         </div>
                     </div>
-
                     <div class="product-card">
                         <a href="product-detail.html">
-                            <div class="product-card-image-placeholder">
-                                <!-- Placeholder: Assumes image from assets/images/product-3.jpg -->
-                                Product Image 3
-                            </div>
+                            <img src="assets/images/featured-product-3.jpg" alt="Textured Throw Blanket" class="product-card__image">
+                            <h3 class="product-card__name">Organic Cotton Throw</h3>
+                            <p class="product-card__price">$120.00</p>
                         </a>
-                        <div class="product-card-info">
-                            <h3>Sculptural Oak Coffee Table</h3>
-                            <p class="price">$980.00</p>
-                            <button class="add-to-cart-btn">Add to Cart</button>
+                        <div class="product-card__actions">
+                            <a href="#" class="btn btn--outline">View Details</a>
                         </div>
                     </div>
-
                     <div class="product-card">
                         <a href="product-detail.html">
-                            <div class="product-card-image-placeholder">
-                                <!-- Placeholder: Assumes image from assets/images/product-4.jpg -->
-                                Product Image 4
-                            </div>
+                            <img src="assets/images/featured-product-4.jpg" alt="Abstract Canvas Art" class="product-card__image">
+                            <h3 class="product-card__name">Abstract Earth Canvas</h3>
+                            <p class="product-card__price">$350.00</p>
                         </a>
-                        <div class="product-card-info">
-                            <h3>Linen Blend Throw Blanket</h3>
-                            <p class="price">$85.00</p>
-                            <button class="add-to-cart-btn">Add to Cart</button>
+                        <div class="product-card__actions">
+                            <a href="#" class="btn btn--outline">View Details</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section-padding text-center">
+        <section class="section">
+            <div class="container about-cta">
+                <div class="about-cta__image">
+                    <img src="assets/images/about-us-snapshot.jpg" alt="Artisan working on a ceramic piece">
+                </div>
+                <div class="about-cta__content">
+                    <h2 class="about-cta__title">Our Philosophy: Simple. Sustainable. Sophisticated.</h2>
+                    <p class="about-cta__text">At Elegance Home Goods, we believe in the power of thoughtfully designed objects to transform living spaces. Each piece in our collection is meticulously crafted, focusing on natural materials, enduring quality, and a minimalist aesthetic that complements any home. We are committed to sustainability, ensuring our products are not only beautiful but also kind to the planet.</p>
+                    <a href="#" class="btn btn--outline">Learn More About Us</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--light-bg text-center">
             <div class="container">
-                <h2>Timeless Design, Lasting Quality</h2>
-                <p>Every item is thoughtfully sourced and meticulously crafted to bring beauty and tranquility to your home.</p>
-                <a href="product-listing.html" class="hero-button">View All Products</a>
+                <h2 class="section__title">Find Your Perfect Piece</h2>
+                <p class="section__subtitle">Explore our full range of curated home essentials and decor.</p>
+                <a href="products.html" class="btn">Shop All Products</a>
             </div>
         </section>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-column">
-                <h4>Haven & Home</h4>
-                <p>Elevating spaces with minimalist design and exquisite home goods.</p>
+            <div class="footer__grid">
+                <div class="footer__column">
+                    <h4>Elegance Home Goods</h4>
+                    <p>Crafted elegance for your spaces. Discover timeless pieces that elevate your home.</p>
+                    <div class="footer__social-links">
+                        <a href="#" aria-label="Facebook"><img src="assets/images/icon-facebook.svg" alt="Facebook"></a>
+                        <a href="#" aria-label="Instagram"><img src="assets/images/icon-instagram.svg" alt="Instagram"></a>
+                        <a href="#" aria-label="Twitter"><img src="assets/images/icon-twitter.svg" alt="Twitter"></a>
+                    </div>
+                </div>
+                <div class="footer__column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Shop</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h4>Newsletter</h4>
+                    <p>Stay updated with our latest collections and exclusive offers.</p>
+                    <form action="#" method="post">
+                        <input type="email" placeholder="Your email address" aria-label="Email for newsletter" style="padding: var(--spacing-xs); border: 1px solid var(--color-border); background-color: var(--color-white); width: 100%; margin-bottom: var(--spacing-sm);">
+                        <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
+                    </form>
+                </div>
             </div>
-            <div class="footer-column">
-                <h4>Shop</h4>
-                <ul>
-                    <li><a href="product-listing.html">All Products</a></li>
-                    <li><a href="#">Furniture</a></li>
-                    <li><a href="#">Decor</a></li>
-                    <li><a href="#">Textiles</a></li>
-                    <li><a href="#">Lighting</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>About Us</h4>
-                <ul>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Careers</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Customer Service</h4>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                &copy; 2023 Haven & Home. All rights reserved.
+            <div class="footer__bottom">
+                <p class="footer__copyright">&copy; 2023 Elegance Home Goods. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('main-nav').classList.toggle('is-open');
+        });
+    </script>
 </body>
 </html>
