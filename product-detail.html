@@ -3,186 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ceramic Serenity Vase | Ethereal Home</title>
+    <title>Minimalist Ceramic Vase - Product Detail</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header class="site-header">
+    <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">
-                <img src="assets/images/logo.png" alt="Ethereal Home Logo">
-            </a>
+            <a href="index.html" class="logo">Haven & Home</a>
             <nav class="main-nav">
-                <ul class="nav-list">
+                <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html" class="active">Shop</a></li>
+                    <li><a href="product-listing.html" class="active">Shop</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
-            <div class="header-icons">
-                <a href="#" class="icon-link"><i class="fas fa-search"></i></a>
-                <a href="#" class="icon-link"><i class="fas fa-user"></i></a>
-                <a href="#" class="icon-link cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
-                </a>
-                <button class="menu-toggle" aria-label="Open menu">
-                    <i class="fas fa-bars"></i>
-                </button>
+            <div class="nav-icons">
+                <span class="fas fa-search"></span>
+                <span class="fas fa-user"></span>
+                <span class="fas fa-shopping-bag"></span>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="product-detail-page section-padding">
-            <div class="container product-grid-detail">
-                <div class="product-gallery">
-                    <div class="main-image">
-                        <img src="assets/images/product-vase.jpg" alt="Elegant minimalist ceramic vase - main view" id="mainProductImage">
-                    </div>
-                    <div class="thumbnail-images">
-                        <img src="assets/images/product-vase.jpg" alt="Vase thumbnail 1" class="thumbnail active" data-full="assets/images/product-vase.jpg">
-                        <img src="assets/images/product-vase-alt1.jpg" alt="Vase thumbnail 2" class="thumbnail" data-full="assets/images/product-vase-alt1.jpg">
-                        <img src="assets/images/product-vase-alt2.jpg" alt="Vase thumbnail 3" class="thumbnail" data-full="assets/images/product-vase-alt2.jpg">
-                    </div>
-                </div>
-
-                <div class="product-info">
-                    <h1 class="product-title">Ceramic Serenity Vase</h1>
-                    <p class="product-price">$99.00</p>
-                    <div class="product-meta">
-                        <span class="product-sku">SKU: CH-VS-001</span>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            <span>(4.5 / 5 stars, 12 Reviews)</span>
-                        </div>
-                    </div>
-                    <p class="product-description">
-                        Embrace minimalist elegance with our Ceramic Serenity Vase. Crafted from high-quality, matte ceramic,
-                        its understated design and soft curves bring a tranquil touch to any room. Perfect for a single
-                        stem or as a standalone sculptural piece.
-                    </p>
-
-                    <div class="product-options">
-                        <div class="option-group">
-                            <label for="color-select">Color:</label>
-                            <select id="color-select" class="minimal-select">
-                                <option value="oat">Oatmeal White</option>
-                                <option value="sage">Muted Sage</option>
-                                <option value="charcoal">Charcoal Gray</option>
-                            </select>
-                        </div>
-                        <div class="option-group">
-                            <label for="size-select">Size:</label>
-                            <select id="size-select" class="minimal-select">
-                                <option value="small">Small (15cm H)</option>
-                                <option value="medium">Medium (25cm H)</option>
-                                <option value="large">Large (35cm H)</option>
-                            </select>
-                        </div>
-                        <div class="option-group quantity-selector">
-                            <label for="quantity">Quantity:</label>
-                            <input type="number" id="quantity" value="1" min="1" max="10" class="minimal-input">
-                        </div>
-                    </div>
-
-                    <button class="button primary-button add-to-cart-btn">Add to Cart</button>
-
-                    <div class="shipping-returns">
-                        <h3>Shipping & Returns</h3>
-                        <ul>
-                            <li>Free standard shipping on all orders over $150.</li>
-                            <li>Easy 30-day returns for a full refund.</li>
-                            <li>For details, see our <a href="#">Shipping Policy</a> and <a href="#">Returns Policy</a>.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="related-products section-padding bg-light-grey">
+        <section class="section-padding">
             <div class="container">
-                <h2 class="section-title text-center">You Might Also Like</h2>
-                <div class="product-grid three-col">
-                    <div class="product-card">
-                        <a href="product-detail.html" class="product-link">
-                            <img src="assets/images/product-candleholder.jpg" alt="Modern candle holder with a single candle">
-                            <h3 class="product-name">Aura Candle Holder</h3>
-                            <p class="product-price">$45.00</p>
-                        </a>
-                        <button class="button add-to-cart-btn">Add to Cart</button>
+                <nav class="breadcrumbs" style="margin-bottom: var(--spacing-lg); font-size: var(--font-size-sm); color: var(--color-secondary);">
+                    <a href="index.html">Home</a> &gt; <a href="product-listing.html">Shop</a> &gt; Minimalist Ceramic Vase
+                </nav>
+
+                <div class="product-detail-section">
+                    <div class="product-detail-image-gallery">
+                        <div class="main-product-image-placeholder">
+                            <!-- Placeholder: Assumes primary image from assets/images/pdp-main-image.jpg -->
+                            Main Product Image
+                        </div>
+                        <div class="thumbnail-images">
+                            <div class="thumbnail-placeholder active">
+                                <!-- Placeholder: Assumes thumbnail image from assets/images/pdp-thumb1.jpg -->
+                            </div>
+                            <div class="thumbnail-placeholder">
+                                <!-- Placeholder: Assumes thumbnail image from assets/images/pdp-thumb2.jpg -->
+                            </div>
+                            <div class="thumbnail-placeholder">
+                                <!-- Placeholder: Assumes thumbnail image from assets/images/pdp-thumb3.jpg -->
+                            </div>
+                        </div>
                     </div>
-                    <div class="product-card">
-                        <a href="product-detail.html" class="product-link">
-                            <img src="assets/images/product-throw.jpg" alt="Soft knitted throw blanket on a sofa">
-                            <h3 class="product-name">Cozy Alpaca Throw</h3>
-                            <p class="product-price">$180.00</p>
-                        </a>
-                        <button class="button add-to-cart-btn">Add to Cart</button>
+
+                    <div class="product-detail-info">
+                        <h1>Minimalist Ceramic Vase</h1>
+                        <p class="price">$120.00</p>
+                        <p class="description">
+                            Embrace understated elegance with our handcrafted ceramic vase. Its matte finish and organic silhouette make it a perfect centerpiece for any modern or minimalist decor. Ideal for a single stem or a small bouquet.
+                        </p>
+
+                        <div class="product-detail-actions">
+                            <div class="quantity-selector">
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+                            </div>
+                            <button class="add-to-cart-button">Add to Cart</button>
+                            <button class="add-to-cart-button" style="background-color: transparent; color: var(--color-primary); border-color: var(--color-border);">
+                                Add to Wishlist <span class="far fa-heart" style="margin-left: var(--spacing-xs);"></span>
+                            </button>
+                        </div>
+
+                        <div style="margin-top: var(--spacing-xl); padding-top: var(--spacing-xl); border-top: 1px solid var(--color-border);">
+                            <h4>Product Details</h4>
+                            <ul>
+                                <li style="margin-bottom: var(--spacing-xs);"><strong style="margin-right: var(--spacing-sm);">Material:</strong>High-fired ceramic</li>
+                                <li style="margin-bottom: var(--spacing-xs);"><strong style="margin-right: var(--spacing-sm);">Dimensions:</strong>10" H x 6" W</li>
+                                <li style="margin-bottom: var(--spacing-xs);"><strong style="margin-right: var(--spacing-sm);">Color:</strong>Earthy Matte White</li>
+                                <li style="margin-bottom: var(--spacing-xs);"><strong style="margin-right: var(--spacing-sm);">Care:</strong>Wipe clean with a soft cloth</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="product-card">
-                        <a href="product-detail.html" class="product-link">
-                            <img src="assets/images/product-mirror.jpg" alt="Minimalist round wall mirror">
-                            <h3 class="product-name">Halo Wall Mirror</h3>
-                            <p class="product-price">$270.00</p>
-                        </a>
-                        <button class="button add-to-cart-btn">Add to Cart</button>
+                </div>
+
+                <div style="margin-top: var(--spacing-xxl);">
+                    <h2 class="text-center" style="margin-bottom: var(--spacing-xl);">You Might Also Like</h2>
+                    <div class="product-grid">
+                        <div class="product-card">
+                            <a href="product-detail.html">
+                                <div class="product-card-image-placeholder">
+                                    <!-- Placeholder: Assumes image from assets/images/related-product-1.jpg -->
+                                    Related Product 1
+                                </div>
+                            </a>
+                            <div class="product-card-info">
+                                <h3>Abstract Canvas Art Print</h3>
+                                <p class="price">$320.00</p>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <a href="product-detail.html">
+                                <div class="product-card-image-placeholder">
+                                    <!-- Placeholder: Assumes image from assets/images/related-product-2.jpg -->
+                                    Related Product 2
+                                </div>
+                            </a>
+                            <div class="product-card-info">
+                                <h3>Geometric Concrete Planter</h3>
+                                <p class="price">$65.00</p>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <a href="product-detail.html">
+                                <div class="product-card-image-placeholder">
+                                    <!-- Placeholder: Assumes image from assets/images/related-product-3.jpg -->
+                                    Related Product 3
+                                </div>
+                            </a>
+                            <div class="product-card-info">
+                                <h3>Solid Wood Side Table</h3>
+                                <p class="price">$450.00</p>
+                                <button class="add-to-cart-btn">Add to Cart</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div class="footer-col brand-info">
-                <a href="index.html" class="logo">
-                    <img src="assets/images/logo.png" alt="Ethereal Home Logo">
-                </a>
-                <p>Curating timeless pieces for the modern minimalist home.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
-                </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-column">
+                <h4>Haven & Home</h4>
+                <p>Elevating spaces with minimalist design and exquisite home goods.</p>
             </div>
-            <div class="footer-col">
+            <div class="footer-column">
                 <h4>Shop</h4>
                 <ul>
-                    <li><a href="products.html?category=living">Living Room</a></li>
-                    <li><a href="products.html?category=dining">Dining Room</a></li>
-                    <li><a href="products.html?category=bedroom">Bedroom</a></li>
-                    <li><a href="products.html">All Products</a></li>
+                    <li><a href="product-listing.html">All Products</a></li>
+                    <li><a href="#">Furniture</a></li>
+                    <li><a href="#">Decor</a></li>
+                    <li><a href="#">Textiles</a></li>
+                    <li><a href="#">Lighting</a></li>
                 </ul>
             </div>
-            <div class="footer-col">
-                <h4>About</h4>
+            <div class="footer-column">
+                <h4>About Us</h4>
                 <ul>
                     <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Press</a></li>
                     <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Careers</a></li>
                 </ul>
             </div>
-            <div class="footer-col">
+            <div class="footer-column">
                 <h4>Customer Service</h4>
                 <ul>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 Ethereal Home. All rights reserved.</p>
+            <div class="container">
+                &copy; 2023 Haven & Home. All rights reserved.
+            </div>
         </div>
     </footer>
-    <script src="script.js"></script>
 </body>
 </html>
