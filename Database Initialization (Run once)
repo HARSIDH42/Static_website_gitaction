@@ -1,0 +1,16 @@
+# This block will create the database and tables if they don't exist.
+# It's good for initial setup but consider a migration tool like Flask-Migrate for production.
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
+# Run the app
+if __name__ == '__main__':
+    # Ensure the templates directory exists
+    os.makedirs('templates', exist_ok=True)
+    # create a dummy database file for initial run if it doesn't exist
+    if not os.path.exists(os.path.join(base_dir, 'feedback.db')):
+        with app.app_context():
+            db.create_all()
+        print("Created new feedback.db database.")
+    app.run(debug=True) # debug=True is for development, set to False in production

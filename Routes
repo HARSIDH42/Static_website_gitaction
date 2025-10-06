@@ -1,0 +1,29 @@
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/feedback', methods=['GET', 'POST'])
+def submit_feedback():
+    form = FeedbackForm()
+    if form.validate_on_submit():
+        new_feedback = Feedback(
+            name=form.name.data,
+            email=form.email.data,
+            rating=form.rating.data,
+            message=form.message.data
+        )
+        db.session.add(new_feedback)
+        db.session.commit()
+        flash('Thank you for your feedback!', 'success')
+        return redirect(url_for('submit_feedback'))
+    elif request.method == 'POST':
+        flash('Please correct the errors in the form.', 'danger')
+    return render_template('feedback_form.html', form=form)
+
+@app.route('/admin/feedback')
+def view_feedback():
+    # In a real application, this route would be protected by authentication and authorization
+    all_feedback = Feedback.query.order_by(Feedback.timestamp.desc()).all()
+    return render_template('admin_feedback.html', feedback_items=all_feedback)
+
+#
