@@ -3,170 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serafina Home - Minimalist High-End Home Goods</title>
+    <title>Home | Ethereal Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header class="main-header">
-        <div class="container header-content">
-            <div class="logo">
-                <a href="index.html">Serafina Home</a>
-            </div>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Ethereal Home Logo">
+            </a>
             <nav class="main-nav">
-                <ul>
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="products.html">Shop</a></li>
-                    <li><a href="#featured-products">Collections</a></li>
-                    <li><a href="#about-us">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
-            <div class="nav-icons">
-                <button aria-label="Search"><img src="assets/images/icon_search.svg" alt="Search"></button>
-                <button aria-label="Account"><img src="assets/images/icon_account.svg" alt="Account"></button>
-                <button aria-label="Cart"><img src="assets/images/icon_cart.svg" alt="Cart"></button>
-            </div>
-            <div class="hamburger-menu">
-                <button id="hamburger-btn" aria-label="Open menu"><img src="assets/images/icon_hamburger.svg" alt="Menu"></button>
+            <div class="header-icons">
+                <a href="#" class="icon-link"><i class="fas fa-search"></i></a>
+                <a href="#" class="icon-link"><i class="fas fa-user"></i></a>
+                <a href="#" class="icon-link cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="menu-toggle" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <div id="mobile-nav" class="mobile-nav">
-        <div class="mobile-nav-header">
-            <div class="logo">
-                <a href="index.html">Serafina Home</a>
-            </div>
-            <button id="close-mobile-nav-btn" class="close-btn" aria-label="Close menu">
-                <img src="assets/images/icon_close.svg" alt="Close">
-            </button>
-        </div>
-        <ul>
-            <li><a href="products.html">Shop</a></li>
-            <li><a href="#featured-products">Collections</a></li>
-            <li><a href="#about-us">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#">Account</a></li>
-            <li><a href="#">Cart</a></li>
-        </ul>
-    </div>
-
     <main>
         <section class="hero-section">
-            <img src="assets/images/hero_banner.webp" alt="Minimalist living room with a large sofa and decor" class="hero-image">
             <div class="hero-content">
-                <h1>Crafted Living, Elevated Style.</h1>
-                <p>Discover timeless designs and exquisite craftsmanship for your sanctuary.</p>
-                <a href="products.html" class="btn">Shop The Collection</a>
+                <h1 class="hero-title">Crafting Serenity, One Piece at a Time.</h1>
+                <p class="hero-subtitle">Discover high-end home goods designed to elevate your living space.</p>
+                <a href="products.html" class="button primary-button">Shop Collections</a>
+            </div>
+            <div class="hero-image">
+                <img src="assets/images/hero-main.jpg" alt="Minimalist living room with soft lighting and natural elements">
             </div>
         </section>
 
-        <section id="featured-products" class="section">
+        <section class="featured-categories section-padding">
             <div class="container">
-                <div class="section-title">
-                    <h2>Featured Selections</h2>
-                </div>
-                <div class="product-grid">
-                    <a href="product-detail.html" class="product-card">
-                        <div class="product-card-image">
-                            <img src="assets/images/product_item_linen_sofa.webp" alt="Linen Modular Sofa">
-                        </div>
-                        <div class="product-card-info">
-                            <h3>Linen Modular Sofa</h3>
-                            <p class="price">$2,499</p>
-                        </div>
+                <h2 class="section-title">Explore Our Collections</h2>
+                <div class="category-grid">
+                    <a href="products.html?category=living" class="category-card">
+                        <img src="assets/images/category-living.jpg" alt="Minimalist living room">
+                        <h3>Living Room</h3>
                     </a>
-                    <a href="product-detail.html" class="product-card">
-                        <div class="product-card-image">
-                            <img src="assets/images/product_item_ceramic_vase.webp" alt="Hand-Thrown Ceramic Vase">
-                        </div>
-                        <div class="product-card-info">
-                            <h3>Hand-Thrown Ceramic Vase</h3>
-                            <p class="price">$120</p>
-                        </div>
+                    <a href="products.html?category=dining" class="category-card">
+                        <img src="assets/images/category-dining.jpg" alt="Elegant dining room with a long wooden table">
+                        <h3>Dining Room</h3>
                     </a>
-                    <a href="product-detail.html" class="product-card">
-                        <div class="product-card-image">
-                            <img src="assets/images/product_item_wool_rug.webp" alt="Woven Wool Area Rug">
-                        </div>
-                        <div class="product-card-info">
-                            <h3>Woven Wool Area Rug</h3>
-                            <p class="price">$780</p>
-                        </div>
-                    </a>
-                    <a href="product-detail.html" class="product-card">
-                        <div class="product-card-image">
-                            <img src="assets/images/product_item_oak_table.webp" alt="Solid Oak Coffee Table">
-                        </div>
-                        <div class="product-card-info">
-                            <h3>Solid Oak Coffee Table</h3>
-                            <p class="price">$899</p>
-                        </div>
+                    <a href="products.html?category=bedroom" class="category-card">
+                        <img src="assets/images/category-bedroom.jpg" alt="Serene bedroom with soft textiles and a wooden bed frame">
+                        <h3>Bedroom</h3>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section id="about-us" class="about-section">
-            <div class="container about-content">
-                <h2>Our Philosophy</h2>
-                <p>At Serafina Home, we believe your living space should be a reflection of tranquility and intentional design. We curate high-end home goods that blend minimalist aesthetics with exceptional quality and sustainable practices. Each piece is chosen for its ability to elevate your home into a refined sanctuary.</p>
-                <a href="#" class="btn">Learn More About Us</a>
+        <section class="about-snippet section-padding bg-light-grey">
+            <div class="container text-center">
+                <h2 class="section-title">Our Philosophy</h2>
+                <p class="about-text">
+                    At Ethereal Home, we believe in the power of simplicity and the beauty of natural materials.
+                    Each piece is carefully curated to bring timeless elegance and a sense of calm to your home.
+                    We focus on craftsmanship, durability, and designs that complement a refined lifestyle,
+                    ensuring every item tells a story of thoughtful creation.
+                </p>
+                <a href="#" class="button secondary-button">Learn More About Us</a>
             </div>
         </section>
 
-        <section id="shop-all-cta" class="cta-section">
+        <section class="featured-products section-padding">
             <div class="container">
-                <h2>Explore Our Full Range</h2>
-                <p>Find the perfect pieces to complete your vision.</p>
-                <a href="products.html" class="btn">Shop All Home Goods</a>
+                <h2 class="section-title">Our Bestsellers</h2>
+                <div class="product-grid three-col">
+                    <div class="product-card">
+                        <a href="product-detail.html" class="product-link">
+                            <img src="assets/images/product-vase.jpg" alt="Elegant minimalist ceramic vase">
+                            <h3 class="product-name">Ceramic Serenity Vase</h3>
+                            <p class="product-price">$99.00</p>
+                        </a>
+                        <button class="button add-to-cart-btn">Add to Cart</button>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-detail.html" class="product-link">
+                            <img src="assets/images/product-chair.jpg" alt="Modern wooden lounge chair">
+                            <h3 class="product-name">Oak Embrace Lounge Chair</h3>
+                            <p class="product-price">$899.00</p>
+                        </a>
+                        <button class="button add-to-cart-btn">Add to Cart</button>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-detail.html" class="product-link">
+                            <img src="assets/images/product-lamp.jpg" alt="Minimalist floor lamp with warm light">
+                            <h3 class="product-name">Luna Arc Floor Lamp</h3>
+                            <p class="product-price">$349.00</p>
+                        </a>
+                        <button class="button add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer id="contact" class="main-footer">
-        <div class="container footer-content">
-            <div class="footer-col">
-                <h4>Serafina Home</h4>
-                <p>Curating beauty for your everyday.</p>
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col brand-info">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/logo.png" alt="Ethereal Home Logo">
+                </a>
+                <p>Curating timeless pieces for the modern minimalist home.</p>
                 <div class="social-links">
-                    <a href="#" aria-label="Facebook"><img src="assets/images/icon_facebook.svg" alt="Facebook" style="filter: invert(100%) brightness(150%); height: 1.2rem; width: 1.2rem;"></a>
-                    <a href="#" aria-label="Instagram"><img src="assets/images/icon_instagram.svg" alt="Instagram" style="filter: invert(100%) brightness(150%); height: 1.2rem; width: 1.2rem;"></a>
-                    <a href="#" aria-label="Pinterest"><img src="assets/images/icon_pinterest.svg" alt="Pinterest" style="filter: invert(100%) brightness(150%); height: 1.2rem; width: 1.2rem;"></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
                 </div>
             </div>
             <div class="footer-col">
-                <h4>Customer Service</h4>
+                <h4>Shop</h4>
                 <ul>
-                    <li><a href="#">Help & FAQs</a></li>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">Order Tracking</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="products.html?category=living">Living Room</a></li>
+                    <li><a href="products.html?category=dining">Dining Room</a></li>
+                    <li><a href="products.html?category=bedroom">Bedroom</a></li>
+                    <li><a href="products.html">All Products</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>About</h4>
                 <ul>
                     <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Ethical Sourcing</a></li>
                     <li><a href="#">Careers</a></li>
                     <li><a href="#">Press</a></li>
+                    <li><a href="#">Sustainability</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Stay Connected</h4>
-                <p>Sign up for exclusive offers and design inspiration.</p>
-                <!-- Newsletter form would go here -->
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2023 Serafina Home. All rights reserved.
+            <p>&copy; 2023 Ethereal Home. All rights reserved.</p>
         </div>
     </footer>
-
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>

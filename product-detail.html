@@ -3,196 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linen Modular Sofa - Serafina Home</title>
+    <title>Ceramic Serenity Vase | Ethereal Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header class="main-header">
-        <div class="container header-content">
-            <div class="logo">
-                <a href="index.html">Serafina Home</a>
-            </div>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Ethereal Home Logo">
+            </a>
             <nav class="main-nav">
-                <ul>
-                    <li><a href="products.html">Shop</a></li>
-                    <li><a href="index.html#featured-products">Collections</a></li>
-                    <li><a href="index.html#about-us">About</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html" class="active">Shop</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
-            <div class="nav-icons">
-                <button aria-label="Search"><img src="assets/images/icon_search.svg" alt="Search"></button>
-                <button aria-label="Account"><img src="assets/images/icon_account.svg" alt="Account"></button>
-                <button aria-label="Cart"><img src="assets/images/icon_cart.svg" alt="Cart"></button>
-            </div>
-            <div class="hamburger-menu">
-                <button id="hamburger-btn" aria-label="Open menu"><img src="assets/images/icon_hamburger.svg" alt="Menu"></button>
+            <div class="header-icons">
+                <a href="#" class="icon-link"><i class="fas fa-search"></i></a>
+                <a href="#" class="icon-link"><i class="fas fa-user"></i></a>
+                <a href="#" class="icon-link cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="menu-toggle" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <div id="mobile-nav" class="mobile-nav">
-        <div class="mobile-nav-header">
-            <div class="logo">
-                <a href="index.html">Serafina Home</a>
-            </div>
-            <button id="close-mobile-nav-btn" class="close-btn" aria-label="Close menu">
-                <img src="assets/images/icon_close.svg" alt="Close">
-            </button>
-        </div>
-        <ul>
-            <li><a href="products.html">Shop</a></li>
-            <li><a href="index.html#featured-products">Collections</a></li>
-            <li><a href="index.html#about-us">About</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-            <li><a href="#">Account</a></li>
-            <li><a href="#">Cart</a></li>
-        </ul>
-    </div>
-
     <main>
-        <section class="section product-detail-section">
-            <div class="container">
-                <div class="breadcrumbs">
-                    <a href="index.html">Home</a> <span>/</span> <a href="products.html">Shop All</a> <span>/</span> <span>Linen Modular Sofa</span>
+        <section class="product-detail-page section-padding">
+            <div class="container product-grid-detail">
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="assets/images/product-vase.jpg" alt="Elegant minimalist ceramic vase - main view" id="mainProductImage">
+                    </div>
+                    <div class="thumbnail-images">
+                        <img src="assets/images/product-vase.jpg" alt="Vase thumbnail 1" class="thumbnail active" data-full="assets/images/product-vase.jpg">
+                        <img src="assets/images/product-vase-alt1.jpg" alt="Vase thumbnail 2" class="thumbnail" data-full="assets/images/product-vase-alt1.jpg">
+                        <img src="assets/images/product-vase-alt2.jpg" alt="Vase thumbnail 3" class="thumbnail" data-full="assets/images/product-vase-alt2.jpg">
+                    </div>
                 </div>
-                <div class="product-detail-layout">
-                    <div class="product-image-gallery">
-                        <div class="main-image-container">
-                            <img id="main-product-image" src="assets/images/product_item_linen_sofa.webp" alt="Linen Modular Sofa - Main View">
-                        </div>
-                        <div class="thumbnail-images">
-                            <img src="assets/images/product_item_linen_sofa.webp" alt="Linen Modular Sofa - View 1">
-                            <img src="assets/images/product_item_linen_sofa_thumb1.webp" alt="Linen Modular Sofa - Close up">
-                            <img src="assets/images/product_item_linen_sofa_thumb2.webp" alt="Linen Modular Sofa - Room view">
+
+                <div class="product-info">
+                    <h1 class="product-title">Ceramic Serenity Vase</h1>
+                    <p class="product-price">$99.00</p>
+                    <div class="product-meta">
+                        <span class="product-sku">SKU: CH-VS-001</span>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span>(4.5 / 5 stars, 12 Reviews)</span>
                         </div>
                     </div>
-                    <div class="product-info">
-                        <h1>Linen Modular Sofa</h1>
-                        <p class="price">$2,499</p>
-                        <p class="description">Experience unparalleled comfort and versatile design with our Linen Modular Sofa. Crafted from premium, breathable linen and a sturdy solid wood frame, this sofa offers deep seating and a minimalist silhouette. Its modular design allows for flexible arrangements to suit any living space.</p>
+                    <p class="product-description">
+                        Embrace minimalist elegance with our Ceramic Serenity Vase. Crafted from high-quality, matte ceramic,
+                        its understated design and soft curves bring a tranquil touch to any room. Perfect for a single
+                        stem or as a standalone sculptural piece.
+                    </p>
 
-                        <div class="product-options">
-                            <div class="option-group">
-                                <label for="color">Color:</label>
-                                <select id="color" name="color">
-                                    <option value="natural">Natural Linen</option>
-                                    <option value="stone">Stone Gray</option>
-                                    <option value="charcoal">Charcoal</option>
-                                </select>
-                            </div>
-                            <div class="option-group">
-                                <label for="configuration">Configuration:</label>
-                                <select id="configuration" name="configuration">
-                                    <option value="3-seater">3-Seater</option>
-                                    <option value="4-seater">4-Seater</option>
-                                    <option value="corner">Corner Sectional</option>
-                                </select>
-                            </div>
+                    <div class="product-options">
+                        <div class="option-group">
+                            <label for="color-select">Color:</label>
+                            <select id="color-select" class="minimal-select">
+                                <option value="oat">Oatmeal White</option>
+                                <option value="sage">Muted Sage</option>
+                                <option value="charcoal">Charcoal Gray</option>
+                            </select>
                         </div>
+                        <div class="option-group">
+                            <label for="size-select">Size:</label>
+                            <select id="size-select" class="minimal-select">
+                                <option value="small">Small (15cm H)</option>
+                                <option value="medium">Medium (25cm H)</option>
+                                <option value="large">Large (35cm H)</option>
+                            </select>
+                        </div>
+                        <div class="option-group quantity-selector">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" id="quantity" value="1" min="1" max="10" class="minimal-input">
+                        </div>
+                    </div>
 
-                        <div class="quantity-add-cart">
-                            <div class="quantity-selector">
-                                <button id="decrease-quantity" aria-label="Decrease quantity">-</button>
-                                <input type="number" id="quantity-input" value="1" min="1" aria-label="Quantity">
-                                <button id="increase-quantity" aria-label="Increase quantity">+</button>
-                            </div>
-                            <button class="btn add-to-cart-btn">Add to Cart</button>
-                        </div>
+                    <button class="button primary-button add-to-cart-btn">Add to Cart</button>
 
-                        <div class="product-meta">
-                            <p><strong>SKU:</strong> SFHS-LMS-NAT</p>
-                            <p><strong>Material:</strong> 100% Belgian Linen, Solid Oak Frame, High-Density Foam</p>
-                            <p><strong>Dimensions (3-seater):</strong> 90" W x 38" D x 30" H</p>
-                            <p><strong>Care:</strong> Professional cleaning recommended for upholstery. Spot clean with mild detergent.</p>
-                        </div>
+                    <div class="shipping-returns">
+                        <h3>Shipping & Returns</h3>
+                        <ul>
+                            <li>Free standard shipping on all orders over $150.</li>
+                            <li>Easy 30-day returns for a full refund.</li>
+                            <li>For details, see our <a href="#">Shipping Policy</a> and <a href="#">Returns Policy</a>.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="related-products">
+        <section class="related-products section-padding bg-light-grey">
             <div class="container">
-                <div class="section-title">
-                    <h2>You Might Also Like</h2>
-                </div>
-                <div class="product-grid">
-                    <a href="product-detail.html" class="product-card">
-                        <div class="product-card-image">
-                            <img src="assets/images/product_item_wool_rug.webp" alt="Woven Wool Area Rug">
-                        </div>
-                        <div class="product-card-info">
-                            <h3>Woven Wool Area Rug</h3>
-                            <p class="price">$780</p>
-                        </div>
-                    </a>
-                    <a href="product-detail.html" class="product-card">
-                        <div class="product-card-image">
-                            <img src="assets/images/product_item_oak_table.webp" alt="Solid Oak Coffee Table">
-                        </div>
-                        <div class="product-card-info">
-                            <h3>Solid Oak Coffee Table</h3>
-                            <p class="price">$899</p>
-                        </div>
-                    </a>
-                    <a href="product-detail.html" class="product-card">
-                        <div class="product-card-image">
-                            <img src="assets/images/product_item_ceramic_vase.webp" alt="Hand-Thrown Ceramic Vase">
-                        </div>
-                        <div class="product-card-info">
-                            <h3>Hand-Thrown Ceramic Vase</h3>
-                            <p class="price">$120</p>
-                        </div>
-                    </a>
+                <h2 class="section-title text-center">You Might Also Like</h2>
+                <div class="product-grid three-col">
+                    <div class="product-card">
+                        <a href="product-detail.html" class="product-link">
+                            <img src="assets/images/product-candleholder.jpg" alt="Modern candle holder with a single candle">
+                            <h3 class="product-name">Aura Candle Holder</h3>
+                            <p class="product-price">$45.00</p>
+                        </a>
+                        <button class="button add-to-cart-btn">Add to Cart</button>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-detail.html" class="product-link">
+                            <img src="assets/images/product-throw.jpg" alt="Soft knitted throw blanket on a sofa">
+                            <h3 class="product-name">Cozy Alpaca Throw</h3>
+                            <p class="product-price">$180.00</p>
+                        </a>
+                        <button class="button add-to-cart-btn">Add to Cart</button>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-detail.html" class="product-link">
+                            <img src="assets/images/product-mirror.jpg" alt="Minimalist round wall mirror">
+                            <h3 class="product-name">Halo Wall Mirror</h3>
+                            <p class="product-price">$270.00</p>
+                        </a>
+                        <button class="button add-to-cart-btn">Add to Cart</button>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="main-footer">
-        <div class="container footer-content">
-            <div class="footer-col">
-                <h4>Serafina Home</h4>
-                <p>Curating beauty for your everyday.</p>
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col brand-info">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/logo.png" alt="Ethereal Home Logo">
+                </a>
+                <p>Curating timeless pieces for the modern minimalist home.</p>
                 <div class="social-links">
-                    <a href="#" aria-label="Facebook"><img src="assets/images/icon_facebook.svg" alt="Facebook" style="filter: invert(100%) brightness(150%); height: 1.2rem; width: 1.2rem;"></a>
-                    <a href="#" aria-label="Instagram"><img src="assets/images/icon_instagram.svg" alt="Instagram" style="filter: invert(100%) brightness(150%); height: 1.2rem; width: 1.2rem;"></a>
-                    <a href="#" aria-label="Pinterest"><img src="assets/images/icon_pinterest.svg" alt="Pinterest" style="filter: invert(100%) brightness(150%); height: 1.2rem; width: 1.2rem;"></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
                 </div>
             </div>
             <div class="footer-col">
-                <h4>Customer Service</h4>
+                <h4>Shop</h4>
                 <ul>
-                    <li><a href="#">Help & FAQs</a></li>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">Order Tracking</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="products.html?category=living">Living Room</a></li>
+                    <li><a href="products.html?category=dining">Dining Room</a></li>
+                    <li><a href="products.html?category=bedroom">Bedroom</a></li>
+                    <li><a href="products.html">All Products</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>About</h4>
                 <ul>
                     <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Ethical Sourcing</a></li>
                     <li><a href="#">Careers</a></li>
                     <li><a href="#">Press</a></li>
+                    <li><a href="#">Sustainability</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Stay Connected</h4>
-                <p>Sign up for exclusive offers and design inspiration.</p>
-                <!-- Newsletter form would go here -->
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; 2023 Serafina Home. All rights reserved.
+            <p>&copy; 2023 Ethereal Home. All rights reserved.</p>
         </div>
     </footer>
-
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
