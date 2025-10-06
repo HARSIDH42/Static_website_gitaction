@@ -50,6 +50,7 @@ jobs:
              - Pages: Include required layouts for Homepage, Product Listing Page (PLP), and Product Detail Page (PDP).
             - Ensure the design is fully responsive and conversion-focused.
             -DONT ADD IMAGES
+            -CRAFTED ELEGANCE FOR YOUR SPACE - Change space to Spaces
           Return each file as:
           ---filename.ext---
           <file content>
