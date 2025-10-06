@@ -44,17 +44,7 @@ jobs:
           genai.configure(api_key=os.environ["GEMINI_API_KEY"])
           model = genai.GenerativeModel("gemini-2.5-flash")
           prompt = """
-          You are updating an existing website project.
-            Do not modify or remove any of the existing design, layout, colors, typography, or functionality.
-            Only add a new “Customer Feedback” feature that integrates smoothly with the existing UI.
-            The feedback section should include:
-            A short text input for name (optional)
-            A textarea for feedback message
-            A submit button
-            After submission, display a thank-you message dynamically (no page reload).
-            Store the feedback data locally (e.g., in localStorage) or send it via an API endpoint (placeholder URL).
-            Ensure the feature is responsive, accessible, and matches the website’s current visual style.
-            Do not alter any other sections or UI elements of the site.
+            Propose a non-disruptive customer feedback solution that integrates seamlessly without altering the existing website UI or features.
           Return each file as:
           ---filename.ext---
           <file content>
