@@ -1,0 +1,29 @@
+const feedbackForm = document.getElementById('feedbackForm');
+    const feedbackMessage = document.getElementById('feedbackMessage');
+
+    if (feedbackForm) {
+        feedbackForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // In a real application, you would send this data to a server
+            // using fetch() or XMLHttpRequest.
+            console.log('Feedback Submitted:');
+            console.log('Name:', document.getElementById('name').value);
+            console.log('Email:', document.getElementById('email').value);
+            console.log('Rating:', document.getElementById('rating').value);
+            console.log('Message:', document.getElementById('message').value);
+
+            // Display success message
+            feedbackMessage.style.display = 'block';
+
+            // Optionally, hide the message after a few seconds
+            setTimeout(() => {
+                feedbackMessage.style.display = 'none';
+            }, 5000);
+
+            // Clear the form
+            feedbackForm.reset();
+        });
+    }
+
+    //

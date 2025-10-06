@@ -1,153 +1,416 @@
 ```css
-/* 
- * IMPORTANT: This CSS is designed to be added to your existing project.
- * It uses specific class names to minimize conflicts with existing styles.
- * If your site uses very specific colors or typography, you may need to
- * adjust the values below to match your brand guidelines.
- */
-
-/* Basic reset for the feedback component only, ensures consistent box model */
-.feedback-container *, 
-.feedback-container *::before, 
-.feedback-container *::after {
-    box-sizing: border-box;
+/* General Body and Font Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* Base styles for the feedback container */
-.feedback-container {
-    max-width: 600px; /* Limits the width of the feedback form */
-    margin: 40px auto; /* Centers the container horizontally with vertical spacing */
-    padding: 30px;
-    background-color: #ffffff; /* Clean white background */
-    border-radius: 8px; /* Slightly rounded corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* Uses system fonts for neutrality */
-    color: #333; /* Dark gray text for readability */
-    line-height: 1.6; /* Improved line height for body text */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* Heading for the feedback section */
-.feedback-container h2 {
+/* Header and Navigation */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
+}
+
+/* Hero Section */
+.hero {
+    background: url('https://via.placeholder.com/1500x500/007bff/ffffff?text=Amazing+Products') no-repeat center center/cover;
+    color: #fff;
     text-align: center;
-    color: #333; /* Matches general text color */
-    margin-bottom: 25px;
-    font-size: 1.8em; /* A prominent heading size */
-    font-weight: bold; /* Ensures heading stands out */
+    padding: 100px 20px;
+    height: 400px; /* Fixed height for consistency */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Styling for individual form groups (label + input/textarea) */
-.feedback-form .form-group {
-    margin-bottom: 20px; /* Space between form fields */
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-/* Labels for form inputs */
-.feedback-form label {
-    display: block; /* Makes labels stack above inputs */
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.button {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Section Styling */
+section {
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #007bff;
+    font-size: 2.2rem;
+}
+
+/* Products Section */
+.products-section {
+    background-color: #f9f9f9;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.product-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.product-card .price {
+    font-size: 1.2rem;
+    color: #e60000;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-card button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+    background-color: #218838;
+}
+
+
+/* Cart Section */
+.cart-section {
+    background-color: #fefefe;
+}
+
+.cart-container {
+    padding: 20px;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.cart-table th, .cart-table td {
+    border: 1px solid #eee;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.cart-table th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
+.cart-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.cart-table .cart-quantity-input {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.cart-table .remove-from-cart-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.cart-table .remove-from-cart-btn:hover {
+    color: #c82333;
+}
+
+.empty-cart-message {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+}
+
+.cart-summary {
+    background-color: #f0f8ff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: right;
+    max-width: 400px;
+    margin-left: auto;
+}
+
+.cart-summary p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.cart-summary h3 {
+    margin-top: 20px;
+    color: #007bff;
+}
+
+.cart-summary .checkout-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 1.1rem;
+}
+.checkout-message {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: green;
+    font-weight: bold;
+    display: none; /* Hidden by default */
+}
+
+
+/* Feedback Section */
+.feedback-section {
+    background-color: #e9f7ef; /* Light green background */
+}
+
+.feedback-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid #cceeff;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #555; /* Slightly lighter than main text for labels */
-    font-size: 0.95em;
-}
-
-/* Styling for text input and textarea */
-.feedback-form input[type="text"],
-.feedback-form textarea {
-    width: 100%; /* Full width within the container */
-    padding: 12px;
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 5px; /* Rounded input corners */
-    font-size: 1em;
-    line-height: 1.5;
     color: #333;
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transitions for focus */
 }
 
-/* Focus states for input and textarea for accessibility and UX */
-.feedback-form input[type="text"]:focus,
-.feedback-form textarea:focus {
-    border-color: #007bff; /* Primary blue for focus border */
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle blue glow */
-    outline: none; /* Removes default browser outline */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: calc(100% - 20px); /* Account for padding */
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
-/* Specific styling for the textarea */
-.feedback-form textarea {
-    resize: vertical; /* Allows vertical resizing only */
-    min-height: 100px; /* Ensures a decent starting height */
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
 }
 
-/* Styling for the submit button */
-.feedback-form .submit-button {
-    display: block; /* Makes the button take full width */
+.form-group textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.feedback-form button[type="submit"] {
     width: 100%;
-    padding: 12px 20px;
-    background-color: #007bff; /* Primary blue button color */
-    color: white; /* White text on button */
+    padding: 12px;
+    font-size: 1.1rem;
+    background-color: #007bff;
+    color: #fff;
     border: none;
     border-radius: 5px;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer; /* Indicates it's clickable */
-    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transitions for hover/focus */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Hover state for the submit button */
-.feedback-form .submit-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* Slightly larger shadow on hover */
+.feedback-form button[type="submit"]:hover {
+    background-color: #0056b3;
 }
 
-/* Focus state for the submit button */
-.feedback-form .submit-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Stronger blue glow for focus */
-}
-
-/* Styling for the thank you message */
-.feedback-thanks-message {
-    margin-top: 25px;
-    padding: 15px;
-    background-color: #e9f7ef; /* Light green background for success */
-    border: 1px solid #28a745; /* Green border */
-    border-radius: 5px;
-    color: #155724; /* Dark green text */
+.feedback-message {
     text-align: center;
-    font-size: 1.1em;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
     font-weight: bold;
-    display: none; /* Hidden by default, shown by JavaScript */
-    opacity: 0; /* Starts transparent for fade-in effect */
-    transition: opacity 0.5s ease-in-out; /* Smooth fade transition */
 }
 
-/* Class to show the thank you message */
-.feedback-thanks-message.show {
-    display: block; /* Makes the message visible */
-    opacity: 1; /* Fades it in */
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
 }
 
-/* Responsive adjustments */
+/* Responsive Design */
 @media (max-width: 768px) {
-    .feedback-container {
-        margin: 20px; /* Smaller margins on smaller screens */
-        padding: 20px;
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-table th, .cart-table td {
+        padding: 8px 10px;
+    }
+
+    .cart-summary {
+        max-width: 100%;
     }
 }
 
 @media (max-width: 480px) {
-    .feedback-container {
-        margin: 15px;
-        padding: 15px;
+    .hero h1 {
+        font-size: 2rem;
     }
-
-    .feedback-container h2 {
-        font-size: 1.5em; /* Smaller heading on very small screens */
+    .hero p {
+        font-size: 1rem;
     }
-
-    .feedback-form input[type="text"],
-    .feedback-form textarea,
-    .feedback-form .submit-button {
-        font-size: 0.95em; /* Slightly smaller text for inputs/buttons */
-        padding: 10px;
+    .button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
     }
 }
 ```
