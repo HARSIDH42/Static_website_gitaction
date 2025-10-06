@@ -48,7 +48,7 @@ jobs:
           - Update navigation, buttons, and sections for clarity and user experience.
           - Ensure the website is mobile-friendly and accessible.
           - Make it as an ecommerce website with all features in it.
-          - add cart feature
+          - add more features related to ecommerce like customer feedback
           - Provide the full HTML/CSS/JS content for each file that needs modification.
           Return each file as:
           ---filename.ext---
