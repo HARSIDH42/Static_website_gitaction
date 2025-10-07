@@ -1,194 +1,162 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sculptural Ceramic Vase - ELEVATE HOME</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <title>Coastal Clay Vase | Serene Sanctuary</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo">ELEVATE HOME</a>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html" class="active">Shop</a></li>
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">Serene Sanctuary</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="product-listing.html">Shop</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
-                    <li><a href="#">Cart (0)</a></li>
                 </ul>
             </nav>
+            <div class="header-icons">
+                <a href="#">Search</a>
+                <a href="#">Cart <span class="cart-count">0</span></a>
+            </div>
         </div>
     </header>
 
     <main>
-        <div class="breadcrumb">
-            <div class="container">
-                <a href="index.html">Home</a> <span>/</span> <a href="products.html">Shop All</a> <span>/</span> <span>Sculptural Ceramic Vase</span>
-            </div>
-        </div>
-
         <section class="product-detail-section">
-            <div class="container">
-                <div class="product-detail-layout">
-                    <div class="product-images">
-                        <div class="main-image">
-                            <img src="assets/images/product-detail-main.jpg" alt="Sculptural Ceramic Vase - Main View" id="main-product-image">
-                        </div>
-                        <div class="thumbnail-images">
-                            <img src="assets/images/product-detail-main.jpg" alt="Vase thumbnail 1" class="active" data-image="assets/images/product-detail-main.jpg">
-                            <img src="assets/images/product-detail-alt1.jpg" alt="Vase thumbnail 2" data-image="assets/images/product-detail-alt1.jpg">
-                            <img src="assets/images/product-detail-alt2.jpg" alt="Vase thumbnail 3" data-image="assets/images/product-detail-alt2.jpg">
-                        </div>
+            <div class="container product-detail-layout">
+                <div class="product-gallery">
+                    <div class="main-product-image">
+                        <img src="/assets/images/pdp-main-1.jpg" alt="Coastal Clay Vase - main view">
                     </div>
-                    <div class="product-info">
-                        <h1>Sculptural Ceramic Vase</h1>
-                        <span class="product-price">$89.00</span>
-                        <p class="product-description">
-                            An exquisite piece of artistry, this sculptural ceramic vase brings a touch of modern elegance to any space. Hand-formed with a unique organic silhouette and a beautifully muted, matte finish, it serves as a captivating focal point whether holding a single stem or standing alone as a statement decor item.
-                        </p>
-                        
-                        <div class="product-options">
-                            <div class="qty-selector">
-                                <label for="quantity">Quantity:</label>
-                                <input type="number" id="quantity" name="quantity" value="1" min="1">
-                            </div>
-                            <button class="btn add-to-cart-btn">Add to Cart</button>
+                    <div class="thumbnail-gallery">
+                        <div class="thumbnail active">
+                            <img src="/assets/images/pdp-thumb-1.jpg" alt="Coastal Clay Vase - thumbnail 1">
                         </div>
-
-                        <div class="product-meta-details">
-                            <h3>Product Details</h3>
-                            <div class="detail-item">
-                                <h4>Description</h4>
-                                <div class="detail-content">
-                                    <p>Crafted from high-quality stoneware, this vase showcases a tactile, unglazed exterior that highlights the natural beauty of the ceramic. Its minimalist form allows it to blend seamlessly with various interior styles, from Scandinavian to contemporary. Perfect for dried botanicals or as a standalone art piece.</p>
-                                    <ul>
-                                        <li>Material: High-fired stoneware</li>
-                                        <li>Finish: Matte, unglazed</li>
-                                        <li>Dimensions: 10" H x 6" W</li>
-                                        <li>Care: Wipe clean with a soft, dry cloth. Not waterproof for fresh flowers.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="detail-item">
-                                <h4>Shipping & Returns</h4>
-                                <div class="detail-content">
-                                    <p><strong>Shipping:</strong> We offer complimentary standard shipping on all orders over $150. Expedited options are available at checkout. Please allow 3-7 business days for delivery.</p>
-                                    <p><strong>Returns:</strong> We want you to be delighted with your purchase. If you're not entirely satisfied, you may return eligible items within 30 days of receipt for a full refund or exchange. Items must be in their original condition and packaging.</p>
-                                </div>
-                            </div>
+                        <div class="thumbnail">
+                            <img src="/assets/images/pdp-thumb-2.jpg" alt="Coastal Clay Vase - thumbnail 2">
+                        </div>
+                        <div class="thumbnail">
+                            <img src="/assets/images/pdp-thumb-3.jpg" alt="Coastal Clay Vase - thumbnail 3">
+                        </div>
+                        <div class="thumbnail">
+                            <img src="/assets/images/pdp-thumb-4.jpg" alt="Coastal Clay Vase - thumbnail 4">
                         </div>
                     </div>
                 </div>
+                <div class="product-details">
+                    <h1>Coastal Clay Vase</h1>
+                    <p class="product-price">$75.00</p>
+                    <p class="product-description">
+                        An exquisite hand-thrown ceramic vase, embodying minimalist elegance. 
+                        Its subtle texture and organic form bring a touch of natural serenity to any space. 
+                        Perfect for fresh blooms or as a standalone sculptural piece.
+                    </p>
 
-                <div class="related-products section-padding">
-                    <h2 class="section-title">You Might Also Like</h2>
-                    <div class="product-grid">
-                        <article class="product-card">
-                            <a href="#">
-                                <img src="assets/images/product-bowl.jpg" alt="Artisan Stoneware Bowl" class="product-card-image">
-                                <h3 class="product-card-title">Artisan Stoneware Bowl</h3>
-                                <p class="product-card-price">$65.00</p>
-                            </a>
-                            <a href="#" class="btn btn-secondary">View Product</a>
-                        </article>
-
-                        <article class="product-card">
-                            <a href="#">
-                                <img src="assets/images/product-lamp.jpg" alt="Modern Minimalist Lamp" class="product-card-image">
-                                <h3 class="product-card-title">Modern Minimalist Lamp</h3>
-                                <p class="product-card-price">$199.00</p>
-                            </a>
-                            <a href="#" class="btn btn-secondary">View Product</a>
-                        </article>
-
-                        <article class="product-card">
-                            <a href="#">
-                                <img src="assets/images/product-cushion.jpg" alt="Natural Linen Cushion" class="product-card-image">
-                                <h3 class="product-card-title">Natural Linen Cushion</h3>
-                                <p class="product-card-price">$55.00</p>
-                            </a>
-                            <a href="#" class="btn btn-secondary">View Product</a>
-                        </article>
+                    <div class="product-options">
+                        <div class="option-group">
+                            <label for="size">Size:</label>
+                            <select id="size" class="form-select">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="color">Color:</label>
+                            <select id="color" class="form-select">
+                                <option value="oatmeal">Oatmeal</option>
+                                <option value="sage">Sage Green</option>
+                                <option value="terracotta">Terracotta</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="quantity">Quantity:</label>
+                            <div class="quantity-selector">
+                                <button type="button" aria-label="Decrease quantity">-</button>
+                                <input type="number" id="quantity" value="1" min="1" max="10">
+                                <button type="button" aria-label="Increase quantity">+</button>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="product-actions">
+                        <button class="btn">Add to Cart</button>
+                        <button class="btn btn-secondary">Wishlist</button>
+                    </div>
+
+                    <div class="product-meta">
+                        <p><strong>SKU:</strong> CCV-001</p>
+                        <p><strong>Category:</strong> <a href="#">Ceramics</a>, <a href="#">Vases</a></p>
+                        <p><strong>Material:</strong> Hand-thrown clay, Glazed finish</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding related-products">
+            <div class="container">
+                <h2 class="section-heading">You Might Also Like</h2>
+                <div class="featured-products-grid">
+                    <!-- Related Product 1 -->
+                    <a href="#" class="product-card">
+                        <div class="product-card-image">
+                            <img src="/assets/images/related-1.jpg" alt="Minimalist ceramic bowl">
+                        </div>
+                        <h3>Zen Bowl Set</h3>
+                        <p class="price">$60.00</p>
+                    </a>
+                    <!-- Related Product 2 -->
+                    <a href="#" class="product-card">
+                        <div class="product-card-image">
+                            <img src="/assets/images/related-2.jpg" alt="Textured cushion with tassels">
+                        </div>
+                        <h3>Textured Linen Cushion</h3>
+                        <p class="price">$45.00</p>
+                    </a>
+                    <!-- Related Product 3 -->
+                    <a href="#" class="product-card">
+                        <div class="product-card-image">
+                            <img src="/assets/images/related-3.jpg" alt="Simple desk lamp">
+                        </div>
+                        <h3>Minimal Desk Lamp</h3>
+                        <p class="price">$110.00</p>
+                    </a>
+                    <!-- Related Product 4 -->
+                    <a href="#" class="product-card">
+                        <div class="product-card-image">
+                            <img src="/assets/images/related-4.jpg" alt="Small wooden decorative box">
+                        </div>
+                        <h3>Oak Storage Box</h3>
+                        <p class="price">$55.00</p>
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-section">
-                <h4>ELEVATE HOME</h4>
-                <p>Curated design for the modern home. Timeless aesthetics, enduring quality.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Shop</h4>
+            <nav class="footer-nav">
                 <ul>
-                    <li><a href="products.html">All Products</a></li>
-                    <li><a href="#">Furniture</a></li>
-                    <li><a href="#">Decor</a></li>
-                    <li><a href="#">Textiles</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Customer Service</h4>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="product-listing.html">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
                     <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">FAQs</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>
+            </nav>
+            <div class="newsletter-form">
+                <p>Stay updated with our latest collections and offers.</p>
+                <form>
+                    <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
+                    <button type="submit">Subscribe</button>
+                </form>
             </div>
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Pinterest</a></li>
-                    <li><a href="#">Facebook</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 ELEVATE HOME. All rights reserved.</p>
+            <p style="margin-top: var(--spacing-lg); font-size: 0.9rem; color: var(--color-light-gray);">&copy; 2023 Serene Sanctuary. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        // PDP Image Gallery Interaction
-        document.addEventListener('DOMContentLoaded', () => {
-            const mainImage = document.getElementById('main-product-image');
-            const thumbnails = document.querySelectorAll('.thumbnail-images img');
-
-            thumbnails.forEach(thumbnail => {
-                thumbnail.addEventListener('click', function() {
-                    // Update main image source
-                    mainImage.src = this.dataset.image;
-
-                    // Remove active class from all thumbnails
-                    thumbnails.forEach(t => t.classList.remove('active'));
-
-                    // Add active class to clicked thumbnail
-                    this.classList.add('active');
-                });
-            });
-
-            // Product Details Accordion
-            const detailItems = document.querySelectorAll('.detail-item h4');
-
-            detailItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const parent = this.closest('.detail-item');
-                    parent.classList.toggle('active');
-                });
-            });
-        });
-    </script>
 </body>
 </html>
-```

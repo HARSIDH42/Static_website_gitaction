@@ -3,168 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Minimalist Home Goods</title>
+    <title>Home | Serene Sanctuary</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts - Inter for a clean sans-serif -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <div class="container header-content">
-            <div class="logo"><a href="index.html">ELEVATE HOME</a></div>
-            <nav>
+            <a href="index.html" class="logo">Serene Sanctuary</a>
+            <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="product-listing.html">Shop</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
             <div class="header-icons">
-                <a href="#" class="icon">[Search Icon]</a>
-                <a href="#" class="icon">[Cart Icon]</a>
+                <a href="#">Search</a> <!-- Placeholder for search icon -->
+                <a href="#">Cart <span class="cart-count">0</span></a> <!-- Placeholder for cart icon -->
             </div>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero-section">
-            <div class="container text-center">
-                <div class="hero-image-container">
-                    <div class="image-placeholder aspect-ratio-2-1" style="max-height: 500px;"></div>
-                </div>
-                <h1>Elevate Your Home with Timeless Design</h1>
-                <p class="lead">
-                    Curated collection of high-end home goods designed for minimalist living.
-                    Discover pieces that bring tranquility and sophistication to every space.
-                </p>
-                <a href="shop.html" class="btn">Explore Our Collection</a>
+            <div class="hero-content">
+                <h1>Crafted for Calm</h1>
+                <p>Discover timeless pieces that bring tranquility and elegance to your home.</p>
+                <a href="product-listing.html" class="btn">Shop Now</a>
             </div>
         </section>
 
-        <!-- Featured Categories -->
-        <section class="featured-categories">
+        <section class="section-padding featured-categories">
             <div class="container">
-                <h2 class="text-center">Our Curated Categories</h2>
-                <div class="category-grid">
-                    <div class="category-item">
-                        <div class="image-placeholder aspect-ratio-4-3"></div>
-                        <h3>Living Room Essentials</h3>
-                        <p>Sophisticated pieces for your central gathering space, designed for comfort and style.</p>
-                        <a href="shop.html?category=living" class="btn-outline">Shop Now</a>
-                    </div>
-                    <div class="category-item">
-                        <div class="image-placeholder aspect-ratio-4-3"></div>
-                        <h3>Bedroom Serenity</h3>
-                        <p>Create a peaceful retreat with our tranquil designs and premium comfort solutions.</p>
-                        <a href="shop.html?category=bedroom" class="btn-outline">Shop Now</a>
-                    </div>
-                    <div class="category-item">
-                        <div class="image-placeholder aspect-ratio-4-3"></div>
-                        <h3>Dining & Kitchen</h3>
-                        <p>Elegance and functionality meet in our collection for culinary spaces and shared meals.</p>
-                        <a href="shop.html?category=dining" class="btn-outline">Shop Now</a>
-                    </div>
+                <h2 class="section-heading">Curated Collections</h2>
+                <div class="featured-products-grid">
+                    <a href="product-listing.html?category=ceramics" class="product-card">
+                        <div class="product-card-image">
+                            <!-- Image path from assets/images directory -->
+                            <img src="/assets/images/category-ceramics.jpg" alt="Minimalist ceramic vases and bowls">
+                        </div>
+                        <h3>Ceramics</h3>
+                        <p>Artisan crafted vessels</p>
+                    </a>
+                    <a href="product-listing.html?category=textiles" class="product-card">
+                        <div class="product-card-image">
+                            <!-- Image path from assets/images directory -->
+                            <img src="/assets/images/category-textiles.jpg" alt="Soft throw blankets and cushions">
+                        </div>
+                        <h3>Textiles</h3>
+                        <p>Comfort and warmth redefined</p>
+                    </a>
+                    <a href="product-listing.html?category=lighting" class="product-card">
+                        <div class="product-card-image">
+                            <!-- Image path from assets/images directory -->
+                            <img src="/assets/images/category-lighting.jpg" alt="Minimalist table lamp">
+                        </div>
+                        <h3>Lighting</h3>
+                        <p>Illuminate your space</p>
+                    </a>
+                    <a href="product-listing.html?category=furniture" class="product-card">
+                        <div class="product-card-image">
+                            <!-- Image path from assets/images directory -->
+                            <img src="/assets/images/category-furniture.jpg" alt="Minimalist wooden stool">
+                        </div>
+                        <h3>Furniture</h3>
+                        <p>Functional design pieces</p>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- New Arrivals / Bestsellers Section -->
-        <section class="product-showcase">
+        <section class="section-padding new-arrivals">
             <div class="container">
-                <h2 class="text-center">New Arrivals</h2>
-                <div class="product-grid">
-                    <div class="product-card">
+                <h2 class="section-heading">New Arrivals</h2>
+                <div class="new-arrivals-grid">
+                    <!-- Product Card 1 -->
+                    <a href="product-detail.html" class="product-card">
                         <div class="product-card-image">
-                            <div class="image-placeholder aspect-ratio-1-1"></div>
+                            <img src="/assets/images/product-new-1.jpg" alt="Hand-thrown ceramic vase">
                         </div>
-                        <div class="product-card-content">
-                            <h3><a href="product.html">Minimalist Oak Coffee Table</a></h3>
-                            <p class="price">$599.00</p>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
+                        <h3>Coastal Clay Vase</h3>
+                        <p class="price">$75.00</p>
+                    </a>
+                    <!-- Product Card 2 -->
+                    <a href="product-detail.html" class="product-card">
                         <div class="product-card-image">
-                            <div class="image-placeholder aspect-ratio-1-1"></div>
+                            <img src="/assets/images/product-new-2.jpg" alt="Organic cotton throw blanket">
                         </div>
-                        <div class="product-card-content">
-                            <h3><a href="product.html">Ceramic Diffuser Vase</a></h3>
-                            <p class="price">$85.00</p>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
+                        <h3>Linen Weave Throw</h3>
+                        <p class="price">$120.00</p>
+                    </a>
+                    <!-- Product Card 3 -->
+                    <a href="product-detail.html" class="product-card">
                         <div class="product-card-image">
-                            <div class="image-placeholder aspect-ratio-1-1"></div>
+                            <img src="/assets/images/product-new-3.jpg" alt="Minimalist concrete planter">
                         </div>
-                        <div class="product-card-content">
-                            <h3><a href="product.html">Handwoven Wool Rug</a></h3>
-                            <p class="price">$320.00</p>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
+                        <h3>Concrete Planter Set</h3>
+                        <p class="price">$45.00</p>
+                    </a>
+                    <!-- Product Card 4 -->
+                    <a href="product-detail.html" class="product-card">
                         <div class="product-card-image">
-                            <div class="image-placeholder aspect-ratio-1-1"></div>
+                            <img src="/assets/images/product-new-4.jpg" alt="Sculptural wooden accent stool">
                         </div>
-                        <div class="product-card-content">
-                            <h3><a href="product.html">Abstract Ceramic Planter</a></h3>
-                            <p class="price">$120.00</p>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
-                    </div>
+                        <h3>Carved Oak Stool</h3>
+                        <p class="price">$280.00</p>
+                    </a>
+                </div>
+                <div class="text-center" style="margin-top: var(--spacing-xl);">
+                    <a href="product-listing.html" class="btn btn-secondary">View All Products</a>
                 </div>
             </div>
         </section>
 
-        <!-- About Us Snippet -->
-        <section class="about-snippet" style="background-color: var(--color-secondary-accent);">
-            <div class="container text-center py-lg">
-                <h2>Our Philosophy</h2>
-                <p class="lead" style="max-width: 700px; margin: 0 auto var(--spacing-lg);">
-                    We believe in fewer, better things. Each item in our collection is thoughtfully
-                    designed for enduring beauty, exceptional quality, and sustainable living.
-                    Discover pieces that transcend trends and bring a sense of calm elegance to your home.
-                </p>
-                <a href="#" class="btn-outline">Learn More About Us</a>
-            </div>
-        </section>
-
-        <!-- Newsletter Signup -->
-        <section class="newsletter-signup py-lg">
+        <!-- Optional: Unique Selling Proposition Section -->
+        <section class="section-padding usp-section">
             <div class="container text-center">
-                <h2>Stay Updated</h2>
-                <p>Sign up for our newsletter for exclusive offers and design inspiration.</p>
-                <form class="newsletter-form">
-                    <div class="form-group">
-                        <input type="email" placeholder="Your email address" aria-label="Email address" required>
+                <h2 class="section-heading">Our Promise</h2>
+                <div class="usp-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-md);">
+                    <div class="usp-item">
+                        <h3 class="mb-sm">Hand-Crafted Quality</h3>
+                        <p>Each item is thoughtfully made with attention to detail and enduring quality.</p>
                     </div>
-                    <button type="submit" class="btn">Subscribe</button>
-                </form>
+                    <div class="usp-item">
+                        <h3 class="mb-sm">Sustainable Sourcing</h3>
+                        <p>We partner with artisans and suppliers committed to ethical and eco-friendly practices.</p>
+                    </div>
+                    <div class="usp-item">
+                        <h3 class="mb-sm">Timeless Design</h3>
+                        <p>Pieces designed to transcend trends, creating lasting beauty in your home.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-nav">
+    <footer class="site-footer">
+        <div class="container">
+            <nav class="footer-nav">
                 <ul>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="product-listing.html">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>
+            </nav>
+            <div class="newsletter-form">
+                <p>Stay updated with our latest collections and offers.</p>
+                <form>
+                    <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
+                    <button type="submit">Subscribe</button>
+                </form>
             </div>
-            <div class="social-links">
-                <a href="#" aria-label="Facebook">[Facebook]</a>
-                <a href="#" aria-label="Instagram">[Instagram]</a>
-                <a href="#" aria-label="Pinterest">[Pinterest]</a>
-            </div>
-            <p>&copy; 2023 Elevate Home. All rights reserved.</p>
+            <p style="margin-top: var(--spacing-lg); font-size: 0.9rem; color: var(--color-light-gray);">&copy; 2023 Serene Sanctuary. All rights reserved.</p>
         </div>
     </footer>
 </body>
