@@ -3,160 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coastal Clay Vase | Serene Sanctuary</title>
+    <title>Oak Wood Coffee Table - Minimalist Home</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header class="site-header">
+    <header class="header">
         <div class="container header-content">
-            <a href="index.html" class="logo">Serene Sanctuary</a>
+            <a href="index.html" class="logo">Minimalist Home</a>
+            <button class="nav-toggle-icon" aria-label="Toggle navigation">
+                <span class="icon-hamburger"></span>
+            </button>
             <nav class="main-nav">
-                <ul>
-                    <li><a href="product-listing.html">Shop</a></li>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product-listing.html" class="active">Shop All</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
             <div class="header-icons">
-                <a href="#">Search</a>
-                <a href="#">Cart <span class="cart-count">0</span></a>
+                <a href="#" aria-label="Search">
+                    <span class="icon-search"></span>
+                </a>
+                <a href="#" aria-label="Account">
+                    <span class="icon-user"></span>
+                </a>
+                <a href="#" aria-label="Cart">
+                    <span class="icon-cart"></span>
+                </a>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="product-detail-section">
+        <section class="breadcrumb">
+            <div class="container">
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product-listing.html">Shop All</a></li>
+                    <li>Oak Wood Coffee Table</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="section-padding">
             <div class="container product-detail-layout">
-                <div class="product-gallery">
-                    <div class="main-product-image">
-                        <img src="/assets/images/pdp-main-1.jpg" alt="Coastal Clay Vase - main view">
+                <div class="product-images">
+                    <div class="main-image-container">
+                        <img id="main-product-img" src="assets/images/product-1-large.jpg" alt="Primary view of Oak Wood Coffee Table" class="main-product-image">
                     </div>
-                    <div class="thumbnail-gallery">
-                        <div class="thumbnail active">
-                            <img src="/assets/images/pdp-thumb-1.jpg" alt="Coastal Clay Vase - thumbnail 1">
-                        </div>
-                        <div class="thumbnail">
-                            <img src="/assets/images/pdp-thumb-2.jpg" alt="Coastal Clay Vase - thumbnail 2">
-                        </div>
-                        <div class="thumbnail">
-                            <img src="/assets/images/pdp-thumb-3.jpg" alt="Coastal Clay Vase - thumbnail 3">
-                        </div>
-                        <div class="thumbnail">
-                            <img src="/assets/images/pdp-thumb-4.jpg" alt="Coastal Clay Vase - thumbnail 4">
-                        </div>
+                    <div class="thumbnail-images">
+                        <img src="assets/images/product-1-thumb1.jpg" alt="Thumbnail 1 of Oak Wood Coffee Table" class="active" data-large="assets/images/product-1-large.jpg">
+                        <img src="assets/images/product-1-thumb2.jpg" alt="Thumbnail 2 of Oak Wood Coffee Table" data-large="assets/images/product-1-large-2.jpg">
+                        <img src="assets/images/product-1-thumb3.jpg" alt="Thumbnail 3 of Oak Wood Coffee Table" data-large="assets/images/product-1-large-3.jpg">
+                        <img src="assets/images/product-1-thumb4.jpg" alt="Thumbnail 4 of Oak Wood Coffee Table" data-large="assets/images/product-1-large-4.jpg">
                     </div>
                 </div>
-                <div class="product-details">
-                    <h1>Coastal Clay Vase</h1>
-                    <p class="product-price">$75.00</p>
-                    <p class="product-description">
-                        An exquisite hand-thrown ceramic vase, embodying minimalist elegance. 
-                        Its subtle texture and organic form bring a touch of natural serenity to any space. 
-                        Perfect for fresh blooms or as a standalone sculptural piece.
-                    </p>
 
-                    <div class="product-options">
-                        <div class="option-group">
-                            <label for="size">Size:</label>
-                            <select id="size" class="form-select">
-                                <option value="small">Small</option>
-                                <option value="medium">Medium</option>
-                                <option value="large">Large</option>
-                            </select>
-                        </div>
-                        <div class="option-group">
-                            <label for="color">Color:</label>
-                            <select id="color" class="form-select">
-                                <option value="oatmeal">Oatmeal</option>
-                                <option value="sage">Sage Green</option>
-                                <option value="terracotta">Terracotta</option>
-                            </select>
-                        </div>
-                        <div class="option-group">
-                            <label for="quantity">Quantity:</label>
-                            <div class="quantity-selector">
-                                <button type="button" aria-label="Decrease quantity">-</button>
-                                <input type="number" id="quantity" value="1" min="1" max="10">
-                                <button type="button" aria-label="Increase quantity">+</button>
-                            </div>
-                        </div>
+                <div class="product-info">
+                    <span class="category">Living Room > Coffee Tables</span>
+                    <h1>Oak Wood Coffee Table</h1>
+                    <p class="price">$480.00</p>
+                    <p class="short-description">Crafted from solid oak, this coffee table features a minimalist design with clean lines and a smooth, natural finish. Perfect for adding warmth and functionality to your living space.</p>
+
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
                     </div>
+                    <button class="add-to-cart-btn">Add to Cart</button>
 
-                    <div class="product-actions">
-                        <button class="btn">Add to Cart</button>
-                        <button class="btn btn-secondary">Wishlist</button>
-                    </div>
-
-                    <div class="product-meta">
-                        <p><strong>SKU:</strong> CCV-001</p>
-                        <p><strong>Category:</strong> <a href="#">Ceramics</a>, <a href="#">Vases</a></p>
-                        <p><strong>Material:</strong> Hand-thrown clay, Glazed finish</p>
+                    <div class="product-details-tabs">
+                        <div class="details-tab-buttons">
+                            <button class="active" data-tab="description">Description</button>
+                            <button data-tab="dimensions">Dimensions</button>
+                            <button data-tab="materials">Materials & Care</button>
+                        </div>
+                        <div class="tab-content active" id="description">
+                            <p>The Oak Wood Coffee Table is a testament to timeless design and durable craftsmanship. Its robust construction ensures longevity, while the natural grain of the oak wood brings an organic touch to any interior. The spacious tabletop provides ample room for your morning coffee, books, and decorative accents, making it a versatile center piece for your living room. Each table is unique, with subtle variations in wood tone and pattern, reflecting its natural origin.</p>
+                            <p>This piece seamlessly blends with various decor styles, from Scandinavian minimalist to modern rustic. Its understated elegance ensures it will remain a cherished item for years to come.</p>
+                        </div>
+                        <div class="tab-content" id="dimensions" style="display: none;">
+                            <p><strong>Overall Dimensions:</strong> 47" L x 24" W x 16" H</p>
+                            <p><strong>Weight:</strong> 65 lbs</p>
+                            <p><strong>Assembly:</strong> Minor assembly required (legs attach to tabletop).</p>
+                        </div>
+                        <div class="tab-content" id="materials" style="display: none;">
+                            <p><strong>Material:</strong> 100% Solid European Oak Wood, finished with natural oil.</p>
+                            <p><strong>Care Instructions:</strong> Wipe clean with a damp cloth. Avoid harsh chemicals. Periodically re-oil with wood-safe furniture oil to maintain luster and protect the wood.</p>
+                            <p><strong>Sustainability:</strong> Sourced from responsibly managed forests.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section-padding related-products">
-            <div class="container">
+        <section class="section-padding related-products" style="background-color: var(--color-white);">
+            <div class="container text-center">
                 <h2 class="section-heading">You Might Also Like</h2>
-                <div class="featured-products-grid">
-                    <!-- Related Product 1 -->
-                    <a href="#" class="product-card">
-                        <div class="product-card-image">
-                            <img src="/assets/images/related-1.jpg" alt="Minimalist ceramic bowl">
-                        </div>
-                        <h3>Zen Bowl Set</h3>
-                        <p class="price">$60.00</p>
-                    </a>
-                    <!-- Related Product 2 -->
-                    <a href="#" class="product-card">
-                        <div class="product-card-image">
-                            <img src="/assets/images/related-2.jpg" alt="Textured cushion with tassels">
-                        </div>
-                        <h3>Textured Linen Cushion</h3>
-                        <p class="price">$45.00</p>
-                    </a>
-                    <!-- Related Product 3 -->
-                    <a href="#" class="product-card">
-                        <div class="product-card-image">
-                            <img src="/assets/images/related-3.jpg" alt="Simple desk lamp">
-                        </div>
-                        <h3>Minimal Desk Lamp</h3>
-                        <p class="price">$110.00</p>
-                    </a>
-                    <!-- Related Product 4 -->
-                    <a href="#" class="product-card">
-                        <div class="product-card-image">
-                            <img src="/assets/images/related-4.jpg" alt="Small wooden decorative box">
-                        </div>
-                        <h3>Oak Storage Box</h3>
-                        <p class="price">$55.00</p>
-                    </a>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-5.jpg" alt="Soft Beige Throw Pillow" class="product-card-image">
+                            <div class="product-card-content">
+                                <h3>Soft Beige Throw Pillow</h3>
+                                <p>$45.00</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-6.jpg" alt="Walnut Wood Bookshelf" class="product-card-image">
+                            <div class="product-card-content">
+                                <h3>Walnut Wood Bookshelf</h3>
+                                <p>$720.00</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-7.jpg" alt="Abstract Canvas Art" class="product-card-image">
+                            <div class="product-card-content">
+                                <h3>Abstract Canvas Art</h3>
+                                <p>$150.00</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-8.jpg" alt="Marble Top Side Table" class="product-card-image">
+                            <div class="product-card-content">
+                                <h3>Marble Top Side Table</h3>
+                                <p>$290.00</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="footer">
         <div class="container">
-            <nav class="footer-nav">
-                <ul>
-                    <li><a href="product-listing.html">Shop</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </nav>
-            <div class="newsletter-form">
-                <p>Stay updated with our latest collections and offers.</p>
-                <form>
-                    <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
-                    <button type="submit">Subscribe</button>
-                </form>
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Minimalist Home</h3>
+                    <p>Designed for tranquil living.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">FB</a>
+                        <a href="#" aria-label="Instagram">IG</a>
+                        <a href="#" aria-label="Pinterest">PT</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="product-listing.html?category=living-room">Living Room</a></li>
+                        <li><a href="product-listing.html?category=dining-room">Dining Room</a></li>
+                        <li><a href="product-listing.html?category=bedroom">Bedroom</a></li>
+                        <li><a href="product-listing.html?category=decor">Decor & Accents</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Information</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <p>Email: info@minimalisthome.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <p>Mon-Fri: 9am - 5pm EST</p>
+                </div>
             </div>
-            <p style="margin-top: var(--spacing-lg); font-size: 0.9rem; color: var(--color-light-gray);">&copy; 2023 Serene Sanctuary. All rights reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Minimalist Home. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.querySelector('.nav-toggle-icon');
+            const navMenu = document.querySelector('.nav-menu');
+
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    navToggle.innerHTML = '<span class="icon-close"></span>';
+                    navToggle.setAttribute('aria-expanded', 'true');
+                } else {
+                    navToggle.innerHTML = '<span class="icon-hamburger"></span>';
+                    navToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Product Detail Page (PDP) image gallery logic
+            const mainProductImg = document.getElementById('main-product-img');
+            const thumbnailImages = document.querySelectorAll('.thumbnail-images img');
+
+            thumbnailImages.forEach(thumb => {
+                thumb.addEventListener('click', () => {
+                    // Update main image source
+                    mainProductImg.src = thumb.dataset.large;
+
+                    // Update active class for styling
+                    thumbnailImages.forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                });
+            });
+
+            // PDP tabs logic
+            const tabButtons = document.querySelectorAll('.details-tab-buttons button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and hide all contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.style.display = 'none');
+
+                    // Add active class to clicked button
+                    button.classList.add('active');
+
+                    // Show corresponding tab content
+                    const targetTabId = button.dataset.tab;
+                    document.getElementById(targetTabId).style.display = 'block';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
