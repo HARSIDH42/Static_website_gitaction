@@ -3,151 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimalist Oak Coffee Table - Elevate Home</title>
+    <title>Sculptural Ceramic Vase - Echoe Interiors</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts - Inter for a clean sans-serif -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="container header-content">
-            <div class="logo"><a href="index.html">ELEVATE HOME</a></div>
-            <nav>
+    <header class="site-header">
+        <div class="container">
+            <div class="site-title">
+                <a href="index.html">Echoe Interiors</a>
+            </div>
+            <nav class="main-nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="shop.html">Shop</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
+                    <li><a href="#">Cart (0)</a></li>
                 </ul>
             </nav>
-            <div class="header-icons">
-                <a href="#" class="icon">[Search Icon]</a>
-                <a href="#" class="icon">[Cart Icon]</a>
-            </div>
         </div>
     </header>
 
-    <main>
-        <!-- Breadcrumbs -->
-        <div class="container my-md">
-            <nav class="breadcrumbs">
-                <a href="index.html">Home</a> &gt; <a href="shop.html">Shop</a> &gt; <a href="shop.html?category=tables">Tables & Desks</a> &gt; Minimalist Oak Coffee Table
-            </nav>
-        </div>
-
-        <!-- Product Detail Section -->
-        <section class="product-detail-section container my-lg">
-            <div class="product-gallery">
-                <!-- Large image placeholder -->
-                <div class="main-image image-placeholder aspect-ratio-1-1"></div>
-                <div class="thumbnail-images">
-                    <!-- Small image placeholders -->
-                    <div class="thumbnail image-placeholder aspect-ratio-1-1 active"></div>
-                    <div class="thumbnail image-placeholder aspect-ratio-1-1"></div>
-                    <div class="thumbnail image-placeholder aspect-ratio-1-1"></div>
-                    <div class="thumbnail image-placeholder aspect-ratio-1-1"></div>
+    <main class="container">
+        <section class="section">
+            <div class="product-detail-layout">
+                <div class="product-media">
+                    Product Image Placeholder
                 </div>
-            </div>
-            <div class="product-info">
-                <h1>Minimalist Oak Coffee Table</h1>
-                <p class="price">$599.00</p>
-                <p class="description">
-                    Crafted from solid oak with a clean, Scandinavian-inspired design, this coffee table
-                    brings natural warmth and sophisticated simplicity to your living space. Its sturdy
-                    construction ensures longevity, while the smooth finish highlights the wood's natural grain.
-                    Perfectly suited for contemporary and minimalist interiors, it serves as an elegant
-                    centerpiece without overwhelming the room.
-                </p>
-                <div class="product-options">
-                    <div class="form-group">
-                        <label for="material">Material:</label>
-                        <select id="material" aria-label="Select material">
-                            <option>Solid Oak</option>
-                            <option>Walnut Veneer</option>
-                            <option>White Ash</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
+                <div class="product-info">
+                    <h1>Sculptural Ceramic Vase</h1>
+                    <p class="price">$120.00</p>
+                    <p class="description">
+                        An elegant centerpiece, this handcrafted ceramic vase embodies modern minimalism. Its unique, organic form and matte finish add a touch of understated sophistication to any space. Perfect for displaying a single stem or as a standalone art piece.
+                    </p>
+                    <p class="description">
+                        <strong>Material:</strong> High-fired ceramic<br>
+                        <strong>Dimensions:</strong> 12" H x 6" W<br>
+                        <strong>Color:</strong> Sandstone White
+                    </p>
+                    <div class="quantity-selector">
                         <label for="quantity">Quantity:</label>
-                        <input type="number" id="quantity" value="1" min="1" aria-label="Quantity">
+                        <input type="number" id="quantity" name="quantity" value="1" min="1">
                     </div>
-                </div>
-                <button class="btn add-to-cart-lg">Add to Cart</button>
-                <div class="shipping-returns">
-                    <h4>Shipping & Returns</h4>
-                    <p>Free standard shipping on all orders over $200. Easy 30-day returns for peace of mind. View full policy.</p>
+                    <button class="btn add-to-cart-btn">Add to Cart</button>
+                    <p style="margin-top: var(--padding-sm); font-size: 0.9em; color: var(--text-color);">Free shipping on orders over $150.</p>
                 </div>
             </div>
-        </section>
 
-        <!-- Related Products -->
-        <section class="related-products py-lg">
-            <div class="container">
-                <h2 class="text-center">You Might Also Like</h2>
+            <div class="related-products">
+                <h2>You Might Also Like</h2>
                 <div class="product-grid">
                     <div class="product-card">
-                        <div class="product-card-image">
-                            <div class="image-placeholder aspect-ratio-1-1"></div>
-                        </div>
-                        <div class="product-card-content">
-                            <h3><a href="product.html">Linen Cushion Cover</a></h3>
+                        <a href="product.html">
+                            <div class="product-placeholder">Related Product</div>
+                            <h3>Minimalist Wall Art Print</h3>
+                            <p class="price">$95.00</p>
+                        </a>
+                    </div>
+                    <div class="product-card">
+                        <a href="product.html">
+                            <div class="product-placeholder">Related Product</div>
+                            <h3>Hand-Poured Soy Candle</h3>
                             <p class="price">$45.00</p>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
+                        </a>
                     </div>
                     <div class="product-card">
-                        <div class="product-card-image">
-                            <div class="image-placeholder aspect-ratio-1-1"></div>
-                        </div>
-                        <div class="product-card-content">
-                            <h3><a href="product.html">Modern Floor Lamp</a></h3>
-                            <p class="price">$195.00</p>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-card-image">
-                            <div class="image-placeholder aspect-ratio-1-1"></div>
-                        </div>
-                        <div class="product-card-content">
-                            <h3><a href="product.html">Sculptural Ceramic Vase</a></h3>
-                            <p class="price">$90.00</p>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-card-image">
-                            <div class="image-placeholder aspect-ratio-1-1"></div>
-                        </div>
-                        <div class="product-card-content">
-                            <h3><a href="product.html">Geometric Wool Throw</a></h3>
-                            <p class="price">$150.00</p>
-                            <button class="add-to-cart">Add to Cart</button>
-                        </div>
+                        <a href="product.html">
+                            <div class="product-placeholder">Related Product</div>
+                            <h3>Linen Throw Blanket</h3>
+                            <p class="price">$85.00</p>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-nav">
-                <ul>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="social-links">
-                <a href="#" aria-label="Facebook">[Facebook]</a>
-                <a href="#" aria-label="Instagram">[Instagram]</a>
-                <a href="#" aria-label="Pinterest">[Pinterest]</a>
-            </div>
-            <p>&copy; 2023 Elevate Home. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2023 Echoe Interiors. All rights reserved.</p>
         </div>
     </footer>
 </body>

@@ -1,164 +1,88 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elegance Home - Minimalist High-End Home Goods</title>
+    <title>Home - Minimalist Home Goods</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="site-header">
         <div class="container">
-            <a href="index.html" class="logo">Elegance Home</a>
-            <nav class="main-nav" id="main-nav">
+            <div class="site-title">
+                <a href="index.html">Echoe Interiors</a>
+            </div>
+            <nav class="main-nav">
                 <ul>
-                    <li><a href="product-listing.html">Shop</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
+                    <li><a href="#">Cart (0)</a></li>
                 </ul>
             </nav>
-            <div class="header-icons">
-                <a href="#" class="icon-link"><span class="sr-only">Search</span>Search</a>
-                <a href="#" class="icon-link"><span class="sr-only">Account</span>Account</a>
-                <a href="#" class="icon-link"><span class="sr-only">Cart</span>Cart (0)</a>
-            </div>
-            <button class="menu-toggle" id="menu-toggle" aria-controls="main-nav" aria-expanded="false">
-                &#9776; <!-- Hamburger icon -->
-            </button>
         </div>
     </header>
 
     <main>
         <section class="hero-section">
-            <div class="container hero-content">
-                <h1>Crafted Living Spaces</h1>
-                <p>Discover timeless designs and elevate your home with our exclusive collection of high-end furnishings.</p>
-                <a href="product-listing.html" class="button">Shop The Collection</a>
+            <div class="container">
+                <h1>Crafted for Serenity, Designed for Life.</h1>
+                <p>Discover our curated collection of high-end home goods, where minimalist design meets timeless elegance.</p>
+                <a href="shop.html" class="btn">Explore Collections</a>
             </div>
         </section>
 
-        <section class="section-spacing">
+        <section class="featured-products section">
             <div class="container">
-                <h2 class="section-title">Explore Our Categories</h2>
-                <div class="category-grid">
-                    <a href="product-listing.html" class="category-card">
-                        <img src="assets/images/category-living.jpg" alt="Living Room Furniture">
-                        <div class="category-card-content">
-                            <h3>Living Room</h3>
-                            <span class="button">View Collection</span>
-                        </div>
-                    </a>
-                    <a href="product-listing.html" class="category-card">
-                        <img src="assets/images/category-dining.jpg" alt="Dining Room Essentials">
-                        <div class="category-card-content">
-                            <h3>Dining Room</h3>
-                            <span class="button">View Collection</span>
-                        </div>
-                    </a>
-                    <a href="product-listing.html" class="category-card">
-                        <img src="assets/images/category-bedroom.jpg" alt="Bedroom Comforts">
-                        <div class="category-card-content">
-                            <h3>Bedroom</h3>
-                            <span class="button">View Collection</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-spacing">
-            <div class="container">
-                <h2 class="section-title">Featured Products</h2>
+                <h2>Our Latest Arrivals</h2>
                 <div class="product-grid">
                     <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-1.jpg" alt="Minimalist Armchair">
-                            <h3>Minimalist Armchair</h3>
-                            <span class="price">$799.00</span>
+                        <a href="product.html">
+                            <div class="product-placeholder">Product Placeholder</div>
+                            <h3>Sculptural Ceramic Vase</h3>
+                            <p class="price">$120.00</p>
                         </a>
-                        <a href="product-detail.html" class="button">View Details</a>
                     </div>
                     <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-2.jpg" alt="Sculptural Table Lamp">
-                            <h3>Sculptural Table Lamp</h3>
-                            <span class="price">$189.00</span>
+                        <a href="product.html">
+                            <div class="product-placeholder">Product Placeholder</div>
+                            <h3>Linen Throw Blanket</h3>
+                            <p class="price">$85.00</p>
                         </a>
-                        <a href="product-detail.html" class="button">View Details</a>
                     </div>
                     <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-3.jpg" alt="Abstract Ceramic Vase">
-                            <h3>Abstract Ceramic Vase</h3>
-                            <span class="price">$120.00</span>
+                        <a href="product.html">
+                            <div class="product-placeholder">Product Placeholder</div>
+                            <h3>Oakwood Side Table</h3>
+                            <p class="price">$350.00</p>
                         </a>
-                        <a href="product-detail.html" class="button">View Details</a>
                     </div>
                     <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-4.jpg" alt="Oak Side Table">
-                            <h3>Oak Side Table</h3>
-                            <span class="price">$450.00</span>
+                        <a href="product.html">
+                            <div class="product-placeholder">Product Placeholder</div>
+                            <h3>Minimalist Floor Lamp</h3>
+                            <p class="price">$220.00</p>
                         </a>
-                        <a href="product-detail.html" class="button">View Details</a>
                     </div>
                 </div>
+                <div style="margin-top: var(--padding-md);"><a href="shop.html" class="btn">View All Products</a></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container" style="text-align: center; max-width: 800px;">
+                <h2>Our Philosophy</h2>
+                <p>At Echoe Interiors, we believe true luxury lies in simplicity and thoughtful design. We source exquisite materials and work with artisans who share our passion for creating pieces that elevate your living space and stand the test of time.</p>
+                <p>Our collection is a celebration of muted tones, organic textures, and clean lines, designed to bring a sense of calm and sophistication to your home.</p>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
         <div class="container">
-            <div class="footer-column">
-                <h4>Elegance Home</h4>
-                <p>Curating beauty for your everyday living.</p>
-            </div>
-            <div class="footer-column">
-                <h4>Shop</h4>
-                <ul>
-                    <li><a href="product-listing.html">All Products</a></li>
-                    <li><a href="product-listing.html">Living Room</a></li>
-                    <li><a href="product-listing.html">Dining Room</a></li>
-                    <li><a href="product-listing.html">Bedroom</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>About</h4>
-                <ul>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Careers</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom container">
-            <p>&copy; 2023 Elegance Home. All rights reserved.</p>
+            <p>&copy; 2023 Echoe Interiors. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menu-toggle');
-            const mainNav = document.getElementById('main-nav');
-
-            if (menuToggle && mainNav) {
-                menuToggle.addEventListener('click', function() {
-                    const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
-                    this.setAttribute('aria-expanded', !isExpanded);
-                    mainNav.classList.toggle('active');
-                });
-            }
-        });
-    </script>
 </body>
 </html>
-```
