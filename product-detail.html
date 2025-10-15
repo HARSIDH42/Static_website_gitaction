@@ -1,241 +1,199 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oak Wood Coffee Table - Minimalist Home</title>
+    <title>Minimalist Armchair - Elegance Home</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header class="header">
-        <div class="container header-content">
-            <a href="index.html" class="logo">Minimalist Home</a>
-            <button class="nav-toggle-icon" aria-label="Toggle navigation">
-                <span class="icon-hamburger"></span>
-            </button>
-            <nav class="main-nav">
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="product-listing.html" class="active">Shop All</a></li>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo">Elegance Home</a>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="product-listing.html">Shop</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
             <div class="header-icons">
-                <a href="#" aria-label="Search">
-                    <span class="icon-search"></span>
-                </a>
-                <a href="#" aria-label="Account">
-                    <span class="icon-user"></span>
-                </a>
-                <a href="#" aria-label="Cart">
-                    <span class="icon-cart"></span>
-                </a>
+                <a href="#" class="icon-link"><span class="sr-only">Search</span>Search</a>
+                <a href="#" class="icon-link"><span class="sr-only">Account</span>Account</a>
+                <a href="#" class="icon-link"><span class="sr-only">Cart</span>Cart (0)</a>
             </div>
+            <button class="menu-toggle" id="menu-toggle" aria-controls="main-nav" aria-expanded="false">
+                &#9776;
+            </button>
         </div>
     </header>
 
     <main>
         <section class="breadcrumb">
             <div class="container">
-                <ol>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="product-listing.html">Shop All</a></li>
-                    <li>Oak Wood Coffee Table</li>
-                </ol>
+                <a href="index.html">Home</a> <span>/</span> <a href="product-listing.html">Shop</a> <span>/</span> <span>Minimalist Armchair</span>
             </div>
         </section>
 
-        <section class="section-padding">
+        <section class="product-detail-section">
             <div class="container product-detail-layout">
                 <div class="product-images">
-                    <div class="main-image-container">
-                        <img id="main-product-img" src="assets/images/product-1-large.jpg" alt="Primary view of Oak Wood Coffee Table" class="main-product-image">
+                    <div class="main-image">
+                        <img src="assets/images/product-detail-main.jpg" alt="Minimalist Armchair Main View" id="main-product-image">
                     </div>
-                    <div class="thumbnail-images">
-                        <img src="assets/images/product-1-thumb1.jpg" alt="Thumbnail 1 of Oak Wood Coffee Table" class="active" data-large="assets/images/product-1-large.jpg">
-                        <img src="assets/images/product-1-thumb2.jpg" alt="Thumbnail 2 of Oak Wood Coffee Table" data-large="assets/images/product-1-large-2.jpg">
-                        <img src="assets/images/product-1-thumb3.jpg" alt="Thumbnail 3 of Oak Wood Coffee Table" data-large="assets/images/product-1-large-3.jpg">
-                        <img src="assets/images/product-1-thumb4.jpg" alt="Thumbnail 4 of Oak Wood Coffee Table" data-large="assets/images/product-1-large-4.jpg">
+                    <div class="thumbnail-gallery">
+                        <img src="assets/images/product-detail-thumb1.jpg" alt="Minimalist Armchair Thumbnail 1" class="thumbnail active" data-main-image="assets/images/product-detail-main.jpg">
+                        <img src="assets/images/product-detail-thumb2.jpg" alt="Minimalist Armchair Thumbnail 2" class="thumbnail" data-main-image="assets/images/product-detail-thumb2.jpg">
+                        <img src="assets/images/product-detail-thumb3.jpg" alt="Minimalist Armchair Thumbnail 3" class="thumbnail" data-main-image="assets/images/product-detail-thumb3.jpg">
                     </div>
                 </div>
-
                 <div class="product-info">
-                    <span class="category">Living Room > Coffee Tables</span>
-                    <h1>Oak Wood Coffee Table</h1>
-                    <p class="price">$480.00</p>
-                    <p class="short-description">Crafted from solid oak, this coffee table features a minimalist design with clean lines and a smooth, natural finish. Perfect for adding warmth and functionality to your living space.</p>
-
-                    <div class="quantity-selector">
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
-                    </div>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-
-                    <div class="product-details-tabs">
-                        <div class="details-tab-buttons">
-                            <button class="active" data-tab="description">Description</button>
-                            <button data-tab="dimensions">Dimensions</button>
-                            <button data-tab="materials">Materials & Care</button>
+                    <h1>Minimalist Armchair</h1>
+                    <span class="price">$799.00</span>
+                    <p>A statement of understated elegance, this armchair combines timeless design with unparalleled comfort. Crafted from sustainably sourced oak and upholstered in a premium natural linen blend, it's the perfect addition to any modern living space.</p>
+                    <div class="product-options">
+                        <div class="option-group">
+                            <label for="color">Color:</label>
+                            <select id="color">
+                                <option value="natural-linen">Natural Linen</option>
+                                <option value="charcoal-grey">Charcoal Grey</option>
+                                <option value="forest-green">Forest Green</option>
+                            </select>
                         </div>
-                        <div class="tab-content active" id="description">
-                            <p>The Oak Wood Coffee Table is a testament to timeless design and durable craftsmanship. Its robust construction ensures longevity, while the natural grain of the oak wood brings an organic touch to any interior. The spacious tabletop provides ample room for your morning coffee, books, and decorative accents, making it a versatile center piece for your living room. Each table is unique, with subtle variations in wood tone and pattern, reflecting its natural origin.</p>
-                            <p>This piece seamlessly blends with various decor styles, from Scandinavian minimalist to modern rustic. Its understated elegance ensures it will remain a cherished item for years to come.</p>
+                        <div class="option-group">
+                            <label for="material">Material:</label>
+                            <select id="material">
+                                <option value="oak">Oak Frame</option>
+                                <option value="walnut">Walnut Frame</option>
+                            </select>
                         </div>
-                        <div class="tab-content" id="dimensions" style="display: none;">
-                            <p><strong>Overall Dimensions:</strong> 47" L x 24" W x 16" H</p>
-                            <p><strong>Weight:</strong> 65 lbs</p>
-                            <p><strong>Assembly:</strong> Minor assembly required (legs attach to tabletop).</p>
+                        <div class="option-group">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" id="quantity" name="quantity" value="1" min="1">
                         </div>
-                        <div class="tab-content" id="materials" style="display: none;">
-                            <p><strong>Material:</strong> 100% Solid European Oak Wood, finished with natural oil.</p>
-                            <p><strong>Care Instructions:</strong> Wipe clean with a damp cloth. Avoid harsh chemicals. Periodically re-oil with wood-safe furniture oil to maintain luster and protect the wood.</p>
-                            <p><strong>Sustainability:</strong> Sourced from responsibly managed forests.</p>
-                        </div>
+                        <button class="button add-to-cart-button">Add to Cart</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section-padding related-products" style="background-color: var(--color-white);">
-            <div class="container text-center">
-                <h2 class="section-heading">You Might Also Like</h2>
+        <section class="product-description section-spacing">
+            <div class="container">
+                <h2>Product Details</h2>
+                <p>This minimalist armchair is designed for both aesthetic appeal and ergonomic comfort. Its clean lines and sturdy construction make it a versatile piece that complements various interior styles, from Scandinavian to contemporary. The cushion is made from high-density foam for lasting support, wrapped in a soft, breathable fabric.</p>
+                <ul>
+                    <li>Dimensions: 30" W x 32" D x 30" H</li>
+                    <li>Seat Height: 18"</li>
+                    <li>Frame Material: Solid Oak</li>
+                    <li>Upholstery: 60% Linen, 40% Cotton Blend</li>
+                    <li>Care Instructions: Spot clean with a damp cloth. Professional cleaning recommended for deep stains.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="related-products section-spacing">
+            <div class="container">
+                <h2>You Might Also Like</h2>
                 <div class="product-grid">
                     <div class="product-card">
                         <a href="product-detail.html">
-                            <img src="assets/images/product-5.jpg" alt="Soft Beige Throw Pillow" class="product-card-image">
-                            <div class="product-card-content">
-                                <h3>Soft Beige Throw Pillow</h3>
-                                <p>$45.00</p>
-                            </div>
+                            <img src="assets/images/product-2.jpg" alt="Sculptural Table Lamp">
+                            <h3>Sculptural Table Lamp</h3>
+                            <span class="price">$189.00</span>
                         </a>
+                        <a href="product-detail.html" class="button">View Details</a>
                     </div>
                     <div class="product-card">
                         <a href="product-detail.html">
-                            <img src="assets/images/product-6.jpg" alt="Walnut Wood Bookshelf" class="product-card-image">
-                            <div class="product-card-content">
-                                <h3>Walnut Wood Bookshelf</h3>
-                                <p>$720.00</p>
-                            </div>
+                            <img src="assets/images/product-3.jpg" alt="Abstract Ceramic Vase">
+                            <h3>Abstract Ceramic Vase</h3>
+                            <span class="price">$120.00</span>
                         </a>
+                        <a href="product-detail.html" class="button">View Details</a>
                     </div>
                     <div class="product-card">
                         <a href="product-detail.html">
-                            <img src="assets/images/product-7.jpg" alt="Abstract Canvas Art" class="product-card-image">
-                            <div class="product-card-content">
-                                <h3>Abstract Canvas Art</h3>
-                                <p>$150.00</p>
-                            </div>
+                            <img src="assets/images/product-4.jpg" alt="Oak Side Table">
+                            <h3>Oak Side Table</h3>
+                            <span class="price">$450.00</span>
                         </a>
-                    </div>
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-8.jpg" alt="Marble Top Side Table" class="product-card-image">
-                            <div class="product-card-content">
-                                <h3>Marble Top Side Table</h3>
-                                <p>$290.00</p>
-                            </div>
-                        </a>
+                        <a href="product-detail.html" class="button">View Details</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h3>Minimalist Home</h3>
-                    <p>Designed for tranquil living.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook">FB</a>
-                        <a href="#" aria-label="Instagram">IG</a>
-                        <a href="#" aria-label="Pinterest">PT</a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Shop</h3>
-                    <ul>
-                        <li><a href="product-listing.html?category=living-room">Living Room</a></li>
-                        <li><a href="product-listing.html?category=dining-room">Dining Room</a></li>
-                        <li><a href="product-listing.html?category=bedroom">Bedroom</a></li>
-                        <li><a href="product-listing.html?category=decor">Decor & Accents</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Information</h3>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Shipping & Returns</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Customer Service</h3>
-                    <p>Email: info@minimalisthome.com</p>
-                    <p>Phone: +1 (555) 123-4567</p>
-                    <p>Mon-Fri: 9am - 5pm EST</p>
-                </div>
+            <div class="footer-column">
+                <h4>Elegance Home</h4>
+                <p>Curating beauty for your everyday living.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Minimalist Home. All rights reserved.</p>
+            <div class="footer-column">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="product-listing.html">All Products</a></li>
+                    <li><a href="product-listing.html">Living Room</a></li>
+                    <li><a href="product-listing.html">Dining Room</a></li>
+                    <li><a href="product-listing.html">Bedroom</a></li>
+                </ul>
             </div>
+            <div class="footer-column">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2023 Elegance Home. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navToggle = document.querySelector('.nav-toggle-icon');
-            const navMenu = document.querySelector('.nav-menu');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const mainNav = document.getElementById('main-nav');
 
-            navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                if (navMenu.classList.contains('active')) {
-                    navToggle.innerHTML = '<span class="icon-close"></span>';
-                    navToggle.setAttribute('aria-expanded', 'true');
-                } else {
-                    navToggle.innerHTML = '<span class="icon-hamburger"></span>';
-                    navToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Product Detail Page (PDP) image gallery logic
-            const mainProductImg = document.getElementById('main-product-img');
-            const thumbnailImages = document.querySelectorAll('.thumbnail-images img');
-
-            thumbnailImages.forEach(thumb => {
-                thumb.addEventListener('click', () => {
-                    // Update main image source
-                    mainProductImg.src = thumb.dataset.large;
-
-                    // Update active class for styling
-                    thumbnailImages.forEach(t => t.classList.remove('active'));
-                    thumb.classList.add('active');
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function() {
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+                    this.setAttribute('aria-expanded', !isExpanded);
+                    mainNav.classList.toggle('active');
                 });
-            });
+            }
 
-            // PDP tabs logic
-            const tabButtons = document.querySelectorAll('.details-tab-buttons button');
-            const tabContents = document.querySelectorAll('.tab-content');
+            // Product image gallery functionality
+            const mainProductImage = document.getElementById('main-product-image');
+            const thumbnails = document.querySelectorAll('.thumbnail-gallery .thumbnail');
 
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove active class from all buttons and hide all contents
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.style.display = 'none');
+            if (mainProductImage && thumbnails.length > 0) {
+                thumbnails.forEach(thumbnail => {
+                    thumbnail.addEventListener('click', function() {
+                        // Update main image src
+                        mainProductImage.src = this.dataset.mainImage;
 
-                    // Add active class to clicked button
-                    button.classList.add('active');
-
-                    // Show corresponding tab content
-                    const targetTabId = button.dataset.tab;
-                    document.getElementById(targetTabId).style.display = 'block';
+                        // Update active class
+                        thumbnails.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                    });
                 });
-            });
+            }
         });
     </script>
 </body>
 </html>
+```

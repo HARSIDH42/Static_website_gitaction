@@ -1,316 +1,181 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop All - Minimalist Home</title>
+    <title>Shop All Products - Elegance Home</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header class="header">
-        <div class="container header-content">
-            <a href="index.html" class="logo">Minimalist Home</a>
-            <button class="nav-toggle-icon" aria-label="Toggle navigation">
-                <span class="icon-hamburger"></span>
-            </button>
-            <nav class="main-nav">
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="product-listing.html" class="active">Shop All</a></li>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo">Elegance Home</a>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="product-listing.html">Shop</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
             <div class="header-icons">
-                <a href="#" aria-label="Search">
-                    <span class="icon-search"></span>
-                </a>
-                <a href="#" aria-label="Account">
-                    <span class="icon-user"></span>
-                </a>
-                <a href="#" aria-label="Cart">
-                    <span class="icon-cart"></span>
-                </a>
+                <a href="#" class="icon-link"><span class="sr-only">Search</span>Search</a>
+                <a href="#" class="icon-link"><span class="sr-only">Account</span>Account</a>
+                <a href="#" class="icon-link"><span class="sr-only">Cart</span>Cart (0)</a>
             </div>
+            <button class="menu-toggle" id="menu-toggle" aria-controls="main-nav" aria-expanded="false">
+                &#9776;
+            </button>
         </div>
     </header>
 
     <main>
         <section class="breadcrumb">
             <div class="container">
-                <ol>
-                    <li><a href="index.html">Home</a></li>
-                    <li>Shop All</li>
-                </ol>
+                <a href="index.html">Home</a> <span>/</span> <span>Shop</span>
             </div>
         </section>
 
-        <section class="page-header">
+        <section class="plp-header section-spacing">
             <div class="container">
-                <h1>Shop All Products</h1>
+                <h1>Our Curated Collection</h1>
+                <p>Discover beauty in simplicity with pieces designed to inspire and endure.</p>
             </div>
         </section>
 
-        <section class="section-padding" style="padding-top: 0;">
-            <div class="container listing-content">
-                <aside class="sidebar-filters">
-                    <div class="filter-group">
-                        <h3>Category</h3>
-                        <ul>
-                            <li><label><input type="checkbox" name="category" value="living"> Living Room</label></li>
-                            <li><label><input type="checkbox" name="category" value="dining"> Dining Room</label></li>
-                            <li><label><input type="checkbox" name="category" value="bedroom"> Bedroom</label></li>
-                            <li><label><input type="checkbox" name="category" value="office"> Home Office</label></li>
-                            <li><label><input type="checkbox" name="category" value="decor"> Decor & Accents</label></li>
-                        </ul>
-                    </div>
+        <section class="section-spacing" style="padding-top: 0;">
+            <div class="container">
+                <div class="plp-controls">
+                    <label for="sort-by">Sort by:</label>
+                    <select id="sort-by">
+                        <option value="featured">Featured</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="newest">Newest Arrivals</option>
+                    </select>
+                </div>
 
-                    <div class="filter-group">
-                        <h3>Price Range</h3>
-                        <select name="price-range">
-                            <option value="">All Prices</option>
-                            <option value="0-100">Under $100</option>
-                            <option value="100-500">$100 - $500</option>
-                            <option value="500-1000">$500 - $1000</option>
-                            <option value="1000+">Over $1000</option>
-                        </select>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-1.jpg" alt="Minimalist Armchair">
+                            <h3>Minimalist Armchair</h3>
+                            <span class="price">$799.00</span>
+                        </a>
+                        <a href="product-detail.html" class="button">View Details</a>
                     </div>
-
-                    <div class="filter-group">
-                        <h3>Material</h3>
-                        <ul>
-                            <li><label><input type="checkbox" name="material" value="wood"> Wood</label></li>
-                            <li><label><input type="checkbox" name="material" value="metal"> Metal</label></li>
-                            <li><label><input type="checkbox" name="material" value="fabric"> Fabric</label></li>
-                            <li><label><input type="checkbox" name="material" value="ceramic"> Ceramic</label></li>
-                            <li><label><input type="checkbox" name="material" value="glass"> Glass</label></li>
-                        </ul>
+                    <div class="product-card">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-2.jpg" alt="Sculptural Table Lamp">
+                            <h3>Sculptural Table Lamp</h3>
+                            <span class="price">$189.00</span>
+                        </a>
+                        <a href="product-detail.html" class="button">View Details</a>
                     </div>
-
-                    <div class="filter-group">
-                        <h3>Color</h3>
-                        <ul>
-                            <li><label><input type="checkbox" name="color" value="white"> White</label></li>
-                            <li><label><input type="checkbox" name="color" value="beige"> Beige</label></li>
-                            <li><label><input type="checkbox" name="color" value="grey"> Grey</label></li>
-                            <li><label><input type="checkbox" name="color" value="black"> Black</label></li>
-                            <li><label><input type="checkbox" name="color" value="brown"> Brown</label></li>
-                            <li><label><input type="checkbox" name="color" value="green"> Green</label></li>
-                        </ul>
+                    <div class="product-card">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-3.jpg" alt="Abstract Ceramic Vase">
+                            <h3>Abstract Ceramic Vase</h3>
+                            <span class="price">$120.00</span>
+                        </a>
+                        <a href="product-detail.html" class="button">View Details</a>
                     </div>
-                </aside>
-
-                <div class="product-listing-area">
-                    <div class="listing-header">
-                        <p>Showing 1-12 of 64 products</p>
-                        <div class="sort-by">
-                            <label for="sort-select" class="sr-only">Sort By:</label>
-                            <select id="sort-select">
-                                <option value="featured">Featured</option>
-                                <option value="newest">Newest Arrivals</option>
-                                <option value="price-asc">Price: Low to High</option>
-                                <option value="price-desc">Price: High to Low</option>
-                            </select>
-                        </div>
+                    <div class="product-card">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-4.jpg" alt="Oak Side Table">
+                            <h3>Oak Side Table</h3>
+                            <span class="price">$450.00</span>
+                        </a>
+                        <a href="product-detail.html" class="button">View Details</a>
                     </div>
-
-                    <div class="product-grid">
-                        <!-- Product Card 1 -->
-                        <div class="product-card">
-                            <a href="product-detail.html">
-                                <img src="assets/images/product-1.jpg" alt="Oak Wood Coffee Table" class="product-card-image">
-                                <div class="product-card-content">
-                                    <h3>Oak Wood Coffee Table</h3>
-                                    <p>$480.00</p>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Product Card 2 -->
-                        <div class="product-card">
-                            <a href="product-detail.html">
-                                <img src="assets/images/product-2.jpg" alt="Linen Upholstered Armchair" class="product-card-image">
-                                <div class="product-card-content">
-                                    <h3>Linen Upholstered Armchair</h3>
-                                    <p>$650.00</p>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Product Card 3 -->
-                        <div class="product-card">
-                            <a href="product-detail.html">
-                                <img src="assets/images/product-3.jpg" alt="Ceramic Textured Vase" class="product-card-image">
-                                <div class="product-card-content">
-                                    <h3>Ceramic Textured Vase</h3>
-                                    <p>$95.00</p>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Product Card 4 -->
-                        <div class="product-card">
-                            <a href="product-detail.html">
-                                <img src="assets/images/product-4.jpg" alt="Minimalist Pendant Lamp" class="product-card-image">
-                                <div class="product-card-content">
-                                    <h3>Minimalist Pendant Lamp</h3>
-                                    <p>$180.00</p>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Product Card 5 -->
-                        <div class="product-card">
-                            <a href="product-detail.html">
-                                <img src="assets/images/product-5.jpg" alt="Soft Beige Throw Pillow" class="product-card-image">
-                                <div class="product-card-content">
-                                    <h3>Soft Beige Throw Pillow</h3>
-                                    <p>$45.00</p>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Product Card 6 -->
-                        <div class="product-card">
-                            <a href="product-detail.html">
-                                <img src="assets/images/product-6.jpg" alt="Walnut Wood Bookshelf" class="product-card-image">
-                                <div class="product-card-content">
-                                    <h3>Walnut Wood Bookshelf</h3>
-                                    <p>$720.00</p>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Product Card 7 -->
-                        <div class="product-card">
-                            <a href="product-detail.html">
-                                <img src="assets/images/product-7.jpg" alt="Abstract Canvas Art" class="product-card-image">
-                                <div class="product-card-content">
-                                    <h3>Abstract Canvas Art</h3>
-                                    <p>$150.00</p>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Product Card 8 -->
-                        <div class="product-card">
-                            <a href="product-detail.html">
-                                <img src="assets/images/product-8.jpg" alt="Marble Top Side Table" class="product-card-image">
-                                <div class="product-card-content">
-                                    <h3>Marble Top Side Table</h3>
-                                    <p>$290.00</p>
-                                </div>
-                            </a>
-                        </div>
-                         <!-- Product Card 9 -->
-                        <div class="product-card">
-                            <a href="product-detail.html">
-                                <img src="assets/images/product-9.jpg" alt="Woven Jute Area Rug" class="product-card-image">
-                                <div class="product-card-content">
-                                    <h3>Woven Jute Area Rug</h3>
-                                    <p>$220.00</p>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Product Card 10 -->
-                        <div class="product-card">
-                            <a href="product-detail.html">
-                                <img src="assets/images/product-10.jpg" alt="Scandinavian Dining Chair" class="product-card-image">
-                                <div class="product-card-content">
-                                    <h3>Scandinavian Dining Chair</h3>
-                                    <p>$199.00</p>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Product Card 11 -->
-                        <div class="product-card">
-                            <a href="product-detail.html">
-                                <img src="assets/images/product-11.jpg" alt="Ceramic Planter Set" class="product-card-image">
-                                <div class="product-card-content">
-                                    <h3>Ceramic Planter Set</h3>
-                                    <p>$75.00</p>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Product Card 12 -->
-                        <div class="product-card">
-                            <a href="product-detail.html">
-                                <img src="assets/images/product-12.jpg" alt="Minimalist Bedside Lamp" class="product-card-image">
-                                <div class="product-card-content">
-                                    <h3>Minimalist Bedside Lamp</h3>
-                                    <p>$110.00</p>
-                                </div>
-                            </a>
-                        </div>
+                    <div class="product-card">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-5.jpg" alt="Modern Wall Clock">
+                            <h3>Modern Wall Clock</h3>
+                            <span class="price">$95.00</span>
+                        </a>
+                        <a href="product-detail.html" class="button">View Details</a>
                     </div>
-
-                    <div class="pagination">
-                        <a href="#" aria-label="Previous Page">&laquo;</a>
-                        <a href="#" class="current" aria-current="page">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <span>...</span>
-                        <a href="#">6</a>
-                        <a href="#" aria-label="Next Page">&raquo;</a>
+                    <div class="product-card">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-6.jpg" alt="Velvet Cushion Set">
+                            <h3>Velvet Cushion Set</h3>
+                            <span class="price">$110.00</span>
+                        </a>
+                        <a href="product-detail.html" class="button">View Details</a>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-7.jpg" alt="Minimalist Dining Chair">
+                            <h3>Minimalist Dining Chair</h3>
+                            <span class="price">$320.00</span>
+                        </a>
+                        <a href="product-detail.html" class="button">View Details</a>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-detail.html">
+                            <img src="assets/images/product-8.jpg" alt="Terracotta Planter">
+                            <h3>Terracotta Planter</h3>
+                            <span class="price">$65.00</span>
+                        </a>
+                        <a href="product-detail.html" class="button">View Details</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h3>Minimalist Home</h3>
-                    <p>Designed for tranquil living.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook">FB</a>
-                        <a href="#" aria-label="Instagram">IG</a>
-                        <a href="#" aria-label="Pinterest">PT</a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Shop</h3>
-                    <ul>
-                        <li><a href="product-listing.html?category=living-room">Living Room</a></li>
-                        <li><a href="product-listing.html?category=dining-room">Dining Room</a></li>
-                        <li><a href="product-listing.html?category=bedroom">Bedroom</a></li>
-                        <li><a href="product-listing.html?category=decor">Decor & Accents</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Information</h3>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Shipping & Returns</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Customer Service</h3>
-                    <p>Email: info@minimalisthome.com</p>
-                    <p>Phone: +1 (555) 123-4567</p>
-                    <p>Mon-Fri: 9am - 5pm EST</p>
-                </div>
+            <div class="footer-column">
+                <h4>Elegance Home</h4>
+                <p>Curating beauty for your everyday living.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Minimalist Home. All rights reserved.</p>
+            <div class="footer-column">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="product-listing.html">All Products</a></li>
+                    <li><a href="product-listing.html">Living Room</a></li>
+                    <li><a href="product-listing.html">Dining Room</a></li>
+                    <li><a href="product-listing.html">Bedroom</a></li>
+                </ul>
             </div>
+            <div class="footer-column">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2023 Elegance Home. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navToggle = document.querySelector('.nav-toggle-icon');
-            const navMenu = document.querySelector('.nav-menu');
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mainNav = document.getElementById('main-nav');
 
-            navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                if (navMenu.classList.contains('active')) {
-                    navToggle.innerHTML = '<span class="icon-close"></span>';
-                    navToggle.setAttribute('aria-expanded', 'true');
-                } else {
-                    navToggle.innerHTML = '<span class="icon-hamburger"></span>';
-                    navToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function() {
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+                    this.setAttribute('aria-expanded', !isExpanded);
+                    mainNav.classList.toggle('active');
+                });
+            }
         });
     </script>
 </body>
 </html>
+```
