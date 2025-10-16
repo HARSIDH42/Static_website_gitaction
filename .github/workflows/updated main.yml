@@ -47,7 +47,8 @@ jobs:
           -Goal: Create a minimalist, aesthetically pleasing e-commerce site for high-end home goods.
            - Aesthetic: Minimalist and soft, using ample negative space, muted/earthy colors, and clean sans-serif typography.
             - Mandatory Constraint: ABSOLUTELY MUST use only the images and assets present in the assets/images/ directory in the repository.
-             - Pages: Include required layouts for Homepage, Product Listing Page (PLP), and Product Detail Page (PDP).
+             - Pages: Include required layouts for Homepage, Product Listing Page (PLP), and Product Detail Page (PDP) and change the name 
+as kumar page 
             - Dont include images there should be no use of images and fill the about section.
           Return each file as:
           ---filename.ext---
