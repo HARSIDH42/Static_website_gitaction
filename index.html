@@ -3,238 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page - Curated Living</title>
-    <!-- Tailwind CSS CDN -->
+    <title>page | Curated Living</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom Tailwind Configuration */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+
         :root {
-            --color-page-light: #F5F5F0;
-            --color-page-accent: #D6CFC7;
-            --color-page-dark: #4A4540;
+            --bg: #FAF9F7;
+            --surface: #E6E1DB;
+            --accent: #C2B8AE;
+            --text: #3F3A36;
         }
 
         body {
-            /* Using System UI as per instruction (Inter or System UI) */
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-            background-color: var(--color-page-light);
-            color: var(--color-page-dark);
-            line-height: 1.6;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Custom utility classes using CSS variables */
-        .text-page-dark { color: var(--color-page-dark); }
-        .bg-page-light { background-color: var(--color-page-light); }
-        .bg-page-accent { background-color: var(--color-page-accent); }
-        .border-page-accent { border-color: var(--color-page-accent); }
+        .section-padding {
+            padding: 120px 5%;
+        }
 
-        /* Style for placeholder images (div with border and background color) */
-        .placeholder-image {
-            background-color: var(--color-page-accent); /* Default background if image fails to load */
-            border: 1px solid var(--color-page-dark);
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 20px;
+            }
+        }
+
+        .border-subtle {
+            border-color: var(--accent);
+        }
+
+        .placeholder-img {
+            background-color: var(--surface);
+            aspect-ratio: 4/5;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--color-page-dark);
-            font-size: 0.875rem; /* text-sm */
-            text-align: center;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            border: 1px solid transparent;
         }
+
+        .product-card:hover .placeholder-img {
+            border-color: var(--accent);
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background-color: var(--text);
+            color: var(--bg);
+            padding: 16px 32px;
+            transition: opacity 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.85;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        nav a {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hide sections to simulate different "pages" in a single file if needed, 
+           but here we will present them as a continuous editorial flow for the preview. */
+        .page-hidden { display: none; }
     </style>
 </head>
-<body class="bg-page-light text-page-dark">
-    <!-- Navigation -->
-    <header class="py-6 px-20 flex justify-between items-center border-b border-page-accent sticky top-0 bg-page-light z-10">
-        <div class="text-2xl font-light tracking-wide">
-            <a href="#homepage" class="hover:text-page-accent transition-colors duration-200">page</a>
+<body>
+
+    <!-- Navigation page element -->
+    <nav class="fixed top-0 w-full z-50 mix-blend-multiply bg-[#FAF9F7]/80 backdrop-blur-sm border-b border-[#C2B8AE]/20">
+        <div class="max-w-7xl mx-auto px-6 py-8 flex justify-between items-baseline">
+            <div class="flex-1">
+                <a href="#home" class="font-medium text-xl tracking-tighter">page</a>
+            </div>
+            <div class="flex gap-12 flex-1 justify-center">
+                <a href="#home">home page</a>
+                <a href="#shop">shop page</a>
+                <a href="#about">about page</a>
+            </div>
+            <div class="flex-1 text-right">
+                <a href="#cart">bag (0)</a>
+            </div>
         </div>
-        <nav>
-            <ul class="flex space-x-8">
-                <li><a href="#homepage" class="hover:text-page-accent text-lg transition-colors duration-200">Home</a></li>
-                <li><a href="#plp-page" class="hover:text-page-accent text-lg transition-colors duration-200">Shop</a></li>
-                <li><a href="#about-page" class="hover:text-page-accent text-lg transition-colors duration-200">About page</a></li>
-                <li><a href="#" class="hover:text-page-accent text-lg transition-colors duration-200">Contact</a></li>
-                <li><a href="#" class="hover:text-page-accent text-lg transition-colors duration-200">Bag (0)</a></li>
-            </ul>
-        </nav>
-    </header>
+    </nav>
 
-    <main>
-        <!-- Homepage Section - Hero -->
-        <section id="homepage" class="min-h-screen flex flex-col items-center justify-center py-20 px-20 text-center">
-            <div class="hero-image w-full h-[600px] mb-16 rounded-lg overflow-hidden placeholder-image" style="background-image: url('assets/images/hero.jpg');">
-                <span class="text-4xl text-page-dark font-light hidden">Hero Image Placeholder</span>
-            </div>
-            <h1 class="text-7xl font-light tracking-tight mb-8">Curated Living</h1>
-            <p class="text-2xl max-w-3xl leading-relaxed">
-                Discover thoughtful designs and timeless pieces that elevate your home. At page, we believe in the beauty of simplicity and the quiet elegance of truly well-made objects.
+    <!-- 1. Home page Section -->
+    <section id="home" class="min-h-screen flex flex-col justify-center section-padding pt-32">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+            <span class="uppercase tracking-widest text-xs mb-6 block opacity-60">est. 2024</span>
+            <h1 class="text-6xl md:text-8xl font-light tracking-tight mb-12">Curated Living</h1>
+            <p class="text-xl md:text-2xl leading-relaxed font-light opacity-80 max-w-2xl mx-auto">
+                We believe in the beauty of the everyday. page is a quiet celebration of intentional design, 
+                brought to life through a refined collection of objects for the home.
             </p>
-            <a href="#plp-page" class="mt-12 px-10 py-4 border border-page-dark text-page-dark hover:bg-page-accent hover:border-page-accent transition-colors duration-300 text-xl tracking-wide">
-                Explore Our Collections
-            </a>
-        </section>
-
-        <!-- Homepage Section - Featured Collection Grid -->
-        <section class="py-20 px-20">
-            <h2 class="text-5xl font-light text-center mb-16">Discover Our Collection</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 max-w-7xl mx-auto">
-                <!-- Product Card 1 -->
-                <a href="#pdp-page" class="group block">
-                    <div class="w-full h-96 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-1.jpg');">
-                         <span class="hidden">Ceramic Vase Placeholder</span>
-                    </div>
-                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Ceramic Vase</h3>
-                    <p class="text-xl">$120.00</p>
-                </a>
-                <!-- Product Card 2 -->
-                <a href="#pdp-page" class="group block">
-                    <div class="w-full h-96 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-2.jpg');">
-                         <span class="hidden">Minimalist Chair Placeholder</span>
-                    </div>
-                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Minimalist Chair</h3>
-                    <p class="text-xl">$450.00</p>
-                </a>
-                <!-- Product Card 3 -->
-                <a href="#pdp-page" class="group block">
-                    <div class="w-full h-96 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-3.jpg');">
-                        <span class="hidden">Table Lamp Placeholder</span>
-                    </div>
-                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Table Lamp</h3>
-                    <p class="text-xl">$280.00</p>
-                </a>
+            <div class="mt-16">
+                <a href="#shop" class="border-b border-[#3F3A36] pb-2 hover:opacity-50 transition-opacity">Explore shop page</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- PLP (Product Listing Page) -->
-        <section id="plp-page" class="py-20 px-20">
-            <h2 class="text-5xl font-light text-center mb-16">Shop Our Offerings</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20 max-w-7xl mx-auto">
-                <!-- Product 1 -->
-                <a href="#pdp-page" class="group block">
-                    <div class="w-full h-80 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-a.jpg');">
-                        <span class="hidden">Marble Bookends Placeholder</span>
-                    </div>
-                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Marble Bookends</h3>
-                    <p class="text-xl">$95.00</p>
-                </a>
-                <!-- Product 2 -->
-                <a href="#pdp-page" class="group block">
-                    <div class="w-full h-80 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-b.jpg');">
-                        <span class="hidden">Ceramic Candle Holder Placeholder</span>
-                    </div>
-                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Ceramic Candle Holder</h3>
-                    <p class="text-xl">$60.00</p>
-                </a>
-                <!-- Product 3 -->
-                <a href="#pdp-page" class="group block">
-                    <div class="w-full h-80 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-c.jpg');">
-                        <span class="hidden">Wooden Serving Tray Placeholder</span>
-                    </div>
-                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Wooden Serving Tray</h3>
-                    <p class="text-xl">$110.00</p>
-                </a>
-                <!-- Product 4 -->
-                <a href="#pdp-page" class="group block">
-                    <div class="w-full h-80 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-d.jpg');">
-                        <span class="hidden">Terracotta Planter Placeholder</span>
-                    </div>
-                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Terracotta Planter</h3>
-                    <p class="text-xl">$75.00</p>
-                </a>
-                <!-- Product 5 -->
-                <a href="#pdp-page" class="group block">
-                    <div class="w-full h-80 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-e.jpg');">
-                        <span class="hidden">Stone Coasters Placeholder</span>
-                    </div>
-                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Stone Coasters (Set of 4)</h3>
-                    <p class="text-xl">$45.00</p>
-                </a>
-                <!-- Product 6 -->
-                <a href="#pdp-page" class="group block">
-                    <div class="w-full h-80 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-f.jpg');">
-                        <span class="hidden">Frameless Wall Mirror Placeholder</span>
-                    </div>
-                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Frameless Wall Mirror</h3>
-                    <p class="text-xl">$290.00</p>
-                </a>
+    <!-- Featured Grid (Part of Home page) -->
+    <section class="section-padding bg-[#E6E1DB]/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-16">
+                <h2 class="text-3xl font-light">Featured page collection</h2>
+                <a href="#shop" class="text-sm uppercase tracking-widest">view all</a>
             </div>
-        </section>
-
-        <!-- PDP (Product Detail Page) -->
-        <section id="pdp-page" class="py-20 px-20 min-h-screen">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
-                <!-- Product Image -->
-                <div class="w-full h-[600px] placeholder-image rounded-lg" style="background-image: url('assets/images/pdp-main.jpg');">
-                    <span class="hidden">Product Main Image Placeholder</span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Product Card -->
+                <div class="product-card cursor-pointer group">
+                    <div class="placeholder-img mb-6">
+                        <img src="assets/images/product-01.jpg" alt="Minimalist Object" class="hidden">
+                        <span class="text-[var(--accent)] text-xs uppercase tracking-widest">Object 01</span>
+                    </div>
+                    <h3 class="text-sm font-normal mb-1">The Ceramic Vessel</h3>
+                    <p class="text-sm opacity-60">$140.00</p>
                 </div>
-                <!-- Product Details -->
-                <div>
-                    <h1 class="text-6xl font-light mb-6 leading-tight">Sculptural Stone Side Table</h1>
-                    <p class="text-4xl mb-10">$850.00</p>
+                <!-- Product Card -->
+                <div class="product-card cursor-pointer group">
+                    <div class="placeholder-img mb-6">
+                        <img src="assets/images/product-02.jpg" alt="Minimalist Object" class="hidden">
+                        <span class="text-[var(--accent)] text-xs uppercase tracking-widest">Object 02</span>
+                    </div>
+                    <h3 class="text-sm font-normal mb-1">Raw Linen Throw</h3>
+                    <p class="text-sm opacity-60">$210.00</p>
+                </div>
+                <!-- Product Card -->
+                <div class="product-card cursor-pointer group">
+                    <div class="placeholder-img mb-6">
+                        <img src="assets/images/product-03.jpg" alt="Minimalist Object" class="hidden">
+                        <span class="text-[var(--accent)] text-xs uppercase tracking-widest">Object 03</span>
+                    </div>
+                    <h3 class="text-sm font-normal mb-1">Sculptural Tallow Candle</h3>
+                    <p class="text-sm opacity-60">$65.00</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <p class="text-xl leading-relaxed mb-8 max-w-lg">
-                        A testament to quiet strength, this side table is carved from a single block of natural stone,
-                        offering a tactile experience and a grounding presence in any room.
+    <!-- 2. Product Listing Page (PLP) Section -->
+    <section id="shop" class="section-padding">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20">
+                <h2 class="text-sm uppercase tracking-widest mb-4 opacity-60">Collection page</h2>
+                <h3 class="text-4xl font-light">Objects for the tactile home</h3>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
+                <!-- Repeat products for PLP -->
+                <div class="product-card group">
+                    <div class="placeholder-img mb-4">
+                        <span class="text-[var(--accent)] text-[10px] uppercase tracking-widest">Item 01</span>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xs uppercase font-medium">Stone Carafe</h3>
+                        <p class="text-xs">$85</p>
+                    </div>
+                </div>
+                <div class="product-card group">
+                    <div class="placeholder-img mb-4">
+                        <span class="text-[var(--accent)] text-[10px] uppercase tracking-widest">Item 02</span>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xs uppercase font-medium">Oak Tray</h3>
+                        <p class="text-xs">$120</p>
+                    </div>
+                </div>
+                <div class="product-card group">
+                    <div class="placeholder-img mb-4">
+                        <span class="text-[var(--accent)] text-[10px] uppercase tracking-widest">Item 03</span>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xs uppercase font-medium">Woven Basket</h3>
+                        <p class="text-xs">$95</p>
+                    </div>
+                </div>
+                <div class="product-card group">
+                    <div class="placeholder-img mb-4">
+                        <span class="text-[var(--accent)] text-[10px] uppercase tracking-widest">Item 04</span>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xs uppercase font-medium">Brass Spoon</h3>
+                        <p class="text-xs">$45</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Product Detail Page (PDP) Section -->
+    <section id="product-detail" class="section-padding bg-white/30 border-y border-subtle/20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
+            <!-- Product Images -->
+            <div class="space-y-4">
+                <div class="placeholder-img w-full bg-[#F2EFED]">
+                    <span class="text-[var(--accent)] text-xs uppercase">Primary Image page</span>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="placeholder-img bg-[#F2EFED] aspect-square"></div>
+                    <div class="placeholder-img bg-[#F2EFED] aspect-square"></div>
+                </div>
+            </div>
+            <!-- Product Info -->
+            <div class="md:sticky md:top-40">
+                <nav class="flex gap-2 text-[10px] uppercase tracking-widest opacity-40 mb-8">
+                    <span>shop page</span> / <span>ceramics</span> / <span>current page</span>
+                </nav>
+                <h1 class="text-5xl font-light mb-4">The Essential Vase</h1>
+                <p class="text-2xl font-light mb-10 opacity-60">$180.00</p>
+                
+                <div class="space-y-6 text-base leading-relaxed opacity-80 mb-12 max-w-md">
+                    <p>
+                        A study in form and texture. Hand-thrown in our small-batch studio, the Essential Vase features a matte, sand-swept finish that brings a tactile warmth to any surface.
                     </p>
+                    <p>
+                        Each piece is uniquely slightly different, celebrating the organic variations of the earth from which it came.
+                    </p>
+                </div>
 
-                    <div class="mb-10 text-lg leading-relaxed max-w-lg">
-                        <p class="mb-4">
-                            Each table is unique, showcasing the inherent variations and subtle beauty of its material.
-                            Perfect for holding your morning coffee or a beloved book, it invites moments of serene contemplation.
-                        </p>
-                        <ul class="list-disc pl-6 space-y-2">
-                            <li>Material: Solid Travertine Stone</li>
-                            <li>Dimensions: 18"H x 16"D</li>
-                            <li>Finish: Natural, matte</li>
-                            <li>Care: Wipe clean with a damp cloth</li>
-                        </ul>
-                    </div>
-
-                    <button class="px-12 py-5 border border-page-dark text-page-dark hover:bg-page-accent hover:border-page-accent transition-colors duration-300 text-xl tracking-wide">
-                        Add to Bag
+                <div class="border-t border-subtle/30 pt-10">
+                    <button class="btn-primary w-full md:w-auto px-16">
+                        Add to Bag page
                     </button>
+                    <p class="mt-6 text-[10px] uppercase tracking-widest opacity-40 text-center md:text-left">
+                        Free shipping on orders over $200
+                    </p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- About Section -->
-        <section id="about-page" class="py-20 px-20 max-w-4xl mx-auto text-center">
-            <h2 class="text-5xl font-light mb-16">About page</h2>
-            <div class="space-y-10 text-xl leading-relaxed">
-                <p>
-                    At page, we believe that true luxury lies in simplicity, quality, and the story behind each object.
-                    Our mission is to curate a collection of home goods that transcend fleeting trends,
-                    offering pieces that are not only beautiful but also built to last. We celebrate the quiet
-                    elegance of thoughtful design, where every curve, texture, and material speaks volumes
-                    without needing to shout.
-                </p>
-                <p>
-                    Craftsmanship is at the heart of everything we offer. We partner with artisans and designers
-                    who share our commitment to detail, using sustainable practices and natural materials whenever possible.
-                    From hand-thrown ceramics to responsibly sourced timber, each item in our collection is a testament
-                    to skilled hands and an unwavering dedication to excellence. We aim for products that bring
-                    joy not just for a season, but for a lifetime, enriching your home with their enduring presence.
-                </p>
-                <p>
-                    page champions the 'quiet home' movement – an approach to living that prioritizes tranquility,
-                    intentionality, and a deep connection to one's surroundings. We envision homes as sanctuaries,
-                    filled with objects that inspire calm and foster well-being. By focusing on essentials that
-                    are both functional and aesthetically pleasing, we help you create spaces that reflect your
-                    personal story and offer a respite from the clamor of the outside world.
-                </p>
+    <!-- 4. About Page Section -->
+    <section id="about" class="section-padding">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-xs uppercase tracking-[0.2em] mb-12 opacity-50 text-center">the about page</h2>
+            
+            <div class="space-y-16">
+                <div class="fade-in">
+                    <h3 class="text-2xl mb-4 font-normal">Our Craft</h3>
+                    <p class="text-lg leading-relaxed opacity-70">
+                        At page, we believe that the objects we surround ourselves with should be chosen with intention. Our process is defined by rigorous craftsmanship and an unwavering attention to detail. We collaborate with independent artisans who share our dedication to thoughtful design, ensuring that every curve, texture, and finish serves a purpose in your daily ritual.
+                    </p>
+                </div>
+
+                <div class="fade-in" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl mb-4 font-normal">Our Responsibility</h3>
+                    <p class="text-lg leading-relaxed opacity-70">
+                        Sustainability is not a feature at page; it is our foundation. We prioritize responsible sourcing and low-impact production methods that respect the environment. By focusing on longevity and timeless aesthetics over fleeting trends, we create pieces designed to last generations, reducing waste and encouraging a more conscious way of consuming.
+                    </p>
+                </div>
+
+                <div class="fade-in" style="animation-delay: 0.4s;">
+                    <h3 class="text-2xl mb-4 font-normal">Our Philosophy</h3>
+                    <p class="text-lg leading-relaxed opacity-70">
+                        Inspired by the “quiet home” movement, page is an exploration of intentional living. We strive to create a sanctuary from the noise of the modern world. Our collection is curated to foster a sense of calm and clarity, transforming the domestic space into a place of reflection and genuine human connection.
+                    </p>
+                </div>
             </div>
-        </section>
-    </main>
+
+            <div class="mt-24 border-t border-subtle/30 pt-12 flex justify-between items-center">
+                <span class="text-xl tracking-tighter">page</span>
+                <div class="flex gap-8">
+                    <a href="#" class="text-[10px] uppercase tracking-widest opacity-60">Instagram</a>
+                    <a href="#" class="text-[10px] uppercase tracking-widest opacity-60">Journal</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="py-10 px-20 text-center border-t border-page-accent mt-20 text-lg">
-        <p>&copy; 2023 page. All rights reserved.</p>
-        <div class="mt-4 flex justify-center space-x-6">
-            <a href="#" class="hover:text-page-accent transition-colors duration-200">Privacy Policy</a>
-            <a href="#" class="hover:text-page-accent transition-colors duration-200">Terms of Service</a>
+    <footer class="bg-[#E6E1DB] py-20 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+            <div>
+                <h4 class="text-xs uppercase tracking-widest mb-6 opacity-40">Navigation page</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#home">Home page</a></li>
+                    <li><a href="#shop">Shop page</a></li>
+                    <li><a href="#about">About page</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs uppercase tracking-widest mb-6 opacity-40">Support</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#">Shipping page</a></li>
+                    <li><a href="#">Returns page</a></li>
+                    <li><a href="#">Contact page</a></li>
+                </ul>
+            </div>
+            <div class="max-w-xs">
+                <h4 class="text-xs uppercase tracking-widest mb-6 opacity-40">Newsletter</h4>
+                <div class="flex border-b border-[#3F3A36]/30 pb-2">
+                    <input type="email" placeholder="Email address" class="bg-transparent text-sm w-full outline-none">
+                    <button class="text-[10px] uppercase font-medium">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-[#3F3A36]/10 flex justify-between text-[10px] uppercase tracking-widest opacity-40">
+            <p>&copy; 2024 page home goods.</p>
+            <p>All rights reserved.</p>
         </div>
     </footer>
+
 </body>
 </html>
