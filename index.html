@@ -3,73 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kumar page - Home</title>
-    <link rel="stylesheet" href="style.css">
+    <title>page - Curated Living</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Tailwind Configuration */
+        :root {
+            --color-page-light: #F5F5F0;
+            --color-page-accent: #D6CFC7;
+            --color-page-dark: #4A4540;
+        }
+
+        body {
+            /* Using System UI as per instruction (Inter or System UI) */
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            background-color: var(--color-page-light);
+            color: var(--color-page-dark);
+            line-height: 1.6;
+        }
+
+        /* Custom utility classes using CSS variables */
+        .text-page-dark { color: var(--color-page-dark); }
+        .bg-page-light { background-color: var(--color-page-light); }
+        .bg-page-accent { background-color: var(--color-page-accent); }
+        .border-page-accent { border-color: var(--color-page-accent); }
+
+        /* Style for placeholder images (div with border and background color) */
+        .placeholder-image {
+            background-color: var(--color-page-accent); /* Default background if image fails to load */
+            border: 1px solid var(--color-page-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-page-dark);
+            font-size: 0.875rem; /* text-sm */
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
-<body>
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="site-title">kumar page</a>
-            <nav>
-                <ul class="nav-list">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Shop</a></li>
-                    <li><a href="#about-us">About</a></li>
-                </ul>
-            </nav>
+<body class="bg-page-light text-page-dark">
+    <!-- Navigation -->
+    <header class="py-6 px-20 flex justify-between items-center border-b border-page-accent sticky top-0 bg-page-light z-10">
+        <div class="text-2xl font-light tracking-wide">
+            <a href="#homepage" class="hover:text-page-accent transition-colors duration-200">page</a>
         </div>
+        <nav>
+            <ul class="flex space-x-8">
+                <li><a href="#homepage" class="hover:text-page-accent text-lg transition-colors duration-200">Home</a></li>
+                <li><a href="#plp-page" class="hover:text-page-accent text-lg transition-colors duration-200">Shop</a></li>
+                <li><a href="#about-page" class="hover:text-page-accent text-lg transition-colors duration-200">About page</a></li>
+                <li><a href="#" class="hover:text-page-accent text-lg transition-colors duration-200">Contact</a></li>
+                <li><a href="#" class="hover:text-page-accent text-lg transition-colors duration-200">Bag (0)</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
-        <section class="hero">
-            <div class="container">
-                <h1>Timeless Living, Thoughtfully Curated</h1>
-                <p>Discover high-end home goods that blend minimalist design with exceptional craftsmanship, designed to elevate your everyday.</p>
-                <a href="products.html" class="button">Shop Our Collection</a>
+        <!-- Homepage Section - Hero -->
+        <section id="homepage" class="min-h-screen flex flex-col items-center justify-center py-20 px-20 text-center">
+            <div class="hero-image w-full h-[600px] mb-16 rounded-lg overflow-hidden placeholder-image" style="background-image: url('assets/images/hero.jpg');">
+                <span class="text-4xl text-page-dark font-light hidden">Hero Image Placeholder</span>
+            </div>
+            <h1 class="text-7xl font-light tracking-tight mb-8">Curated Living</h1>
+            <p class="text-2xl max-w-3xl leading-relaxed">
+                Discover thoughtful designs and timeless pieces that elevate your home. At page, we believe in the beauty of simplicity and the quiet elegance of truly well-made objects.
+            </p>
+            <a href="#plp-page" class="mt-12 px-10 py-4 border border-page-dark text-page-dark hover:bg-page-accent hover:border-page-accent transition-colors duration-300 text-xl tracking-wide">
+                Explore Our Collections
+            </a>
+        </section>
+
+        <!-- Homepage Section - Featured Collection Grid -->
+        <section class="py-20 px-20">
+            <h2 class="text-5xl font-light text-center mb-16">Discover Our Collection</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 max-w-7xl mx-auto">
+                <!-- Product Card 1 -->
+                <a href="#pdp-page" class="group block">
+                    <div class="w-full h-96 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-1.jpg');">
+                         <span class="hidden">Ceramic Vase Placeholder</span>
+                    </div>
+                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Ceramic Vase</h3>
+                    <p class="text-xl">$120.00</p>
+                </a>
+                <!-- Product Card 2 -->
+                <a href="#pdp-page" class="group block">
+                    <div class="w-full h-96 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-2.jpg');">
+                         <span class="hidden">Minimalist Chair Placeholder</span>
+                    </div>
+                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Minimalist Chair</h3>
+                    <p class="text-xl">$450.00</p>
+                </a>
+                <!-- Product Card 3 -->
+                <a href="#pdp-page" class="group block">
+                    <div class="w-full h-96 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-3.jpg');">
+                        <span class="hidden">Table Lamp Placeholder</span>
+                    </div>
+                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Table Lamp</h3>
+                    <p class="text-xl">$280.00</p>
+                </a>
             </div>
         </section>
 
-        <section class="featured-products">
-            <div class="container">
-                <h2 class="section-title">Featured Selections</h2>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <!-- IMPORTANT: Replace 'assets/images/product_ceramic_vase.jpg' with an actual image from your assets/images/ directory -->
-                        <img src="assets/images/product_ceramic_vase.jpg" alt="Minimalist Ceramic Vase">
-                        <h3>Ceramic Artisan Vase</h3>
-                        <p>$120.00</p>
-                        <a href="product-detail.html?id=vase" class="button">View Product</a>
+        <!-- PLP (Product Listing Page) -->
+        <section id="plp-page" class="py-20 px-20">
+            <h2 class="text-5xl font-light text-center mb-16">Shop Our Offerings</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20 max-w-7xl mx-auto">
+                <!-- Product 1 -->
+                <a href="#pdp-page" class="group block">
+                    <div class="w-full h-80 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-a.jpg');">
+                        <span class="hidden">Marble Bookends Placeholder</span>
                     </div>
-                    <div class="product-card">
-                        <!-- IMPORTANT: Replace 'assets/images/product_wooden_bowl.jpg' with an actual image from your assets/images/ directory -->
-                        <img src="assets/images/product_wooden_bowl.jpg" alt="Hand-Carved Wooden Bowl">
-                        <h3>Hand-Carved Wooden Bowl</h3>
-                        <p>$95.00</p>
-                        <a href="product-detail.html?id=bowl" class="button">View Product</a>
+                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Marble Bookends</h3>
+                    <p class="text-xl">$95.00</p>
+                </a>
+                <!-- Product 2 -->
+                <a href="#pdp-page" class="group block">
+                    <div class="w-full h-80 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-b.jpg');">
+                        <span class="hidden">Ceramic Candle Holder Placeholder</span>
                     </div>
-                    <div class="product-card">
-                        <!-- IMPORTANT: Replace 'assets/images/product_linen_throw.jpg' with an actual image from your assets/images/ directory -->
-                        <img src="assets/images/product_linen_throw.jpg" alt="Organic Linen Throw">
-                        <h3>Organic Linen Throw</h3>
-                        <p>$180.00</p>
-                        <a href="product-detail.html?id=throw" class="button">View Product</a>
+                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Ceramic Candle Holder</h3>
+                    <p class="text-xl">$60.00</p>
+                </a>
+                <!-- Product 3 -->
+                <a href="#pdp-page" class="group block">
+                    <div class="w-full h-80 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-c.jpg');">
+                        <span class="hidden">Wooden Serving Tray Placeholder</span>
                     </div>
+                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Wooden Serving Tray</h3>
+                    <p class="text-xl">$110.00</p>
+                </a>
+                <!-- Product 4 -->
+                <a href="#pdp-page" class="group block">
+                    <div class="w-full h-80 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-d.jpg');">
+                        <span class="hidden">Terracotta Planter Placeholder</span>
+                    </div>
+                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Terracotta Planter</h3>
+                    <p class="text-xl">$75.00</p>
+                </a>
+                <!-- Product 5 -->
+                <a href="#pdp-page" class="group block">
+                    <div class="w-full h-80 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-e.jpg');">
+                        <span class="hidden">Stone Coasters Placeholder</span>
+                    </div>
+                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Stone Coasters (Set of 4)</h3>
+                    <p class="text-xl">$45.00</p>
+                </a>
+                <!-- Product 6 -->
+                <a href="#pdp-page" class="group block">
+                    <div class="w-full h-80 placeholder-image mb-4 transition-transform duration-300 group-hover:scale-[1.02] rounded-lg" style="background-image: url('assets/images/product-f.jpg');">
+                        <span class="hidden">Frameless Wall Mirror Placeholder</span>
+                    </div>
+                    <h3 class="text-2xl font-light mt-4 mb-2 group-hover:underline">Frameless Wall Mirror</h3>
+                    <p class="text-xl">$290.00</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- PDP (Product Detail Page) -->
+        <section id="pdp-page" class="py-20 px-20 min-h-screen">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
+                <!-- Product Image -->
+                <div class="w-full h-[600px] placeholder-image rounded-lg" style="background-image: url('assets/images/pdp-main.jpg');">
+                    <span class="hidden">Product Main Image Placeholder</span>
+                </div>
+                <!-- Product Details -->
+                <div>
+                    <h1 class="text-6xl font-light mb-6 leading-tight">Sculptural Stone Side Table</h1>
+                    <p class="text-4xl mb-10">$850.00</p>
+
+                    <p class="text-xl leading-relaxed mb-8 max-w-lg">
+                        A testament to quiet strength, this side table is carved from a single block of natural stone,
+                        offering a tactile experience and a grounding presence in any room.
+                    </p>
+
+                    <div class="mb-10 text-lg leading-relaxed max-w-lg">
+                        <p class="mb-4">
+                            Each table is unique, showcasing the inherent variations and subtle beauty of its material.
+                            Perfect for holding your morning coffee or a beloved book, it invites moments of serene contemplation.
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li>Material: Solid Travertine Stone</li>
+                            <li>Dimensions: 18"H x 16"D</li>
+                            <li>Finish: Natural, matte</li>
+                            <li>Care: Wipe clean with a damp cloth</li>
+                        </ul>
+                    </div>
+
+                    <button class="px-12 py-5 border border-page-dark text-page-dark hover:bg-page-accent hover:border-page-accent transition-colors duration-300 text-xl tracking-wide">
+                        Add to Bag
+                    </button>
                 </div>
             </div>
         </section>
 
-        <section id="about-us" class="about-section">
-            <div class="container">
-                <h2 class="section-title">Our Philosophy</h2>
-                <p>At kumar page, we believe your home should be a sanctuary—a reflection of tranquility and discerning taste. We meticulously source and craft high-end home goods that celebrate understated elegance, natural materials, and enduring design. Each piece in our collection is chosen for its ability to bring beauty, function, and a sense of calm to your living space. We champion sustainable practices, artisanal craftsmanship, and a commitment to quality that transcends trends, ensuring that every item you bring into your home is not just an object, but an investment in timeless living.</p>
-                <p>From the tactile warmth of natural wood to the serene lines of minimalist ceramics, our curated selection is designed to enrich your environment and inspire moments of quiet appreciation. Discover the difference that thoughtful design and genuine craftsmanship can make.</p>
+        <!-- About Section -->
+        <section id="about-page" class="py-20 px-20 max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-light mb-16">About page</h2>
+            <div class="space-y-10 text-xl leading-relaxed">
+                <p>
+                    At page, we believe that true luxury lies in simplicity, quality, and the story behind each object.
+                    Our mission is to curate a collection of home goods that transcend fleeting trends,
+                    offering pieces that are not only beautiful but also built to last. We celebrate the quiet
+                    elegance of thoughtful design, where every curve, texture, and material speaks volumes
+                    without needing to shout.
+                </p>
+                <p>
+                    Craftsmanship is at the heart of everything we offer. We partner with artisans and designers
+                    who share our commitment to detail, using sustainable practices and natural materials whenever possible.
+                    From hand-thrown ceramics to responsibly sourced timber, each item in our collection is a testament
+                    to skilled hands and an unwavering dedication to excellence. We aim for products that bring
+                    joy not just for a season, but for a lifetime, enriching your home with their enduring presence.
+                </p>
+                <p>
+                    page champions the 'quiet home' movement – an approach to living that prioritizes tranquility,
+                    intentionality, and a deep connection to one's surroundings. We envision homes as sanctuaries,
+                    filled with objects that inspire calm and foster well-being. By focusing on essentials that
+                    are both functional and aesthetically pleasing, we help you create spaces that reflect your
+                    personal story and offer a respite from the clamor of the outside world.
+                </p>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2023 kumar page. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="py-10 px-20 text-center border-t border-page-accent mt-20 text-lg">
+        <p>&copy; 2023 page. All rights reserved.</p>
+        <div class="mt-4 flex justify-center space-x-6">
+            <a href="#" class="hover:text-page-accent transition-colors duration-200">Privacy Policy</a>
+            <a href="#" class="hover:text-page-accent transition-colors duration-200">Terms of Service</a>
         </div>
     </footer>
 </body>
