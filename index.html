@@ -3,333 +3,424 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page | Curated Living</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>page — Curated Living</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
-
         :root {
             --bg: #FAF9F7;
             --surface: #E6E1DB;
-            --accent: #C2B8AE;
+            --border: #C2B8AE;
             --text: #3F3A36;
+            --white: #FFFFFF;
+            --transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            scroll-behavior: smooth;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        .section-padding {
-            padding: 120px 5%;
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 400;
+            letter-spacing: -0.02em;
         }
 
-        @media (max-width: 768px) {
-            .section-padding {
-                padding: 60px 20px;
-            }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
         }
 
-        .border-subtle {
-            border-color: var(--accent);
+        /* Layout */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 40px;
         }
 
+        section {
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 249, 247, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(194, 184, 174, 0.3);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: -0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            font-size: 14px;
+            text-transform: lowercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links a:hover {
+            color: var(--border);
+        }
+
+        /* Page Toggle Logic (CSS Only) */
+        .page-content { display: none; }
+        #home-page:target, 
+        #product-listing-page:target, 
+        #product-detail-page:target, 
+        #about-page:target { 
+            display: block; 
+        }
+        
+        /* Default view if no hash */
+        #home-page { display: block; }
+        #home-page:has(~ *:target) { display: none; }
+
+        /* Components */
         .placeholder-img {
             background-color: var(--surface);
+            width: 100%;
             aspect-ratio: 4/5;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow: hidden;
             border: 1px solid transparent;
+            transition: var(--transition);
         }
 
         .product-card:hover .placeholder-img {
-            border-color: var(--accent);
-            opacity: 0.9;
+            border-color: var(--border);
+            background-color: #efedea;
         }
 
-        .btn-primary {
-            background-color: var(--text);
-            color: var(--bg);
-            padding: 16px 32px;
-            transition: opacity 0.3s ease;
+        .btn {
             display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-size: 0.75rem;
-            font-weight: 500;
+            padding: 16px 40px;
+            border: 1px solid var(--text);
+            background: transparent;
+            color: var(--text);
+            font-size: 14px;
+            text-transform: lowercase;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        .btn-primary:hover {
-            opacity: 0.85;
+        .btn:hover {
+            background: var(--text);
+            color: var(--bg);
         }
 
-        .btn-primary:active {
+        .btn:active {
             transform: scale(0.98);
         }
 
-        nav a {
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
+        /* Home Page specific */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
-        nav a:hover {
-            color: var(--accent);
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 120px);
+            margin-bottom: 24px;
+            line-height: 0.9;
         }
 
-        .fade-in {
-            animation: fadeIn 1.2s ease-out forwards;
+        .hero p {
+            max-width: 500px;
+            font-size: 18px;
+            color: #6a645f;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
         }
 
-        /* Hide sections to simulate different "pages" in a single file if needed, 
-           but here we will present them as a continuous editorial flow for the preview. */
-        .page-hidden { display: none; }
+        .product-card {
+            grid-column: span 4;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .product-card { grid-column: span 6; }
+            .container { padding: 0 20px; }
+            .nav-links { display: none; }
+        }
+
+        .product-info {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+        }
+
+        .product-price {
+            color: #8c847c;
+        }
+
+        /* PDP specific */
+        .pdp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            padding-top: 140px;
+        }
+
+        .pdp-details {
+            padding-top: 40px;
+        }
+
+        .pdp-details h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .pdp-price {
+            font-size: 20px;
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .pdp-description {
+            margin-bottom: 40px;
+            max-width: 450px;
+            color: #6a645f;
+        }
+
+        /* About Page specific */
+        .about-content {
+            max-width: 700px;
+            margin: 140px auto 0;
+        }
+
+        .about-content p {
+            font-size: 20px;
+            margin-bottom: 48px;
+            color: var(--text);
+        }
+
+        footer {
+            padding: 80px 40px;
+            border-top: 1px solid var(--surface);
+            font-size: 13px;
+            text-align: center;
+            color: var(--border);
+            text-transform: lowercase;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navigation page element -->
-    <nav class="fixed top-0 w-full z-50 mix-blend-multiply bg-[#FAF9F7]/80 backdrop-blur-sm border-b border-[#C2B8AE]/20">
-        <div class="max-w-7xl mx-auto px-6 py-8 flex justify-between items-baseline">
-            <div class="flex-1">
-                <a href="#home" class="font-medium text-xl tracking-tighter">page</a>
+    <nav>
+        <div class="nav-inner">
+            <a href="#home-page" class="logo">page</a>
+            <div class="nav-links">
+                <a href="#home-page">Home page</a>
+                <a href="#product-listing-page">Product page</a>
+                <a href="#about-page">About page</a>
             </div>
-            <div class="flex gap-12 flex-1 justify-center">
-                <a href="#home">home page</a>
-                <a href="#shop">shop page</a>
-                <a href="#about">about page</a>
-            </div>
-            <div class="flex-1 text-right">
-                <a href="#cart">bag (0)</a>
+            <div class="nav-links">
+                <a href="#">Bag (0)</a>
             </div>
         </div>
     </nav>
 
-    <!-- 1. Home page Section -->
-    <section id="home" class="min-h-screen flex flex-col justify-center section-padding pt-32">
-        <div class="max-w-4xl mx-auto text-center fade-in">
-            <span class="uppercase tracking-widest text-xs mb-6 block opacity-60">est. 2024</span>
-            <h1 class="text-6xl md:text-8xl font-light tracking-tight mb-12">Curated Living</h1>
-            <p class="text-xl md:text-2xl leading-relaxed font-light opacity-80 max-w-2xl mx-auto">
-                We believe in the beauty of the everyday. page is a quiet celebration of intentional design, 
-                brought to life through a refined collection of objects for the home.
-            </p>
-            <div class="mt-16">
-                <a href="#shop" class="border-b border-[#3F3A36] pb-2 hover:opacity-50 transition-opacity">Explore shop page</a>
-            </div>
-        </div>
-    </section>
+    <!-- HOME PAGE -->
+    <main id="home-page" class="page-content">
+        <section class="hero container">
+            <h1>Curated Living</h1>
+            <p>A quiet approach to the objects we carry through life. Functional art for the intentional home.</p>
+        </section>
 
-    <!-- Featured Grid (Part of Home page) -->
-    <section class="section-padding bg-[#E6E1DB]/30">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between items-end mb-16">
-                <h2 class="text-3xl font-light">Featured page collection</h2>
-                <a href="#shop" class="text-sm uppercase tracking-widest">view all</a>
+        <section class="container">
+            <div class="grid">
+                <a href="#product-detail-page" class="product-card">
+                    <div class="placeholder-img">
+                        <span style="color: var(--border); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">The Stone Pitcher</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-name">The Stone Pitcher</span>
+                        <span class="product-price">$84</span>
+                    </div>
+                </a>
+                <a href="#product-detail-page" class="product-card">
+                    <div class="placeholder-img">
+                        <span style="color: var(--border); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Linen Throw</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-name">Linen Throw</span>
+                        <span class="product-price">$120</span>
+                    </div>
+                </a>
+                <a href="#product-detail-page" class="product-card">
+                    <div class="placeholder-img">
+                        <span style="color: var(--border); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Core Bowl</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-name">Core Bowl</span>
+                        <span class="product-price">$62</span>
+                    </div>
+                </a>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Product Card -->
-                <div class="product-card cursor-pointer group">
-                    <div class="placeholder-img mb-6">
-                        <img src="assets/images/product-01.jpg" alt="Minimalist Object" class="hidden">
-                        <span class="text-[var(--accent)] text-xs uppercase tracking-widest">Object 01</span>
-                    </div>
-                    <h3 class="text-sm font-normal mb-1">The Ceramic Vessel</h3>
-                    <p class="text-sm opacity-60">$140.00</p>
-                </div>
-                <!-- Product Card -->
-                <div class="product-card cursor-pointer group">
-                    <div class="placeholder-img mb-6">
-                        <img src="assets/images/product-02.jpg" alt="Minimalist Object" class="hidden">
-                        <span class="text-[var(--accent)] text-xs uppercase tracking-widest">Object 02</span>
-                    </div>
-                    <h3 class="text-sm font-normal mb-1">Raw Linen Throw</h3>
-                    <p class="text-sm opacity-60">$210.00</p>
-                </div>
-                <!-- Product Card -->
-                <div class="product-card cursor-pointer group">
-                    <div class="placeholder-img mb-6">
-                        <img src="assets/images/product-03.jpg" alt="Minimalist Object" class="hidden">
-                        <span class="text-[var(--accent)] text-xs uppercase tracking-widest">Object 03</span>
-                    </div>
-                    <h3 class="text-sm font-normal mb-1">Sculptural Tallow Candle</h3>
-                    <p class="text-sm opacity-60">$65.00</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- 2. Product Listing Page (PLP) Section -->
-    <section id="shop" class="section-padding">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20">
-                <h2 class="text-sm uppercase tracking-widest mb-4 opacity-60">Collection page</h2>
-                <h3 class="text-4xl font-light">Objects for the tactile home</h3>
+    <!-- PRODUCT LISTING PAGE -->
+    <main id="product-listing-page" class="page-content">
+        <section class="container" style="padding-top: 140px;">
+            <header style="margin-bottom: 60px;">
+                <h2 style="font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--border); margin-bottom: 10px;">Collection</h2>
+                <h1 style="font-size: 40px;">All Objects</h1>
+            </header>
+            <div class="grid">
+                <!-- Row 1 -->
+                <div class="product-card">
+                    <a href="#product-detail-page">
+                        <div class="placeholder-img"></div>
+                        <div class="product-info">
+                            <span>Ceramic Vessel 01</span>
+                            <span class="product-price">$145</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-card">
+                    <a href="#product-detail-page">
+                        <div class="placeholder-img"></div>
+                        <div class="product-info">
+                            <span>Oak Stool</span>
+                            <span class="product-price">$320</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-card">
+                    <a href="#product-detail-page">
+                        <div class="placeholder-img"></div>
+                        <div class="product-info">
+                            <span>Cotton Napkin Set</span>
+                            <span class="product-price">$45</span>
+                        </div>
+                    </a>
+                </div>
+                <!-- Row 2 -->
+                <div class="product-card">
+                    <a href="#product-detail-page">
+                        <div class="placeholder-img"></div>
+                        <div class="product-info">
+                            <span>Iron Candle Holder</span>
+                            <span class="product-price">$78</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-card">
+                    <a href="#product-detail-page">
+                        <div class="placeholder-img"></div>
+                        <div class="product-info">
+                            <span>Handmade Brush</span>
+                            <span class="product-price">$32</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-card">
+                    <a href="#product-detail-page">
+                        <div class="placeholder-img"></div>
+                        <div class="product-info">
+                            <span>Glass Carafe</span>
+                            <span class="product-price">$90</span>
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
-                <!-- Repeat products for PLP -->
-                <div class="product-card group">
-                    <div class="placeholder-img mb-4">
-                        <span class="text-[var(--accent)] text-[10px] uppercase tracking-widest">Item 01</span>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <h3 class="text-xs uppercase font-medium">Stone Carafe</h3>
-                        <p class="text-xs">$85</p>
-                    </div>
-                </div>
-                <div class="product-card group">
-                    <div class="placeholder-img mb-4">
-                        <span class="text-[var(--accent)] text-[10px] uppercase tracking-widest">Item 02</span>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <h3 class="text-xs uppercase font-medium">Oak Tray</h3>
-                        <p class="text-xs">$120</p>
-                    </div>
-                </div>
-                <div class="product-card group">
-                    <div class="placeholder-img mb-4">
-                        <span class="text-[var(--accent)] text-[10px] uppercase tracking-widest">Item 03</span>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <h3 class="text-xs uppercase font-medium">Woven Basket</h3>
-                        <p class="text-xs">$95</p>
-                    </div>
-                </div>
-                <div class="product-card group">
-                    <div class="placeholder-img mb-4">
-                        <span class="text-[var(--accent)] text-[10px] uppercase tracking-widest">Item 04</span>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <h3 class="text-xs uppercase font-medium">Brass Spoon</h3>
-                        <p class="text-xs">$45</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- 3. Product Detail Page (PDP) Section -->
-    <section id="product-detail" class="section-padding bg-white/30 border-y border-subtle/20">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
-            <!-- Product Images -->
-            <div class="space-y-4">
-                <div class="placeholder-img w-full bg-[#F2EFED]">
-                    <span class="text-[var(--accent)] text-xs uppercase">Primary Image page</span>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="placeholder-img bg-[#F2EFED] aspect-square"></div>
-                    <div class="placeholder-img bg-[#F2EFED] aspect-square"></div>
-                </div>
+    <!-- PRODUCT DETAIL PAGE -->
+    <main id="product-detail-page" class="page-content">
+        <section class="container pdp-grid">
+            <div class="placeholder-img" style="aspect-ratio: 1/1;">
+                <span style="color: var(--border); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Ceramic Vessel 01</span>
             </div>
-            <!-- Product Info -->
-            <div class="md:sticky md:top-40">
-                <nav class="flex gap-2 text-[10px] uppercase tracking-widest opacity-40 mb-8">
-                    <span>shop page</span> / <span>ceramics</span> / <span>current page</span>
-                </nav>
-                <h1 class="text-5xl font-light mb-4">The Essential Vase</h1>
-                <p class="text-2xl font-light mb-10 opacity-60">$180.00</p>
-                
-                <div class="space-y-6 text-base leading-relaxed opacity-80 mb-12 max-w-md">
-                    <p>
-                        A study in form and texture. Hand-thrown in our small-batch studio, the Essential Vase features a matte, sand-swept finish that brings a tactile warmth to any surface.
-                    </p>
-                    <p>
-                        Each piece is uniquely slightly different, celebrating the organic variations of the earth from which it came.
-                    </p>
+            <div class="pdp-details">
+                <h2>Ceramic Vessel 01</h2>
+                <span class="pdp-price">$145.00</span>
+                <div class="pdp-description">
+                    <p>A hand-thrown vessel made from local clay. Each piece is unique, featuring subtle variations in texture and form that celebrate the touch of the maker. Finished in a soft matte glaze that feels like stone to the touch.</p>
+                    <br>
+                    <p>Height: 22cm<br>Diameter: 15cm</p>
                 </div>
+                <button class="btn">Add to Bag</button>
+            </div>
+        </section>
+    </main>
 
-                <div class="border-t border-subtle/30 pt-10">
-                    <button class="btn-primary w-full md:w-auto px-16">
-                        Add to Bag page
-                    </button>
-                    <p class="mt-6 text-[10px] uppercase tracking-widest opacity-40 text-center md:text-left">
-                        Free shipping on orders over $200
-                    </p>
-                </div>
+    <!-- ABOUT PAGE -->
+    <main id="about-page" class="page-content">
+        <section class="container">
+            <div class="about-content">
+                <h2 style="font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--border); margin-bottom: 40px;">Our Philosophy</h2>
+                <p>
+                    At page, we believe that the beauty of a home lies in the details. Our collection is born from a commitment to exceptional craftsmanship and a profound respect for the materials we use. We work with artisans who share our dedication to quality, ensuring that every object we offer is not only beautiful but possesses a soul and a story.
+                </p>
+                <p>
+                    Sustainability is the cornerstone of our practice. We prioritize responsible sourcing and small-batch production to minimize our footprint. By choosing longevity over trends, we create timeless pieces that are designed to endure for generations, encouraging a shift away from the disposable culture of modern retail.
+                </p>
+                <p>
+                    We are inspired by the "quiet home" movement—the idea that our surroundings should be a sanctuary for intentional living. page is more than a store; it is a curation of calm. We invite you to slow down, appreciate the tactile nature of your environment, and build a space that truly reflects a life well-lived.
+                </p>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- 4. About Page Section -->
-    <section id="about" class="section-padding">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-xs uppercase tracking-[0.2em] mb-12 opacity-50 text-center">the about page</h2>
-            
-            <div class="space-y-16">
-                <div class="fade-in">
-                    <h3 class="text-2xl mb-4 font-normal">Our Craft</h3>
-                    <p class="text-lg leading-relaxed opacity-70">
-                        At page, we believe that the objects we surround ourselves with should be chosen with intention. Our process is defined by rigorous craftsmanship and an unwavering attention to detail. We collaborate with independent artisans who share our dedication to thoughtful design, ensuring that every curve, texture, and finish serves a purpose in your daily ritual.
-                    </p>
-                </div>
-
-                <div class="fade-in" style="animation-delay: 0.2s;">
-                    <h3 class="text-2xl mb-4 font-normal">Our Responsibility</h3>
-                    <p class="text-lg leading-relaxed opacity-70">
-                        Sustainability is not a feature at page; it is our foundation. We prioritize responsible sourcing and low-impact production methods that respect the environment. By focusing on longevity and timeless aesthetics over fleeting trends, we create pieces designed to last generations, reducing waste and encouraging a more conscious way of consuming.
-                    </p>
-                </div>
-
-                <div class="fade-in" style="animation-delay: 0.4s;">
-                    <h3 class="text-2xl mb-4 font-normal">Our Philosophy</h3>
-                    <p class="text-lg leading-relaxed opacity-70">
-                        Inspired by the “quiet home” movement, page is an exploration of intentional living. We strive to create a sanctuary from the noise of the modern world. Our collection is curated to foster a sense of calm and clarity, transforming the domestic space into a place of reflection and genuine human connection.
-                    </p>
-                </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 page. All rights reserved.</p>
+            <div style="margin-top: 10px; display: flex; justify-content: center; gap: 20px;">
+                <a href="#">Instagram</a>
+                <a href="#">Journal</a>
+                <a href="#">Shipping</a>
             </div>
-
-            <div class="mt-24 border-t border-subtle/30 pt-12 flex justify-between items-center">
-                <span class="text-xl tracking-tighter">page</span>
-                <div class="flex gap-8">
-                    <a href="#" class="text-[10px] uppercase tracking-widest opacity-60">Instagram</a>
-                    <a href="#" class="text-[10px] uppercase tracking-widest opacity-60">Journal</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-[#E6E1DB] py-20 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
-            <div>
-                <h4 class="text-xs uppercase tracking-widest mb-6 opacity-40">Navigation page</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#home">Home page</a></li>
-                    <li><a href="#shop">Shop page</a></li>
-                    <li><a href="#about">About page</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-xs uppercase tracking-widest mb-6 opacity-40">Support</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#">Shipping page</a></li>
-                    <li><a href="#">Returns page</a></li>
-                    <li><a href="#">Contact page</a></li>
-                </ul>
-            </div>
-            <div class="max-w-xs">
-                <h4 class="text-xs uppercase tracking-widest mb-6 opacity-40">Newsletter</h4>
-                <div class="flex border-b border-[#3F3A36]/30 pb-2">
-                    <input type="email" placeholder="Email address" class="bg-transparent text-sm w-full outline-none">
-                    <button class="text-[10px] uppercase font-medium">Join</button>
-                </div>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-[#3F3A36]/10 flex justify-between text-[10px] uppercase tracking-widest opacity-40">
-            <p>&copy; 2024 page home goods.</p>
-            <p>All rights reserved.</p>
         </div>
     </footer>
 
