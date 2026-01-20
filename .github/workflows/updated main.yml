@@ -45,27 +45,21 @@ jobs:
           client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
           prompt = """
-          Goal: Create a minimalist, aesthetically pleasing e-commerce site for high-end home goods.
+          GOAL: Create a high-end e-commerce site for home goods named "page".
+          AESTHETIC: Soft Minimalism. Use earthy tones (#F5F5F0, #D6CFC7, #4A4540), ample negative space (utilize 80px+ padding), and clean sans-serif typography (Inter or System UI).
 
-          Aesthetic:
-          - Minimalist and soft
-          - Ample negative space
-          - Muted / earthy colors
-          - Clean sans-serif typography
+          CONSTRAINTS:
+          1. IMAGES: Only use placeholder paths from 'assets/images/'. If no specific image is known, use a colored <div> with a subtle border to represent the product.
+          2. NAMING: The site name is "page". All internal links and references must use the term "page" (e.g., "About page", "Product page").
+          3. STRUCTURE: Generate clean HTML5 and Tailwind CSS (or utility-first CSS).
 
-          Mandatory Constraints:
-          - ABSOLUTELY MUST use only assets already present in assets/images/
-          - DO NOT introduce new images
-          - If images are not needed, avoid using images completely
-          - Fill the About section with meaningful content
+          PAGES TO GENERATE:
+          1. Homepage: A hero section with a "Curated Living" philosophy and a featured collection grid.
+          2. PLP (Product Listing Page): A refined 2-column or 3-column grid with subtle hover states.
+          3. PDP (Product Detail Page): Focus on typography and whitespace. Product name, price, description, and a "Add to Bag" button.
+          4. About Section: Write 3 paragraphs of meaningful content about "page". Focus on craftsmanship, sustainability, and the "quiet home" movement.
 
-          Pages Required:
-          - Homepage
-          - Product Listing Page (PLP)
-          - Product Detail Page (PDP)
-
-          Additional:
-          - Rename the site/pages to "kumar page"
+          OUTPUT: Provide a single-file solution (HTML with internal CSS) that feels cohesive and premium.
 
           Return each file strictly in the format:
           ---filename.ext---
@@ -74,7 +68,7 @@ jobs:
 
           # Generate content
           response = client.models.generate_content(
-              model="gemini-2.5-flash",
+              model="gemini-2.0-flash",
               contents=prompt
           )
 
