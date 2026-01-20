@@ -45,22 +45,164 @@ jobs:
           client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
           prompt = """
-          GOAL: Create a high-end e-commerce site for home goods named "page".
-          AESTHETIC: Soft Minimalism. Use earthy tones (#F5F5F0, #D6CFC7, #4A4540), ample negative space (utilize 80px+ padding), and clean sans-serif typography (Inter or System UI).
+          GOAL
 
-          CONSTRAINTS:
-          1. IMAGES: Only use placeholder paths from 'assets/images/'. If no specific image is known, use a colored <div> with a subtle border to represent the product.
-          2. NAMING: The site name is "page". All internal links and references must use the term "page" (e.g., "About page", "Product page").
-          3. STRUCTURE: Generate clean HTML5 and Tailwind CSS (or utility-first CSS).
-
-          PAGES TO GENERATE:
-          1. Homepage: A hero section with a "Curated Living" philosophy and a featured collection grid.
-          2. PLP (Product Listing Page): A refined 2-column or 3-column grid with subtle hover states.
-          3. PDP (Product Detail Page): Focus on typography and whitespace. Product name, price, description, and a "Add to Bag" button.
-          4. About Section: Write 3 paragraphs of meaningful content about "page". Focus on craftsmanship, sustainability, and the "quiet home" movement.
-
-          OUTPUT: Provide a single-file solution (HTML with internal CSS) that feels cohesive and premium.
-
+            Create a high-end, minimalist e-commerce website for premium home goods named “page”.
+            
+            The site should feel quiet, refined, and editorial, emphasizing intentional living and timeless design.
+            
+            AESTHETIC (STRICT)
+            
+            Design style: Soft Minimalism
+            
+            Color palette:
+            
+            Background: #F5F5F0
+            
+            Secondary surfaces: #D6CFC7
+            
+            Primary text: #4A4540
+            
+            Typography:
+            
+            Clean sans-serif only (Inter or System UI)
+            
+            Clear hierarchy using font size and weight, not excessive color
+            
+            Layout:
+            
+            Ample negative space (minimum 80px padding for major sections)
+            
+            Calm, balanced compositions
+            
+            UI details:
+            
+            Subtle borders
+            
+            Soft hover transitions
+            
+            No harsh shadows or loud effects
+            
+            CONSTRAINTS (NON-NEGOTIABLE)
+            1. Images
+            
+            Use ONLY image paths from assets/images/
+            
+            Never generate or reference external images
+            
+            If a specific image is unknown:
+            
+            Use a neutral colored <div> with a subtle border as a product placeholder
+            
+            2. Naming
+            
+            Site name is “page”
+            
+            All navigation labels and internal references must include the word “page”
+            
+            Examples:
+            
+            “About page”
+            
+            “Product page”
+            
+            “Home page”
+            
+            3. Structure
+            
+            Generate semantic HTML5
+            
+            Use Tailwind CSS (utility-first) or equivalent utility-style internal CSS
+            
+            No backend, no frameworks, no external libraries
+            
+            PAGES TO GENERATE
+            1. Home page
+            
+            Minimal hero section with a strong typographic statement:
+            
+            Theme: “Curated Living”
+            
+            Short philosophy statement about calm, intentional home living
+            
+            Featured collection grid (2–3 items)
+            
+            Subtle hover states on products
+            
+            2. Product Listing Page (PLP)
+            
+            Clean 2-column (desktop 3-column optional) product grid
+            
+            Each product card includes:
+            
+            Product name
+            
+            Price
+            
+            Image from assets/images/ OR placeholder div
+            
+            Gentle hover interaction (opacity shift, border change, or translateY)
+            
+            3. Product Detail Page (PDP)
+            
+            Strong focus on typography and whitespace
+            
+            Elements:
+            
+            Product name
+            
+            Price
+            
+            Detailed description
+            
+            “Add to Bag” button (visual interaction only)
+            
+            Button interaction:
+            
+            Hover and active states
+            
+            No cart logic required
+            
+            4. About Section
+            
+            Write 3 meaningful paragraphs about “page”:
+            
+            Paragraph 1: Craftsmanship and intentional design
+            
+            Paragraph 2: Sustainability, materials, and longevity
+            
+            Paragraph 3: The “quiet home” movement and mindful living
+            
+            Tone: thoughtful, warm, premium, and human
+            
+            INTERACTIVITY (STATIC ONLY)
+            
+            Add:
+            
+            Hover states
+            
+            Focus styles
+            
+            Smooth CSS transitions
+            
+            No JavaScript frameworks
+            
+            Interactions must feel calm and refined
+            
+            OUTPUT REQUIREMENTS
+            
+            Provide a single HTML file
+            
+            Include internal CSS or Tailwind-style utilities
+            
+            Fully responsive (mobile-first)
+            
+            Clean, readable, well-commented code
+            
+            FINAL EXPECTATION
+            
+            The final result should feel like a luxury boutique e-commerce brand —
+            quiet, confident, editorial, and timeless — with no visual clutter.
           Return each file strictly in the format:
           ---filename.ext---
           <file content>
