@@ -1,199 +1,57 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimalist Armchair - Elegance Home</title>
+    <title>kumar page - Product Detail</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="site-header">
+    <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">Elegance Home</a>
-            <nav class="main-nav" id="main-nav">
-                <ul>
-                    <li><a href="product-listing.html">Shop</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+            <a href="index.html" class="site-title">kumar page</a>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Shop</a></li>
+                    <li><a href="index.html#about-us">About</a></li>
                 </ul>
             </nav>
-            <div class="header-icons">
-                <a href="#" class="icon-link"><span class="sr-only">Search</span>Search</a>
-                <a href="#" class="icon-link"><span class="sr-only">Account</span>Account</a>
-                <a href="#" class="icon-link"><span class="sr-only">Cart</span>Cart (0)</a>
-            </div>
-            <button class="menu-toggle" id="menu-toggle" aria-controls="main-nav" aria-expanded="false">
-                &#9776;
-            </button>
         </div>
     </header>
 
     <main>
-        <section class="breadcrumb">
+        <section class="product-detail">
             <div class="container">
-                <a href="index.html">Home</a> <span>/</span> <a href="product-listing.html">Shop</a> <span>/</span> <span>Minimalist Armchair</span>
-            </div>
-        </section>
-
-        <section class="product-detail-section">
-            <div class="container product-detail-layout">
-                <div class="product-images">
-                    <div class="main-image">
-                        <img src="assets/images/product-detail-main.jpg" alt="Minimalist Armchair Main View" id="main-product-image">
-                    </div>
-                    <div class="thumbnail-gallery">
-                        <img src="assets/images/product-detail-thumb1.jpg" alt="Minimalist Armchair Thumbnail 1" class="thumbnail active" data-main-image="assets/images/product-detail-main.jpg">
-                        <img src="assets/images/product-detail-thumb2.jpg" alt="Minimalist Armchair Thumbnail 2" class="thumbnail" data-main-image="assets/images/product-detail-thumb2.jpg">
-                        <img src="assets/images/product-detail-thumb3.jpg" alt="Minimalist Armchair Thumbnail 3" class="thumbnail" data-main-image="assets/images/product-detail-thumb3.jpg">
-                    </div>
+                <div class="product-detail-image">
+                    <!-- IMPORTANT: Replace 'assets/images/product_ceramic_vase.jpg' with an actual image from your assets/images/ directory -->
+                    <img src="assets/images/product_ceramic_vase.jpg" alt="Minimalist Ceramic Vase - Detailed View">
                 </div>
-                <div class="product-info">
-                    <h1>Minimalist Armchair</h1>
-                    <span class="price">$799.00</span>
-                    <p>A statement of understated elegance, this armchair combines timeless design with unparalleled comfort. Crafted from sustainably sourced oak and upholstered in a premium natural linen blend, it's the perfect addition to any modern living space.</p>
-                    <div class="product-options">
-                        <div class="option-group">
-                            <label for="color">Color:</label>
-                            <select id="color">
-                                <option value="natural-linen">Natural Linen</option>
-                                <option value="charcoal-grey">Charcoal Grey</option>
-                                <option value="forest-green">Forest Green</option>
-                            </select>
-                        </div>
-                        <div class="option-group">
-                            <label for="material">Material:</label>
-                            <select id="material">
-                                <option value="oak">Oak Frame</option>
-                                <option value="walnut">Walnut Frame</option>
-                            </select>
-                        </div>
-                        <div class="option-group">
-                            <label for="quantity">Quantity:</label>
-                            <input type="number" id="quantity" name="quantity" value="1" min="1">
-                        </div>
-                        <button class="button add-to-cart-button">Add to Cart</button>
+                <div class="product-detail-info">
+                    <h1>Ceramic Artisan Vase</h1>
+                    <span class="price">$120.00</span>
+                    <p class="description">
+                        Discover the subtle elegance of our Ceramic Artisan Vase, a testament to minimalist design and expert craftsmanship. Hand-thrown by skilled artisans using a unique blend of natural clays, this vase features a muted, earthy glaze that highlights its organic form and soft texture. Its clean lines and understated presence make it a perfect centerpiece or accent piece, complementing any contemporary or classic interior. Ideal for showcasing a single stem or a small bouquet, it brings a touch of serene beauty to your home.
+                    </p>
+                    <p class="description">
+                        **Materials:** High-fired natural clay with lead-free, matte glaze.<br>
+                        **Dimensions:** 10 inches (H) x 5 inches (Dia).<br>
+                        **Care:** Wipe clean with a soft, damp cloth.
+                    </p>
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1">
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="product-description section-spacing">
-            <div class="container">
-                <h2>Product Details</h2>
-                <p>This minimalist armchair is designed for both aesthetic appeal and ergonomic comfort. Its clean lines and sturdy construction make it a versatile piece that complements various interior styles, from Scandinavian to contemporary. The cushion is made from high-density foam for lasting support, wrapped in a soft, breathable fabric.</p>
-                <ul>
-                    <li>Dimensions: 30" W x 32" D x 30" H</li>
-                    <li>Seat Height: 18"</li>
-                    <li>Frame Material: Solid Oak</li>
-                    <li>Upholstery: 60% Linen, 40% Cotton Blend</li>
-                    <li>Care Instructions: Spot clean with a damp cloth. Professional cleaning recommended for deep stains.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="related-products section-spacing">
-            <div class="container">
-                <h2>You Might Also Like</h2>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-2.jpg" alt="Sculptural Table Lamp">
-                            <h3>Sculptural Table Lamp</h3>
-                            <span class="price">$189.00</span>
-                        </a>
-                        <a href="product-detail.html" class="button">View Details</a>
-                    </div>
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-3.jpg" alt="Abstract Ceramic Vase">
-                            <h3>Abstract Ceramic Vase</h3>
-                            <span class="price">$120.00</span>
-                        </a>
-                        <a href="product-detail.html" class="button">View Details</a>
-                    </div>
-                    <div class="product-card">
-                        <a href="product-detail.html">
-                            <img src="assets/images/product-4.jpg" alt="Oak Side Table">
-                            <h3>Oak Side Table</h3>
-                            <span class="price">$450.00</span>
-                        </a>
-                        <a href="product-detail.html" class="button">View Details</a>
-                    </div>
+                    <button class="button">Add to Cart</button>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="footer">
         <div class="container">
-            <div class="footer-column">
-                <h4>Elegance Home</h4>
-                <p>Curating beauty for your everyday living.</p>
-            </div>
-            <div class="footer-column">
-                <h4>Shop</h4>
-                <ul>
-                    <li><a href="product-listing.html">All Products</a></li>
-                    <li><a href="product-listing.html">Living Room</a></li>
-                    <li><a href="product-listing.html">Dining Room</a></li>
-                    <li><a href="product-listing.html">Bedroom</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>About</h4>
-                <ul>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Careers</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom container">
-            <p>&copy; 2023 Elegance Home. All rights reserved.</p>
+            <p>&copy; 2023 kumar page. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
-            const menuToggle = document.getElementById('menu-toggle');
-            const mainNav = document.getElementById('main-nav');
-
-            if (menuToggle && mainNav) {
-                menuToggle.addEventListener('click', function() {
-                    const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
-                    this.setAttribute('aria-expanded', !isExpanded);
-                    mainNav.classList.toggle('active');
-                });
-            }
-
-            // Product image gallery functionality
-            const mainProductImage = document.getElementById('main-product-image');
-            const thumbnails = document.querySelectorAll('.thumbnail-gallery .thumbnail');
-
-            if (mainProductImage && thumbnails.length > 0) {
-                thumbnails.forEach(thumbnail => {
-                    thumbnail.addEventListener('click', function() {
-                        // Update main image src
-                        mainProductImage.src = this.dataset.mainImage;
-
-                        // Update active class
-                        thumbnails.forEach(t => t.classList.remove('active'));
-                        this.classList.add('active');
-                    });
-                });
-            }
-        });
-    </script>
 </body>
 </html>
-```

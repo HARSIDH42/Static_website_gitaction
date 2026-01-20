@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurora Home - Minimalist High-End Home Goods</title>
+    <title>kumar page - Home</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">Aurora Home</a>
-            <nav class="nav">
-                <ul>
+            <a href="index.html" class="site-title">kumar page</a>
+            <nav>
+                <ul class="nav-list">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="plp.html">Shop</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="products.html">Shop</a></li>
+                    <li><a href="#about-us">About</a></li>
                 </ul>
             </nav>
         </div>
@@ -24,70 +22,54 @@
 
     <main>
         <section class="hero">
-            <div class="hero-content">
-                <h1>Crafted Simplicity for Your Space</h1>
-                <p>Discover high-end home goods designed with elegance and purpose.</p>
-                <a href="plp.html" class="button">Explore Our Collection</a>
+            <div class="container">
+                <h1>Timeless Living, Thoughtfully Curated</h1>
+                <p>Discover high-end home goods that blend minimalist design with exceptional craftsmanship, designed to elevate your everyday.</p>
+                <a href="products.html" class="button">Shop Our Collection</a>
             </div>
         </section>
 
-        <section class="section section-dark">
-            <div class="container about-section">
-                <h2>Our Philosophy</h2>
-                <p>At Aurora Home, we believe in the power of simplicity and the beauty of understated design. Each piece in our collection is thoughtfully curated to bring tranquility and refined aesthetics into your living space. We prioritize quality craftsmanship and timeless design, ensuring that every item not only looks exquisite but also serves a purpose with grace and durability. Our commitment is to offer products that transform houses into homes, celebrating a minimalist approach without compromising on luxury or comfort.</p>
-                <p>Inspired by natural elements and a serene palette, our goods are designed to blend seamlessly into various interiors, adding a touch of sophisticated calm. We champion sustainable practices and ethical sourcing, reflecting our respect for both nature and artistry.</p>
-                <a href="#" class="button button-outline margin-top-lg">Learn More About Us</a>
-            </div>
-        </section>
-
-        <section class="section">
+        <section class="featured-products">
             <div class="container">
                 <h2 class="section-title">Featured Selections</h2>
                 <div class="product-grid">
                     <div class="product-card">
-                        <a href="pdp.html">
-                            <h3>Linen Comfort Throw</h3>
-                            <p class="price">$120.00</p>
-                            <span class="button button-outline">View Product</span>
-                        </a>
+                        <!-- IMPORTANT: Replace 'assets/images/product_ceramic_vase.jpg' with an actual image from your assets/images/ directory -->
+                        <img src="assets/images/product_ceramic_vase.jpg" alt="Minimalist Ceramic Vase">
+                        <h3>Ceramic Artisan Vase</h3>
+                        <p>$120.00</p>
+                        <a href="product-detail.html?id=vase" class="button">View Product</a>
                     </div>
                     <div class="product-card">
-                        <a href="pdp.html">
-                            <h3>Ceramic Planter Set</h3>
-                            <p class="price">$85.00</p>
-                            <span class="button button-outline">View Product</span>
-                        </a>
+                        <!-- IMPORTANT: Replace 'assets/images/product_wooden_bowl.jpg' with an actual image from your assets/images/ directory -->
+                        <img src="assets/images/product_wooden_bowl.jpg" alt="Hand-Carved Wooden Bowl">
+                        <h3>Hand-Carved Wooden Bowl</h3>
+                        <p>$95.00</p>
+                        <a href="product-detail.html?id=bowl" class="button">View Product</a>
                     </div>
                     <div class="product-card">
-                        <a href="pdp.html">
-                            <h3>Minimalist Desk Lamp</h3>
-                            <p class="price">$199.00</p>
-                            <span class="button button-outline">View Product</span>
-                        </a>
-                    </div>
-                    <div class="product-card">
-                        <a href="pdp.html">
-                            <h3>Oak Serving Tray</h3>
-                            <p class="price">$65.00</p>
-                            <span class="button button-outline">View Product</span>
-                        </a>
+                        <!-- IMPORTANT: Replace 'assets/images/product_linen_throw.jpg' with an actual image from your assets/images/ directory -->
+                        <img src="assets/images/product_linen_throw.jpg" alt="Organic Linen Throw">
+                        <h3>Organic Linen Throw</h3>
+                        <p>$180.00</p>
+                        <a href="product-detail.html?id=throw" class="button">View Product</a>
                     </div>
                 </div>
-                <div class="text-center margin-top-lg">
-                    <a href="plp.html" class="button">Shop All Products</a>
-                </div>
+            </div>
+        </section>
+
+        <section id="about-us" class="about-section">
+            <div class="container">
+                <h2 class="section-title">Our Philosophy</h2>
+                <p>At kumar page, we believe your home should be a sanctuary—a reflection of tranquility and discerning taste. We meticulously source and craft high-end home goods that celebrate understated elegance, natural materials, and enduring design. Each piece in our collection is chosen for its ability to bring beauty, function, and a sense of calm to your living space. We champion sustainable practices, artisanal craftsmanship, and a commitment to quality that transcends trends, ensuring that every item you bring into your home is not just an object, but an investment in timeless living.</p>
+                <p>From the tactile warmth of natural wood to the serene lines of minimalist ceramics, our curated selection is designed to enrich your environment and inspire moments of quiet appreciation. Discover the difference that thoughtful design and genuine craftsmanship can make.</p>
             </div>
         </section>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2023 Aurora Home. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#">Facebook</a>
-                <a href="#">Instagram</a>
-                <a href="#">Pinterest</a>
-            </div>
+            <p>&copy; 2023 kumar page. All rights reserved.</p>
         </div>
     </footer>
 </body>

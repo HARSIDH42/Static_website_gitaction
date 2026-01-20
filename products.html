@@ -1,171 +1,95 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop All Products - ELEVATE HOME</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <title>kumar page - Shop All</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">ELEVATE HOME</a>
+            <a href="index.html" class="site-title">kumar page</a>
             <nav>
-                <ul class="nav-menu">
+                <ul class="nav-list">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html" class="active">Shop</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Cart (0)</a></li>
+                    <li><a href="products.html">Shop</a></li>
+                    <li><a href="index.html#about-us">About</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <div class="breadcrumb">
+        <section class="all-products">
             <div class="container">
-                <a href="index.html">Home</a> <span>/</span> <span>Shop All</span>
-            </div>
-        </div>
-
-        <section class="plp-header">
-            <div class="container">
-                <h1>All Products</h1>
-                <p>Explore our curated collection of timeless home essentials.</p>
-            </div>
-        </section>
-
-        <section class="container section-padding" style="padding-top: 0;">
-            <div class="plp-options">
-                <label for="sort-by">Sort By:</label>
-                <select id="sort-by">
-                    <option value="featured">Featured</option>
-                    <option value="price-asc">Price: Low to High</option>
-                    <option value="price-desc">Price: High to Low</option>
-                    <option value="newest">Newest Arrivals</option>
-                </select>
-            </div>
-
-            <div class="product-grid">
-                <!-- Product Card 1 -->
-                <article class="product-card">
-                    <a href="product-detail.html">
-                        <img src="assets/images/product-vase.jpg" alt="Ceramic Minimalist Vase" class="product-card-image">
-                        <h3 class="product-card-title">Sculptural Ceramic Vase</h3>
-                        <p class="product-card-price">$89.00</p>
-                    </a>
-                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
-                </article>
-
-                <!-- Product Card 2 -->
-                <article class="product-card">
-                    <a href="product-detail.html">
-                        <img src="assets/images/product-bowl.jpg" alt="Hand-thrown Earth Bowl" class="product-card-image">
-                        <h3 class="product-card-title">Artisan Stoneware Bowl</h3>
-                        <p class="product-card-price">$65.00</p>
-                    </a>
-                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
-                </article>
-
-                <!-- Product Card 3 -->
-                <article class="product-card">
-                    <a href="product-detail.html">
-                        <img src="assets/images/product-lamp.jpg" alt="Minimalist Table Lamp" class="product-card-image">
-                        <h3 class="product-card-title">Modern Minimalist Lamp</h3>
-                        <p class="product-card-price">$199.00</p>
-                    </a>
-                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
-                </article>
-
-                <!-- Product Card 4 -->
-                <article class="product-card">
-                    <a href="product-detail.html">
-                        <img src="assets/images/product-cushion.jpg" alt="Linen Decorative Cushion" class="product-card-image">
-                        <h3 class="product-card-title">Natural Linen Cushion</h3>
-                        <p class="product-card-price">$55.00</p>
-                    </a>
-                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
-                </article>
-
-                <!-- More Product Cards (duplicate for demonstration) -->
-                <article class="product-card">
-                    <a href="product-detail.html">
-                        <img src="assets/images/product-vase.jpg" alt="Abstract Stone Sculpture" class="product-card-image">
-                        <h3 class="product-card-title">Abstract Stone Sculpture</h3>
-                        <p class="product-card-price">$120.00</p>
-                    </a>
-                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
-                </article>
-                <article class="product-card">
-                    <a href="product-detail.html">
-                        <img src="assets/images/product-bowl.jpg" alt="Ceramic Plate Set" class="product-card-image">
-                        <h3 class="product-card-title">Organic Ceramic Plate Set</h3>
-                        <p class="product-card-price">$140.00</p>
-                    </a>
-                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
-                </article>
-                <article class="product-card">
-                    <a href="product-detail.html">
-                        <img src="assets/images/product-lamp.jpg" alt="Floor Reading Lamp" class="product-card-image">
-                        <h3 class="product-card-title">Sculptural Floor Lamp</h3>
-                        <p class="product-card-price">$280.00</p>
-                    </a>
-                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
-                </article>
-                <article class="product-card">
-                    <a href="product-detail.html">
-                        <img src="assets/images/product-cushion.jpg" alt="Wool Throw Blanket" class="product-card-image">
-                        <h3 class="product-card-title">Hand-Woven Wool Throw</h3>
-                        <p class="product-card-price">$110.00</p>
-                    </a>
-                    <a href="product-detail.html" class="btn btn-secondary">View Product</a>
-                </article>
+                <h2 class="section-title">Our Entire Collection</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <!-- IMPORTANT: Replace 'assets/images/product_ceramic_vase.jpg' with an actual image from your assets/images/ directory -->
+                        <img src="assets/images/product_ceramic_vase.jpg" alt="Minimalist Ceramic Vase">
+                        <h3>Ceramic Artisan Vase</h3>
+                        <p>$120.00</p>
+                        <a href="product-detail.html?id=vase" class="button">View Product</a>
+                    </div>
+                    <div class="product-card">
+                        <!-- IMPORTANT: Replace 'assets/images/product_wooden_bowl.jpg' with an actual image from your assets/images/ directory -->
+                        <img src="assets/images/product_wooden_bowl.jpg" alt="Hand-Carved Wooden Bowl">
+                        <h3>Hand-Carved Wooden Bowl</h3>
+                        <p>$95.00</p>
+                        <a href="product-detail.html?id=bowl" class="button">View Product</a>
+                    </div>
+                    <div class="product-card">
+                        <!-- IMPORTANT: Replace 'assets/images/product_linen_throw.jpg' with an actual image from your assets/images/ directory -->
+                        <img src="assets/images/product_linen_throw.jpg" alt="Organic Linen Throw">
+                        <h3>Organic Linen Throw</h3>
+                        <p>$180.00</p>
+                        <a href="product-detail.html?id=throw" class="button">View Product</a>
+                    </div>
+                    <div class="product-card">
+                        <!-- IMPORTANT: Replace 'assets/images/product_brass_tray.jpg' with an actual image from your assets/images/ directory -->
+                        <img src="assets/images/product_brass_tray.jpg" alt="Patinated Brass Tray">
+                        <h3>Patinated Brass Tray</h3>
+                        <p>$75.00</p>
+                        <a href="product-detail.html?id=tray" class="button">View Product</a>
+                    </div>
+                    <div class="product-card">
+                        <!-- IMPORTANT: Replace 'assets/images/product_minimalist_lamp.jpg' with an actual image from your assets/images/ directory -->
+                        <img src="assets/images/product_minimalist_lamp.jpg" alt="Minimalist Table Lamp">
+                        <h3>Minimalist Table Lamp</h3>
+                        <p>$250.00</p>
+                        <a href="product-detail.html?id=lamp" class="button">View Product</a>
+                    </div>
+                    <div class="product-card">
+                        <!-- IMPORTANT: Replace 'assets/images/product_leather_pouch.jpg' with an actual image from your assets/images/ directory -->
+                        <img src="assets/images/product_leather_pouch.jpg" alt="Full-Grain Leather Pouch">
+                        <h3>Full-Grain Leather Pouch</h3>
+                        <p>$60.00</p>
+                        <a href="product-detail.html?id=pouch" class="button">View Product</a>
+                    </div>
+                    <div class="product-card">
+                        <!-- IMPORTANT: Replace 'assets/images/product_concrete_coaster.jpg' with an actual image from your assets/images/ directory -->
+                        <img src="assets/images/product_concrete_coaster.jpg" alt="Set of Concrete Coasters">
+                        <h3>Set of Concrete Coasters</h3>
+                        <p>$45.00</p>
+                        <a href="product-detail.html?id=coaster" class="button">View Product</a>
+                    </div>
+                    <div class="product-card">
+                        <!-- IMPORTANT: Replace 'assets/images/product_wool_cushion.jpg' with an actual image from your assets/images/ directory -->
+                        <img src="assets/images/product_wool_cushion.jpg" alt="Hand-Woven Wool Cushion">
+                        <h3>Hand-Woven Wool Cushion</h3>
+                        <p>$110.00</p>
+                        <a href="product-detail.html?id=cushion" class="button">View Product</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-section">
-                <h4>ELEVATE HOME</h4>
-                <p>Curated design for the modern home. Timeless aesthetics, enduring quality.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Shop</h4>
-                <ul>
-                    <li><a href="products.html">All Products</a></li>
-                    <li><a href="#">Furniture</a></li>
-                    <li><a href="#">Decor</a></li>
-                    <li><a href="#">Textiles</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Customer Service</h4>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Pinterest</a></li>
-                    <li><a href="#">Facebook</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 ELEVATE HOME. All rights reserved.</p>
+            <p>&copy; 2023 kumar page. All rights reserved.</p>
         </div>
     </footer>
 </body>
 </html>
-```
