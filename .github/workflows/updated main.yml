@@ -97,8 +97,6 @@ jobs:
           
           Use ONLY image paths from assets/images/
           
-          Generate images if you can
-          
           If a specific product image is unknown:
           
           Use a neutral colored <div> with a subtle border as a placeholder
