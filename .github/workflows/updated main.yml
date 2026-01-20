@@ -97,7 +97,7 @@ jobs:
           
           Use ONLY image paths from assets/images/
           
-          Do NOT introduce external images or generate new ones
+          Generate images if you can
           
           If a specific product image is unknown:
           
