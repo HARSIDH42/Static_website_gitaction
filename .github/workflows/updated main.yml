@@ -45,181 +45,143 @@ jobs:
           client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
           prompt = """
-                  SYSTEM / ROLE
+                ROLE
+
+          You are a senior UI engineer and design-focused frontend developer known for creating quiet, editorial digital storefronts.
           
-          Act as an expert Frontend Developer specializing in Soft Minimalist UI/UX and premium e-commerce experiences.
+          PRODUCT
           
-          PROJECT NAME
+          Build a static web storefront called “page” for elevated home essentials.
           
-          page
+          DESIGN INTENT
           
-          GOAL
+          The site should communicate restraint, calm, and longevity.
+          Every element must feel deliberate—nothing decorative without purpose.
           
-          Create a high-end, minimalist e-commerce website for premium home goods named “page”.
-          The website should feel calm, refined, and editorial, inspired by intentional living and timeless interiors.
+          VISUAL LANGUAGE
           
-          AESTHETIC
+          Overall direction: Editorial Minimalism
           
-          Style: hard Minimalism
+          Palette:
           
-          Color Palette (warm, modern, earthy):
+          Canvas tone: #FAF9F7
           
-          Background: #FAF9F7 (warm off-white)
+          Neutral panels: #E6E1DB
           
-          Secondary / Surfaces: #E6E1DB (soft stone)
+          Divider / outline color: #C2B8AE
           
-          Accent / Borders: #C2B8AE (muted taupe)
-          
-          Primary Text: #3F3A36 (deep charcoal brown)
+          Text color: #3F3A36
           
           Typography:
           
-          Clean sans-serif only (Inter or System UI)
+          One modern sans-serif family only (Inter or system default)
           
-          Clear hierarchy using size, weight, and spacing
+          Use spacing and scale instead of color for hierarchy
           
-          Layout:
+          Spacing:
           
-          Ample negative space (80px+ padding on major sections)
+          Generous breathing room (no section under 80px padding)
           
-          Balanced grid-based layouts
+          Content should never feel compressed
           
-          UI Details:
+          Motion:
           
-          Subtle borders
+          Soft transitions only (opacity, transform, border)
           
-          Gentle hover and focus transitions
+          No dramatic animation or shadow effects
           
-          No harsh shadows or loud visual effects
+          ASSET RULES
           
-          STRICT CONSTRAINTS
-          1. Images
+          Image usage is restricted to paths inside assets/images/
           
-          Use ONLY image paths from assets/images/
+          Do not invent, generate, or reference external images
           
-          If a specific product image is unknown:
+          When no image is available:
           
-          Use a neutral colored <div> with a subtle border as a placeholder
+          Render a soft neutral block with a thin outline as a visual stand-in
           
-          2. Naming
+          NAMING RULES
           
-          Website name must be “E-Commerce”
+          Brand name: page
           
-          All navigation labels and internal references must include the word “page”
+          Navigation and internal references must include the word “page”
           
-          Examples:
+          Example: “About page”, “Collection page”, “Item page”
           
-          Home page
+          TECHNICAL BOUNDARIES
           
-          About page
+          Output one single HTML file
           
-          Product page
+          Use semantic HTML5
           
-          3. Structure & Technology
-          
-          Generate semantic HTML5
-          
-          Use Tailwind CSS (utility-first) or equivalent internal utility CSS
-          
-          No backend logic
+          Styling must be utility-first (Tailwind-style) or internal CSS utilities
           
           No JavaScript frameworks
           
-          Output must be a single HTML file with internal CSS
+          No backend or dynamic data
           
-          PAGES TO GENERATE
-          1. Home page
+          CONTENT STRUCTURE
+          Landing View
           
-          Hero section with strong typography
+          Large typographic introduction centered around the idea of considered living
           
-          Headline theme: “Curated Living”
+          Headline concept: Curated Living
           
-          Short philosophy statement describing the brand’s approach to refined living
+          Supporting text that explains the brand philosophy in a restrained tone
           
-          Featured collection grid (2–3 products)
+          A small selection of featured items presented in a clean grid
           
-          Product cards include:
+          Collection View
           
-          Image from assets/images/ or placeholder div
+          Product listing arranged in a calm, symmetrical grid
           
-          Product name
+          Two columns on small screens, three on larger screens
           
-          Price
+          Each item displays:
           
-          Subtle hover interactions
-          
-          2. Product Listing Page (PLP)
-          
-          Refined 2-column layout (mobile) / 3-column layout (desktop)
-          
-          Clean, spacious product grid
-          
-          Each product card includes:
-          
-          Image or placeholder
+          Visual (image or placeholder)
           
           Product name
           
           Price
           
-          Gentle hover effects (border, opacity, or slight translate)
+          Interaction should be minimal and reassuring, never distracting
           
-          3. Product Detail Page (PDP)
+          Item View
           
-          Typography-first layout with generous whitespace
+          Single product presentation with emphasis on text and spacing
           
-          Elements:
+          Clear hierarchy:
           
-          Product name
+          Name
           
           Price
           
-          Detailed product description
+          Description
           
-          “Add to Bag” button
+          Include a simple “Add to Bag” button with understated hover feedback
           
-          Button includes hover and active states (visual only)
+          Brand Story
           
-          4. About Page
+          Write three short paragraphs describing page:
           
-          Write 3 meaningful paragraphs about “page”:
+          A focus on thoughtful making and material honesty
           
-          Paragraph 1: Craftsmanship, attention to detail, and thoughtful design
+          A commitment to sustainability and long-term use
           
-          Paragraph 2: Sustainability, responsible sourcing, and longevity
+          The idea of the home as a quiet, intentional space
           
-          Paragraph 3: The “quiet home” movement and intentional living
+          The writing should feel human, composed, and reflective.
           
-          Tone: warm, calm, premium, and human
+          RESPONSIVENESS
           
-          INTERACTIVITY (STATIC ONLY)
+          Mobile-first layout
           
-          Use CSS-based interactions only:
+          Typography and spacing must scale gracefully across devices
           
-          Hover states
+          DELIVERY FORMAT
           
-          Focus styles
-          
-          Smooth transitions
-          
-          Interactions should feel subtle, calm, and premium
-          
-          OUTPUT REQUIREMENTS
-          
-          Single-file HTML output
-          
-          Internal CSS or Tailwind-style utilities
-          
-          Fully responsive (mobile-first)
-          
-          Clean, readable, well-structured code
-          
-          Cohesive and premium visual experience
-          
-          FINAL EXPECTATION
-          
-          The final result should resemble a luxury boutique home-goods brand—
-          quiet, confident, timeless, and editorial—without visual clutter.
+          Return the output as a single complete HTML document, fully styled and ready to render, with a cohesive premium look throughout.
           Return each file strictly in the format:
           ---filename.ext---
           <file content>
