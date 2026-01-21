@@ -3,155 +3,359 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Essentials | Curated Goods</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>page — Elevated Home Essentials</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --canvas: #FAF9F7;
+            --panel: #E6E1DB;
+            --divider: #C2B8AE;
+            --text: #3F3A36;
+            --spacing-unit: 80px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--canvas);
+            color: var(--text);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        p {
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+        }
+
+        .text-small { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
+        .text-muted { color: #8C847C; }
+
+        /* Layout */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 32px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, var(--canvas) 60%, transparent);
+        }
+
+        .page-logo {
+            font-size: 1.25rem;
+            letter-spacing: -0.05em;
+            font-weight: 400;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        section {
+            padding: var(--spacing-unit) 40px;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* Visual Placeholders */
+        .image-container {
+            background-color: var(--panel);
+            border: 1px solid var(--divider);
+            aspect-ratio: 4/5;
+            width: 100%;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .image-container:hover {
+            border-color: var(--text);
+        }
+
+        /* Landing View */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 120px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            margin-bottom: 24px;
+        }
+
+        .hero-description {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* Collection Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px 20px;
+        }
+
+        @media (min-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 80px 40px;
+            }
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .product-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        /* Item View (Featured Detail) */
+        .item-page-detail {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        @media (min-width: 1024px) {
+            .item-page-detail {
+                grid-template-columns: 1.2fr 1fr;
+                gap: 120px;
+            }
+        }
+
+        .item-content {
+            padding-top: 40px;
+            position: sticky;
+            top: 120px;
+        }
+
+        .price-tag {
+            font-size: 1.25rem;
+            margin: 16px 0 32px 0;
+        }
+
+        .add-to-bag {
+            width: 100%;
+            padding: 20px;
+            background: transparent;
+            border: 1px solid var(--text);
+            color: var(--text);
+            cursor: pointer;
+            font-family: inherit;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.75rem;
+            transition: var(--transition);
+            margin-top: 40px;
+        }
+
+        .add-to-bag:hover {
+            background-color: var(--text);
+            color: var(--canvas);
+        }
+
+        /* Brand Story */
+        .brand-story-page {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .brand-story-page p {
+            margin-bottom: 32px;
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 40px;
+            border-top: 1px solid var(--divider);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: var(--divider);
+            width: 100%;
+            margin: 40px 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body>
-    <!-- 1. NAVIGATION & STRUCTURE: Sticky Header -->
-    <header class="main-header">
-        <div class="container header-content">
-            <a href="#" class="logo" aria-label="Home">ESSENTIALS</a>
-            
-            <nav class="desktop-nav" aria-label="Main Navigation">
-                <ul class="nav-links">
-                    <li><a href="#" class="nav-link active" data-category="all">All Items</a></li>
-                    <li><a href="#" class="nav-link" data-category="apparel">Apparel</a></li>
-                    <li><a href="#" class="nav-link" data-category="accessories">Accessories</a></li>
-                    <li><a href="#" class="nav-link" data-category="home">Home</a></li>
-                </ul>
-            </nav>
 
-            <div class="header-actions">
-                <button id="search-toggle" class="icon-btn" aria-label="Search">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                </button>
-                <button id="cart-toggle" class="icon-btn cart-btn" aria-label="View Cart">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                    <span class="cart-count">0</span>
-                </button>
-            </div>
-        </div>
-        
-        <!-- Search Overlay -->
-        <div id="search-bar" class="search-bar-container hidden">
-            <div class="container">
-                <input type="text" id="product-search" placeholder="Search for products (e.g. 'Cotton', 'Bowl')..." aria-label="Search products">
-            </div>
-        </div>
+    <header>
+        <div class="page-logo"><a href="#">page</a></div>
+        <nav>
+            <ul class="text-small">
+                <li><a href="#collection-page">Collection page</a></li>
+                <li><a href="#story-page">Story page</a></li>
+                <li><a href="#bag">Bag (0)</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="container">
-        <!-- 1. NAVIGATION & ORIENTATION: Breadcrumbs -->
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <ol>
-                <li><a href="#">Home</a></li>
-                <li aria-current="page">Catalog</li>
-            </ol>
-        </nav>
+    <main>
+        <!-- Landing View -->
+        <section class="hero-section" id="landing-page">
+            <h1 class="hero-title">Curated Living</h1>
+            <p class="hero-description text-muted">
+                An archive of elevated essentials designed for the quiet moments of the everyday. Built for longevity, crafted with restraint.
+            </p>
+        </section>
 
-        <!-- 2. PRODUCT DISCOVERY: Filters & Sorting -->
-        <section class="controls">
-            <div class="filter-group">
-                <span class="filter-label">Sort by:</span>
-                <select id="sort-order" aria-label="Sort products">
-                    <option value="featured">Featured</option>
-                    <option value="low-high">Price: Low to High</option>
-                    <option value="high-low">Price: High to Low</option>
-                </select>
-            </div>
-            <div class="results-count" aria-live="polite">
-                Showing <span id="count-num">0</span> items
+        <!-- Collection View -->
+        <section id="collection-page">
+            <div class="divider"></div>
+            <div class="grid">
+                <!-- Item 1 -->
+                <a href="#item-page-01" class="product-card">
+                    <div class="image-container"></div>
+                    <div class="product-info">
+                        <h3>Standard Pitcher</h3>
+                        <span class="text-muted">$84</span>
+                    </div>
+                </a>
+                <!-- Item 2 -->
+                <div class="product-card">
+                    <div class="image-container"></div>
+                    <div class="product-info">
+                        <h3>Linen Bedding Set</h3>
+                        <span class="text-muted">$220</span>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="product-card">
+                    <div class="image-container"></div>
+                    <div class="product-info">
+                        <h3>Oak Stool</h3>
+                        <span class="text-muted">$310</span>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="product-card">
+                    <div class="image-container"></div>
+                    <div class="product-info">
+                        <h3>Wool Throw</h3>
+                        <span class="text-muted">$160</span>
+                    </div>
+                </div>
+                <!-- Item 5 -->
+                <div class="product-card">
+                    <div class="image-container"></div>
+                    <div class="product-info">
+                        <h3>Ceramic Vessel</h3>
+                        <span class="text-muted">$75</span>
+                    </div>
+                </div>
+                <!-- Item 6 -->
+                <div class="product-card">
+                    <div class="image-container"></div>
+                    <div class="product-info">
+                        <h3>Cotton Towel</h3>
+                        <span class="text-muted">$45</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- 6. EMPTY & EDGE STATES: Handled by JS -->
-        <div id="product-grid" class="product-grid">
-            <!-- Products injected by JS -->
-        </div>
+        <!-- Item View (Dedicated Detail) -->
+        <section id="item-page-01" style="padding-top: 160px;">
+            <div class="item-page-detail">
+                <div class="image-container" style="aspect-ratio: 1/1;"></div>
+                <div class="item-content">
+                    <p class="text-small text-muted">Featured Essential</p>
+                    <h2 style="font-size: 2.5rem; margin-top: 8px;">Standard Pitcher</h2>
+                    <p class="price-tag">$84.00</p>
+                    <p class="text-muted">
+                        A hand-thrown ceramic vessel with a matte finish. Designed for utility and daily ritual, the Standard Pitcher features a balanced weight and a refined spout for a consistent pour.
+                    </p>
+                    <button class="add-to-bag">Add to Bag</button>
+                    
+                    <div style="margin-top: 60px;">
+                        <p class="text-small" style="margin-bottom: 12px;">Details</p>
+                        <ul class="text-muted" style="list-style: none; font-size: 0.875rem;">
+                            <li>100% Stone-ware</li>
+                            <li>Dishwasher safe</li>
+                            <li>Sourced from the High Weald</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div id="empty-state" class="empty-state hidden">
-            <p>No products match your criteria.</p>
-            <button class="btn-secondary" onclick="resetFilters()">Clear all filters</button>
-        </div>
+        <!-- Brand Story -->
+        <section id="story-page" class="brand-story-page">
+            <div class="divider" style="margin-bottom: 120px;"></div>
+            <p>
+                At page, we believe that the objects we live with should be as considered as the lives we lead. Each piece is born from a dialogue between material honesty and functional clarity, resulting in essentials that feel both new and inevitable.
+            </p>
+            <p>
+                Longevity is our primary measure of sustainability. We design for the decades rather than seasons, choosing materials that age with grace and employing construction methods that endure the passage of time.
+            </p>
+            <p>
+                The home is a sanctuary—a quiet, intentional space where the noise of the world recedes. Our collection serves this stillness, providing the essential backdrop for a life well-lived and the objects that anchor us to the present.
+            </p>
+        </section>
     </main>
 
-    <!-- 5. TRUST & UX SIGNALS: Global Badges -->
-    <section class="trust-bar">
-        <div class="container trust-grid">
-            <div class="trust-item">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11h14v10H5z"/><path d="M12 11V6a4 4 0 0 0-8 0v5"/></svg>
-                <span>Ethically Sourced</span>
-            </div>
-            <div class="trust-item">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span>Lifetime Warranty</span>
-            </div>
-            <div class="trust-item">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
-                <span>Carbon Neutral</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. SHOPPING INTERACTION: Cart Drawer -->
-    <aside id="cart-drawer" class="cart-drawer" aria-hidden="true">
-        <div class="cart-overlay"></div>
-        <div class="cart-content">
-            <div class="cart-header">
-                <h3>Your Bag</h3>
-                <button id="cart-close" aria-label="Close cart">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-                </button>
-            </div>
-            <div id="cart-items" class="cart-items-list">
-                <!-- Cart items injected by JS -->
-            </div>
-            <div class="cart-footer">
-                <div class="cart-total">
-                    <span>Subtotal</span>
-                    <span id="cart-subtotal">$0.00</span>
-                </div>
-                <button class="btn-primary full-width">Proceed to Checkout</button>
-                <p class="cart-note">Free shipping on orders over $150</p>
-            </div>
-        </div>
-    </aside>
-
-    <!-- 3. PRODUCT DETAIL ENHANCEMENTS: Modal View -->
-    <dialog id="product-detail-modal" class="modal">
-        <div class="modal-body" id="modal-content">
-            <!-- Content injected when clicking a product -->
-        </div>
-    </dialog>
-
-    <footer class="main-footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <h4>Support</h4>
-                <a href="#">Shipping & Returns</a>
-                <a href="#">Contact Us</a>
-                <a href="#">Size Guide</a>
-            </div>
-            <div class="footer-col">
-                <h4>About</h4>
-                <a href="#">Our Story</a>
-                <a href="#">Sustainability</a>
-                <a href="#">Stockists</a>
-            </div>
-            <div class="footer-col newsletter">
-                <h4>Newsletter</h4>
-                <p>Sign up for mindful updates.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="email@example.com" required>
-                    <button type="submit" class="btn-ghost">Join</button>
-                </form>
-            </div>
-        </div>
-        <div class="container copyright">
-            &copy; 2023 Essentials Studio. All rights reserved.
-        </div>
+    <footer>
+        <div class="text-small">© 2024 page studio</div>
+        <nav>
+            <ul class="text-small">
+                <li><a href="#" class="text-muted">Instagram</a></li>
+                <li><a href="#" class="text-muted">Privacy</a></li>
+                <li><a href="#" class="text-muted">Shipping</a></li>
+            </ul>
+        </nav>
     </footer>
 
-    <script src="scripts.js"></script>
 </body>
 </html>
