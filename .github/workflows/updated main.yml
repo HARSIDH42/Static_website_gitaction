@@ -28,7 +28,6 @@ jobs:
       - name: Install Dependencies
         run: |
           pip install --upgrade google-genai
-
       # 4️⃣ Run Gemini AI to auto-update website UI
       - name: Run Gemini AI to Update Website UI
         env:
@@ -40,60 +39,161 @@ jobs:
           import re
           from pathlib import Path
           from google import genai
-
           # Initialize Gemini client
           client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-
           prompt = """
-                    goal: >
-            Create a minimalist, aesthetically pleasing e-commerce site
-            for high-end home goods.
+                ROLE
+          You are a senior UI engineer and design-focused frontend developer known for creating quiet, editorial digital storefronts.
           
-          aesthetic:
-            - minimalist and soft
-            - ample negative space
-            - muted / earthy colors
-            - clean sans-serif typography
+          PRODUCT
           
-          mandatory_constraints:
-            images:
-              rules:
-                - ABSOLUTELY MUST use only assets already present in assets/images/
-                - DO NOT introduce new images
-                - If images are not needed, avoid using images completely
-            content:
-              - Fill the About section with meaningful content
+          Build a static web storefront called “page” for elevated home essentials.
           
-          pages_required:
-            - Homepage
-            - Product Listing Page (PLP)
-            - Product Detail Page (PDP)
+          DESIGN INTENT
           
-          additional:
-            naming:
-              instruction: Rename the site/pages to "page"
-
+          The site should communicate restraint, calm, and longevity.
+          Every element must feel deliberate—nothing decorative without purpose.
+          
+          VISUAL LANGUAGE
+          
+          Overall direction: Editorial Minimalism
+          
+          Palette:
+          
+          Canvas tone: #FAF9F7
+          
+          Neutral panels: #E6E1DB
+          
+          Divider / outline color: #C2B8AE
+          
+          Text color: #3F3A36
+          
+          Typography:
+          
+          One modern sans-serif family only (Inter or system default)
+          
+          Use spacing and scale instead of color for hierarchy
+          
+          Spacing:
+          
+          Generous breathing room (no section under 80px padding)
+          
+          Content should never feel compressed
+          
+          Motion:
+          
+          Soft transitions only (opacity, transform, border)
+          
+          No dramatic animation or shadow effects
+          
+          ASSET RULES
+          
+          Image usage is restricted to paths inside assets/images/
+          
+          Do not invent, generate, or reference external images
+          
+          When no image is available:
+          
+          Render a soft neutral block with a thin outline as a visual stand-in
+          
+          NAMING RULES
+          
+          Brand name: page
+          
+          Navigation and internal references must include the word “page”
+          
+          Example: “About page”, “Collection page”, “Item page”
+          
+          TECHNICAL BOUNDARIES
+          
+          Output one single HTML file
+          
+          Use semantic HTML5
+          
+          Styling must be utility-first (Tailwind-style) or internal CSS utilities
+          
+          No JavaScript frameworks
+          
+          No backend or dynamic data
+          
+          CONTENT STRUCTURE
+          Landing View
+          
+          Large typographic introduction centered around the idea of considered living
+          
+          Headline concept: Curated Living
+          
+          Supporting text that explains the brand philosophy in a restrained tone
+          
+          A small selection of featured items presented in a clean grid
+          
+          Collection View
+          
+          Product listing arranged in a calm, symmetrical grid
+          
+          Two columns on small screens, three on larger screens
+          
+          Each item displays:
+          
+          Visual (image or placeholder)
+          
+          Product name
+          
+          Price
+          
+          Interaction should be minimal and reassuring, never distracting
+          
+          Item View
+          
+          Single product presentation with emphasis on text and spacing
+          
+          Clear hierarchy:
+          
+          Name
+          
+          Price
+          
+          Description
+          
+          Include a simple “Add to Bag” button with understated hover feedback
+          
+          Brand Story
+          
+          Write three short paragraphs describing page:
+          
+          A focus on thoughtful making and material honesty
+          
+          A commitment to sustainability and long-term use
+          
+          The idea of the home as a quiet, intentional space
+          
+          The writing should feel human, composed, and reflective.
+          
+          RESPONSIVENESS
+          
+          Mobile-first layout
+          
+          Typography and spacing must scale gracefully across devices
+          
+          DELIVERY FORMAT
+          
+          Return the output as a single complete HTML document, fully styled and ready to render, with a cohesive premium look throughout.
           Return each file strictly in the format:
           ---filename.ext---
           <file content>
           """
-
           # Generate content
           response = client.models.generate_content(
               model="gemini-3-flash-preview",
               contents=prompt
           )
-
           output = response.text
-
           # Parse and write files
           matches = re.findall(r"---(.*?)---\n(.*?)(?=(?:---|$))", output, re.DOTALL)
-
           for filename, content in matches:
               path = Path(filename.strip())
               path.parent.mkdir(parents=True, exist_ok=True)
               path.write_text(content.strip(), encoding="utf-8")
-
           # Git commit & push
           subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
           subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
@@ -101,7 +201,6 @@ jobs:
           subprocess.run(["git", "commit", "-m", "🤖 Gemini AI updated website UI"], check=False)
           subprocess.run(["git", "push"])
           EOF
-
       # 5️⃣ Configure AWS credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
