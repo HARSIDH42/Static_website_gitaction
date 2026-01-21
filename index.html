@@ -3,331 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>page — Elevated Home Essentials</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <style>
+        /* Base Variables & Reset */
         :root {
-            --bg: #FAF9F7;
-            --surface: #E6E1DB;
-            --border: #C2B8AE;
+            --canvas: #FAF9F7;
+            --panel: #E6E1DB;
+            --divider: #C2B8AE;
             --text: #3F3A36;
+            --transition: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            --space-lg: 80px;
+            --space-xl: 120px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg);
+            background-color: var(--canvas);
             color: var(--text);
-            scroll-behavior: smooth;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        .border-subtle { border-color: var(--border); }
-        .bg-stone-soft { background-color: var(--surface); }
-        
-        /* Navigation Highlight Logic */
-        section { display: none; }
-        section:target { display: block; }
-        #home-page:not(:target) ~ #products-page:not(:target) ~ #product-detail-page:not(:target) ~ #about-page:not(:target) #home-page {
-            display: block;
-        }
-        /* Default view if no hash */
-        #home-page { display: block; }
-        :target ~ #home-page { display: none; }
-
-        /* Custom UI Details */
-        .premium-transition {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Typography Utilities */
+        h1, h2, h3 {
+            font-weight: 400;
+            letter-spacing: -0.02em;
         }
 
-        .product-card:hover .product-image-overlay {
-            opacity: 0.1;
+        .text-xs { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; }
+        .text-sm { font-size: 14px; }
+        .text-base { font-size: 16px; }
+        .text-lg { font-size: 24px; }
+        .text-xl { font-size: 48px; }
+        @media (min-width: 1024px) {
+            .text-xl { font-size: 72px; }
+        }
+
+        /* Layout Utilities */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section-padding {
+            padding-top: var(--space-lg);
+            padding-bottom: var(--space-lg);
+        }
+
+        @media (min-width: 1024px) {
+            .section-padding {
+                padding-top: var(--space-xl);
+                padding-bottom: var(--space-xl);
+            }
+        }
+
+        /* Components */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            background: rgba(250, 249, 247, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid transparent;
+            transition: border-color var(--transition);
+        }
+
+        .nav:hover {
+            border-bottom-color: var(--divider);
+        }
+
+        .nav-brand {
+            font-size: 20px;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
         }
 
         .nav-link {
-            position: relative;
-            padding-bottom: 2px;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--text);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 14px;
+            opacity: 0.6;
+            transition: opacity var(--transition);
         }
 
-        .placeholder-img {
-            background-color: var(--surface);
-            border: 1px solid var(--border);
+        .nav-link:hover {
+            opacity: 1;
+        }
+
+        .asset-placeholder {
+            background-color: var(--panel);
+            border: 1px solid var(--divider);
+            width: 100%;
             aspect-ratio: 4/5;
+            transition: opacity var(--transition), transform var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--border);
-            text-transform: uppercase;
+        }
+
+        .asset-placeholder::after {
+            content: 'page';
+            font-size: 12px;
+            opacity: 0.3;
             letter-spacing: 0.1em;
-            font-size: 0.75rem;
+        }
+
+        /* Hero / Landing View */
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 1px solid var(--divider);
+        }
+
+        .hero-headline {
+            margin-bottom: 24px;
+            max-width: 800px;
+        }
+
+        .hero-subtext {
+            max-width: 480px;
+            opacity: 0.7;
+        }
+
+        /* Grid System (Collection View) */
+        .grid-collection {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px 20px;
+        }
+
+        @media (min-width: 1024px) {
+            .grid-collection {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 80px 40px;
+            }
+        }
+
+        .product-card {
+            text-decoration: none;
+            color: var(--text);
+            display: block;
+        }
+
+        .product-card:hover .asset-placeholder {
+            opacity: 0.8;
+        }
+
+        .product-info {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .product-name {
+            font-size: 16px;
+        }
+
+        .product-price {
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        /* Item View Section */
+        .item-view {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+            border-top: 1px solid var(--divider);
+            border-bottom: 1px solid var(--divider);
+        }
+
+        @media (min-width: 1024px) {
+            .item-view {
+                grid-template-columns: 1.2fr 1fr;
+                gap: 80px;
+            }
+        }
+
+        .item-details {
+            padding: 40px 0;
         }
 
         .btn-primary {
-            background-color: var(--text);
-            color: var(--bg);
-            padding: 1rem 2.5rem;
-            transition: opacity 0.3s ease;
+            display: inline-block;
+            padding: 16px 32px;
+            border: 1px solid var(--text);
+            background: transparent;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 32px;
+            transition: all var(--transition);
+            cursor: pointer;
         }
+
         .btn-primary:hover {
-            opacity: 0.9;
+            background: var(--text);
+            color: var(--canvas);
         }
-        .btn-primary:active {
-            transform: scale(0.98);
+
+        /* Brand Story View */
+        .story-section {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .story-paragraph {
+            margin-bottom: 40px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: var(--divider);
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--divider);
+        }
+
+        /* Smooth scroll for internal navigation */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-[#FAF9F7]/80 backdrop-blur-md border-b border-[#C2B8AE]/30">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
-            <a href="#home-page" class="text-xl font-medium tracking-tight uppercase">page</a>
-            
-            <div class="flex space-x-8 text-sm uppercase tracking-widest">
-                <a href="#home-page" class="nav-link">Home page</a>
-                <a href="#products-page" class="nav-link">Products page</a>
-                <a href="#about-page" class="nav-link">About page</a>
-            </div>
-
-            <div class="text-sm uppercase tracking-widest hidden md:block">
-                Bag (0)
-            </div>
+    <nav class="nav">
+        <a href="#" class="nav-brand">page</a>
+        <div class="nav-links">
+            <a href="#collection" class="nav-link">Collection page</a>
+            <a href="#about" class="nav-link">About page</a>
         </div>
     </nav>
 
-    <main class="pt-20">
+    <main>
+        <!-- Landing View -->
+        <section class="hero container">
+            <h1 class="hero-headline text-xl">Curated Living</h1>
+            <p class="hero-subtext text-base">
+                An exploration of objects designed for the quiet moments. We believe in the beauty of utility and the permanence of honest materials.
+            </p>
+        </section>
 
-        <!-- 1. HOME PAGE -->
-        <section id="home-page" class="animate-fade-in">
-            <!-- Hero -->
-            <div class="px-6 md:px-20 py-32 md:py-48 max-w-7xl mx-auto">
-                <div class="max-w-3xl">
-                    <h1 class="text-5xl md:text-8xl font-light leading-tight mb-12">Curated Living</h1>
-                    <p class="text-lg md:text-xl leading-relaxed opacity-90 max-w-xl">
-                        A philosophy of essentialism. We curate objects that bridge the gap between utility and art, designed for the intentional home.
+        <!-- Collection View -->
+        <section id="collection" class="section-padding container">
+            <div class="text-xs" style="margin-bottom: 40px;">Selected items</div>
+            <div class="grid-collection">
+                <!-- Item 1 -->
+                <a href="#featured-item" class="product-card">
+                    <div class="asset-placeholder"></div>
+                    <div class="product-info">
+                        <span class="product-name">Ash Stool, No. 01</span>
+                        <span class="product-price">— $320</span>
+                    </div>
+                </a>
+                <!-- Item 2 -->
+                <a href="#featured-item" class="product-card">
+                    <div class="asset-placeholder"></div>
+                    <div class="product-info">
+                        <span class="product-name">Ceramic Vessel</span>
+                        <span class="product-price">— $140</span>
+                    </div>
+                </a>
+                <!-- Item 3 -->
+                <a href="#featured-item" class="product-card">
+                    <div class="asset-placeholder"></div>
+                    <div class="product-info">
+                        <span class="product-name">Linen Throw</span>
+                        <span class="product-price">— $210</span>
+                    </div>
+                </a>
+                <!-- Item 4 -->
+                <a href="#featured-item" class="product-card">
+                    <div class="asset-placeholder"></div>
+                    <div class="product-info">
+                        <span class="product-name">Stone Tray</span>
+                        <span class="product-price">— $95</span>
+                    </div>
+                </a>
+                <!-- Item 5 -->
+                <a href="#featured-item" class="product-card">
+                    <div class="asset-placeholder"></div>
+                    <div class="product-info">
+                        <span class="product-name">Glass Carafe</span>
+                        <span class="product-price">— $80</span>
+                    </div>
+                </a>
+                <!-- Item 6 -->
+                <a href="#featured-item" class="product-card">
+                    <div class="asset-placeholder"></div>
+                    <div class="product-info">
+                        <span class="product-name">Brushed Steel Lamp</span>
+                        <span class="product-price">— $450</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Item View (Featured) -->
+        <section id="featured-item" class="section-padding container">
+            <div class="item-view">
+                <div class="asset-placeholder" style="aspect-ratio: 1/1;"></div>
+                <div class="item-details">
+                    <div class="text-xs" style="margin-bottom: 12px;">Featured Item page</div>
+                    <h2 class="text-lg" style="margin-bottom: 8px;">Ash Stool, No. 01</h2>
+                    <div class="text-base" style="margin-bottom: 32px; opacity: 0.6;">$320.00</div>
+                    <p class="text-base" style="margin-bottom: 24px; max-width: 400px;">
+                        Hand-carved from locally sourced white ash. Each stool features a unique grain pattern and a hand-rubbed oil finish that deepens with age.
                     </p>
-                </div>
-            </div>
-
-            <!-- Featured Collection -->
-            <div class="px-6 md:px-20 py-20 bg-stone-soft/30 border-t border-subtle">
-                <div class="max-w-7xl mx-auto">
-                    <div class="flex justify-between items-end mb-12">
-                        <h2 class="text-2xl uppercase tracking-widest">Featured</h2>
-                        <a href="#products-page" class="text-sm underline underline-offset-4">View all Products page</a>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <!-- Product 1 -->
-                        <a href="#product-detail-page" class="group block product-card">
-                            <div class="placeholder-img mb-6 premium-transition group-hover:border-[#3F3A36]">
-                                <img src="assets/images/hero-item-01.jpg" alt="" class="w-full h-full object-cover hidden" onerror="this.style.display='none'">
-                                <span>Item 01</span>
-                            </div>
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="text-lg">Linum Throw</h3>
-                                    <p class="text-sm opacity-60">Hand-woven Linen</p>
-                                </div>
-                                <span class="text-lg">$240</span>
-                            </div>
-                        </a>
-                        <!-- Product 2 -->
-                        <a href="#product-detail-page" class="group block product-card">
-                            <div class="placeholder-img mb-6 premium-transition group-hover:border-[#3F3A36]">
-                                <img src="assets/images/hero-item-02.jpg" alt="" class="w-full h-full object-cover hidden" onerror="this.style.display='none'">
-                                <span>Item 02</span>
-                            </div>
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="text-lg">Ceramic Vessel</h3>
-                                    <p class="text-sm opacity-60">Matte Bone Finish</p>
-                                </div>
-                                <span class="text-lg">$185</span>
-                            </div>
-                        </a>
-                    </div>
+                    <p class="text-sm" style="opacity: 0.6; margin-bottom: 8px;">Dimensions: 45cm x 30cm</p>
+                    <p class="text-sm" style="opacity: 0.6;">Material: Solid Ash</p>
+                    <button class="btn-primary">Add to Bag</button>
                 </div>
             </div>
         </section>
 
-        <!-- 2. PRODUCT LISTING PAGE (PLP) -->
-        <section id="products-page">
-            <div class="px-6 md:px-20 py-24 max-w-7xl mx-auto">
-                <header class="mb-20">
-                    <h1 class="text-4xl font-light mb-4">The Collection</h1>
-                    <p class="text-sm uppercase tracking-widest opacity-60">Browse our Products page</p>
-                </header>
-
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-16">
-                    <!-- Product Loop -->
-                    <a href="#product-detail-page" class="group block product-card">
-                        <div class="placeholder-img mb-4 premium-transition group-hover:opacity-80">
-                            <span>Item 01</span>
-                        </div>
-                        <h3 class="text-sm uppercase tracking-wider">Linum Throw</h3>
-                        <p class="text-sm opacity-60">$240</p>
-                    </a>
-                    <a href="#product-detail-page" class="group block product-card">
-                        <div class="placeholder-img mb-4 premium-transition group-hover:opacity-80">
-                            <span>Item 02</span>
-                        </div>
-                        <h3 class="text-sm uppercase tracking-wider">Ceramic Vessel</h3>
-                        <p class="text-sm opacity-60">$185</p>
-                    </a>
-                    <a href="#product-detail-page" class="group block product-card">
-                        <div class="placeholder-img mb-4 premium-transition group-hover:opacity-80">
-                            <span>Item 03</span>
-                        </div>
-                        <h3 class="text-sm uppercase tracking-wider">Oak Stool</h3>
-                        <p class="text-sm opacity-60">$420</p>
-                    </a>
-                    <a href="#product-detail-page" class="group block product-card">
-                        <div class="placeholder-img mb-4 premium-transition group-hover:opacity-80">
-                            <span>Item 04</span>
-                        </div>
-                        <h3 class="text-sm uppercase tracking-wider">Scented Candle</h3>
-                        <p class="text-sm opacity-60">$65</p>
-                    </a>
-                    <a href="#product-detail-page" class="group block product-card">
-                        <div class="placeholder-img mb-4 premium-transition group-hover:opacity-80">
-                            <span>Item 05</span>
-                        </div>
-                        <h3 class="text-sm uppercase tracking-wider">Brass Tray</h3>
-                        <p class="text-sm opacity-60">$110</p>
-                    </a>
-                    <a href="#product-detail-page" class="group block product-card">
-                        <div class="placeholder-img mb-4 premium-transition group-hover:opacity-80">
-                            <span>Item 06</span>
-                        </div>
-                        <h3 class="text-sm uppercase tracking-wider">Wool Rug</h3>
-                        <p class="text-sm opacity-60">$890</p>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. PRODUCT DETAIL PAGE (PDP) -->
-        <section id="product-detail-page">
-            <div class="px-6 md:px-20 py-24 max-w-7xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
-                    <!-- Media -->
-                    <div class="md:col-span-7">
-                        <div class="placeholder-img w-full min-h-[600px]">
-                            <span>Product page Detail View</span>
-                        </div>
-                    </div>
-                    <!-- Details -->
-                    <div class="md:col-span-5 sticky top-32">
-                        <nav class="mb-8 text-xs uppercase tracking-widest opacity-50">
-                            <a href="#products-page">Products page</a> / Linum Throw
-                        </nav>
-                        <h1 class="text-4xl font-light mb-4">Linum Throw</h1>
-                        <p class="text-2xl mb-8">$240</p>
-                        
-                        <div class="border-t border-subtle py-8">
-                            <p class="leading-relaxed opacity-80 mb-8">
-                                A heavy-weight linen throw featuring a tactile, hand-woven texture. Each piece is stonewashed for softness and finished with a delicate fringe edge. Designed to drape effortlessly over a sofa or bed, bringing warmth and character to the modern interior.
-                            </p>
-                            
-                            <div class="space-y-4 mb-12">
-                                <div class="flex justify-between text-sm py-2 border-b border-subtle/30">
-                                    <span>Material</span>
-                                    <span>100% Belgian Linen</span>
-                                </div>
-                                <div class="flex justify-between text-sm py-2 border-b border-subtle/30">
-                                    <span>Dimensions</span>
-                                    <span>140 x 200 cm</span>
-                                </div>
-                                <div class="flex justify-between text-sm py-2 border-b border-subtle/30">
-                                    <span>Origin</span>
-                                    <span>Handmade in Portugal</span>
-                                </div>
-                            </div>
-
-                            <button class="w-full btn-primary uppercase tracking-widest text-sm font-medium">
-                                Add to Bag
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. ABOUT PAGE -->
-        <section id="about-page">
-            <div class="px-6 md:px-20 py-24 max-w-4xl mx-auto">
-                <h1 class="text-sm uppercase tracking-[0.3em] mb-20 text-center">The About page</h1>
+        <!-- Brand Story View -->
+        <section id="about" class="section-padding container">
+            <div class="story-section">
+                <div class="text-xs" style="margin-bottom: 40px; text-align: center;">About page</div>
                 
-                <div class="space-y-24 text-center md:text-left">
-                    <div class="space-y-6">
-                        <h2 class="text-2xl font-light">The Craft of Detail</h2>
-                        <p class="text-lg leading-relaxed opacity-80">
-                            At page, we believe that the objects we surround ourselves with should be chosen with intention. Our collection is the result of a rigorous search for craftsmanship, focusing on the minute details that transform a simple household object into a companion for life. Every curve, texture, and seam is considered, ensuring that design serves both the eye and the hand.
-                        </p>
-                    </div>
+                <p class="story-paragraph">
+                    page began as a quiet response to the disposable nature of modern living. We focus on thoughtful making and material honesty, partnering with craftspeople who understand that the best things take time. Every object in our collection is chosen for its ability to perform its function beautifully and endure for generations.
+                </p>
 
-                    <div class="space-y-6">
-                        <h2 class="text-2xl font-light">Quiet Responsibility</h2>
-                        <p class="text-lg leading-relaxed opacity-80">
-                            Sustainability is not a feature; it is our foundation. We prioritize responsible sourcing and small-batch production to minimize our footprint and maximize longevity. By choosing natural materials that age gracefully—linen, stone, solid wood—we create products that do not need to be replaced, but rather, become more beautiful with the passage of time.
-                        </p>
-                    </div>
+                <p class="story-paragraph">
+                    Our commitment to sustainability is rooted in longevity. By creating items that do not need to be replaced, we reduce our collective footprint. We prioritize natural fibers, sustainably harvested woods, and recyclable metals, ensuring that our presence in your home is as gentle as it is intentional.
+                </p>
 
-                    <div class="space-y-6">
-                        <h2 class="text-2xl font-light">The Intentional Home</h2>
-                        <p class="text-lg leading-relaxed opacity-80">
-                            Inspired by the "quiet home" movement, page seeks to strip away the noise of modern consumerism. We advocate for a slower, more deliberate way of living, where quality supersedes quantity. Our aesthetic is a tribute to the calm, the muted, and the timeless—creating spaces that allow for reflection, rest, and a deeper connection to the physical world.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="mt-32 border-t border-subtle py-20 px-6 md:px-20">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div class="col-span-1 md:col-span-2">
-                <span class="text-xl font-medium uppercase tracking-tight">page</span>
-                <p class="mt-6 text-sm opacity-60 max-w-xs leading-relaxed">
-                    Elevating the everyday through hard minimalism and intentional design.
+                <p class="story-paragraph">
+                    The home is more than a place of residence; it is a quiet, intentional space that shapes our daily rhythms. page exists to furnish those spaces with restraint and calm, allowing the objects you own to provide a sense of groundedness in an increasingly loud world.
                 </p>
             </div>
-            <div>
-                <h4 class="text-xs uppercase tracking-widest mb-6 font-semibold">Explore</h4>
-                <ul class="space-y-4 text-sm opacity-80">
-                    <li><a href="#home-page" class="hover:opacity-50">Home page</a></li>
-                    <li><a href="#products-page" class="hover:opacity-50">Products page</a></li>
-                    <li><a href="#about-page" class="hover:opacity-50">About page</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-xs uppercase tracking-widest mb-6 font-semibold">Social</h4>
-                <ul class="space-y-4 text-sm opacity-80">
-                    <li><a href="#" class="hover:opacity-50">Instagram</a></li>
-                    <li><a href="#" class="hover:opacity-50">Pinterest</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-subtle/30 flex justify-between text-[10px] uppercase tracking-widest opacity-40">
-            <span>&copy; 2024 page e-commerce</span>
-            <span>Privacy & Terms</span>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="text-xs" style="opacity: 0.4;">&copy; 2024 page. All rights reserved.</div>
         </div>
     </footer>
 
