@@ -3,383 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page — Elevated Home Essentials</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <style>
-        /* Base Variables & Reset */
-        :root {
-            --canvas: #FAF9F7;
-            --panel: #E6E1DB;
-            --divider: #C2B8AE;
-            --text: #3F3A36;
-            --transition: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-            --space-lg: 80px;
-            --space-xl: 120px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--canvas);
-            color: var(--text);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-
-        /* Typography Utilities */
-        h1, h2, h3 {
-            font-weight: 400;
-            letter-spacing: -0.02em;
-        }
-
-        .text-xs { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; }
-        .text-sm { font-size: 14px; }
-        .text-base { font-size: 16px; }
-        .text-lg { font-size: 24px; }
-        .text-xl { font-size: 48px; }
-        @media (min-width: 1024px) {
-            .text-xl { font-size: 72px; }
-        }
-
-        /* Layout Utilities */
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .section-padding {
-            padding-top: var(--space-lg);
-            padding-bottom: var(--space-lg);
-        }
-
-        @media (min-width: 1024px) {
-            .section-padding {
-                padding-top: var(--space-xl);
-                padding-bottom: var(--space-xl);
-            }
-        }
-
-        /* Components */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-            background: rgba(250, 249, 247, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            border-bottom: 1px solid transparent;
-            transition: border-color var(--transition);
-        }
-
-        .nav:hover {
-            border-bottom-color: var(--divider);
-        }
-
-        .nav-brand {
-            font-size: 20px;
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--text);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--text);
-            font-size: 14px;
-            opacity: 0.6;
-            transition: opacity var(--transition);
-        }
-
-        .nav-link:hover {
-            opacity: 1;
-        }
-
-        .asset-placeholder {
-            background-color: var(--panel);
-            border: 1px solid var(--divider);
-            width: 100%;
-            aspect-ratio: 4/5;
-            transition: opacity var(--transition), transform var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .asset-placeholder::after {
-            content: 'page';
-            font-size: 12px;
-            opacity: 0.3;
-            letter-spacing: 0.1em;
-        }
-
-        /* Hero / Landing View */
-        .hero {
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border-bottom: 1px solid var(--divider);
-        }
-
-        .hero-headline {
-            margin-bottom: 24px;
-            max-width: 800px;
-        }
-
-        .hero-subtext {
-            max-width: 480px;
-            opacity: 0.7;
-        }
-
-        /* Grid System (Collection View) */
-        .grid-collection {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px 20px;
-        }
-
-        @media (min-width: 1024px) {
-            .grid-collection {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 80px 40px;
-            }
-        }
-
-        .product-card {
-            text-decoration: none;
-            color: var(--text);
-            display: block;
-        }
-
-        .product-card:hover .asset-placeholder {
-            opacity: 0.8;
-        }
-
-        .product-info {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-
-        .product-name {
-            font-size: 16px;
-        }
-
-        .product-price {
-            font-size: 14px;
-            opacity: 0.6;
-        }
-
-        /* Item View Section */
-        .item-view {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            align-items: center;
-            border-top: 1px solid var(--divider);
-            border-bottom: 1px solid var(--divider);
-        }
-
-        @media (min-width: 1024px) {
-            .item-view {
-                grid-template-columns: 1.2fr 1fr;
-                gap: 80px;
-            }
-        }
-
-        .item-details {
-            padding: 40px 0;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            padding: 16px 32px;
-            border: 1px solid var(--text);
-            background: transparent;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 14px;
-            margin-top: 32px;
-            transition: all var(--transition);
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            background: var(--text);
-            color: var(--canvas);
-        }
-
-        /* Brand Story View */
-        .story-section {
-            max-width: 640px;
-            margin: 0 auto;
-        }
-
-        .story-paragraph {
-            margin-bottom: 40px;
-            font-size: 18px;
-            line-height: 1.8;
-        }
-
-        .divider {
-            width: 100%;
-            height: 1px;
-            background-color: var(--divider);
-        }
-
-        footer {
-            padding: 40px;
-            text-align: center;
-            border-top: 1px solid var(--divider);
-        }
-
-        /* Smooth scroll for internal navigation */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+    <title>Lumina | Minimalist Essentials</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="nav">
-        <a href="#" class="nav-brand">page</a>
-        <div class="nav-links">
-            <a href="#collection" class="nav-link">Collection page</a>
-            <a href="#about" class="nav-link">About page</a>
-        </div>
-    </nav>
+    <!-- 1. NAVIGATION & STRUCTURE: Sticky Header -->
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="#" class="logo">LUMINA</a>
+            
+            <nav class="main-nav" aria-label="Primary Navigation">
+                <ul>
+                    <li><a href="#all" data-filter="all">All</a></li>
+                    <li><a href="#living" data-filter="living">Living</a></li>
+                    <li><a href="#office" data-filter="office">Office</a></li>
+                </ul>
+            </nav>
 
-    <main>
-        <!-- Landing View -->
-        <section class="hero container">
-            <h1 class="hero-headline text-xl">Curated Living</h1>
-            <p class="hero-subtext text-base">
-                An exploration of objects designed for the quiet moments. We believe in the beauty of utility and the permanence of honest materials.
-            </p>
-        </section>
-
-        <!-- Collection View -->
-        <section id="collection" class="section-padding container">
-            <div class="text-xs" style="margin-bottom: 40px;">Selected items</div>
-            <div class="grid-collection">
-                <!-- Item 1 -->
-                <a href="#featured-item" class="product-card">
-                    <div class="asset-placeholder"></div>
-                    <div class="product-info">
-                        <span class="product-name">Ash Stool, No. 01</span>
-                        <span class="product-price">— $320</span>
-                    </div>
-                </a>
-                <!-- Item 2 -->
-                <a href="#featured-item" class="product-card">
-                    <div class="asset-placeholder"></div>
-                    <div class="product-info">
-                        <span class="product-name">Ceramic Vessel</span>
-                        <span class="product-price">— $140</span>
-                    </div>
-                </a>
-                <!-- Item 3 -->
-                <a href="#featured-item" class="product-card">
-                    <div class="asset-placeholder"></div>
-                    <div class="product-info">
-                        <span class="product-name">Linen Throw</span>
-                        <span class="product-price">— $210</span>
-                    </div>
-                </a>
-                <!-- Item 4 -->
-                <a href="#featured-item" class="product-card">
-                    <div class="asset-placeholder"></div>
-                    <div class="product-info">
-                        <span class="product-name">Stone Tray</span>
-                        <span class="product-price">— $95</span>
-                    </div>
-                </a>
-                <!-- Item 5 -->
-                <a href="#featured-item" class="product-card">
-                    <div class="asset-placeholder"></div>
-                    <div class="product-info">
-                        <span class="product-name">Glass Carafe</span>
-                        <span class="product-price">— $80</span>
-                    </div>
-                </a>
-                <!-- Item 6 -->
-                <a href="#featured-item" class="product-card">
-                    <div class="asset-placeholder"></div>
-                    <div class="product-info">
-                        <span class="product-name">Brushed Steel Lamp</span>
-                        <span class="product-price">— $450</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- Item View (Featured) -->
-        <section id="featured-item" class="section-padding container">
-            <div class="item-view">
-                <div class="asset-placeholder" style="aspect-ratio: 1/1;"></div>
-                <div class="item-details">
-                    <div class="text-xs" style="margin-bottom: 12px;">Featured Item page</div>
-                    <h2 class="text-lg" style="margin-bottom: 8px;">Ash Stool, No. 01</h2>
-                    <div class="text-base" style="margin-bottom: 32px; opacity: 0.6;">$320.00</div>
-                    <p class="text-base" style="margin-bottom: 24px; max-width: 400px;">
-                        Hand-carved from locally sourced white ash. Each stool features a unique grain pattern and a hand-rubbed oil finish that deepens with age.
-                    </p>
-                    <p class="text-sm" style="opacity: 0.6; margin-bottom: 8px;">Dimensions: 45cm x 30cm</p>
-                    <p class="text-sm" style="opacity: 0.6;">Material: Solid Ash</p>
-                    <button class="btn-primary">Add to Bag</button>
+            <div class="header-actions">
+                <!-- 2. SEARCH: Instant filtering -->
+                <div class="search-wrapper">
+                    <input type="search" id="productSearch" placeholder="Search products..." aria-label="Search products">
                 </div>
+                <button class="cart-toggle" id="cartToggle" aria-label="View Cart">
+                    Cart (<span id="cart-count">0</span>)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 1. BREADCRUMBS -->
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li aria-current="page">All Products</li>
+            </ol>
+        </nav>
+
+        <!-- 2. PRODUCT DISCOVERY: Sorting & Filtering Bar -->
+        <section class="controls">
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="living">Living</button>
+                <button class="filter-btn" data-filter="office">Office</button>
+            </div>
+            <div class="sort-group">
+                <label for="priceSort">Sort by:</label>
+                <select id="priceSort">
+                    <option value="default">Featured</option>
+                    <option value="low">Price: Low to High</option>
+                    <option value="high">Price: High to Low</option>
+                </select>
             </div>
         </section>
 
-        <!-- Brand Story View -->
-        <section id="about" class="section-padding container">
-            <div class="story-section">
-                <div class="text-xs" style="margin-bottom: 40px; text-align: center;">About page</div>
-                
-                <p class="story-paragraph">
-                    page began as a quiet response to the disposable nature of modern living. We focus on thoughtful making and material honesty, partnering with craftspeople who understand that the best things take time. Every object in our collection is chosen for its ability to perform its function beautifully and endure for generations.
-                </p>
+        <!-- PRODUCT GRID -->
+        <div class="product-grid" id="productGrid">
+            <!-- Product 1 -->
+            <article class="product-card" data-category="living" data-price="120">
+                <div class="product-badge">New</div>
+                <div class="product-image-placeholder"></div>
+                <div class="product-info">
+                    <h3>Ceramic Vase</h3>
+                    <p class="price">$120.00</p>
+                    <button class="btn-secondary add-to-cart" data-id="1" data-name="Ceramic Vase" data-price="120">Add to Cart</button>
+                </div>
+            </article>
 
-                <p class="story-paragraph">
-                    Our commitment to sustainability is rooted in longevity. By creating items that do not need to be replaced, we reduce our collective footprint. We prioritize natural fibers, sustainably harvested woods, and recyclable metals, ensuring that our presence in your home is as gentle as it is intentional.
-                </p>
+            <!-- Product 2 -->
+            <article class="product-card" data-category="office" data-price="45">
+                <div class="product-image-placeholder"></div>
+                <div class="product-info">
+                    <h3>Oak Desk Organizer</h3>
+                    <p class="price">$45.00</p>
+                    <button class="btn-secondary add-to-cart" data-id="2" data-name="Oak Desk Organizer" data-price="45">Add to Cart</button>
+                </div>
+            </article>
 
-                <p class="story-paragraph">
-                    The home is more than a place of residence; it is a quiet, intentional space that shapes our daily rhythms. page exists to furnish those spaces with restraint and calm, allowing the objects you own to provide a sense of groundedness in an increasingly loud world.
-                </p>
+            <!-- Product 3 -->
+            <article class="product-card" data-category="living" data-price="250">
+                <div class="product-image-placeholder"></div>
+                <div class="product-info">
+                    <h3>Linen Throw</h3>
+                    <p class="price">$250.00</p>
+                    <button class="btn-secondary add-to-cart" data-id="3" data-name="Linen Throw" data-price="250">Add to Cart</button>
+                </div>
+            </article>
+        </div>
+
+        <!-- 5. TRUST & UX: Empty State Messaging -->
+        <div id="noResults" class="hidden">
+            <p>No products found matching your criteria.</p>
+            <button onclick="resetFilters()" class="btn-link">Clear all filters</button>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- 3. PRODUCT DETAIL ENHANCEMENTS (Simulated PDP Section) -->
+        <section class="pdp-preview">
+            <div class="pdp-layout">
+                <div class="pdp-visuals">
+                    <div class="product-image-placeholder large"></div>
+                </div>
+                <div class="pdp-details">
+                    <span class="badge-craft">Handcrafted</span>
+                    <h1>Premium Wool Rug</h1>
+                    <p class="price">$890.00</p>
+                    
+                    <!-- Size Selector -->
+                    <div class="selector-group">
+                        <label>Select Size</label>
+                        <div class="visual-selectors">
+                            <button class="size-chip active">Small</button>
+                            <button class="size-chip">Medium</button>
+                            <button class="size-chip">Large</button>
+                        </div>
+                    </div>
+
+                    <!-- Accordions -->
+                    <div class="info-accordions">
+                        <details open>
+                            <summary>Description</summary>
+                            <p>Sustainably sourced wool, woven by hand in small batches. Each piece features unique tonal variations.</p>
+                        </details>
+                        <details>
+                            <summary>Materials & Care</summary>
+                            <ul>
+                                <li>100% Organic Wool</li>
+                                <li>Dry clean only</li>
+                                <li>Avoid direct sunlight</li>
+                            </ul>
+                        </details>
+                        <details>
+                            <summary>Shipping & Returns</summary>
+                            <p>Free carbon-neutral shipping on orders over $500. 30-day trial period.</p>
+                        </details>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <!-- 4. SHOPPING INTERACTION: Cart Sidebar -->
+    <aside class="cart-sidebar" id="cartSidebar" aria-hidden="true">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button id="closeCart" aria-label="Close Cart">&times;</button>
+        </div>
+        <div id="cartItems" class="cart-items-list">
+            <!-- Items injected via JS -->
+            <p class="empty-msg">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotalValue">$0.00</span>
+            </div>
+            <button class="btn-primary full-width">Checkout</button>
+            <p class="trust-note">Secure SSL encrypted checkout</p>
+        </div>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- 1. FOOTER -->
+    <footer class="site-footer">
         <div class="container">
-            <div class="text-xs" style="opacity: 0.4;">&copy; 2024 page. All rights reserved.</div>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <p class="logo">LUMINA</p>
+                    <p>Elevating the everyday through thoughtful design.</p>
+                </div>
+                <nav class="footer-links">
+                    <h4>Shop</h4>
+                    <a href="#">New Arrivals</a>
+                    <a href="#">Best Sellers</a>
+                    <a href="#">Sustainability</a>
+                </nav>
+                <nav class="footer-links">
+                    <h4>Support</h4>
+                    <a href="#">Shipping Policy</a>
+                    <a href="#">Return Portal</a>
+                    <a href="#">Contact Us</a>
+                </nav>
+                <div class="footer-badges">
+                    <span class="badge">B-Corp Certified</span>
+                    <span class="badge">Carbon Neutral</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Lumina Home. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
+    <script src="app.js"></script>
 </body>
 </html>
