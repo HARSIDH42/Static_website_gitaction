@@ -45,143 +45,133 @@ jobs:
           client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
           prompt = """
-                ROLE
+          role: >
+            Creative frontend engineer and digital product designer
+            focused on tactile, expressive web experiences.
+          
+          project:
+            name: page
+            type: static e-commerce site
+            domain: contemporary home goods
+          
+          goal: >
+            Build a warm, human-centered storefront that feels textured,
+            slow, and approachable, inspired by craft studios and analog materials.
+          
+          visual_direction:
+            style: textured modernism
+            colors:
+              base_canvas: "#F2EFEA"
+              primary_surface: "#C9B8A6"
+              secondary_surface: "#9E7E6F"
+              highlight_action: "#2F3E46"
+            textures:
+              approach: subtle grain and paper-like noise using CSS gradients
+              edges: slightly imperfect outlines
+            typography:
+              headings: serif or humanist style
+              body: system sans-serif
+              contrast: clear distinction between headings and body text
+            spacing:
+              rhythm: comfortable but irregular
+              intent: avoid rigid grids
+          
+          media_rules:
+            allowed_paths: "assets/images/"
+            restrictions:
+              - no external images
+              - no generated images
+            fallback:
+              type: textured placeholder
+              description: soft gradient or grain-based block
+          
+          naming_conventions:
+            brand: page
+            navigation_labels:
+              - Start page
+              - Objects page
+              - Story page
+              - Detail page
+          
+          technology:
+            output: single HTML file
+            markup: semantic HTML5
+            styling: internal CSS with utility-inspired structure
+            javascript:
+              allowed: true
+              scope: small UI behaviors only
+            forbidden:
+              - backend logic
+              - external frameworks
+              - CSS libraries
+          
+          structure:
+            opening_section:
+              layout: asymmetrical editorial
+              content:
+                headline: philosophy of everyday objects
+                supporting_text: off-grid placement
+                cue: soft scroll indicator
+          
+            objects_section:
+              layout: staggered masonry-style
+              cards:
+                visual: image or textured placeholder
+                fields:
+                  - product name
+                  - short description
+                  - price
+              interaction: gentle hover movement
+          
+            detail_view:
+              layout: vertical storytelling
+              features:
+                - progressive content reveal
+                - sticky add-to-bag button after scroll
+              button_behavior:
+                hover: subtle shade shift
+                focus: calm outline
+          
+            story_section:
+              paragraphs:
+                - theme: objects that age gracefully
+                - theme: honest materials and making
+                - theme: slower, intentional living
+              tone:
+                - reflective
+                - grounded
+                - human
+          
+          interaction_design:
+            motion:
+              - scroll-based reveals
+              - tactile hover feedback
+            pacing: slow and deliberate
+          
+          responsive_behavior:
+            mobile:
+              feel: printed catalog
+              layout: vertical and intimate
+            desktop:
+              feel: unfolding editorial spread
+              behavior: progressive disclosure
+            breakpoints:
+              philosophy: fluid rather than sharp
+          
+          delivery:
+            format: complete HTML document
+            includes:
+              - internal CSS
+              - minimal vanilla JS if required
+            code_quality:
+              - readable
+              - commented
+              - organized
+          
+          expectation: >
+            The final website should feel like a crafted digital object:
+            warm, imperfect, expressive, and calm.
 
-          You are a senior UI engineer and design-focused frontend developer known for creating quiet, editorial digital storefronts.
-          
-          PRODUCT
-          
-          Build a static web storefront called “page” for elevated home essentials.
-          
-          DESIGN INTENT
-          
-          The site should communicate restraint, calm, and longevity.
-          Every element must feel deliberate—nothing decorative without purpose.
-          
-          VISUAL LANGUAGE
-          
-          Overall direction: Editorial Minimalism
-          
-          Palette:
-          
-          Canvas tone: #FAF9F7
-          
-          Neutral panels: #E6E1DB
-          
-          Divider / outline color: #C2B8AE
-          
-          Text color: #3F3A36
-          
-          Typography:
-          
-          One modern sans-serif family only (Inter or system default)
-          
-          Use spacing and scale instead of color for hierarchy
-          
-          Spacing:
-          
-          Generous breathing room (no section under 80px padding)
-          
-          Content should never feel compressed
-          
-          Motion:
-          
-          Soft transitions only (opacity, transform, border)
-          
-          No dramatic animation or shadow effects
-          
-          ASSET RULES
-          
-          Image usage is restricted to paths inside assets/images/
-          
-          Do not invent, generate, or reference external images
-          
-          When no image is available:
-          
-          Render a soft neutral block with a thin outline as a visual stand-in
-          
-          NAMING RULES
-          
-          Brand name: page
-          
-          Navigation and internal references must include the word “page”
-          
-          Example: “About page”, “Collection page”, “Item page”
-          
-          TECHNICAL BOUNDARIES
-          
-          Output one single HTML file
-          
-          Use semantic HTML5
-          
-          Styling must be utility-first (Tailwind-style) or internal CSS utilities
-          
-          No JavaScript frameworks
-          
-          No backend or dynamic data
-          
-          CONTENT STRUCTURE
-          Landing View
-          
-          Large typographic introduction centered around the idea of considered living
-          
-          Headline concept: Curated Living
-          
-          Supporting text that explains the brand philosophy in a restrained tone
-          
-          A small selection of featured items presented in a clean grid
-          
-          Collection View
-          
-          Product listing arranged in a calm, symmetrical grid
-          
-          Two columns on small screens, three on larger screens
-          
-          Each item displays:
-          
-          Visual (image or placeholder)
-          
-          Product name
-          
-          Price
-          
-          Interaction should be minimal and reassuring, never distracting
-          
-          Item View
-          
-          Single product presentation with emphasis on text and spacing
-          
-          Clear hierarchy:
-          
-          Name
-          
-          Price
-          
-          Description
-          
-          Include a simple “Add to Bag” button with understated hover feedback
-          
-          Brand Story
-          
-          Write three short paragraphs describing page:
-          
-          A focus on thoughtful making and material honesty
-          
-          A commitment to sustainability and long-term use
-          
-          The idea of the home as a quiet, intentional space
-          
-          The writing should feel human, composed, and reflective.
-          
-          RESPONSIVENESS
-          
-          Mobile-first layout
-          
-          Typography and spacing must scale gracefully across devices
-          
-          DELIVERY FORMAT
-          
-          Return the output as a single complete HTML document, fully styled and ready to render, with a cohesive premium look throughout.
           Return each file strictly in the format:
           ---filename.ext---
           <file content>
