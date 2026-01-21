@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page — Elevated Essentials</title>
+    <title>page — Elevated Home Essentials</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -13,8 +13,10 @@
             --panel: #E6E1DB;
             --outline: #C2B8AE;
             --text: #3F3A36;
-            --spacing-unit: 80px;
-            --transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+            --transition-soft: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            --space-lg: 120px;
+            --space-md: 80px;
+            --space-sm: 40px;
         }
 
         * {
@@ -26,136 +28,158 @@
         body {
             background-color: var(--canvas);
             color: var(--text);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        /* Utilities */
+        .section-padding { padding-top: var(--space-md); padding-bottom: var(--space-md); }
+        @media (min-width: 1024px) {
+            .section-padding { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: var(--outline);
+            width: 100%;
+            border: none;
         }
 
         /* Typography */
         h1, h2, h3 {
-            font-weight: 400;
+            font-weight: 300;
             letter-spacing: -0.02em;
+            text-transform: lowercase;
         }
 
-        .text-display {
+        .display-text {
             font-size: clamp(2.5rem, 8vw, 4.5rem);
             line-height: 1.1;
             margin-bottom: 2rem;
         }
 
-        .text-label {
+        .sub-text {
+            font-size: 1.125rem;
+            max-width: 500px;
+            font-weight: 300;
+        }
+
+        .label {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--outline);
             margin-bottom: 1rem;
             display: block;
         }
 
-        .text-body {
-            font-size: 1.125rem;
-            max-width: 540px;
-        }
-
-        /* Layout */
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        section {
-            padding: var(--spacing-unit) 0;
-            border-bottom: 1px solid var(--outline);
-        }
-
-        section:last-of-type {
-            border-bottom: none;
-        }
-
-        .grid {
-            display: grid;
-            gap: 40px;
-        }
-
-        .grid-2 { grid-template-columns: repeat(2, 1fr); }
-        .grid-3 { grid-template-columns: repeat(3, 1fr); }
-
-        @media (max-width: 768px) {
-            .grid-2, .grid-3 { grid-template-columns: 1fr; }
-            :root { --spacing-unit: 60px; }
-            .container { padding: 0 20px; }
-        }
-
         /* Navigation */
         nav {
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--outline);
+            padding: 2rem 0;
             position: sticky;
             top: 0;
-            background: var(--canvas);
+            background: rgba(250, 249, 247, 0.9);
+            backdrop-filter: blur(10px);
             z-index: 100;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition-soft);
         }
 
-        .nav-brand {
-            font-weight: 500;
+        nav.scrolled {
+            border-bottom-color: var(--outline);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
             text-decoration: none;
             color: var(--text);
-            font-size: 1.25rem;
+            font-weight: 500;
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 2rem;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text);
             font-size: 0.875rem;
-            transition: var(--transition);
-            opacity: 0.7;
+            transition: opacity 0.3s ease;
         }
 
         .nav-links a:hover {
-            opacity: 1;
+            opacity: 0.6;
         }
 
-        /* Components */
-        .placeholder-image {
+        /* Hero / Landing View */
+        .hero-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+
+        /* Placeholder Blocks */
+        .image-placeholder {
             background-color: var(--panel);
-            width: 100%;
-            aspect-ratio: 4/5;
             border: 1px solid var(--outline);
-            transition: var(--transition);
+            aspect-ratio: 4/5;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: var(--transition-soft);
             position: relative;
             overflow: hidden;
         }
 
-        .placeholder-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(63, 58, 54, 0.03);
-            opacity: 0;
-            transition: var(--transition);
+        .image-placeholder::after {
+            content: 'page';
+            font-size: 0.75rem;
+            color: var(--outline);
+            letter-spacing: 0.2em;
+        }
+
+        /* Collection View Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem 1rem;
+        }
+
+        @media (min-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 4rem 2rem;
+            }
         }
 
         .product-card {
             text-decoration: none;
-            color: var(--text);
+            color: inherit;
             display: block;
         }
 
-        .product-card:hover .placeholder-image::after {
-            opacity: 1;
+        .product-card:hover .image-placeholder {
+            border-color: var(--text);
         }
 
         .product-info {
@@ -165,192 +189,225 @@
             align-items: baseline;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--text);
-            color: var(--canvas);
-            text-decoration: none;
+        .product-name {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .product-price {
             font-size: 0.875rem;
-            border: 1px solid var(--text);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background: transparent;
             color: var(--text);
+            opacity: 0.8;
         }
 
-        /* Item View Specifics */
-        .item-detail-grid {
+        /* Item View / Single Product */
+        .item-page-container {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 80px;
+            grid-template-columns: 1fr;
+            gap: 4rem;
             align-items: start;
         }
 
-        @media (max-width: 960px) {
-            .item-detail-grid { grid-template-columns: 1fr; gap: 40px; }
+        @media (min-width: 1024px) {
+            .item-page-container {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
         }
 
-        /* Story Section */
-        .story-content {
-            max-width: 680px;
+        .item-details {
+            padding-top: 2rem;
+        }
+
+        .add-to-bag {
+            width: 100%;
+            background-color: transparent;
+            border: 1px solid var(--text);
+            color: var(--text);
+            padding: 1.25rem;
+            font-family: inherit;
+            font-size: 0.875rem;
+            cursor: pointer;
+            margin-top: 2.5rem;
+            transition: var(--transition-soft);
+        }
+
+        .add-to-bag:hover {
+            background-color: var(--text);
+            color: var(--canvas);
+        }
+
+        /* Brand Story */
+        .story-section {
+            max-width: 650px;
             margin: 0 auto;
-            text-align: center;
         }
 
-        .story-content p {
+        .story-paragraph {
             margin-bottom: 2.5rem;
             font-size: 1.25rem;
-            color: var(--text);
-            opacity: 0.9;
+            font-weight: 300;
+            line-height: 1.8;
         }
 
         footer {
-            padding: 40px 0;
+            padding: 4rem 0;
             border-top: 1px solid var(--outline);
             text-align: center;
             font-size: 0.75rem;
             color: var(--outline);
         }
+
+        /* Scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="container" style="display: flex; justify-content: space-between; width: 100%;">
-            <a href="#" class="nav-brand">page</a>
+    <nav id="nav">
+        <div class="container nav-inner">
+            <a href="#" class="logo">page</a>
             <div class="nav-links">
                 <a href="#collection">Collection page</a>
-                <a href="#story">Story page</a>
-                <a href="#item">Item page</a>
+                <a href="#story">About page</a>
             </div>
         </div>
     </nav>
 
-    <!-- Landing View -->
-    <section id="landing">
-        <div class="container">
-            <span class="text-label">Introduction</span>
-            <h1 class="text-display">Curated Living</h1>
-            <p class="text-body">
-                We believe in the quiet beauty of objects that serve a purpose. Our collection is a study in restraint, focusing on high-quality materials and timeless forms that integrate seamlessly into the modern home.
+    <main>
+        <!-- Landing View -->
+        <section class="container hero-section section-padding">
+            <span class="label">Introduction</span>
+            <h1 class="display-text">Curated Living</h1>
+            <p class="sub-text">
+                A study in restraint. We offer a selection of considered objects for the home, designed to age with grace and serve with purpose.
             </p>
-        </div>
-    </section>
+        </section>
 
-    <!-- Collection View -->
-    <section id="collection">
-        <div class="container">
-            <div style="margin-bottom: 60px;">
-                <span class="text-label">Selected Works</span>
-                <h2>The Collection page</h2>
+        <hr class="divider">
+
+        <!-- Collection View -->
+        <section id="collection" class="container section-padding">
+            <div style="margin-bottom: 4rem;">
+                <span class="label">The Collection page</span>
+                <h2>Essential Objects</h2>
             </div>
             
-            <div class="grid grid-3">
-                <!-- Product 1 -->
-                <a href="#item" class="product-card">
-                    <div class="placeholder-image"></div>
+            <div class="grid">
+                <!-- Item 1 -->
+                <a href="#item-detail" class="product-card">
+                    <div class="image-placeholder"></div>
                     <div class="product-info">
-                        <span>Essential Pitcher</span>
-                        <span>$85</span>
+                        <span class="product-name">Ceramic Water Pitcher</span>
+                        <span class="product-price">$84</span>
                     </div>
                 </a>
-                <!-- Product 2 -->
-                <a href="#item" class="product-card">
-                    <div class="placeholder-image"></div>
+                <!-- Item 2 -->
+                <a href="#item-detail" class="product-card">
+                    <div class="image-placeholder"></div>
                     <div class="product-info">
-                        <span>Linen Throw</span>
-                        <span>$120</span>
+                        <span class="product-name">Linen Hand-woven Throw</span>
+                        <span class="product-price">$120</span>
                     </div>
                 </a>
-                <!-- Product 3 -->
-                <a href="#item" class="product-card">
-                    <div class="placeholder-image"></div>
+                <!-- Item 3 -->
+                <a href="#item-detail" class="product-card">
+                    <div class="image-placeholder"></div>
                     <div class="product-info">
-                        <span>Stone Vessel</span>
-                        <span>$190</span>
+                        <span class="product-name">Oak Serving Platter</span>
+                        <span class="product-price">$96</span>
                     </div>
                 </a>
-                <!-- Product 4 -->
-                <a href="#item" class="product-card">
-                    <div class="placeholder-image"></div>
+                <!-- Item 4 -->
+                <div class="product-card">
+                    <div class="image-placeholder"></div>
                     <div class="product-info">
-                        <span>Oak Board</span>
-                        <span>$75</span>
+                        <span class="product-name">Heavyweight Brass Incense Bowl</span>
+                        <span class="product-price">$65</span>
                     </div>
-                </a>
-                <!-- Product 5 -->
-                <a href="#item" class="product-card">
-                    <div class="placeholder-image"></div>
+                </div>
+                <!-- Item 5 -->
+                <div class="product-card">
+                    <div class="image-placeholder"></div>
                     <div class="product-info">
-                        <span>Glass Set</span>
-                        <span>$60</span>
+                        <span class="product-name">Cold-pressed Olive Soap</span>
+                        <span class="product-price">$18</span>
                     </div>
-                </a>
-                <!-- Product 6 -->
-                <a href="#item" class="product-card">
-                    <div class="placeholder-image"></div>
+                </div>
+                <!-- Item 6 -->
+                <div class="product-card">
+                    <div class="image-placeholder"></div>
                     <div class="product-info">
-                        <span>Wool Rug</span>
-                        <span>$450</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Item View -->
-    <section id="item">
-        <div class="container">
-            <div class="item-detail-grid">
-                <div class="placeholder-image" style="aspect-ratio: 1/1;"></div>
-                <div class="item-content">
-                    <span class="text-label">Item page — 001</span>
-                    <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Stone Vessel</h2>
-                    <p style="font-size: 1.25rem; margin-bottom: 2rem; color: var(--outline);">$190</p>
-                    
-                    <div style="margin-bottom: 3rem;">
-                        <p style="margin-bottom: 1.5rem;">A sculptural piece hand-carved from solid travertine. The vessel explores the tension between heavy material and soft, fluid contours.</p>
-                        <p>Each piece is unique, showing the natural variations and history of the stone from which it was born.</p>
-                    </div>
-
-                    <button class="btn">Add to Bag</button>
-                    
-                    <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--outline);">
-                        <span class="text-label">Details</span>
-                        <p style="font-size: 0.875rem;">12cm x 24cm<br>Solid Travertine<br>Waterproof Interior</p>
+                        <span class="product-name">Recycled Glass Tumbler</span>
+                        <span class="product-price">$24</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Brand Story -->
-    <section id="story" style="background-color: var(--panel);">
-        <div class="container">
-            <div class="story-content">
-                <span class="text-label">Story page</span>
-                <p>
-                    At page, we focus on thoughtful making and material honesty. We believe that the objects we surround ourselves with should tell a story of craftsmanship, rather than mass production. Each piece is selected for its ability to age gracefully.
+        <hr class="divider">
+
+        <!-- Item View (Single Product Showcase) -->
+        <section id="item-detail" class="container section-padding">
+            <div class="item-page-container">
+                <div class="image-placeholder" style="aspect-ratio: 1/1;"></div>
+                <div class="item-details">
+                    <span class="label">Item page — Featured</span>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Ceramic Water Pitcher</h2>
+                    <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.8;">$84.00</p>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <p style="margin-bottom: 1rem;">Hand-thrown in small batches, this water pitcher features a subtle matte glaze and a balanced silhouette. Designed for the daily ritual of hydration, it holds temperature remarkably well.</p>
+                        <p>Material: Stoneware clay<br>Finish: Raw exterior, glazed interior<br>Capacity: 1.2 Liters</p>
+                    </div>
+
+                    <button class="add-to-bag">Add to Bag</button>
+                    
+                    <p style="font-size: 0.75rem; margin-top: 2rem; opacity: 0.5;">
+                        Note: Due to the handmade nature of this item, slight variations in tone and texture are to be expected and celebrated.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <!-- Brand Story Section -->
+        <section id="story" class="container section-padding">
+            <div class="story-section">
+                <span class="label">The About page</span>
+                
+                <p class="story-paragraph">
+                    page was born from a desire for clarity in the domestic sphere. We believe that the objects we invite into our homes should be chosen with the same care we give to our thoughts. Our focus is on thoughtful making and material honesty, ensuring that every piece serves a clear purpose without shouting for attention.
                 </p>
-                <p>
-                    Our commitment to sustainability is rooted in longevity. By designing for the long-term, we reduce the need for the ephemeral. We source materials that are ethical, durable, and capable of being passed down through generations.
+                
+                <p class="story-paragraph">
+                    We maintain a rigorous commitment to sustainability through longevity. Rather than following seasonal trends, we produce timeless essentials designed to endure a lifetime of use. By prioritizing durable materials and classic forms, we reduce the need for replacement and honor the resources used in production.
                 </p>
-                <p>
-                    We view the home as a quiet, intentional space—a sanctuary from the noise of the outside world. Our mission is to provide the essentials that support a life of consideration, clarity, and calm.
+                
+                <p class="story-paragraph">
+                    The home is more than a shelter; it is a quiet, intentional space where life unfolds. Our mission is to provide the backdrop for these moments—the quiet morning coffee, the shared evening meal, the restorative hours of rest. Every item in our collection is a contribution to a more considered way of living.
                 </p>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <footer>
-        <div class="container">
-            &copy; 2024 page. All rights reserved.
-        </div>
+    <footer class="container">
+        <p>&copy; 2024 page. All rights reserved.</p>
+        <p style="margin-top: 1rem;">Considered Living for the Modern Home.</p>
     </footer>
 
+    <script>
+        // Simple scroll interaction for header
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
