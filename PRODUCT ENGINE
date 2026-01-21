@@ -1,0 +1,50 @@
+function renderProducts() {
+    const grid = document.getElementById('product-grid');
+    const emptyState = document.getElementById('empty-state');
+    
+    // Filter & Search Logic
+    let filtered = PRODUCTS.filter(p => {
+        const matchesCat = currentFilter === 'all' || p.category === currentFilter;
+        const matchesSearch = p.name.toLowerCase().includes(searchQuery);
+        return matchesCat && matchesSearch;
+    });
+
+    // Sort Logic
+    if (currentSort === 'low-high') filtered.sort((a, b) => a.price - b.price);
+    if (currentSort === 'high-low') filtered.sort((a, b) => b.price - a.price);
+
+    // Update Counter
+    document.getElementById('count-num').innerText = filtered.length;
+
+    // UI Rendering
+    if (filtered.length === 0) {
+        grid.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+    } else {
+        grid.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+        
+        grid.innerHTML = filtered.map(product => `
+            <article class="product-card" onclick="openProductDetail(${product.id})">
+                <div class="img-container">
+                    ${product.tag ? `<span class="badge">${product.tag}</span>` : ''}
+                    <div class="img-placeholder"></div>
+                </div>
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p class="price">$${product.price.toFixed(2)}</p>
+                </div>
+            </article>
+        `).join('');
+    }
+}
+
+function resetFilters() {
+    searchQuery = '';
+    currentFilter = 'all';
+    document.getElementById('product-search').value = '';
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.dataset.category === 'all'));
+    renderProducts();
+}
+
+//

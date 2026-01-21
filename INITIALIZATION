@@ -1,0 +1,44 @@
+document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    updateCartUI();
+    initEventListeners();
+});
+
+function initEventListeners() {
+    // Search toggle
+    document.getElementById('search-toggle').addEventListener('click', () => {
+        const bar = document.getElementById('search-bar');
+        bar.classList.toggle('hidden');
+        if (!bar.classList.contains('hidden')) document.getElementById('product-search').focus();
+    });
+
+    // Real-time Search filtering
+    document.getElementById('product-search').addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase();
+        renderProducts();
+    });
+
+    // Category Filtering
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            currentFilter = link.dataset.category;
+            renderProducts();
+        });
+    });
+
+    // Sorting
+    document.getElementById('sort-order').addEventListener('change', (e) => {
+        currentSort = e.target.value;
+        renderProducts();
+    });
+
+    // Cart Drawer Toggles
+    document.getElementById('cart-toggle').addEventListener('click', toggleCart);
+    document.getElementById('cart-close').addEventListener('click', toggleCart);
+    document.querySelector('.cart-overlay').addEventListener('click', toggleCart);
+}
+
+//
