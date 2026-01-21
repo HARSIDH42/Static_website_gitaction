@@ -102,16 +102,50 @@ jobs:
           - ARIA labels where appropriate
           - Reduced-motion support
           
-          OUTPUT REQUIREMENTS
-          - Update the existing HTML structure
-          - Add only the necessary CSS and minimal JS
-          - Keep code readable and well-commented
-          - Do NOT rewrite unrelated sections
-          - Explain each added feature briefly in comments
+          7.UI FEATURES TO ADD
+          1. Navigation & Orientation
+          - Sticky header with subtle background change on scroll
+          - Active navigation state indicator
+          - Breadcrumb UI for product and detail views
           
-          FINAL RESULT
-          The site should feel like a believable, thoughtfully designed
-          e-commerce experience — complete, calm, and user-friendly.
+          2. Micro-Interactions
+          - Button hover and active states
+          - Press feedback on “Add to Cart / Add to Bag”
+          - Card hover elevation or outline shift
+          - Smooth focus transitions for inputs and links
+          
+          3. Visual Feedback
+          - Loading or processing indicators (CSS-based)
+          - Disabled button states with clear affordances
+          - Inline status messaging (non-modal)
+          
+          4. Layout Polish
+          - Improved vertical rhythm and spacing consistency
+          - Section separators using light rules or spacing
+          - Responsive typography scaling
+          - Content alignment refinements
+          
+          5. Component Enhancements
+          - Reusable button styles (primary, secondary, ghost)
+          - Form field focus and error states
+          - Tag / badge components (e.g., “New”, “Featured”)
+          - Price styling hierarchy (currency, amount, metadata)
+          
+          6. Empty & Edge States
+          - Empty product grid message
+          - Empty cart UI state
+          - No-results search UI
+          - Graceful fallbacks for missing images
+                    OUTPUT REQUIREMENTS
+                    - Update the existing HTML structure
+                    - Add only the necessary CSS and minimal JS
+                    - Keep code readable and well-commented
+                    - Do NOT rewrite unrelated sections
+                    - Explain each added feature briefly in comments
+                    
+                    FINAL RESULT
+                    The site should feel like a believable, thoughtfully designed
+                    e-commerce experience — complete, calm, and user-friendly.
 
           Return each file strictly in the format:
           ---filename.ext---
