@@ -45,132 +45,73 @@ jobs:
           client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
           prompt = """
-          role: >
-            Creative frontend engineer and digital product designer
-            focused on tactile, expressive web experiences.
+          Act as a senior frontend engineer and product designer.
           
-          project:
-            name: page
-            type: static e-commerce site
-            domain: contemporary home goods
+          Your task is to ENHANCE an existing static e-commerce website by adding
+          realistic, user-centric features that improve usability, trust, and
+          shopping flow — without overengineering.
           
-          goal: >
-            Build a warm, human-centered storefront that feels textured,
-            slow, and approachable, inspired by craft studios and analog materials.
+          CONSTRAINTS
+          - Keep the site static (HTML + CSS + minimal vanilla JS only)
+          - No backend logic
+          - No external frameworks or libraries
+          - No external images or APIs
+          - Features must degrade gracefully if JS is disabled
           
-          visual_direction:
-            style: textured modernism
-            colors:
-              base_canvas: "#F2EFEA"
-              primary_surface: "#C9B8A6"
-              secondary_surface: "#9E7E6F"
-              highlight_action: "#2F3E46"
-            textures:
-              approach: subtle grain and paper-like noise using CSS gradients
-              edges: slightly imperfect outlines
-            typography:
-              headings: serif or humanist style
-              body: system sans-serif
-              contrast: clear distinction between headings and body text
-            spacing:
-              rhythm: comfortable but irregular
-              intent: avoid rigid grids
+          GOALS
+          - Make the site feel more complete and functional
+          - Improve browsing, product discovery, and purchase confidence
+          - Maintain a clean, restrained UI (no clutter)
           
-          media_rules:
-            allowed_paths: "assets/images/"
-            restrictions:
-              - no external images
-              - no generated images
-            fallback:
-              type: textured placeholder
-              description: soft gradient or grain-based block
+          FEATURES TO ADD
           
-          naming_conventions:
-            brand: page
-            navigation_labels:
-              - Start page
-              - Objects page
-              - Story page
-              - Detail page
+          1. Navigation & Structure
+          - Sticky header with section awareness
+          - Clear page hierarchy and breadcrumbs
+          - Footer with policy and information links
           
-          technology:
-            output: single HTML file
-            markup: semantic HTML5
-            styling: internal CSS with utility-inspired structure
-            javascript:
-              allowed: true
-              scope: small UI behaviors only
-            forbidden:
-              - backend logic
-              - external frameworks
-              - CSS libraries
+          2. Product Discovery
+          - Category filtering (client-side)
+          - Price sorting (low to high / high to low)
+          - “New” or “Featured” product indicators
+          - Search input with instant filtering
           
-          structure:
-            opening_section:
-              layout: asymmetrical editorial
-              content:
-                headline: philosophy of everyday objects
-                supporting_text: off-grid placement
-                cue: soft scroll indicator
+          3. Product Detail Enhancements
+          - Size / variant selector (visual only)
+          - Expandable sections for:
+            - Description
+            - Materials & care
+            - Shipping & returns
+          - Related products section
           
-            objects_section:
-              layout: staggered masonry-style
-              cards:
-                visual: image or textured placeholder
-                fields:
-                  - product name
-                  - short description
-                  - price
-              interaction: gentle hover movement
+          4. Shopping Interaction
+          - Client-side cart preview (localStorage)
+          - Add / remove items visually
+          - Quantity selector
+          - Subtle cart feedback animation
           
-            detail_view:
-              layout: vertical storytelling
-              features:
-                - progressive content reveal
-                - sticky add-to-bag button after scroll
-              button_behavior:
-                hover: subtle shade shift
-                focus: calm outline
+          5. Trust & UX Signals
+          - Shipping information
+          - Return policy preview
+          - Sustainability or craftsmanship badges
+          - Empty-state messaging
           
-            story_section:
-              paragraphs:
-                - theme: objects that age gracefully
-                - theme: honest materials and making
-                - theme: slower, intentional living
-              tone:
-                - reflective
-                - grounded
-                - human
+          6. Accessibility & UX
+          - Keyboard-navigable components
+          - Focus states
+          - ARIA labels where appropriate
+          - Reduced-motion support
           
-          interaction_design:
-            motion:
-              - scroll-based reveals
-              - tactile hover feedback
-            pacing: slow and deliberate
+          OUTPUT REQUIREMENTS
+          - Update the existing HTML structure
+          - Add only the necessary CSS and minimal JS
+          - Keep code readable and well-commented
+          - Do NOT rewrite unrelated sections
+          - Explain each added feature briefly in comments
           
-          responsive_behavior:
-            mobile:
-              feel: printed catalog
-              layout: vertical and intimate
-            desktop:
-              feel: unfolding editorial spread
-              behavior: progressive disclosure
-            breakpoints:
-              philosophy: fluid rather than sharp
-          
-          delivery:
-            format: complete HTML document
-            includes:
-              - internal CSS
-              - minimal vanilla JS if required
-            code_quality:
-              - readable
-              - commented
-              - organized
-          
-          expectation: >
-            The final website should feel like a crafted digital object:
-            warm, imperfect, expressive, and calm.
+          FINAL RESULT
+          The site should feel like a believable, thoughtfully designed
+          e-commerce experience — complete, calm, and user-friendly.
 
           Return each file strictly in the format:
           ---filename.ext---
