@@ -44,7 +44,6 @@ jobs:
           prompt = """
                 ROLE
           You are a senior UI engineer and design-focused frontend developer known for creating quiet, editorial digital storefronts.
-          
           PRODUCT
           
           Build a static web storefront called “e-commerce” for elevated home essentials.
