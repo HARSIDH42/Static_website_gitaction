@@ -54,25 +54,108 @@ jobs:
 
           # ---------- Build Prompt ----------
           prompt = f"""
-          ROLE:
-          You are a senior UI engineer creating a refined static storefront.
-
-          BRAND NAME:
-          page
-
-          IMPORTANT RULES:
-          - Use only images from assets/images/products/
-          - Available images:
-          {image_list_text}
-          - Use filenames exactly as listed
-          - Do NOT invent image names
-          - If no images available, use neutral placeholder blocks
-          - Return ONE complete HTML file
-
-          OUTPUT FORMAT STRICTLY:
-          ---index.html---
-          <complete HTML document>
-          """
+              ROLE
+              You are a senior frontend engineer specializing in refined editorial minimal storefronts.
+              
+              PROJECT
+              Build a fully functional static e-commerce storefront called “page”.
+              
+              IMPORTANT
+              Return ONE complete HTML file only.
+              No external files.
+              All CSS and JavaScript must be inside the same HTML document.
+              Use only vanilla JavaScript.
+              No frameworks.
+              
+              DESIGN SYSTEM
+              Editorial Minimalism.
+              Calm, restrained, generous spacing.
+              
+              Palette:
+              Canvas: #FAF9F7
+              Panels: #E6E1DB
+              Divider: #C2B8AE
+              Text: #3F3A36
+              
+              Typography:
+              Single modern sans-serif (Inter or system-ui)
+              
+              Spacing:
+              Minimum 80px vertical section padding.
+              
+              Images:
+              Use only images from:
+              assets/images/products/
+              
+              Available product images:
+              {image_list_text}
+              
+              Use filenames exactly.
+              Do NOT invent image names.
+              
+              FUNCTIONAL REQUIREMENTS
+              
+              1. CART SYSTEM (Must Work)
+              - Clicking “Add to Bag” adds product to cart
+              - Cart count in header updates live
+              - Cart stored in localStorage
+              - Cart persists on page refresh
+              - Prevent duplicate entries (increase quantity instead)
+              - Include minimal cart drawer or modal
+              - Allow removing items
+              - Show total price
+              
+              2. SEARCH FUNCTION (Must Work)
+              - Search input filters products in real time
+              - Filter by product name
+              - No page reload
+              
+              3. PRODUCT GRID
+              - Responsive grid
+              - 2 columns mobile
+              - 3 columns desktop
+              - Each product:
+                  Image
+                  Name
+                  Price
+                  Add to Bag button
+              
+              4. ITEM DETAIL SECTION
+              - Clicking product shows detail section (single-page behavior)
+              - No page reload
+              - Use JS to toggle visibility
+              
+              5. INTERACTIONS
+              - Soft transitions only (opacity, transform, border)
+              - No dramatic animation
+              
+              6. BRAND STORY
+              Include three refined editorial paragraphs about:
+              - Thoughtful making
+              - Sustainability
+              - Home as intentional space
+              
+              STRUCTURE
+              Single HTML document:
+              - Semantic HTML5
+              - Internal CSS (utility style or minimal custom CSS)
+              - <script> tag at bottom for functionality
+              
+              OUTPUT FORMAT STRICTLY:
+              
+              ---index.html---
+              <!DOCTYPE html>
+              <html>
+              ...
+              Complete working document
+              ...
+              </html>
+              
+              
+                        OUTPUT FORMAT STRICTLY:
+                        ---index.html---
+                        <complete HTML document>
+                        """
 
           # ---------- Initialize Gemini ----------
           client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
