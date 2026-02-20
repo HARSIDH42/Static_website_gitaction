@@ -24,11 +24,12 @@ jobs:
         with:
           python-version: '3.11'
 
-      # 3️⃣ Install latest Gemini GenAI SDK
+      # 3️⃣ Install Gemini SDK
       - name: Install Dependencies
         run: |
           pip install --upgrade google-genai
-      # 4️⃣ Run Gemini AI to auto-update website UI
+
+      # 4️⃣ Run Gemini AI to update website
       - name: Run Gemini AI to Update Website UI
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -39,176 +40,103 @@ jobs:
           import re
           from pathlib import Path
           from google import genai
-          # Initialize Gemini client
-          client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-          prompt = """
-                ROLE
-          You are a senior UI engineer and design-focused frontend developer known for creating quiet, editorial digital storefronts.
-          PRODUCT
-          
-          Build a static web storefront called “e-commerce” for elevated home essentials.
-          
-          DESIGN INTENT
-          
-          The site should communicate restraint, calm, and longevity.
-          Every element must feel deliberate—nothing decorative without purpose.
-          
-          VISUAL LANGUAGE
-          
-          Overall direction: Editorial Minimalism
-          
-          Palette:
-          
-          Canvas tone: #FAF9F7
-          
-          Neutral panels: #E6E1DB
-          
-          Divider / outline color: #C2B8AE
-          
-          Text color: #3F3A36
-          
-          Typography:
-          
-          One modern sans-serif family only (Inter or system default)
-          
-          Use spacing and scale instead of color for hierarchy
-          
-          Spacing:
-          
-          Generous breathing room (no section under 80px padding)
-          
-          Content should never feel compressed
-          
-          Motion:
-          
-          Soft transitions only (opacity, transform, border)
-          
-          No dramatic animation or shadow effects
-          
-          ASSET RULES
-          
-          Image usage is restricted to paths inside assets/images/
-          
-          Do not invent, generate, or reference external images
-          
-          When no image is available:
-          
-          Render a soft neutral block with a thin outline as a visual stand-in
-          
-          NAMING RULES
-          
-          Brand name: page
-          
-          Navigation and internal references must include the word “page”
-          
-          Example: “About page”, “Collection page”, “Item page”
-          
-          TECHNICAL BOUNDARIES
-          
-          Output one single HTML file
-          
-          Use semantic HTML5
-          
-          Styling must be utility-first (Tailwind-style) or internal CSS utilities
-          
-          No JavaScript frameworks
-          
-          No backend or dynamic data
-          
-          CONTENT STRUCTURE
-          Landing View
-          
-          Large typographic introduction centered around the idea of considered living
-          
-          Headline concept: Curated Living
-          
-          Supporting text that explains the brand philosophy in a restrained tone
-          
-          A small selection of featured items presented in a clean grid
-          
-          Collection View
-          
-          Product listing arranged in a calm, symmetrical grid
-          
-          Two columns on small screens, three on larger screens
-          
-          Each item displays:
-          
-          Visual (image or placeholder)
-          
-          Product name
-          
-          Price
-          
-          Interaction should be minimal and reassuring, never distracting
-          
-          Item View
-          
-          Single product presentation with emphasis on text and spacing
-          
-          Clear hierarchy:
-          
-          Name
-          
-          Price
-          
-          Description
-          
-          Include a simple “Add to Bag” button with understated hover feedback
-          
-          Brand Story
-          
-          Write three short paragraphs describing page:
-          
-          A focus on thoughtful making and material honesty
-          
-          A commitment to sustainability and long-term use
-          
-          The idea of the home as a quiet, intentional space
-          
-          The writing should feel human, composed, and reflective.
-          
-          RESPONSIVENESS
-          
-          Mobile-first layout
-          
-          Typography and spacing must scale gracefully across devices
-          
-          DELIVERY FORMAT
-          
-          Return the output as a single complete HTML document, fully styled and ready to render, with a cohesive premium look throughout.
-          Return each file strictly in the format:
-          ---filename.ext---
-          <file content>
+
+          # ---------- Detect Available Images ----------
+          image_dir = Path("assets/images/products")
+          image_dir.mkdir(parents=True, exist_ok=True)
+
+          image_files = [
+              f.name for f in image_dir.glob("*")
+              if f.suffix.lower() in [".jpg", ".jpeg", ".png", ".webp"]
+          ]
+
+          image_list_text = "\n".join(image_files) if image_files else "No images available."
+
+          # ---------- Build Prompt ----------
+          prompt = f"""
+          ROLE:
+          You are a senior UI engineer creating a refined static storefront.
+
+          BRAND NAME:
+          page
+
+          IMPORTANT RULES:
+          - Use only images from assets/images/products/
+          - Available images:
+          {image_list_text}
+          - Use filenames exactly as listed
+          - Do NOT invent image names
+          - If no images available, use neutral placeholder blocks
+          - Return ONE complete HTML file
+
+          OUTPUT FORMAT STRICTLY:
+          ---index.html---
+          <complete HTML document>
           """
-          # Generate content
+
+          # ---------- Initialize Gemini ----------
+          client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+
           response = client.models.generate_content(
               model="gemini-3-flash-preview",
               contents=prompt
           )
+
           output = response.text
-          # Parse and write files
-          matches = re.findall(r"---(.*?)---\n(.*?)(?=(?:---|$))", output, re.DOTALL)
+
+          if not output:
+              print("Gemini returned empty response. Exiting safely.")
+              exit(0)
+
+          # ---------- Extract Files ----------
+          matches = re.findall(
+              r"---(.*?)---\n(.*?)(?=(?:---|$))",
+              output,
+              re.DOTALL
+          )
+
+          if not matches:
+              print("No properly formatted files returned. Exiting safely.")
+              exit(0)
+
           for filename, content in matches:
               path = Path(filename.strip())
               path.parent.mkdir(parents=True, exist_ok=True)
               path.write_text(content.strip(), encoding="utf-8")
-          # Git commit & push
+
+          # ---------- Commit Only If Changes Exist ----------
           subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
           subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
           subprocess.run(["git", "add", "."])
-          subprocess.run(["git", "commit", "-m", "🤖 Gemini AI updated website UI"], check=False)
-          subprocess.run(["git", "push"])
+
+          result = subprocess.run(
+              ["git", "diff", "--cached", "--quiet"]
+          )
+
+          if result.returncode != 0:
+              subprocess.run(
+                  ["git", "commit", "-m", "🤖 Gemini AI updated website UI"]
+              )
+              subprocess.run(["git", "push"])
+          else:
+              print("No changes detected. Skipping commit.")
+
           EOF
-      # 5️⃣ Configure AWS credentials
+
+      # 5️⃣ Configure AWS Credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
-      # 6️⃣ Deploy to S3
+      # 6️⃣ Deploy to S3 (Clean Production Sync)
       - name: Deploy to S3
         run: |
-          aws s3 sync . s3://staticwebzsitegit --delete
+          aws s3 sync . s3://staticwebzsitegit \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "__pycache__/*" \
+            --exclude "*.py" \
+            --delete
