@@ -54,48 +54,48 @@ jobs:
 
           # ---------- Build Prompt ----------
           prompt = f""
-            ROLE
-            You are a senior frontend engineer building a refined static e-commerce storefront.
-            
-            BRAND NAME
-            E-commerce platform
-            
-            IMPORTANT RULES
-            - Replace every instance of "page" with "E-commerce platform"
-            - All navigation must reflect the new brand name
-            - Use only images from:
-              assets/images/products/
-            - Image paths MUST be relative:
-              Example: assets/images/products/1.jpg
-            - Do NOT use leading slash (/assets/...)
-            - Do NOT invent filenames
-            - Use only provided image filenames
-            - If image not available, show neutral placeholder block
-            
-            FUNCTIONALITY
-            - Working Add to Bag (localStorage)
-            - Live cart counter
-            - Cart modal/drawer
-            - Remove item option
-            - Quantity increment
-            - Live search filtering
-            - No page reloads
-            - Vanilla JavaScript only
-            - All JS inside <script> tag
-            
-            LAYOUT
-            - Editorial minimal
-            - Generous spacing
-            - Soft transitions
-            - No heavy animations
-            
-            OUTPUT FORMAT STRICTLY
-            
-            ---index.html---
-            <!DOCTYPE html>
-            <html>
-            ...full working document...
-            </html>
+                ROLE
+                You are a senior frontend engineer building a refined static e-commerce storefront.
+                
+                BRAND NAME
+                E-commerce platform
+                
+                IMPORTANT RULES
+                - Replace every instance of "page" with "E-commerce platform"
+                - All navigation must reflect the new brand name
+                - Use only images from:
+                  assets/images/products/
+                - Image paths MUST be relative:
+                  Example: assets/images/products/1.jpg
+                - Do NOT use leading slash (/assets/...)
+                - Do NOT invent filenames
+                - Use only provided image filenames
+                - If image not available, show neutral placeholder block
+                
+                FUNCTIONALITY
+                - Working Add to Bag (localStorage)
+                - Live cart counter
+                - Cart modal/drawer
+                - Remove item option
+                - Quantity increment
+                - Live search filtering
+                - No page reloads
+                - Vanilla JavaScript only
+                - All JS inside <script> tag
+                
+                LAYOUT
+                - Editorial minimal
+                - Generous spacing
+                - Soft transitions
+                - No heavy animations
+                
+                OUTPUT FORMAT STRICTLY
+                
+                ---index.html---
+                <!DOCTYPE html>
+                <html>
+                ...full working document...
+                </html>
             
 
           # ---------- Initialize Gemini ----------
