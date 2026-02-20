@@ -12,24 +12,19 @@ jobs:
       contents: write
 
     steps:
-      # 1️⃣ Checkout repository
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2️⃣ Set up Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # 3️⃣ Install Gemini SDK
-      - name: Install Dependencies
-        run: |
-          pip install --upgrade google-genai
+      - name: Install Gemini SDK
+        run: pip install --upgrade google-genai
 
-      # 4️⃣ Run Gemini AI to update website
       - name: Run Gemini AI to Update Website UI
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -41,7 +36,7 @@ jobs:
           from pathlib import Path
           from google import genai
 
-          # ---------- Detect Available Images ----------
+          # Detect images
           image_dir = Path("assets/images/products")
           image_dir.mkdir(parents=True, exist_ok=True)
 
@@ -52,53 +47,52 @@ jobs:
 
           image_list_text = "\n".join(image_files) if image_files else "No images available."
 
-          # ---------- Build Prompt ----------
-          prompt = f""
-                ROLE
-                You are a senior frontend engineer building a refined static e-commerce storefront.
-                
-                BRAND NAME
-                E-commerce platform
-                
-                IMPORTANT RULES
-                - Replace every instance of "page" with "E-commerce platform"
-                - All navigation must reflect the new brand name
-                - Use only images from:
-                  assets/images/products/
-                - Image paths MUST be relative:
-                  Example: assets/images/products/1.jpg
-                - Do NOT use leading slash (/assets/...)
-                - Do NOT invent filenames
-                - Use only provided image filenames
-                - If image not available, show neutral placeholder block
-                
-                FUNCTIONALITY
-                - Working Add to Bag (localStorage)
-                - Live cart counter
-                - Cart modal/drawer
-                - Remove item option
-                - Quantity increment
-                - Live search filtering
-                - No page reloads
-                - Vanilla JavaScript only
-                - All JS inside <script> tag
-                
-                LAYOUT
-                - Editorial minimal
-                - Generous spacing
-                - Soft transitions
-                - No heavy animations
-                
-                OUTPUT FORMAT STRICTLY
-                
-                ---index.html---
-                <!DOCTYPE html>
-                <html>
-                ...full working document...
-                </html>
-            
+          # Build prompt (FIXED TRIPLE QUOTES)
+          prompt = f"""
+              ROLE
+              You are a senior frontend engineer building a refined static e-commerce storefront.
+              
+              BRAND NAME
+              E-commerce platform
+              
+              IMPORTANT RULES
+              - Replace every instance of "page" with "E-commerce platform"
+              - All navigation must reflect the new brand name
+              - Use only images from:
+                assets/images/products/
+              - Available images:
+              {image_list_text}
+              - Image paths MUST be relative (example: assets/images/products/1.jpg)
+              - Do NOT use leading slash (/assets/...)
+              - Do NOT invent filenames
+              - If image not available, show neutral placeholder block
+              
+              FUNCTIONALITY
+              - Working Add to Bag (localStorage)
+              - Live cart counter
+              - Cart modal/drawer
+              - Remove item option
+              - Quantity increment
+              - Live search filtering
+              - No page reloads
+              - Vanilla JavaScript only
+              - All JS inside <script> tag
+              
+              LAYOUT
+              - Editorial minimal
+              - Generous spacing
+              - Soft transitions
+              - No heavy animations
+              
+              OUTPUT FORMAT STRICTLY
+              
+              ---index.html---
+              <!DOCTYPE html>
+              <html>
+              ...full working document...
+              </html>
+              """
 
-          # ---------- Initialize Gemini ----------
           client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
           response = client.models.generate_content(
@@ -109,10 +103,9 @@ jobs:
           output = response.text
 
           if not output:
-              print("Gemini returned empty response. Exiting safely.")
+              print("Gemini returned empty response.")
               exit(0)
 
-          # ---------- Extract Files ----------
           matches = re.findall(
               r"---(.*?)---\n(.*?)(?=(?:---|$))",
               output,
@@ -120,7 +113,7 @@ jobs:
           )
 
           if not matches:
-              print("No properly formatted files returned. Exiting safely.")
+              print("No properly formatted files returned.")
               exit(0)
 
           for filename, content in matches:
@@ -128,26 +121,20 @@ jobs:
               path.parent.mkdir(parents=True, exist_ok=True)
               path.write_text(content.strip(), encoding="utf-8")
 
-          # ---------- Commit Only If Changes Exist ----------
           subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
           subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
           subprocess.run(["git", "add", "."])
 
-          result = subprocess.run(
-              ["git", "diff", "--cached", "--quiet"]
-          )
+          result = subprocess.run(["git", "diff", "--cached", "--quiet"])
 
           if result.returncode != 0:
-              subprocess.run(
-                  ["git", "commit", "-m", "🤖 Gemini AI updated website UI"]
-              )
+              subprocess.run(["git", "commit", "-m", "🤖 Gemini AI updated website UI"])
               subprocess.run(["git", "push"])
           else:
-              print("No changes detected. Skipping commit.")
+              print("No changes detected.")
 
           EOF
 
-      # 5️⃣ Configure AWS Credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -155,7 +142,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
-      # 6️⃣ Deploy to S3 (Clean Production Sync)
       - name: Deploy to S3
         run: |
           aws s3 sync . s3://staticwebzsitegit \
