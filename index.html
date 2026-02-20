@@ -3,19 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page — Refined Essentials</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <title>page — Editorial Storefront</title>
     <style>
         :root {
-            --bg: #ffffff;
-            --text: #1a1a1a;
-            --muted: #707070;
-            --border: #ececec;
-            --accent: #f9f9f9;
-            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-            --font-serif: 'Playfair Display', serif;
+            --canvas: #FAF9F7;
+            --panels: #E6E1DB;
+            --divider: #C2B8AE;
+            --text: #3F3A36;
+            --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         * {
@@ -25,461 +20,539 @@
         }
 
         body {
-            font-family: var(--font-sans);
-            background-color: var(--bg);
+            background-color: var(--canvas);
             color: var(--text);
-            line-height: 1.5;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 4%;
-        }
-
-        .logo {
-            font-family: var(--font-sans);
-            font-weight: 600;
-            font-size: 1.5rem;
-            letter-spacing: -0.05em;
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 400;
+            letter-spacing: -0.02em;
             text-transform: lowercase;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: inherit;
+            transition: var(--transition);
         }
 
-        .nav-icons {
-            display: flex;
-            gap: 1.5rem;
-            font-size: 0.9rem;
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 4rem 4%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-            min-height: 80vh;
-        }
-
-        .hero-content h1 {
-            font-family: var(--font-serif);
-            font-size: 4.5rem;
-            font-weight: 400;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-        }
-
-        .hero-content p {
-            font-size: 1.1rem;
-            color: var(--muted);
-            max-width: 400px;
-            margin-bottom: 2.5rem;
-        }
-
-        .hero-image-wrap {
-            height: 700px;
-            overflow: hidden;
-            background-color: var(--accent);
-        }
-
-        .hero-image-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--text);
-            color: white;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: opacity 0.3s;
-        }
-
-        .btn:hover {
-            opacity: 0.8;
-        }
-
-        /* Sections */
         section {
-            padding: 6rem 4%;
+            padding: 120px 0;
         }
 
-        .section-header {
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 249, 247, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid var(--divider);
+        }
+
+        nav {
+            height: 80px;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 3rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1rem;
         }
 
-        .section-header h2 {
-            font-family: var(--font-serif);
-            font-size: 2.5rem;
-            font-weight: 400;
+        .brand {
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
         }
 
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .product-card {
+        .nav-controls {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            align-items: center;
+            gap: 32px;
         }
 
-        .product-image {
-            aspect-ratio: 4/5;
-            background-color: var(--accent);
-            overflow: hidden;
+        .search-container {
             position: relative;
         }
 
-        .product-image img {
+        .search-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--divider);
+            padding: 4px 0;
+            outline: none;
+            font-size: 0.9rem;
+            width: 150px;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            width: 220px;
+            border-color: var(--text);
+        }
+
+        /* Brand Story */
+        .hero-story {
+            max-width: 600px;
+            margin-top: 80px;
+        }
+
+        .hero-story p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+            opacity: 0.85;
+        }
+
+        /* Product Grid */
+        .grid-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--divider);
+            padding-bottom: 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px 40px;
+        }
+
+        @media (min-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .product-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            opacity: 1;
+            transition: var(--transition);
+        }
+
+        .product-image-wrap {
+            aspect-ratio: 4/5;
+            background: var(--panels);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .product-image-wrap img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .product-card:hover .product-image img {
+        .product-card:hover img {
             transform: scale(1.05);
         }
 
         .product-info {
             display: flex;
             justify-content: space-between;
-            font-size: 0.9rem;
+            align-items: flex-start;
         }
 
         .product-name {
-            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: capitalize;
         }
 
         .product-price {
-            color: var(--muted);
+            font-size: 0.95rem;
+            opacity: 0.6;
         }
 
-        /* Banner Grid */
-        .feature-grid {
+        .add-btn {
+            margin-top: 8px;
+            padding: 12px 0;
+            border-top: 1px solid var(--divider);
+            text-align: left;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .add-btn:hover {
+            letter-spacing: 0.1em;
+        }
+
+        /* Product Detail View */
+        #product-detail {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--canvas);
+            z-index: 200;
+            display: none;
+            overflow-y: auto;
+            padding-top: 80px;
+        }
+
+        .detail-container {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-            height: 600px;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            min-height: calc(100vh - 80px);
         }
 
-        .feature-item {
-            position: relative;
-            overflow: hidden;
+        .detail-image {
+            background: var(--panels);
+            aspect-ratio: 4/5;
         }
 
-        .feature-item img {
+        .detail-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .feature-caption {
+        .detail-content {
+            max-width: 400px;
+        }
+
+        .close-detail {
             position: absolute;
-            bottom: 2rem;
-            left: 2rem;
-            color: white;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--accent);
-            padding: 6rem 4% 3rem;
-            margin-top: 4rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
-        }
-
-        .footer-logo {
-            font-family: var(--font-sans);
-            font-weight: 600;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-col h4 {
-            font-size: 0.8rem;
+            top: 100px;
+            right: 40px;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 1.5rem;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--text);
         }
 
-        .footer-col ul li {
-            margin-bottom: 0.75rem;
-            font-size: 0.9rem;
-            color: var(--muted);
+        /* Cart Drawer */
+        #cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            background: var(--panels);
+            z-index: 300;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
         }
 
-        .bottom-bar {
-            border-top: 1px solid var(--border);
-            padding-top: 2rem;
+        #cart-drawer.active {
+            right: 0;
+        }
+
+        .cart-header {
             display: flex;
             justify-content: space-between;
-            font-size: 0.75rem;
-            color: var(--muted);
+            align-items: center;
+            margin-bottom: 60px;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 1024px) {
-            .product-grid { grid-template-columns: repeat(3, 1fr); }
-            .hero { grid-template-columns: 1fr; text-align: center; }
-            .hero-content p { margin: 0 auto 2.5rem; }
-            .hero-image-wrap { height: 500px; order: -1; }
-            .hero-content h1 { font-size: 3rem; }
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
         }
 
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .product-grid { grid-template-columns: repeat(2, 1fr); }
-            .feature-grid { grid-template-columns: 1fr; height: auto; }
-            .feature-item { height: 400px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        .cart-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--divider);
         }
+
+        .cart-item-img {
+            width: 80px;
+            height: 100px;
+            object-fit: cover;
+            background: var(--canvas);
+        }
+
+        .cart-item-info {
+            flex-grow: 1;
+        }
+
+        .cart-footer {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--divider);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--text);
+            color: var(--canvas);
+            padding: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.2);
+            z-index: 250;
+            display: none;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Utility */
+        .hidden { display: none !important; }
+        .fade-out { opacity: 0; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="logo">page</a>
-        <ul class="nav-links">
-            <li><a href="#">Collection</a></li>
-            <li><a href="#">Objects</a></li>
-            <li><a href="#">Apparel</a></li>
-            <li><a href="#">Archive</a></li>
-        </ul>
-        <div class="nav-icons">
-            <a href="#">Search</a>
-            <a href="#">Cart (0)</a>
-        </div>
-    </nav>
+    <header>
+        <nav class="container">
+            <a href="#" class="brand" onclick="closeDetail()">page</a>
+            <div class="nav-controls">
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search collection...">
+                </div>
+                <button onclick="toggleCart()">Bag (<span id="cart-count">0</span>)</button>
+            </div>
+        </nav>
+    </header>
 
-    <main>
-        <!-- Hero -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Uniforms for the modern everyday.</h1>
-                <p>Curated essentials designed with precision, longevity, and a quiet confidence in mind.</p>
-                <a href="#shop" class="btn">Explore Collection</a>
-            </div>
-            <div class="hero-image-wrap">
-                <img src="assets/images/products/jacket-1.jpg" alt="Minimalist Jacket">
-            </div>
+    <main class="container">
+        <!-- Brand Story Section -->
+        <section id="hero" class="hero-story">
+            <p>Thoughtful making defines our process. Every object in our collection is the result of patient craftsmanship, designed to endure beyond the seasonal cycles of the industry. We believe in the tactile narrative of materials.</p>
+            <p>Sustainability is not a goal but a foundation. By sourcing responsibly and producing in limited batches, we minimize our footprint while ensuring that every piece carries the integrity of its origin.</p>
+            <p>The home is an intentional space. It is a sanctuary of curated simplicity. Our aesthetic serves as a backdrop to a life lived with focus, where every item serves a purpose and every shadow tells a story.</p>
         </section>
 
-        <!-- New Arrivals -->
-        <section id="shop">
-            <div class="section-header">
-                <h2>New Arrivals</h2>
-                <a href="#" style="font-size: 0.8rem; letter-spacing: 0.05em; border-bottom: 1px solid var(--text);">VIEW ALL</a>
+        <!-- Product Grid Section -->
+        <section id="store">
+            <div class="grid-header">
+                <h2>Collection</h2>
+                <div id="results-count"></div>
             </div>
-            <div class="product-grid">
-                <!-- P1 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/images/products/watch-1.jpg" alt="Core Watch">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-name">Nomos Watch Series 1</span>
-                        <span class="product-price">$450</span>
-                    </div>
-                </div>
-                <!-- P2 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/images/products/shoe-1_1.jpg" alt="Studio Sneaker">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-name">Studio Sneaker</span>
-                        <span class="product-price">$180</span>
-                    </div>
-                </div>
-                <!-- P3 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/images/products/perfume.jpg" alt="Scent">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-name">N° 01 Fragrance</span>
-                        <span class="product-price">$120</span>
-                    </div>
-                </div>
-                <!-- P4 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/images/products/jewellery-1.jpg" alt="Object">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-name">Silver Link Bracelet</span>
-                        <span class="product-price">$210</span>
-                    </div>
-                </div>
+            <div id="product-grid" class="product-grid">
+                <!-- Products injected by JS -->
             </div>
-        </section>
-
-        <!-- Feature Banners -->
-        <section>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <img src="assets/images/products/clothes-1.jpg" alt="Summer Collection">
-                    <div class="feature-caption">
-                        <p style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.2em; margin-bottom: 0.5rem;">The Editorial</p>
-                        <h3 style="font-family: var(--font-serif); font-size: 2rem; font-weight: 400;">Summer Transition</h3>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <img src="assets/images/products/jacket-4.jpg" alt="Outerwear">
-                    <div class="feature-caption">
-                        <h3 style="font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400;">Technical Outerwear</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Curated Essentials -->
-        <section>
-            <div class="section-header">
-                <h2>The Essentials</h2>
-            </div>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/images/products/shirt-1.jpg" alt="Classic Shirt">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-name">Oxford Cotton Shirt</span>
-                        <span class="product-price">$95</span>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/images/products/belt.jpg" alt="Leather Belt">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-name">Grain Leather Belt</span>
-                        <span class="product-price">$70</span>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/images/products/shoe-2.jpg" alt="Derby Shoe">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-name">Matte Derby Shoe</span>
-                        <span class="product-price">$240</span>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/images/products/shorts-1.jpg" alt="Tailored Shorts">
-                    </div>
-                    <div class="product-info">
-                        <span class="product-name">Tailored Chino Short</span>
-                        <span class="product-price">$85</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Grooming -->
-        <section style="background-color: var(--accent); margin: 0 4%;">
-             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; padding: 4rem;">
-                <div class="product-image" style="aspect-ratio: 1/1;">
-                    <img src="assets/images/products/shampoo.jpg" alt="Grooming">
-                </div>
-                <div>
-                    <h4 style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.2em; margin-bottom: 1rem;">Self Care</h4>
-                    <h2 style="font-family: var(--font-serif); font-size: 3rem; margin-bottom: 1.5rem; font-weight: 400;">Modern Grooming</h2>
-                    <p style="color: var(--muted); margin-bottom: 2rem;">A thoughtful selection of botanical-based formulas for the daily ritual.</p>
-                    <a href="#" class="btn">Shop Apothecary</a>
-                </div>
-             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <div class="footer-logo">page</div>
-                <p style="color: var(--muted); font-size: 0.9rem; max-width: 300px;">Timeless design for the discerning eye. Crafted to be worn, lived in, and kept.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Information</h4>
-                <ul>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Stores</a></li>
-                    <li><a href="#">Careers</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">Size Guide</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Social</h4>
-                <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Pinterest</a></li>
-                    <li><a href="#">Twitter</a></li>
-                </ul>
-            </div>
+    <!-- Product Detail View -->
+    <div id="product-detail">
+        <button class="close-detail" onclick="closeDetail()">Close</button>
+        <div class="container detail-container" id="detail-view-content">
+            <!-- Detail content injected by JS -->
         </div>
-        <div class="bottom-bar">
-            <span>&copy; 2024 page. All rights reserved.</span>
-            <span>Privacy Policy &nbsp; Terms of Service</span>
-        </div>
-    </footer>
+    </div>
 
+    <!-- Cart Sidebar -->
+    <div id="cart-drawer">
+        <div class="cart-header">
+            <h3>Your Bag</h3>
+            <button onclick="toggleCart()">Close</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items injected by JS -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cart-total-amount">$0.00</span>
+            </div>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <div id="overlay" class="overlay" onclick="toggleCart()"></div>
+
+    <script>
+        const products = [
+            { id: 1, name: "Textured Wool Jacket", price: 340, img: "jacket-1.jpg" },
+            { id: 2, name: "Minimalist Leather Belt", price: 85, img: "belt.jpg" },
+            { id: 3, name: "Organic Cotton Shirt", price: 120, img: "shirt-1.jpg" },
+            { id: 4, name: "Architectural Watch", price: 450, img: "watch-1.jpg" },
+            { id: 5, name: "Heavy Canvas Shorts", price: 95, img: "shorts-1.jpg" },
+            { id: 6, name: "Structured Blazer", price: 380, img: "jacket-2.jpg" },
+            { id: 7, name: "Raw Denim Trousers", price: 160, img: "clothes-1.jpg" },
+            { id: 8, name: "Fine Knit Sweater", price: 210, img: "clothes-4.jpg" },
+            { id: 9, name: "Ceramic Scented Candle", price: 65, img: "perfume.jpg" },
+            { id: 10, name: "Essential White Sneaker", price: 190, img: "shoe-1.jpg" },
+            { id: 11, name: "Linen Lounge Pant", price: 140, img: "shorts-2.jpg" },
+            { id: 12, name: "Silver Band Ring", price: 110, img: "jewellery-1.jpg" }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('page_cart')) || [];
+
+        // DOM Elements
+        const productGrid = document.getElementById('product-grid');
+        const cartCount = document.getElementById('cart-count');
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotalAmount = document.getElementById('cart-total-amount');
+        const overlay = document.getElementById('overlay');
+        const searchInput = document.getElementById('search-input');
+        const productDetail = document.getElementById('product-detail');
+        const detailViewContent = document.getElementById('detail-view-content');
+
+        // Initial Render
+        function init() {
+            renderProducts(products);
+            updateCart();
+        }
+
+        // Render Product Grid
+        function renderProducts(items) {
+            productGrid.innerHTML = items.map(product => `
+                <div class="product-card" data-id="${product.id}">
+                    <div class="product-image-wrap" onclick="openDetail(${product.id})">
+                        <img src="assets/images/products/${product.img}" alt="${product.name}" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <span class="product-price">$${product.price}</span>
+                    </div>
+                    <button class="add-btn" onclick="addToCart(${product.id})">Add to Bag</button>
+                </div>
+            `).join('');
+            
+            document.getElementById('results-count').innerText = `${items.length} items`;
+        }
+
+        // Search Logic
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(term));
+            renderProducts(filtered);
+        });
+
+        // Cart Logic
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            saveCart();
+            updateCart();
+            openCart();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCart();
+            updateCart();
+        }
+
+        function updateCart() {
+            // Update Count
+            const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+            cartCount.innerText = totalItems;
+
+            // Render Drawer Items
+            cartItemsContainer.innerHTML = cart.length === 0 
+                ? '<p style="opacity: 0.5">Your bag is empty.</p>'
+                : cart.map(item => `
+                    <div class="cart-item">
+                        <img src="assets/images/products/${item.img}" class="cart-item-img">
+                        <div class="cart-item-info">
+                            <div style="display:flex; justify-content:space-between">
+                                <h4>${item.name}</h4>
+                                <span>$${item.price * item.quantity}</span>
+                            </div>
+                            <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 4px">Qty: ${item.quantity}</p>
+                            <button onclick="removeFromCart(${item.id})" style="margin-top: 10px; font-size: 0.7rem; text-decoration: underline">Remove</button>
+                        </div>
+                    </div>
+                `).join('');
+
+            // Update Total
+            const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            cartTotalAmount.innerText = `$${total.toFixed(2)}`;
+        }
+
+        function saveCart() {
+            localStorage.setItem('page_cart', JSON.stringify(cart));
+        }
+
+        function toggleCart() {
+            cartDrawer.classList.toggle('active');
+            overlay.style.display = cartDrawer.classList.contains('active') ? 'block' : 'none';
+        }
+
+        function openCart() {
+            cartDrawer.classList.add('active');
+            overlay.style.display = 'block';
+        }
+
+        // Detail View Logic
+        function openDetail(id) {
+            const product = products.find(p => p.id === id);
+            detailViewContent.innerHTML = `
+                <div class="detail-image">
+                    <img src="assets/images/products/${product.img}" alt="${product.name}">
+                </div>
+                <div class="detail-content">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px">${product.name}</h2>
+                    <p style="font-size: 1.5rem; margin-bottom: 40px; opacity: 0.6">$${product.price}.00</p>
+                    <p style="margin-bottom: 40px">An exemplar of our commitment to refined utility. This piece is crafted from premium materials selected for their longevity and character. Designed with a generous silhouette for comfortable, versatile daily wear.</p>
+                    <button class="checkout-btn" onclick="addToCart(${product.id})">Add to Bag</button>
+                    <div style="margin-top: 60px; border-top: 1px solid var(--divider); padding-top: 20px; font-size: 0.8rem">
+                        <p>Composition: 100% Responsibly Sourced</p>
+                        <p>Care: Dry Clean Only</p>
+                        <p>Origin: Sustainably Crafted</p>
+                    </div>
+                </div>
+            `;
+            productDetail.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            window.scrollTo(0, 0);
+        }
+
+        function closeDetail() {
+            productDetail.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Initialize on load
+        window.onload = init;
+    </script>
 </body>
 </html>
