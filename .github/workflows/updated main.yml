@@ -53,7 +53,7 @@ jobs:
           image_list_text = "\n".join(image_files) if image_files else "No images available."
 
           # ---------- Build Prompt ----------
-          prompt = f"""
+          prompt = f""
             ROLE
             You are a senior frontend engineer building a refined static e-commerce storefront.
             
