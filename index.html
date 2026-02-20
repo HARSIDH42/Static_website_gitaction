@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page — Elevated Home Essentials</title>
+    <title>page — Refined Essentials</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --canvas: #FAF9F7;
-            --panel: #E6E1DB;
-            --divider: #C2B8AE;
-            --text: #3F3A36;
-            --transition: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-            --space-xl: 120px;
-            --space-lg: 80px;
-            --space-md: 40px;
-            --space-sm: 20px;
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --muted: #707070;
+            --border: #ececec;
+            --accent: #f9f9f9;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-serif: 'Playfair Display', serif;
         }
 
         * {
@@ -24,300 +25,459 @@
         }
 
         body {
-            background-color: var(--canvas);
+            font-family: var(--font-sans);
+            background-color: var(--bg);
             color: var(--text);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            line-height: 1.6;
-            letter-spacing: -0.01em;
         }
 
-        /* Typography */
-        h1, h2, h3 {
-            font-weight: 400;
-            line-height: 1.1;
-            text-transform: lowercase;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        .text-display { font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: -0.03em; }
-        .text-heading { font-size: 1.75rem; margin-bottom: var(--space-sm); }
-        .text-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--divider); }
-        .text-body { font-size: 1.125rem; max-width: 32rem; }
-        .text-price { font-size: 0.9rem; color: var(--text); opacity: 0.8; }
-
-        /* Layout */
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 var(--space-sm);
+        ul {
+            list-style: none;
         }
-
-        section {
-            padding: var(--space-lg) 0;
-            border-bottom: 1px solid var(--divider);
-        }
-
-        .flex { display: flex; }
-        .grid { display: grid; }
-        .items-center { align-items: center; }
-        .justify-between { justify-content: space-between; }
 
         /* Navigation */
         nav {
             position: sticky;
             top: 0;
-            background: var(--canvas);
-            padding: var(--space-sm) 0;
             z-index: 100;
-            border-bottom: 1px solid var(--divider);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4%;
+        }
+
+        .logo {
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: -0.05em;
+            text-transform: lowercase;
         }
 
         .nav-links {
             display: flex;
-            gap: var(--space-md);
-        }
-
-        .nav-links a, .brand-logo {
-            text-decoration: none;
-            color: var(--text);
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            opacity: 0.5;
-        }
-
-        .brand-logo {
+            gap: 2.5rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
 
-        /* Hero */
-        .hero-page {
-            min-height: 70vh;
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 4%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 4.5rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            max-width: 400px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-image-wrap {
+            height: 700px;
+            overflow: hidden;
+            background-color: var(--accent);
+        }
+
+        .hero-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--text);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 4%;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 400;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .product-card {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            border-bottom: 1px solid var(--divider);
+            gap: 1rem;
         }
 
-        .hero-page p {
-            margin: var(--space-md) auto 0;
-        }
-
-        /* Grid System */
-        .collection-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-lg) var(--space-md);
-        }
-
-        @media (min-width: 1024px) {
-            .collection-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Product Card */
-        .product-card {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .visual-placeholder {
+        .product-image {
             aspect-ratio: 4/5;
-            background-color: var(--panel);
-            border: 1px solid var(--divider);
-            margin-bottom: var(--space-sm);
-            transition: var(--transition);
+            background-color: var(--accent);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+
+        .product-name {
+            font-weight: 500;
+        }
+
+        .product-price {
+            color: var(--muted);
+        }
+
+        /* Banner Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            height: 600px;
+        }
+
+        .feature-item {
             position: relative;
             overflow: hidden;
         }
 
-        .visual-placeholder::after {
-            content: 'View page';
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .product-card:hover .visual-placeholder {
-            border-color: var(--text);
-        }
-
-        .product-card:hover .visual-placeholder::after {
-            opacity: 1;
-        }
-
-        /* Item View Section */
-        .item-view-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--space-lg);
-        }
-
-        @media (min-width: 768px) {
-            .item-view-layout {
-                grid-template-columns: 1.2fr 1fr;
-                align-items: start;
-            }
-        }
-
-        .add-to-bag {
-            margin-top: var(--space-md);
-            background: none;
-            border: 1px solid var(--text);
-            padding: 16px 32px;
-            color: var(--text);
-            cursor: pointer;
+        .feature-item img {
             width: 100%;
-            max-width: 300px;
-            font-family: inherit;
-            transition: var(--transition);
+            height: 100%;
+            object-fit: cover;
         }
 
-        .add-to-bag:hover {
-            background-color: var(--text);
-            color: var(--canvas);
-        }
-
-        /* Brand Story */
-        .story-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .story-paragraph {
-            margin-bottom: var(--space-md);
+        .feature-caption {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            color: white;
         }
 
         /* Footer */
         footer {
-            padding: var(--space-lg) 0;
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--divider);
+            background-color: var(--accent);
+            padding: 6rem 4% 3rem;
+            margin-top: 4rem;
         }
 
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-logo {
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .bottom-bar {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .product-grid { grid-template-columns: repeat(3, 1fr); }
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin: 0 auto 2.5rem; }
+            .hero-image-wrap { height: 500px; order: -1; }
+            .hero-content h1 { font-size: 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .feature-grid { grid-template-columns: 1fr; height: auto; }
+            .feature-item { height: 400px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="container flex justify-between items-center">
-            <a href="#" class="brand-logo">page</a>
-            <div class="nav-links">
-                <a href="#collection-page">Collection page</a>
-                <a href="#story-page">Story page</a>
-            </div>
+        <a href="#" class="logo">page</a>
+        <ul class="nav-links">
+            <li><a href="#">Collection</a></li>
+            <li><a href="#">Objects</a></li>
+            <li><a href="#">Apparel</a></li>
+            <li><a href="#">Archive</a></li>
+        </ul>
+        <div class="nav-icons">
+            <a href="#">Search</a>
+            <a href="#">Cart (0)</a>
         </div>
     </nav>
 
-    <!-- Landing View -->
-    <section class="hero-page">
-        <div class="container">
-            <h1 class="text-display">Curated Living</h1>
-            <p class="text-body">A study in restraint. We source and create objects that prioritize material honesty and quiet utility, designed to age with the home they inhabit.</p>
-        </div>
-    </section>
-
-    <!-- Collection View -->
-    <section id="collection-page">
-        <div class="container">
-            <h2 class="text-label" style="margin-bottom: var(--space-lg);">Recent Additions</h2>
-            <div class="collection-grid grid">
-                
-                <a href="#item-page" class="product-card">
-                    <div class="visual-placeholder"></div>
-                    <h3 class="text-heading">Linen Throw</h3>
-                    <p class="text-price">$165.00</p>
-                </a>
-
-                <a href="#item-page" class="product-card">
-                    <div class="visual-placeholder"></div>
-                    <h3 class="text-heading">Stone Vessel</h3>
-                    <p class="text-price">$84.00</p>
-                </a>
-
-                <a href="#item-page" class="product-card">
-                    <div class="visual-placeholder"></div>
-                    <h3 class="text-heading">Oak Side Chair</h3>
-                    <p class="text-price">$420.00</p>
-                </a>
-
-                <a href="#item-page" class="product-card">
-                    <div class="visual-placeholder"></div>
-                    <h3 class="text-heading">Hand-poured Wax</h3>
-                    <p class="text-price">$45.00</p>
-                </a>
-
-                <a href="#item-page" class="product-card">
-                    <div class="visual-placeholder"></div>
-                    <h3 class="text-heading">Cotton Hand Towel</h3>
-                    <p class="text-price">$28.00</p>
-                </a>
-
-                <a href="#item-page" class="product-card">
-                    <div class="visual-placeholder"></div>
-                    <h3 class="text-heading">Ceramic Carafe</h3>
-                    <p class="text-price">$92.00</p>
-                </a>
-
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Uniforms for the modern everyday.</h1>
+                <p>Curated essentials designed with precision, longevity, and a quiet confidence in mind.</p>
+                <a href="#shop" class="btn">Explore Collection</a>
             </div>
-        </div>
-    </section>
+            <div class="hero-image-wrap">
+                <img src="assets/images/products/jacket-1.jpg" alt="Minimalist Jacket">
+            </div>
+        </section>
 
-    <!-- Item View -->
-    <section id="item-page">
-        <div class="container">
-            <div class="item-view-layout">
-                <div class="visual-placeholder" style="aspect-ratio: 1/1; margin-bottom: 0;"></div>
-                <div class="item-details">
-                    <span class="text-label">Essentials</span>
-                    <h1 class="text-display" style="margin: 10px 0 var(--space-sm);">Linen Throw</h1>
-                    <p class="text-price" style="font-size: 1.25rem;">$165.00</p>
-                    <div style="margin-top: var(--space-md);">
-                        <p class="text-body" style="opacity: 0.8;">
-                            Woven from heavy-gauge Belgian flax, this throw offers a tactile weight that softens significantly with time. The muted charcoal hue is achieved through a gentle vegetable-dyeing process, ensuring no two pieces are identical.
-                        </p>
-                        <button class="add-to-bag">Add to Bag</button>
+        <!-- New Arrivals -->
+        <section id="shop">
+            <div class="section-header">
+                <h2>New Arrivals</h2>
+                <a href="#" style="font-size: 0.8rem; letter-spacing: 0.05em; border-bottom: 1px solid var(--text);">VIEW ALL</a>
+            </div>
+            <div class="product-grid">
+                <!-- P1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/images/products/watch-1.jpg" alt="Core Watch">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-name">Nomos Watch Series 1</span>
+                        <span class="product-price">$450</span>
+                    </div>
+                </div>
+                <!-- P2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/images/products/shoe-1_1.jpg" alt="Studio Sneaker">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-name">Studio Sneaker</span>
+                        <span class="product-price">$180</span>
+                    </div>
+                </div>
+                <!-- P3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/images/products/perfume.jpg" alt="Scent">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-name">N° 01 Fragrance</span>
+                        <span class="product-price">$120</span>
+                    </div>
+                </div>
+                <!-- P4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/images/products/jewellery-1.jpg" alt="Object">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-name">Silver Link Bracelet</span>
+                        <span class="product-price">$210</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Brand Story View -->
-    <section id="story-page">
-        <div class="container">
-            <div class="story-container">
-                <h2 class="text-label" style="margin-bottom: var(--space-lg);">About page</h2>
-                
-                <div class="story-paragraph">
-                    <p class="text-body">We believe in the integrity of the object. Our process begins with a search for material honesty—selecting timber, stone, and fiber that express their natural origins. Every piece in our collection is a testament to thoughtful making, intended to serve as a quiet companion to daily rituals.</p>
+        <!-- Feature Banners -->
+        <section>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <img src="assets/images/products/clothes-1.jpg" alt="Summer Collection">
+                    <div class="feature-caption">
+                        <p style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.2em; margin-bottom: 0.5rem;">The Editorial</p>
+                        <h3 style="font-family: var(--font-serif); font-size: 2rem; font-weight: 400;">Summer Transition</h3>
+                    </div>
                 </div>
-
-                <div class="story-paragraph">
-                    <p class="text-body">Sustainability is not a feature but a foundation. By focusing on long-term use and repairability, we counter the culture of the disposable. Our partnerships are limited to artisans who share this commitment to longevity, ensuring that "page" represents a legacy of quality over quantity.</p>
-                </div>
-
-                <div class="story-paragraph">
-                    <p class="text-body">The home should be a quiet, intentional space—a sanctuary from the noise of the external world. Through considered design and a restrained palette, we help curate environments that foster calm and clarity. This is the philosophy of page: living with less, but better.</p>
+                <div class="feature-item">
+                    <img src="assets/images/products/jacket-4.jpg" alt="Outerwear">
+                    <div class="feature-caption">
+                        <h3 style="font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400;">Technical Outerwear</h3>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Curated Essentials -->
+        <section>
+            <div class="section-header">
+                <h2>The Essentials</h2>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/images/products/shirt-1.jpg" alt="Classic Shirt">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-name">Oxford Cotton Shirt</span>
+                        <span class="product-price">$95</span>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/images/products/belt.jpg" alt="Leather Belt">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-name">Grain Leather Belt</span>
+                        <span class="product-price">$70</span>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/images/products/shoe-2.jpg" alt="Derby Shoe">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-name">Matte Derby Shoe</span>
+                        <span class="product-price">$240</span>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/images/products/shorts-1.jpg" alt="Tailored Shorts">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-name">Tailored Chino Short</span>
+                        <span class="product-price">$85</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grooming -->
+        <section style="background-color: var(--accent); margin: 0 4%;">
+             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; padding: 4rem;">
+                <div class="product-image" style="aspect-ratio: 1/1;">
+                    <img src="assets/images/products/shampoo.jpg" alt="Grooming">
+                </div>
+                <div>
+                    <h4 style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.2em; margin-bottom: 1rem;">Self Care</h4>
+                    <h2 style="font-family: var(--font-serif); font-size: 3rem; margin-bottom: 1.5rem; font-weight: 400;">Modern Grooming</h2>
+                    <p style="color: var(--muted); margin-bottom: 2rem;">A thoughtful selection of botanical-based formulas for the daily ritual.</p>
+                    <a href="#" class="btn">Shop Apothecary</a>
+                </div>
+             </div>
+        </section>
+    </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2024 page. All rights reserved.</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">page</div>
+                <p style="color: var(--muted); font-size: 0.9rem; max-width: 300px;">Timeless design for the discerning eye. Crafted to be worn, lived in, and kept.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Information</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Stores</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Social</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom-bar">
+            <span>&copy; 2024 page. All rights reserved.</span>
+            <span>Privacy Policy &nbsp; Terms of Service</span>
         </div>
     </footer>
 
