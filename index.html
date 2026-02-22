@@ -1,5 +1,3 @@
-Here is the complete HTML document:
-```
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +5,24 @@ Here is the complete HTML document:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-commerce Storefront</title>
     <style>
-        /* Add some basic styling to make the page look decent */
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .product {
-            display: inline-block;
-            margin: 10px;
-            width: 200px;
+            width: 25%;
+            margin: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .product img {
             width: 100%;
@@ -23,17 +30,35 @@ Here is the complete HTML document:
             object-fit: cover;
         }
         .product-info {
-            text-align: center;
+            padding: 10px;
+        }
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .add-to-bag {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .add-to-bag:hover {
+            background-color: #3e8e41;
         }
         .cart-counter {
             position: fixed;
             top: 10px;
             right: 10px;
-            background-color: #333;
+            background-color: #4CAF50;
             color: #fff;
-            padding: 5px 10px;
+            padding: 10px 20px;
             border-radius: 50%;
             cursor: pointer;
+        }
+        .cart-counter:hover {
+            background-color: #3e8e41;
         }
         .cart-drawer {
             position: fixed;
@@ -46,8 +71,11 @@ Here is the complete HTML document:
             border-left: 1px solid #ddd;
             display: none;
         }
+        .cart-drawer.show {
+            display: block;
+        }
         .cart-item {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
         .cart-item img {
             width: 50px;
@@ -55,154 +83,156 @@ Here is the complete HTML document:
             object-fit: cover;
             margin-right: 10px;
         }
+        .cart-item-info {
+            display: flex;
+            justify-content: space-between;
+        }
+        .cart-item-quantity {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .cart-item-remove {
+            background-color: #red;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .cart-item-remove:hover {
+            background-color: #c0392b;
+        }
         .search-input {
             width: 100%;
             padding: 10px;
             font-size: 16px;
+            border: 1px solid #ddd;
         }
     </style>
 </head>
 <body>
-    <input type="search" id="search-input" placeholder="Search products">
-    <div class="products">
-        <!-- Product list will be generated dynamically using JavaScript -->
+    <header>
+        <input type="search" id="search-input" placeholder="Search products">
+        <div class="cart-counter" id="cart-counter">0</div>
+    </header>
+    <div class="container">
+        <div class="product">
+            <img src="assets/images/products/jacket-1.jpg" alt="Jacket 1">
+            <div class="product-info">
+                <h2 class="product-name">Jacket 1</h2>
+                <button class="add-to-bag" data-product="jacket-1">Add to Bag</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="assets/images/products/jacket-2.jpg" alt="Jacket 2">
+            <div class="product-info">
+                <h2 class="product-name">Jacket 2</h2>
+                <button class="add-to-bag" data-product="jacket-2">Add to Bag</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="assets/images/products/jacket-3.jpg" alt="Jacket 3">
+            <div class="product-info">
+                <h2 class="product-name">Jacket 3</h2>
+                <button class="add-to-bag" data-product="jacket-3">Add to Bag</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="assets/images/products/jacket-4.jpg" alt="Jacket 4">
+            <div class="product-info">
+                <h2 class="product-name">Jacket 4</h2>
+                <button class="add-to-bag" data-product="jacket-4">Add to Bag</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="assets/images/products/jacket-5.jpg" alt="Jacket 5">
+            <div class="product-info">
+                <h2 class="product-name">Jacket 5</h2>
+                <button class="add-to-bag" data-product="jacket-5">Add to Bag</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="assets/images/products/jacket-6.jpg" alt="Jacket 6">
+            <div class="product-info">
+                <h2 class="product-name">Jacket 6</h2>
+                <button class="add-to-bag" data-product="jacket-6">Add to Bag</button>
+            </div>
+        </div>
+        <!-- Add more products here -->
     </div>
-    <div class="cart-counter" id="cart-counter">0</div>
     <div class="cart-drawer" id="cart-drawer">
         <h2>Cart</h2>
-        <ul id="cart-items">
-            <!-- Cart items will be generated dynamically using JavaScript -->
-        </ul>
+        <div id="cart-items"></div>
     </div>
 
     <script>
-        // Get all products
-        const products = [
-            { id: 1, name: "Jacket 1", image: "jacket-1.jpg" },
-            { id: 2, name: "Belt", image: "belt.jpg" },
-            { id: 3, name: "Clothes 1", image: "clothes-1.jpg" },
-            { id: 4, name: "Clothes 2", image: "clothes-2.jpg" },
-            { id: 5, name: "Clothes 3", image: "clothes-3.jpg" },
-            { id: 6, name: "Clothes 4", image: "clothes-4.jpg" },
-            { id: 7, name: "Jacket 2", image: "jacket-2.jpg" },
-            { id: 8, name: "Jacket 3", image: "jacket-3.jpg" },
-            { id: 9, name: "Jacket 4", image: "jacket-4.jpg" },
-            { id: 10, name: "Jacket 5", image: "jacket-5.jpg" },
-            { id: 11, name: "Jacket 6", image: "jacket-6.jpg" },
-            { id: 12, name: "Shirt 1", image: "shirt-1.jpg" },
-            { id: 13, name: "Shirt 2", image: "shirt-2.jpg" },
-            { id: 14, name: "Shorts 1", image: "shorts-1.jpg" },
-            { id: 15, name: "Shorts 2", image: "shorts-2.jpg" },
-            { id: 16, name: "Jewellery 1", image: "jewellery-1.jpg" },
-            { id: 17, name: "Jewellery 2", image: "jewellery-2.jpg" },
-            { id: 18, name: "Jewellery 3", image: "jewellery-3.jpg" },
-            { id: 19, name: "Sports 1", image: "sports-1.jpg" },
-            { id: 20, name: "Sports 2", image: "sports-2.jpg" },
-            { id: 21, name: "Sports 3", image: "sports-3.jpg" },
-            { id: 22, name: "Sports 4", image: "sports-4.jpg" },
-            { id: 23, name: "Sports 5", image: "sports-5.jpg" },
-            { id: 24, name: "Sports 6", image: "sports-6.jpg" },
-            { id: 25, name: "Watch 1", image: "watch-1.jpg" },
-            { id: 26, name: "Watch 2", image: "watch-2.jpg" },
-            { id: 27, name: "Watch 3", image: "watch-3.jpg" },
-            { id: 28, name: "Watch 4", image: "watch-4.jpg" },
-            { id: 29, name: "Shoe 1", image: "shoe-1.jpg" },
-            { id: 30, name: "Shoe 2", image: "shoe-2.jpg" },
-            { id: 31, name: "Shoe 3", image: "shoe-3.jpg" },
-            { id: 32, name: "Shoe 4", image: "shoe-4.jpg" },
-            { id: 33, name: "Shoe 5", image: "shoe-5.jpg" },
-            { id: 34, name: "Party Wear 1", image: "party-wear-1.jpg" },
-            { id: 35, name: "Party Wear 2", image: "party-wear-2.jpg" },
-            { id: 36, name: "Perfume", image: "perfume.jpg" },
-            { id: 37, name: "Shampoo", image: "shampoo.jpg" }
-        ];
-
-        // Get the products container
-        const productsContainer = document.querySelector('.products');
-
-        // Get the cart counter
-        const cartCounter = document.querySelector('#cart-counter');
-
-        // Get the cart drawer
-        const cartDrawer = document.querySelector('#cart-drawer');
-
-        // Get the cart items container
-        const cartItemsContainer = document.querySelector('#cart-items');
-
-        // Initialize the cart
         let cart = {};
+        let cartCounter = document.getElementById('cart-counter');
+        let cartDrawer = document.getElementById('cart-drawer');
+        let cartItemsContainer = document.getElementById('cart-items');
 
-        // Render products
-        products.forEach(product => {
-            const productHTML = `
-                <div class="product">
-                    <img src="assets/images/products/${product.image}" alt="${product.name}">
-                    <div class="product-info">
-                        <h3>${product.name}</h3>
-                        <button class="add-to-bag" data-product-id="${product.id}">Add to Bag</button>
-                    </div>
-                </div>
-            `;
-            productsContainer.innerHTML += productHTML;
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const addBagButtons = document.querySelectorAll('.add-to-bag');
+            addBagButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const product = button.dataset.product;
+                    if (!cart[product]) {
+                        cart[product] = 1;
+                    } else {
+                        cart[product]++;
+                    }
+                    updateCartCounter();
+                    updateCartDrawer();
+                });
+            });
 
-        // Add event listener to add to bag buttons
-        document.querySelectorAll('.add-to-bag').forEach(button => {
-            button.addEventListener('click', event => {
-                const productId = event.target.dataset.productId;
-                const product = products.find(product => product.id == productId);
-                if (!cart[productId]) {
-                    cart[productId] = { product, quantity: 1 };
-                } else {
-                    cart[productId].quantity++;
-                }
-                updateCartCounter();
-                updateCartDrawer();
+            cartCounter.addEventListener('click', () => {
+                cartDrawer.classList.toggle('show');
+            });
+
+            document.getElementById('search-input').addEventListener('input', () => {
+                const searchTerm = document.getElementById('search-input').value.toLowerCase();
+                const products = document.querySelectorAll('.product');
+                products.forEach(product => {
+                    const productName = product.querySelector('.product-name').textContent.toLowerCase();
+                    if (productName.includes(searchTerm)) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
             });
         });
 
-        // Update cart counter
         function updateCartCounter() {
-            const cartItemCount = Object.keys(cart).reduce((acc, key) => acc + cart[key].quantity, 0);
-            cartCounter.textContent = cartItemCount;
+            cartCounter.textContent = Object.keys(cart).length;
         }
 
-        // Update cart drawer
         function updateCartDrawer() {
             cartItemsContainer.innerHTML = '';
-            Object.keys(cart).forEach(key => {
-                const cartItemHTML = `
-                    <li class="cart-item">
-                        <img src="assets/images/products/${cart[key].product.image}" alt="${cart[key].product.name}">
-                        <span>${cart[key].product.name} x ${cart[key].quantity}</span>
-                        <button class="remove-from-cart" data-product-id="${key}">Remove</button>
-                    </li>
+            Object.keys(cart).forEach(product => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="assets/images/products/${product}.jpg" alt="${product}">
+                    <div class="cart-item-info">
+                        <span>${product}</span>
+                        <span class="cart-item-quantity">${cart[product]}</span>
+                        <button class="cart-item-remove" data-product="${product}">Remove</button>
+                    </div>
                 `;
-                cartItemsContainer.innerHTML += cartItemHTML;
+                cartItemsContainer.appendChild(cartItem);
+
+                const removeButton = cartItem.querySelector('.cart-item-remove');
+                removeButton.addEventListener('click', () => {
+                    delete cart[product];
+                    updateCartCounter();
+                    updateCartDrawer();
+                });
             });
         }
-
-        // Add event listener to cart counter
-        cartCounter.addEventListener('click', event => {
-            cartDrawer.style.display = 'block';
-        });
-
-        // Add event listener to remove from cart buttons
-        cartItemsContainer.addEventListener('click', event => {
-            if (event.target.classList.contains('remove-from-cart')) {
-                const productId = event.target.dataset.productId;
-                delete cart[productId];
-                updateCartCounter();
-                updateCartDrawer();
-            }
-        });
-
-        // Add event listener to search input
-        document.querySelector('#search-input').addEventListener('input', event => {
-            const searchTerm = event.target.value.toLowerCase();
-            productsContainer.innerHTML = '';
-            products.forEach(product => {
-                if (product.name.toLowerCase().includes(searchTerm)) {
-                    const productHTML = `
-                        <div class="product">
-                            <img src="assets/images/products/${product.image}" alt
+    </script>
+</body>
+</html>
+```
+Note that I've only included a few products in the HTML, but you can add more products by following the same pattern. Also, I've used a simple search functionality that filters products based on their names, but you can improve it to search by other criteria as well.
