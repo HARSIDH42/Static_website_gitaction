@@ -30,11 +30,7 @@ jobs:
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
         run: |
           python << 'EOF'
-          import os
-          import subprocess
-          import re
-          import requests
-          import time
+          import requests, base64, os, subprocess, re
           from pathlib import Path
 
           # Detect images
@@ -49,13 +45,13 @@ jobs:
           image_list_text = "\n".join(image_files) if image_files else "No images available."
 
           prompt = f"""
-          You are a senior frontend engineer.
+          You are a senior frontend engineer building a refined static e-commerce storefront.
 
           Use only images from assets/images/products/
           Available images:
           {image_list_text}
 
-          Build a minimal static e-commerce index.html with:
+          Build full working index.html with:
           - Add to Bag (localStorage)
           - Live cart counter
           - Cart drawer
@@ -65,88 +61,45 @@ jobs:
           - No page reload
           - Vanilla JS only
 
-          OUTPUT FORMAT:
-
-          ---index.html---
-          <!DOCTYPE html>
-          <html>
-          ...full working document...
-          </html>
+          Return ONLY raw HTML.
           """
 
           invoke_url = "https://integrate.api.nvidia.com/v1/chat/completions"
+          stream = True
 
           headers = {
-              "Authorization": f"Bearer {os.environ['NVIDIA_API_KEY']}",
-              "Content-Type": "application/json",
-              "Accept": "application/json"
+            "Authorization": f"Bearer {os.environ['NVIDIA_API_KEY']}",
+            "Accept": "text/event-stream" if stream else "application/json"
           }
 
           payload = {
-              "model": "meta/llama3-8b-instruct",
-              "messages": [{"role": "user", "content": prompt}],
-              "max_tokens": 2048,
-              "temperature": 0.7,
-              "top_p": 0.9,
-              "stream": False
+            "model": "moonshotai/kimi-k2.5",
+            "messages": [{"role":"user","content": prompt}],
+            "max_tokens": 2048,
+            "temperature": 1.00,
+            "top_p": 1.00,
+            "stream": stream,
+            "chat_template_kwargs": {"thinking":True},
           }
 
-          # Retry logic
-          for attempt in range(3):
-              try:
-                  response = requests.post(
-                      invoke_url,
-                      headers=headers,
-                      json=payload,
-                      timeout=60
-                  )
-                  break
-              except requests.exceptions.RequestException as e:
-                  print(f"Attempt {attempt+1} failed:", e)
-                  time.sleep(5)
+          response = requests.post(invoke_url, headers=headers, json=payload)
+
+          output = ""
+
+          if stream:
+              for line in response.iter_lines():
+                  if line:
+                      decoded = line.decode("utf-8")
+                      output += decoded
           else:
-              print("All retries failed.")
-              exit(1)
-
-          print("Status Code:", response.status_code)
-
-          if response.status_code != 200:
-              print("API Error:")
-              print(response.text)
-              exit(1)
-
-          try:
-              data = response.json()
-          except Exception:
-              print("Invalid JSON response:")
-              print(response.text)
-              exit(1)
-
-          if "choices" not in data:
-              print("Unexpected response format:")
-              print(data)
-              exit(1)
-
-          output = data["choices"][0]["message"]["content"]
+              output = response.json()
 
           if not output:
-              print("Model returned empty content.")
+              print("Model returned empty response.")
               exit(0)
 
-          matches = re.findall(
-              r"---(.*?)---\n(.*?)(?=(?:---|$))",
-              output,
-              re.DOTALL
-          )
-
-          if not matches:
-              print("No formatted files found.")
-              exit(0)
-
-          for filename, content in matches:
-              path = Path(filename.strip())
-              path.parent.mkdir(parents=True, exist_ok=True)
-              path.write_text(content.strip(), encoding="utf-8")
+          # Save directly as index.html
+          Path("index.html").write_text(output.strip(), encoding="utf-8")
 
           subprocess.run(["git", "config", "--global", "user.name", "ai-bot"])
           subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
