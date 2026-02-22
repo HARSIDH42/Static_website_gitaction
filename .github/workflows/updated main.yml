@@ -52,36 +52,24 @@ jobs:
           ROLE
           You are a senior frontend engineer building a refined static e-commerce storefront.
 
-          BRAND NAME
-          E-commerce platform
-
           IMPORTANT RULES
-          - Replace every instance of "page" with "E-commerce platform"
-          - All navigation must reflect the new brand name
           - Use only images from assets/images/products/
           - Available images:
           {image_list_text}
-          - Image paths MUST be relative (example: assets/images/products/1.jpg)
-          - Do NOT use leading slash (/assets/...)
+          - Use relative paths only
           - Do NOT invent filenames
-          - If image not available, show neutral placeholder block
+          - If no image available, show placeholder block
 
           FUNCTIONALITY
-          - Working Add to Bag (localStorage)
+          - Add to Bag (localStorage)
           - Live cart counter
-          - Cart modal/drawer
-          - Remove item option
+          - Cart drawer
           - Quantity increment
-          - Live search filtering
-          - No page reloads
+          - Remove item
+          - Live search
+          - No page reload
           - Vanilla JavaScript only
           - All JS inside <script> tag
-
-          LAYOUT
-          - Editorial minimal
-          - Generous spacing
-          - Soft transitions
-          - No heavy animations
 
           OUTPUT FORMAT STRICTLY
 
@@ -96,7 +84,8 @@ jobs:
 
           headers = {
               "Authorization": f"Bearer {os.environ['NVIDIA_API_KEY']}",
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "Accept": "application/json"
           }
 
           payload = {
@@ -109,12 +98,36 @@ jobs:
           }
 
           response = requests.post(invoke_url, headers=headers, json=payload)
-          data = response.json()
+
+          print("Status Code:", response.status_code)
+
+          if response.status_code != 200:
+              print("API Error:")
+              print(response.text)
+              exit(1)
+
+          raw_text = response.text.strip()
+
+          if not raw_text:
+              print("Empty response from API")
+              exit(1)
+
+          try:
+              data = response.json()
+          except Exception:
+              print("Response is not JSON:")
+              print(raw_text)
+              exit(1)
+
+          if "choices" not in data:
+              print("Unexpected response format:")
+              print(data)
+              exit(1)
 
           output = data["choices"][0]["message"]["content"]
 
           if not output:
-              print("Model returned empty response.")
+              print("Model returned empty content.")
               exit(0)
 
           matches = re.findall(
