@@ -1,4 +1,4 @@
-name: AI Auto Commit and Deploy
+name: Gemini AI Auto Commit and Deploy
 
 on:
   push:
@@ -22,16 +22,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Dependencies
-        run: pip install requests
+      - name: Install Gemini SDK
+        run: pip install --upgrade google-genai
 
-      - name: Run AI to Update Website UI
+      - name: Run Gemini AI to Update Website UI
         env:
-          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python << 'EOF'
-          import requests, os, subprocess
+          import os
+          import subprocess
+          import re
           from pathlib import Path
+          from google import genai
 
           # Detect images
           image_dir = Path("assets/images/products")
@@ -44,83 +47,88 @@ jobs:
 
           image_list_text = "\n".join(image_files) if image_files else "No images available."
 
+          # Build prompt (FIXED TRIPLE QUOTES)
           prompt = f"""
-          You are a senior frontend engineer building a refined static e-commerce storefront.
+              ROLE
+              You are a senior frontend engineer building a refined static e-commerce storefront.
+              
+              BRAND NAME
+              E-commerce platform
+              
+              IMPORTANT RULES
+              - Replace every instance of "page" with "E-commerce platform"
+              - All navigation must reflect the new brand name
+              - Use only images from:
+                assets/images/products/
+              - Available images:
+              {image_list_text}
+              - Image paths MUST be relative (example: assets/images/products/1.jpg)
+              - Do NOT use leading slash (/assets/...)
+              - Do NOT invent filenames
+              - If image not available, show neutral placeholder block
+              
+              FUNCTIONALITY
+              - Working Add to Bag (localStorage)
+              - Live cart counter
+              - Cart modal/drawer
+              - Remove item option
+              - Quantity increment
+              - Live search filtering
+              - No page reloads
+              - Vanilla JavaScript only
+              - All JS inside <script> tag
+              
+              LAYOUT
+              - Editorial minimal
+              - Generous spacing
+              - Soft transitions
+              - No heavy animations
+              
+              OUTPUT FORMAT STRICTLY
+              
+              ---index.html---
+              <!DOCTYPE html>
+              <html>
+              ...full working document...
+              </html>
+              """
 
-          Use only images from assets/images/products/
-          Available images:
-          {image_list_text}
+          client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
-          Build a full working index.html with:
-          - Add to Bag (localStorage)
-          - Live cart counter
-          - Cart drawer
-          - Quantity increment
-          - Remove item
-          - Live search
-          - No page reload
-          - Vanilla JS only
+          response = client.models.generate_content(
+              model="gemini-3-flash-preview",
+              contents=prompt
+          )
 
-          IMPORTANT:
-          You MUST return complete HTML document.
-          Start with <!DOCTYPE html>
-          Include <html>, <head>, <body>.
-          Do NOT return only CSS.
-          Do NOT omit body.
-          Return full working page.
-          """
+          output = response.text
 
-          invoke_url = "https://integrate.api.nvidia.com/v1/chat/completions"
-
-          headers = {
-              "Authorization": f"Bearer {os.environ['NVIDIA_API_KEY']}",
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-          }
-
-          payload = {
-              "model": "meta/llama3-8b-instruct",
-              "messages": [{"role":"user","content": prompt}],
-              "max_tokens": 2048,
-              "temperature": 0.7,
-              "top_p": 0.9,
-              "stream": False
-          }
-
-          response = requests.post(invoke_url, headers=headers, json=payload)
-
-          if response.status_code != 200:
-              print("API Error:", response.text)
-              exit(1)
-
-          data = response.json()
-
-          if "choices" not in data:
-              print("Unexpected API response:", data)
-              exit(1)
-
-          output = data["choices"][0]["message"]["content"]
-
-          if not output.strip():
-              print("Empty HTML generated.")
+          if not output:
+              print("Gemini returned empty response.")
               exit(0)
 
-          # Safety validation
-          if "<html" not in output.lower() or "<body" not in output.lower():
-              print("Invalid HTML detected. Skipping deployment.")
+          matches = re.findall(
+              r"---(.*?)---\n(.*?)(?=(?:---|$))",
+              output,
+              re.DOTALL
+          )
+
+          if not matches:
+              print("No properly formatted files returned.")
               exit(0)
 
-          # Save index.html
-          Path("index.html").write_text(output.strip(), encoding="utf-8")
+          for filename, content in matches:
+              path = Path(filename.strip())
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(content.strip(), encoding="utf-8")
 
-          subprocess.run(["git", "config", "--global", "user.name", "ai-bot"])
+          subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
           subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
           subprocess.run(["git", "add", "."])
 
           result = subprocess.run(["git", "diff", "--cached", "--quiet"])
 
           if result.returncode != 0:
-              subprocess.run(["git", "commit", "-m", "AI updated website UI"])
+              subprocess.run(["git", "commit", "-m", "🤖 Gemini AI updated website UI"])
               subprocess.run(["git", "push"])
           else:
               print("No changes detected.")
