@@ -65,9 +65,10 @@ jobs:
           You MUST return complete HTML document.
           Start with <!DOCTYPE html>
           Include <html>, <head>, <body>.
+          Do NOT return explanations.
+          Do NOT return markdown.
           Do NOT return only CSS.
-          Do NOT omit body.
-          Return full working page.
+          Return raw HTML only.
           """
 
           invoke_url = "https://integrate.api.nvidia.com/v1/chat/completions"
@@ -105,12 +106,21 @@ jobs:
               print("Empty HTML generated.")
               exit(0)
 
-          # Safety validation
-          if "<html" not in output.lower() or "<body" not in output.lower():
-              print("Invalid HTML detected. Skipping deployment.")
+          # 🔥 Remove everything before <!DOCTYPE html>
+          doctype_index = output.lower().find("<!doctype html")
+
+          if doctype_index == -1:
+              print("Valid HTML not found. Skipping deployment.")
               exit(0)
 
-          # Save index.html
+          output = output[doctype_index:]
+
+          # Validate HTML structure
+          if "<html" not in output.lower() or "<body" not in output.lower():
+              print("Incomplete HTML detected. Skipping deployment.")
+              exit(0)
+
+          # Save clean HTML
           Path("index.html").write_text(output.strip(), encoding="utf-8")
 
           subprocess.run(["git", "config", "--global", "user.name", "ai-bot"])
