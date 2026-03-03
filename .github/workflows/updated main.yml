@@ -51,25 +51,130 @@ jobs:
 
           image_list_text = "\n".join(image_files) if image_files else "No images available."
 
-          prompt = f"""
-          ROLE:
-          You are a senior frontend engineer building a premium 2026 modern e-commerce storefront.
-
-          BRAND NAME:
+                   prompt = f"""
+          ROLE
+          You are a senior full-stack frontend engineer designing a COMPLETE production-ready 2026 modern e-commerce storefront.
+          
+          GOAL
+          Generate a fully functional single-page e-commerce application using ONLY HTML, CSS, and Vanilla JavaScript.
+          
+          BRAND NAME
           E-commerce platform
-
-          IMPORTANT RULES:
-          - Replace every instance of "page" with "E-commerce platform"
-          - Use only images from assets/images/products/
-          - Available images:
+          
+          AVAILABLE PRODUCT IMAGES
+          Use ONLY these images from assets/images/products/
           {image_list_text}
-
-          OUTPUT FORMAT:
-
+          
+          --------------------------------------------------
+          CORE FUNCTIONAL REQUIREMENTS
+          --------------------------------------------------
+          
+          1. PRODUCT SYSTEM
+          - Dynamic product grid
+          - Product title, price, rating, category
+          - Image gallery hover preview
+          - Quick View modal
+          - Product badges (New / Sale / Trending)
+          
+          2. SHOPPING CART
+          - Add to Bag button
+          - Cart stored in localStorage
+          - Slide-in animated cart drawer
+          - Quantity increment/decrement
+          - Remove item
+          - Auto price calculation
+          - Subtotal + tax + total
+          - Empty cart state
+          - Persistent cart after refresh
+          
+          3. SEARCH & FILTER
+          - Live search without reload
+          - Category filtering
+          - Price range filtering
+          - Sort by:
+            - Price Low → High
+            - Price High → Low
+            - Popularity
+            - Rating
+          
+          4. USER EXPERIENCE
+          - No page reloads
+          - Smooth transitions
+          - Toast notifications:
+            - Added to cart
+            - Removed item
+          - Loading skeleton animations
+          - Hover micro-interactions
+          - Scroll reveal animations
+          
+          5. HEADER SYSTEM
+          - Glassmorphism sticky navbar
+          - Live cart counter badge
+          - Search bar
+          - Mobile hamburger menu
+          - Responsive navigation
+          
+          6. HERO SECTION
+          - Full width banner
+          - Call-to-action buttons
+          - Animated background gradient
+          - Promotional highlight section
+          
+          7. PRODUCT DETAILS MODAL
+          - Open without page navigation
+          - Image preview
+          - Description
+          - Quantity selector
+          - Add to cart from modal
+          
+          8. DARK / LIGHT MODE
+          - Toggle switch
+          - Saved in localStorage
+          - Smooth theme transition
+          
+          9. PERFORMANCE
+          - Lazy loading images
+          - Minimal DOM reflows
+          - Efficient event delegation
+          
+          10. FOOTER
+          - Newsletter subscription UI
+          - Social icons
+          - Quick navigation links
+          
+          --------------------------------------------------
+          DESIGN REQUIREMENTS (2026 PREMIUM UI)
+          --------------------------------------------------
+          
+          - Apple / Zara style minimal luxury
+          - Glassmorphism effects
+          - Soft shadows
+          - Large whitespace rhythm
+          - Modern system font stack
+          - CSS Grid + Flexbox
+          - Smooth hover elevation
+          - Premium neutral color palette
+          - Fully responsive mobile layout
+          
+          --------------------------------------------------
+          TECHNICAL RULES
+          --------------------------------------------------
+          
+          - Single file architecture
+          - ALL JavaScript inside <script>
+          - NO frameworks
+          - NO external libraries
+          - Relative image paths ONLY
+          - Do NOT invent filenames
+          - Handle missing images elegantly
+          
+          --------------------------------------------------
+          OUTPUT FORMAT STRICTLY
+          
           ---index.html---
           <!DOCTYPE html>
           <html>
-          Full premium modern UI here
+          FULL WORKING APPLICATION
           </html>
           """
 
