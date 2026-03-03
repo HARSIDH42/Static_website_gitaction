@@ -1,570 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce platform | Premium Storefront</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #111111;
-            --text-main: #1a1a1a;
-            --text-muted: #666666;
-            --bg-body: #ffffff;
-            --bg-card: #f9f9f9;
-            --glass: rgba(255, 255, 255, 0.75);
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            --shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            padding: 1.5rem 4%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transition);
-        }
-
-        .brand {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        nav {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .search-container {
-            position: relative;
-            width: 300px;
-        }
-
-        .search-container input {
-            width: 100%;
-            padding: 0.6rem 1rem;
-            border-radius: 50px;
-            border: 1px solid rgba(0,0,0,0.1);
-            background: rgba(0,0,0,0.03);
-            font-family: inherit;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .search-container input:focus {
-            background: #fff;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .cart-trigger {
-            position: relative;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: var(--accent);
-            color: #fff;
-            font-size: 0.7rem;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 90vh;
-            width: 100%;
-            background: #f4f4f4;
-            display: flex;
-            align-items: center;
-            padding: 0 8%;
-            margin-bottom: 4rem;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .hero-content {
-            z-index: 2;
-            max-width: 600px;
-        }
-
-        .hero-content h1 {
-            font-size: 5rem;
-            line-height: 1;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-        }
-
-        .hero-content p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--accent);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 0;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .hero-image {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 45%;
-            height: 80%;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        /* Product Grid */
-        .container {
-            padding: 0 4%;
-            margin-bottom: 6rem;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 3rem;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .product-card {
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .product-image-wrap {
-            position: relative;
-            aspect-ratio: 4/5;
-            background: var(--bg-card);
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-
-        .product-image-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .product-card:hover .product-image-wrap img {
-            transform: scale(1.08);
-        }
-
-        .add-to-cart-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem;
-            background: linear-gradient(to top, rgba(255,255,255,0.9), transparent);
-            transform: translateY(100%);
-            transition: var(--transition);
-            display: flex;
-            justify-content: center;
-        }
-
-        .product-card:hover .add-to-cart-overlay {
-            transform: translateY(0);
-        }
-
-        .product-info h3 {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-        }
-
-        .product-info .price {
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        /* Cart Drawer */
-        .cart-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.4);
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            backdrop-filter: blur(4px);
-        }
-
-        .cart-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .cart-drawer {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 100%;
-            max-width: 450px;
-            height: 100vh;
-            background: #fff;
-            z-index: 2001;
-            transform: translateX(100%);
-            transition: var(--transition);
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .cart-overlay.active .cart-drawer {
-            transform: translateX(0);
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .cart-items {
-            flex: 1;
-            overflow-y: auto;
-            margin-bottom: 2rem;
-        }
-
-        .cart-item {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .cart-item img {
-            width: 80px;
-            height: 100px;
-            object-fit: cover;
-        }
-
-        .cart-item-details {
-            flex: 1;
-        }
-
-        .cart-item-qty {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .qty-btn {
-            border: 1px solid #ddd;
-            background: none;
-            width: 28px;
-            height: 28px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .cart-footer {
-            border-top: 1px solid #eee;
-            padding-top: 1.5rem;
-        }
-
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .close-cart {
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 3rem; }
-            .hero-image { display: none; }
-            .search-container { display: none; }
-            .cart-drawer { max-width: 100%; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>E-commerce platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#000;
+      --accent:#ff0032;
+      --bg:#ffffff;
+      --text:#111;
+      --muted:#666;
+      --radius:12px;
+      --transition:.25s ease;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+    body{background:var(--bg);color:var(--text);}
+    img{max-width:100%;display:block;border-radius:var(--radius);}
+    a{text-decoration:none;color:inherit;}
+    button{cursor:pointer;border:none;background:none;font-size:1rem;}
+    header{
+      position:sticky;top:0;left:0;right:0;z-index:999;
+      background:rgba(255,255,255,.9);backdrop-filter:blur(8px);
+      border-bottom:1px solid #eee;
+    }
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:1rem 2rem;
+    }
+    .logo{font-weight:700;font-size:1.4rem;letter-spacing:-1px;}
+    nav ul{display:flex;gap:2rem;list-style:none;}
+    .icons{display:flex;gap:1.2rem;align-items:center;}
+    .icons svg{width:22px;height:22px;stroke:var(--primary);}
+    .hero{
+      display:grid;place-items:center;
+      min-height:70vh;
+      background:url('assets/images/products/jacket-5.jpg') center/cover no-repeat;
+      position:relative;
+      color:#fff;text-align:center;
+    }
+    .hero::before{
+      content:'';position:absolute;inset:0;
+      background:rgba(0,0,0,.45);
+    }
+    .hero-content{position:relative;z-index:2;}
+    .hero h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:700;margin-bottom:1rem;}
+    .btn{
+      background:var(--accent);color:#fff;padding:.9rem 2.2rem;
+      border-radius:var(--radius);font-weight:600;
+      transition:var(--transition);
+    }
+    .btn:hover{opacity:.85;}
+    .section{padding:4rem 2rem;}
+    .section-title{
+      font-size:1.8rem;font-weight:600;margin-bottom:2rem;text-align:center;
+    }
+    .products{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:2rem;
+    }
+    .card{
+      background:#fff;border:1px solid #f1f1f1;border-radius:var(--radius);
+      overflow:hidden;transition:var(--transition);
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(0,0,0,.06);}
+    .card img{height:280px;object-fit:cover;}
+    .info{padding:1rem .9rem;}
+    .brand{font-size:.8rem;color:var(--muted);}
+    .name{font-weight:500;margin:.3rem 0 .5rem;}
+    .price{font-weight:600;color:var(--accent);}
+    footer{
+      background:#111;color:#fff;padding:3rem 2rem 2rem;text-align:center;
+    }
+    .socials{display:flex;gap:1rem;justify-content:center;margin-top:1rem;}
+    .socials svg{width:20px;height:20px;fill:#fff;}
+    @media(max-width:768px){
+      nav ul{display:none;}
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <div class="topbar">
+      <div class="logo">E-commerce platform</div>
+      <nav>
+        <ul>
+          <li><a href="#">New&nbsp;Arrivals</a></li>
+          <li><a href="#">Men</a></li>
+          <li><a href="#">Women</a></li>
+          <li><a href="#">Accessories</a></li>
+        </ul>
+      </nav>
+      <div class="icons">
+        <button aria-label="Search"><svg><use href="#search"/></svg></button>
+        <button aria-label="User"><svg><use href="#user"/></svg></button>
+        <button aria-label="Cart"><svg><use href="#cart"/></svg></button>
+      </div>
+    </div>
+  </header>
 
-    <header>
-        <div class="brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">E-commerce platform</div>
-        
-        <nav>
-            <div class="search-container">
-                <input type="text" id="productSearch" placeholder="Search the E-commerce platform...">
-            </div>
-            <div class="nav-icons">
-                <div class="cart-trigger" id="cartBtn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                    <span class="cart-count" id="cartCount">0</span>
-                </div>
-            </div>
-        </nav>
-    </header>
-
+  <main>
     <section class="hero">
-        <div class="hero-content">
-            <h1>Elevate Your Lifestyle.</h1>
-            <p>Experience the new standard of digital shopping. Curated essentials from the E-commerce platform designed for the modern world.</p>
-            <button class="btn-primary" onclick="document.getElementById('shop-start').scrollIntoView({behavior:'smooth'})">Explore Collection</button>
-        </div>
-        <img src="assets/images/products/jacket-1.jpg" alt="Featured" class="hero-image">
+      <div class="hero-content">
+        <h1>Luxury Meets Everyday</h1>
+        <a href="#products" class="btn">Shop Collection</a>
+      </div>
     </section>
 
-    <main class="container" id="shop-start">
-        <div class="section-header">
-            <h2>New Arrivals</h2>
-            <p id="resultCount"></p>
-        </div>
-        
-        <div class="grid" id="productGrid">
-            <!-- Products injected by JS -->
-        </div>
-    </main>
+    <section id="products" class="section">
+      <h2 class="section-title">Featured Products</h2>
+      <div class="products">
+        <article class="card">
+          <img src="assets/images/products/watch-2.jpg" alt="Watch">
+          <div class="info">
+            <div class="brand">E-commerce platform</div>
+            <div class="name">Titanium Chronograph</div>
+            <div class="price">$349</div>
+          </div>
+        </article>
 
-    <!-- Cart Sidebar -->
-    <div class="cart-overlay" id="cartOverlay">
-        <div class="cart-drawer">
-            <div class="cart-header">
-                <h2>Your Bag</h2>
-                <button class="close-cart" id="closeCart">&times;</button>
-            </div>
-            <div class="cart-items" id="cartItems">
-                <!-- Cart items injected by JS -->
-            </div>
-            <div class="cart-footer">
-                <div class="total-row">
-                    <span>Total</span>
-                    <span id="cartTotal">$0.00</span>
-                </div>
-                <button class="btn-primary" style="width: 100%;">Checkout</button>
-            </div>
-        </div>
+        <article class="card">
+          <img src="assets/images/products/jacket-2.jpg" alt="Jacket">
+          <div class="info">
+            <div class="brand">E-commerce platform</div>
+            <div class="name">Urban Bomber Jacket</div>
+            <div class="price">$189</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="assets/images/products/sports-6.jpg" alt="Sports shoe">
+          <div class="info">
+            <div class="brand">E-commerce platform</div>
+            <div class="name">Aero Performance Runner</div>
+            <div class="price">$129</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="assets/images/products/jewellery-3.jpg" alt="Jewellery">
+          <div class="info">
+            <div class="brand">E-commerce platform</div>
+            <div class="name">Venus Gold Plated Set</div>
+            <div class="price">$89</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="assets/images/products/clothes-3.jpg" alt="Clothes">
+          <div class="info">
+            <div class="brand">E-commerce platform</div>
+            <div class="name">Minimalist Cotton Tee</div>
+            <div class="price">$39</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="assets/images/products/shoe-4.jpg" alt="Shoe">
+          <div class="info">
+            <div class="brand">E-commerce platform</div>
+            <div class="name">Signature Leather Sneaker</div>
+            <div class="price">$149</div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> E-commerce platform. All rights reserved.</p>
+    <div class="socials">
+      <a href="#"><svg><use href="#fb"/></svg></a>
+      <a href="#"><svg><use href="#tw"/></svg></a>
+      <a href="#"><svg><use href="#ig"/></svg></a>
     </div>
+  </footer>
 
-    <script>
-        // Product Data
-        const products = [
-            { id: 1, name: "Urban Stealth Jacket", price: 245.00, img: "jacket-1.jpg", category: "Apparel" },
-            { id: 2, name: "Heritage Timepiece", price: 420.00, img: "watch-1.jpg", category: "Accessories" },
-            { id: 3, name: "Metric Runner X1", price: 165.00, img: "shoe-1.jpg", category: "Footwear" },
-            { id: 4, name: "Artisan Leather Belt", price: 85.00, img: "belt.jpg", category: "Accessories" },
-            { id: 5, name: "Noire Parfum", price: 110.00, img: "perfume.jpg", category: "Beauty" },
-            { id: 6, name: "Tailored Linen Shirt", price: 95.00, img: "shirt-1.jpg", category: "Apparel" },
-            { id: 7, name: "Minimalist Gold Link", price: 290.00, img: "jewellery-1.jpg", category: "Accessories" },
-            { id: 8, name: "City Active Shorts", price: 65.00, img: "shorts-1.jpg", category: "Apparel" },
-            { id: 9, name: "Performance Knit", price: 140.00, img: "sports-1.jpg", category: "Apparel" },
-            { id: 10, name: "Cloud Walker 2.0", price: 180.00, img: "shoe-2.jpg", category: "Footwear" },
-            { id: 11, name: "Evening Gala Dress", price: 350.00, img: "party-wear-1.jpg", category: "Apparel" },
-            { id: 12, name: "Canvas Weekend Bag", price: 210.00, img: "clothes-1.jpg", category: "Accessories" }
-        ];
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
+    <defs>
+      <symbol id="search" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path>
+      </symbol>
+      <symbol id="user" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
+      </symbol>
+      <symbol id="cart" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+        <path d="M9 22a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM20 22a1 1 0 1 0 0-2 1 1 0 0 0 0 zM1 1h4l2.6 9.6a2 2 0 0 0 2 1.4h9.4"></path>
+      </symbol>
+      <symbol id="fb" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></symbol>
+      <symbol id="tw" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.223.085c.645 1.956 2.523 3.379 4.752 3.42a9.878 9.878 0 01-6.128 2.105c-.398 0-.79-.023-1.175-.068a13.963 13.963 0 007.548 2.212c9.142 0 14.307-7.477 13.995-14.646A10.025 10.025 0 0024 4.555h-.047z"/></symbol>
+      <symbol id="ig" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163m0-1.087c-3.283 0-3.684.014-4.97.072-4.613.211-6.551 3.146-6.762 6.762-.058 1.286-.072 1.687-.072 4.97s.014 3.684.072 4.97c.211 4.613 3.146 6.551 6.762 6.762 1.286.058 1.687.072 4.97.072s3.684-.014 4.97-.072c4.613-.211 6.551-3.146 6.762-6.762.058-1.286.072-1.687.072-4.97s-.014-3.684-.072-4.97c-.211-4.613-3.146-6.551-6.762-6.762-1.286-.058-1.687-.072-4.97-.072zM12 6.838a5.162 5.162 0 100 10.324 5.162 5.162 0 000-10.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></symbol>
+    </defs>
+  </svg>
 
-        let cart = JSON.parse(localStorage.getItem('ecommerce_platform_cart')) || [];
-
-        // DOM Elements
-        const productGrid = document.getElementById('productGrid');
-        const cartBtn = document.getElementById('cartBtn');
-        const cartOverlay = document.getElementById('cartOverlay');
-        const closeCart = document.getElementById('closeCart');
-        const cartItemsContainer = document.getElementById('cartItems');
-        const cartCount = document.getElementById('cartCount');
-        const cartTotal = document.getElementById('cartTotal');
-        const searchInput = document.getElementById('productSearch');
-
-        // Functions
-        function init() {
-            renderProducts(products);
-            updateCartUI();
-        }
-
-        function renderProducts(items) {
-            productGrid.innerHTML = items.map(product => `
-                <div class="product-card">
-                    <div class="product-image-wrap">
-                        <img src="assets/images/products/${product.img}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/400x500?text=Product'">
-                        <div class="add-to-cart-overlay">
-                            <button class="btn-primary" onclick="addToCart(${product.id})">Add to Bag</button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>${product.name}</h3>
-                        <p class="price">$${product.price.toFixed(2)}</p>
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById('resultCount').innerText = `${items.length} items found`;
-        }
-
-        function addToCart(id) {
-            const product = products.find(p => p.id === id);
-            const exists = cart.find(item => item.id === id);
-
-            if (exists) {
-                exists.quantity++;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-
-            saveCart();
-            updateCartUI();
-            toggleCart(true);
-        }
-
-        function removeFromCart(id) {
-            cart = cart.filter(item => item.id !== id);
-            saveCart();
-            updateCartUI();
-        }
-
-        function updateQuantity(id, amt) {
-            const item = cart.find(i => i.id === id);
-            if (item) {
-                item.quantity += amt;
-                if (item.quantity <= 0) {
-                    removeFromCart(id);
-                } else {
-                    saveCart();
-                    updateCartUI();
-                }
-            }
-        }
-
-        function saveCart() {
-            localStorage.setItem('ecommerce_platform_cart', JSON.stringify(cart));
-        }
-
-        function updateCartUI() {
-            // Update counter
-            const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
-            cartCount.innerText = totalItems;
-
-            // Update drawer
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p style="text-align:center; color:#999; margin-top:2rem;">Your bag is currently empty.</p>';
-                cartTotal.innerText = '$0.00';
-            } else {
-                cartItemsContainer.innerHTML = cart.map(item => `
-                    <div class="cart-item">
-                        <img src="assets/images/products/${item.img}" alt="${item.name}">
-                        <div class="cart-item-details">
-                            <h4>${item.name}</h4>
-                            <p>$${item.price.toFixed(2)}</p>
-                            <div class="cart-item-qty">
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                                <span>${item.quantity}</span>
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                            </div>
-                        </div>
-                        <button onclick="removeFromCart(${item.id})" style="background:none; border:none; cursor:pointer; color:#ff4444;">&times;</button>
-                    </div>
-                `).join('');
-
-                const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-                cartTotal.innerText = `$${total.toFixed(2)}`;
-            }
-        }
-
-        function toggleCart(show) {
-            if (show) cartOverlay.classList.add('active');
-            else cartOverlay.classList.remove('active');
-        }
-
-        // Search Logic
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const filtered = products.filter(p => 
-                p.name.toLowerCase().includes(term) || 
-                p.category.toLowerCase().includes(term)
-            );
-            renderProducts(filtered);
-        });
-
-        // Event Listeners
-        cartBtn.addEventListener('click', () => toggleCart(true));
-        closeCart.addEventListener('click', () => toggleCart(false));
-        cartOverlay.addEventListener('click', (e) => {
-            if (e.target === cartOverlay) toggleCart(false);
-        });
-
-        // Initialize E-commerce platform
-        init();
-    </script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
