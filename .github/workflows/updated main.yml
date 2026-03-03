@@ -51,7 +51,7 @@ jobs:
 
           image_list_text = "\n".join(image_files) if image_files else "No images available."
 
-                   prompt = f"""
+          prompt = f"""
           ROLE
           You are a senior full-stack frontend engineer designing a COMPLETE production-ready 2026 modern e-commerce storefront.
           
