@@ -199,7 +199,7 @@ jobs:
               model="gemini-3-flash-preview",
               contents=prompt
           )
-
+          
           output = response.text
 
           if not output:
