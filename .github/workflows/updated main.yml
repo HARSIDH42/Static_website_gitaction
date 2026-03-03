@@ -36,6 +36,7 @@ jobs:
           from pathlib import Path
           from google import genai
 
+          # Detect images
           image_dir = Path("assets/images/products")
           image_dir.mkdir(parents=True, exist_ok=True)
 
@@ -48,49 +49,51 @@ jobs:
 
           prompt = f"""
           ROLE
-          You are a senior frontend engineer building a premium 2026 Amazon/Flipkart-style e-commerce storefront.
+          You are a senior frontend engineer building a premium 2026 modern e-commerce storefront.
 
           BRAND NAME
           E-commerce platform
 
           IMPORTANT RULES
+          - Replace every instance of "page" with "E-commerce platform"
+          - All navigation must reflect the new brand name
           - Use only images from assets/images/products/
           - Available images:
           {image_list_text}
-          - Image paths must be relative
+          - Image paths MUST be relative
           - Do NOT invent filenames
-          - If missing image, use elegant placeholder
+          - If image not available, show elegant placeholder
+
+          FUNCTIONALITY
+          - Add to Bag (localStorage)
+          - Live cart counter
+          - Animated cart drawer (slide from right)
+          - Quantity increment & removal
+          - Live search filtering
+          - No page reload
           - Vanilla JavaScript only
           - All JS inside <script>
-          - No page reloads
 
-            
-          DESIGN REQUIREMENTS (Premium 2026 UI)
-          - Large hero section with banner slider
-          - Glassmorphism sticky header
-          - Mega menu dropdown categories
+          DESIGN REQUIREMENTS (2026 Modern UI)
+          - Large hero section with full-width banner
+          - Glassmorphism sticky header (blur + transparency)
           - Responsive CSS grid layout
-          - Modern typography (clean sans-serif stack)
-          - Subtle shadow depth & elevation
-          - Smooth hover animations
-          - Micro-interactions
-          - Professional spacing
-          - Neutral elegant color palette
-          - Mobile-first responsive
+          - Product cards with hover elevation & smooth transitions
+          - Subtle shadow depth
+          - Modern typography (clean sans-serif system font stack)
+          - Professional spacing & layout rhythm
+          - Smooth button hover animations
+          - Soft fade/slide animations
+          - Elegant neutral color palette
+          - Premium minimalist design (Apple/Zara style)
 
           OUTPUT FORMAT STRICTLY
 
           ---index.html---
           <!DOCTYPE html>
           <html>
-          ...complete advanced premium e-commerce website...
+          ...full working premium 2026 UI document...
           </html>
-
-          IMPORTANT:
-          Return ONLY raw HTML.
-          No explanations.
-          No markdown.
-          Start directly with <!DOCTYPE html>
           """
 
           client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
@@ -99,7 +102,7 @@ jobs:
               model="gemini-3-flash-preview",
               contents=prompt
           )
-          
+
           output = response.text
 
           if not output:
@@ -128,7 +131,7 @@ jobs:
           result = subprocess.run(["git", "diff", "--cached", "--quiet"])
 
           if result.returncode != 0:
-              subprocess.run(["git", "commit", "-m", "Gemini AI upgraded to full marketplace experience"])
+              subprocess.run(["git", "commit", "-m", "Gemini AI upgraded to 2026 premium UI"])
               subprocess.run(["git", "push"])
           else:
               print("No changes detected.")
