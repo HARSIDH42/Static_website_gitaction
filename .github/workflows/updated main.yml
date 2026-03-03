@@ -1,4 +1,4 @@
-name: Gemini AI Auto Commit and Deploy
+name: AI Auto Commit and Deploy
 
 on:
   push:
@@ -22,19 +22,23 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Gemini SDK
-        run: pip install --upgrade google-genai
+      # ✅ Install Groq instead of Gemini
+      - name: Install Groq SDK
+        run: pip install groq
 
-      - name: Run Gemini AI to Update Website UI
+      # ✅ Run AI UI Generator
+      - name: Run Groq AI to Update Website UI
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           python << 'EOF'
           import os
           import subprocess
           import re
           from pathlib import Path
-          from google import genai
+          from groq import Groq
+
+          client = Groq(api_key=os.environ["GROQ_API_KEY"])
 
           # Detect images
           image_dir = Path("assets/images/products")
@@ -48,65 +52,39 @@ jobs:
           image_list_text = "\n".join(image_files) if image_files else "No images available."
 
           prompt = f"""
-          ROLE
+          ROLE:
           You are a senior frontend engineer building a premium 2026 modern e-commerce storefront.
 
-          BRAND NAME
+          BRAND NAME:
           E-commerce platform
 
-          IMPORTANT RULES
+          IMPORTANT RULES:
           - Replace every instance of "page" with "E-commerce platform"
-          - All navigation must reflect the new brand name
           - Use only images from assets/images/products/
           - Available images:
           {image_list_text}
-          - Image paths MUST be relative
-          - Do NOT invent filenames
-          - If image not available, show elegant placeholder
 
-          FUNCTIONALITY
-          - Add to Bag (localStorage)
-          - Live cart counter
-          - Animated cart drawer (slide from right)
-          - Quantity increment & removal
-          - Live search filtering
-          - No page reload
-          - Vanilla JavaScript only
-          - All JS inside <script>
-
-          DESIGN REQUIREMENTS (2026 Modern UI)
-          - Large hero section with full-width banner
-          - Glassmorphism sticky header (blur + transparency)
-          - Responsive CSS grid layout
-          - Product cards with hover elevation & smooth transitions
-          - Subtle shadow depth
-          - Modern typography (clean sans-serif system font stack)
-          - Professional spacing & layout rhythm
-          - Smooth button hover animations
-          - Soft fade/slide animations
-          - Elegant neutral color palette
-          - Premium minimalist design (Apple/Zara style)
-
-          OUTPUT FORMAT STRICTLY
+          OUTPUT FORMAT:
 
           ---index.html---
           <!DOCTYPE html>
           <html>
-          ...full working premium 2026 UI document...
+          Full premium modern UI here
           </html>
           """
 
-          client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-
-          response = client.models.generate_content(
-              model="gemini-3-flash-preview",
-              contents=prompt
+          # ✅ Groq completion (NON-STREAM for CI)
+          completion = client.chat.completions.create(
+              model="moonshotai/kimi-k2-instruct-0905",
+              messages=[{"role": "user", "content": prompt}],
+              temperature=0.6,
+              max_tokens=4096
           )
 
-          output = response.text
+          output = completion.choices[0].message.content
 
           if not output:
-              print("Gemini returned empty response.")
+              print("AI returned empty response")
               exit(0)
 
           matches = re.findall(
@@ -116,7 +94,7 @@ jobs:
           )
 
           if not matches:
-              print("No properly formatted files returned.")
+              print("No formatted files returned.")
               exit(0)
 
           for filename, content in matches:
@@ -124,18 +102,17 @@ jobs:
               path.parent.mkdir(parents=True, exist_ok=True)
               path.write_text(content.strip(), encoding="utf-8")
 
-          subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
-          subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
-          subprocess.run(["git", "add", "."])
+          subprocess.run(["git","config","--global","user.name","ai-bot"])
+          subprocess.run(["git","config","--global","user.email","bot@example.com"])
+          subprocess.run(["git","add","."])
 
-          result = subprocess.run(["git", "diff", "--cached", "--quiet"])
+          result = subprocess.run(["git","diff","--cached","--quiet"])
 
           if result.returncode != 0:
-              subprocess.run(["git", "commit", "-m", "Gemini AI upgraded to 2026 premium UI"])
-              subprocess.run(["git", "push"])
+              subprocess.run(["git","commit","-m","AI upgraded premium UI"])
+              subprocess.run(["git","push"])
           else:
               print("No changes detected.")
-
           EOF
 
       - name: Configure AWS Credentials
