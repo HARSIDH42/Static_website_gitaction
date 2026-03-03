@@ -1,4 +1,4 @@
-name: AI Auto Commit and Deploy
+name: Deploy React App to S3 + CloudFront
 
 on:
   push:
@@ -6,232 +6,111 @@ on:
       - main
 
 jobs:
-  ai-commit-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Python
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # ✅ Install Groq SDK
+      - name: Setup Python for AI
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      # ✅ Install Groq instead of Gemini
       - name: Install Groq SDK
         run: pip install groq
 
-      # ✅ Run AI UI Generator
-      - name: Run Groq AI to Update Website UI
+      # ✅ AI EDITS ONLY FRONTEND SOURCE
+      - name: Groq AI Improve React Frontend
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           python << 'EOF'
           import os
-          import subprocess
-          import re
           from pathlib import Path
           from groq import Groq
-
+          
           client = Groq(api_key=os.environ["GROQ_API_KEY"])
-
-          # Detect images
-          image_dir = Path("assets/images/products")
-          image_dir.mkdir(parents=True, exist_ok=True)
-
-          image_files = [
-              f.name for f in image_dir.glob("*")
-              if f.suffix.lower() in [".jpg", ".jpeg", ".png", ".webp"]
-          ]
-
-          image_list_text = "\n".join(image_files) if image_files else "No images available."
-
-          prompt = f"""
-          ROLE
-          You are a senior full-stack frontend engineer designing a COMPLETE production-ready 2026 modern e-commerce storefront.
           
-          GOAL
-          Generate a fully functional single-page e-commerce application using ONLY HTML, CSS, and Vanilla JavaScript.
+          frontend = Path("frontend/src")
           
-          BRAND NAME
-          E-commerce platform
+          files = list(frontend.rglob("*.jsx")) + \
+                  list(frontend.rglob("*.js")) + \
+                  list(frontend.rglob("*.css"))
           
-          AVAILABLE PRODUCT IMAGES
-          Use ONLY these images from assets/images/products/
-          {image_list_text}
+          for file in files:
+              code = file.read_text(encoding="utf-8")
           
-          --------------------------------------------------
-          CORE FUNCTIONAL REQUIREMENTS
-          --------------------------------------------------
+              prompt = f"""
+          You are a senior React engineer.
           
-          1. PRODUCT SYSTEM
-          - Dynamic product grid
-          - Product title, price, rating, category
-          - Image gallery hover preview
-          - Quick View modal
-          - Product badges (New / Sale / Trending)
+          Improve this React code with:
+          - modern UI improvements
+          - better component structure
+          - accessibility fixes
+          - performance optimization
+          - clean styling
+          - responsive layout
+          - modern 2026 UX
           
-          2. SHOPPING CART
-          - Add to Bag button
-          - Cart stored in localStorage
-          - Slide-in animated cart drawer
-          - Quantity increment/decrement
-          - Remove item
-          - Auto price calculation
-          - Subtotal + tax + total
-          - Empty cart state
-          - Persistent cart after refresh
+          RULES:
+          - DO NOT change logic
+          - DO NOT break imports
+          - DO NOT rename files
+          - Return ONLY updated code
+          - Keep React functional components
           
-          3. SEARCH & FILTER
-          - Live search without reload
-          - Category filtering
-          - Price range filtering
-          - Sort by:
-            - Price Low → High
-            - Price High → Low
-            - Popularity
-            - Rating
-          
-          4. USER EXPERIENCE
-          - No page reloads
-          - Smooth transitions
-          - Toast notifications:
-            - Added to cart
-            - Removed item
-          - Loading skeleton animations
-          - Hover micro-interactions
-          - Scroll reveal animations
-          
-          5. HEADER SYSTEM
-          - Glassmorphism sticky navbar
-          - Live cart counter badge
-          - Search bar
-          - Mobile hamburger menu
-          - Responsive navigation
-          
-          6. HERO SECTION
-          - Full width banner
-          - Call-to-action buttons
-          - Animated background gradient
-          - Promotional highlight section
-          
-          7. PRODUCT DETAILS MODAL
-          - Open without page navigation
-          - Image preview
-          - Description
-          - Quantity selector
-          - Add to cart from modal
-          
-          8. DARK / LIGHT MODE
-          - Toggle switch
-          - Saved in localStorage
-          - Smooth theme transition
-          
-          9. PERFORMANCE
-          - Lazy loading images
-          - Minimal DOM reflows
-          - Efficient event delegation
-          
-          10. FOOTER
-          - Newsletter subscription UI
-          - Social icons
-          - Quick navigation links
-          
-          --------------------------------------------------
-          DESIGN REQUIREMENTS (2026 PREMIUM UI)
-          --------------------------------------------------
-          
-          - Apple / Zara style minimal luxury
-          - Glassmorphism effects
-          - Soft shadows
-          - Large whitespace rhythm
-          - Modern system font stack
-          - CSS Grid + Flexbox
-          - Smooth hover elevation
-          - Premium neutral color palette
-          - Fully responsive mobile layout
-          
-          --------------------------------------------------
-          TECHNICAL RULES
-          --------------------------------------------------
-          
-          - Single file architecture
-          - ALL JavaScript inside <script>
-          - NO frameworks
-          - NO external libraries
-          - Relative image paths ONLY
-          - Do NOT invent filenames
-          - Handle missing images elegantly
-          
-          --------------------------------------------------
-          OUTPUT FORMAT STRICTLY
-          
-          ---index.html---
-          <!DOCTYPE html>
-          <html>
-          FULL WORKING APPLICATION
-          </html>
+          CODE:
+          {code}
           """
-
-          # ✅ Groq completion (NON-STREAM for CI)
-          completion = client.chat.completions.create(
-              model="moonshotai/kimi-k2-instruct-0905",
-              messages=[{"role": "user", "content": prompt}],
-              temperature=0.6,
-              max_tokens=4096
-          )
-
-          output = completion.choices[0].message.content
-
-          if not output:
-              print("AI returned empty response")
-              exit(0)
-
-          matches = re.findall(
-              r"---(.*?)---\n(.*?)(?=(?:---|$))",
-              output,
-              re.DOTALL
-          )
-
-          if not matches:
-              print("No formatted files returned.")
-              exit(0)
-
-          for filename, content in matches:
-              path = Path(filename.strip())
-              path.parent.mkdir(parents=True, exist_ok=True)
-              path.write_text(content.strip(), encoding="utf-8")
-
-          subprocess.run(["git","config","--global","user.name","ai-bot"])
-          subprocess.run(["git","config","--global","user.email","bot@example.com"])
-          subprocess.run(["git","add","."])
-
-          result = subprocess.run(["git","diff","--cached","--quiet"])
-
-          if result.returncode != 0:
-              subprocess.run(["git","commit","-m","AI upgraded premium UI"])
-              subprocess.run(["git","push"])
-          else:
-              print("No changes detected.")
+          
+              completion = client.chat.completions.create(
+                  model="moonshotai/kimi-k2-instruct-0905",
+                  messages=[{"role": "user", "content": prompt}],
+                  temperature=0.4,
+                  max_tokens=4096
+              )
+          
+              updated = completion.choices[0].message.content
+          
+              if updated:
+                  file.write_text(updated.strip(), encoding="utf-8")
+                  print(f"Updated {file}")
+          
           EOF
 
+      # ✅ Install React dependencies
+      - name: Install Dependencies
+        run: npm install
+        working-directory: frontend
+
+      # ✅ Build React App
+      - name: Build React App
+        run: npm run build
+        working-directory: frontend
+
+      # ✅ AWS Login
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+          aws-region: ap-south-1
 
+      # ✅ Deploy
       - name: Deploy to S3
-        run: |
-          aws s3 sync . s3://staticwebzsitegit \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --exclude "__pycache__/*" \
-            --exclude "*.py" \
-            --delete
+        run: aws s3 sync build/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
+        working-directory: frontend
+
+      # ✅ CloudFront Refresh
+      - name: Invalidate CloudFront Cache
+        run: aws cloudfront create-invalidation \
+          --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+          --paths "/*"
