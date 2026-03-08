@@ -20,13 +20,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      # ✅ Install Groq instead of Gemini
       - name: Install Groq SDK
         run: pip install groq
 
-      # ✅ Run AI UI Generator
       - name: Run Groq AI to Update Website UI
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -37,40 +35,45 @@ jobs:
           import re
           from pathlib import Path
           from groq import Groq
+
           client = Groq(api_key=os.environ["GROQ_API_KEY"])
+
           # Detect images
           image_dir = Path("assets/images/products")
           image_dir.mkdir(parents=True, exist_ok=True)
+
           image_files = [
               f.name for f in image_dir.glob("*")
               if f.suffix.lower() in [".jpg", ".jpeg", ".png", ".webp"]
           ]
+
           image_list_text = "\n".join(image_files) if image_files else "No images available."
+
           prompt = f"""
           ROLE
           You are a senior full-stack frontend engineer designing a COMPLETE production-ready 2026 modern e-commerce storefront.
-          
+
           GOAL
           Generate a fully functional single-page e-commerce application using ONLY HTML, CSS, and Vanilla JavaScript.
-          
+
           BRAND NAME
           E-commerce platform
-          
+
           AVAILABLE PRODUCT IMAGES
           Use ONLY these images from assets/images/products/
           {image_list_text}
-          
+
           --------------------------------------------------
           CORE FUNCTIONAL REQUIREMENTS
           --------------------------------------------------
-          
+
           1. PRODUCT SYSTEM
           - Dynamic product grid
           - Product title, price, rating, category
           - Image gallery hover preview
           - Quick View modal
           - Product badges (New / Sale / Trending)
-          
+
           2. SHOPPING CART
           - Add to Bag button
           - Cart stored in localStorage
@@ -81,7 +84,7 @@ jobs:
           - Subtotal + tax + total
           - Empty cart state
           - Persistent cart after refresh
-          
+
           3. SEARCH & FILTER
           - Live search without reload
           - Category filtering
@@ -91,7 +94,7 @@ jobs:
             - Price High → Low
             - Popularity
             - Rating
-          
+
           4. USER EXPERIENCE
           - No page reloads
           - Smooth transitions
@@ -101,46 +104,46 @@ jobs:
           - Loading skeleton animations
           - Hover micro-interactions
           - Scroll reveal animations
-          
+
           5. HEADER SYSTEM
           - Glassmorphism sticky navbar
           - Live cart counter badge
           - Search bar
           - Mobile hamburger menu
           - Responsive navigation
-          
+
           6. HERO SECTION
           - Full width banner
           - Call-to-action buttons
           - Animated background gradient
           - Promotional highlight section
-          
+
           7. PRODUCT DETAILS MODAL
           - Open without page navigation
           - Image preview
           - Description
           - Quantity selector
           - Add to cart from modal
-          
+
           8. DARK / LIGHT MODE
           - Toggle switch
           - Saved in localStorage
           - Smooth theme transition
-          
+
           9. PERFORMANCE
           - Lazy loading images
           - Minimal DOM reflows
           - Efficient event delegation
-          
+
           10. FOOTER
           - Newsletter subscription UI
           - Social icons
           - Quick navigation links
-          
+
           --------------------------------------------------
           DESIGN REQUIREMENTS (2026 PREMIUM UI)
           --------------------------------------------------
-          
+
           - Apple / Zara style minimal luxury
           - Glassmorphism effects
           - Soft shadows
@@ -150,11 +153,11 @@ jobs:
           - Smooth hover elevation
           - Premium neutral color palette
           - Fully responsive mobile layout
-          
+
           --------------------------------------------------
           TECHNICAL RULES
           --------------------------------------------------
-          
+
           - Single file architecture
           - ALL JavaScript inside <script>
           - NO frameworks
@@ -162,49 +165,62 @@ jobs:
           - Relative image paths ONLY
           - Do NOT invent filenames
           - Handle missing images elegantly
-          
+
           --------------------------------------------------
           OUTPUT FORMAT STRICTLY
-          
+
           ---index.html---
           <!DOCTYPE html>
           <html>
           FULL WORKING APPLICATION
           </html>
           """
-          # ✅ Groq completion (NON-STREAM for CI)
+
           completion = client.chat.completions.create(
-              model="moonshotai/kimi-k2-instruct-0905",
+              model="openai/gpt-oss-120b",
               messages=[{"role": "user", "content": prompt}],
-              temperature=0.6,
-              max_tokens=4096
+              temperature=1,
+              max_completion_tokens=8192,
+              top_p=1,
+              reasoning_effort="medium",
+              stream=False
           )
+
           output = completion.choices[0].message.content
+
           if not output:
               print("AI returned empty response")
               exit(0)
+
           matches = re.findall(
               r"---(.*?)---\n(.*?)(?=(?:---|$))",
               output,
               re.DOTALL
           )
+
           if not matches:
               print("No formatted files returned.")
               exit(0)
+
           for filename, content in matches:
               path = Path(filename.strip())
               path.parent.mkdir(parents=True, exist_ok=True)
               path.write_text(content.strip(), encoding="utf-8")
+
           subprocess.run(["git","config","--global","user.name","ai-bot"])
           subprocess.run(["git","config","--global","user.email","bot@example.com"])
+
           subprocess.run(["git","add","."])
+
           result = subprocess.run(["git","diff","--cached","--quiet"])
+
           if result.returncode != 0:
               subprocess.run(["git","commit","-m","AI upgraded premium UI"])
               subprocess.run(["git","push"])
           else:
               print("No changes detected.")
           EOF
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
