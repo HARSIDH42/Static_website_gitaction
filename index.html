@@ -1,201 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>E-commerce platform</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --primary:#000;
-      --accent:#ff0032;
-      --bg:#ffffff;
-      --text:#111;
-      --muted:#666;
-      --radius:12px;
-      --transition:.25s ease;
-    }
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-    body{background:var(--bg);color:var(--text);}
-    img{max-width:100%;display:block;border-radius:var(--radius);}
-    a{text-decoration:none;color:inherit;}
-    button{cursor:pointer;border:none;background:none;font-size:1rem;}
-    header{
-      position:sticky;top:0;left:0;right:0;z-index:999;
-      background:rgba(255,255,255,.9);backdrop-filter:blur(8px);
-      border-bottom:1px solid #eee;
-    }
-    .topbar{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:1rem 2rem;
-    }
-    .logo{font-weight:700;font-size:1.4rem;letter-spacing:-1px;}
-    nav ul{display:flex;gap:2rem;list-style:none;}
-    .icons{display:flex;gap:1.2rem;align-items:center;}
-    .icons svg{width:22px;height:22px;stroke:var(--primary);}
-    .hero{
-      display:grid;place-items:center;
-      min-height:70vh;
-      background:url('assets/images/products/jacket-5.jpg') center/cover no-repeat;
-      position:relative;
-      color:#fff;text-align:center;
-    }
-    .hero::before{
-      content:'';position:absolute;inset:0;
-      background:rgba(0,0,0,.45);
-    }
-    .hero-content{position:relative;z-index:2;}
-    .hero h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:700;margin-bottom:1rem;}
-    .btn{
-      background:var(--accent);color:#fff;padding:.9rem 2.2rem;
-      border-radius:var(--radius);font-weight:600;
-      transition:var(--transition);
-    }
-    .btn:hover{opacity:.85;}
-    .section{padding:4rem 2rem;}
-    .section-title{
-      font-size:1.8rem;font-weight:600;margin-bottom:2rem;text-align:center;
-    }
-    .products{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:2rem;
-    }
-    .card{
-      background:#fff;border:1px solid #f1f1f1;border-radius:var(--radius);
-      overflow:hidden;transition:var(--transition);
-    }
-    .card:hover{transform:translateY(-6px);box-shadow:0 12px 24px rgba(0,0,0,.06);}
-    .card img{height:280px;object-fit:cover;}
-    .info{padding:1rem .9rem;}
-    .brand{font-size:.8rem;color:var(--muted);}
-    .name{font-weight:500;margin:.3rem 0 .5rem;}
-    .price{font-weight:600;color:var(--accent);}
-    footer{
-      background:#111;color:#fff;padding:3rem 2rem 2rem;text-align:center;
-    }
-    .socials{display:flex;gap:1rem;justify-content:center;margin-top:1rem;}
-    .socials svg{width:20px;height:20px;fill:#fff;}
-    @media(max-width:768px){
-      nav ul{display:none;}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce platform | Premium Store</title>
+    <style>
+        :root { --bg: #f9f9f9; --text: #1a1a1a; --glass: rgba(255,255,255,0.8); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: var(--text); }
+        
+        /* Header */
+        header { position: sticky; top: 0; backdrop-filter: blur(10px); background: var(--glass); z-index: 100; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+        .logo { font-weight: 800; letter-spacing: -1px; }
+        .nav-links a { margin-left: 2rem; text-decoration: none; color: inherit; font-size: 0.9rem; }
+        
+        /* Hero */
+        .hero { padding: 4rem 5%; text-align: center; }
+        
+        /* Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; padding: 2rem 5%; }
+        .product-card { background: #fff; padding: 1rem; transition: transform 0.3s; cursor: pointer; }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-card img { width: 100%; height: 350px; object-fit: cover; background: #eee; }
+        .product-card h3 { margin: 1rem 0 0.5rem; }
+        
+        /* Cart Drawer */
+        #cart-drawer { position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: 0.3s; padding: 2rem; z-index: 1000; }
+        #cart-drawer.open { right: 0; }
+        
+        button { background: #000; color: #fff; border: none; padding: 0.8rem 1.5rem; cursor: pointer; margin-top: 1rem; }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="topbar">
-      <div class="logo">E-commerce platform</div>
-      <nav>
-        <ul>
-          <li><a href="#">New&nbsp;Arrivals</a></li>
-          <li><a href="#">Men</a></li>
-          <li><a href="#">Women</a></li>
-          <li><a href="#">Accessories</a></li>
-        </ul>
-      </nav>
-      <div class="icons">
-        <button aria-label="Search"><svg><use href="#search"/></svg></button>
-        <button aria-label="User"><svg><use href="#user"/></svg></button>
-        <button aria-label="Cart"><svg><use href="#cart"/></svg></button>
-      </div>
-    </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Luxury Meets Everyday</h1>
-        <a href="#products" class="btn">Shop Collection</a>
-      </div>
-    </section>
+<header>
+    <div class="logo">E-commerce platform</div>
+    <nav class="nav-links">
+        <a href="#" onclick="alert('Welcome to E-commerce platform')">Home</a>
+        <a href="#" id="cart-btn">Bag (<span id="cart-count">0</span>)</a>
+    </nav>
+</header>
 
-    <section id="products" class="section">
-      <h2 class="section-title">Featured Products</h2>
-      <div class="products">
-        <article class="card">
-          <img src="assets/images/products/watch-2.jpg" alt="Watch">
-          <div class="info">
-            <div class="brand">E-commerce platform</div>
-            <div class="name">Titanium Chronograph</div>
-            <div class="price">$349</div>
-          </div>
-        </article>
+<section class="hero">
+    <h1>E-commerce platform Collection 2026</h1>
+</section>
 
-        <article class="card">
-          <img src="assets/images/products/jacket-2.jpg" alt="Jacket">
-          <div class="info">
-            <div class="brand">E-commerce platform</div>
-            <div class="name">Urban Bomber Jacket</div>
-            <div class="price">$189</div>
-          </div>
-        </article>
+<div class="grid" id="product-grid"></div>
 
-        <article class="card">
-          <img src="assets/images/products/sports-6.jpg" alt="Sports shoe">
-          <div class="info">
-            <div class="brand">E-commerce platform</div>
-            <div class="name">Aero Performance Runner</div>
-            <div class="price">$129</div>
-          </div>
-        </article>
+<div id="cart-drawer">
+    <h2>Your Bag</h2>
+    <div id="cart-items"></div>
+    <button onclick="toggleCart()">Close</button>
+</div>
 
-        <article class="card">
-          <img src="assets/images/products/jewellery-3.jpg" alt="Jewellery">
-          <div class="info">
-            <div class="brand">E-commerce platform</div>
-            <div class="name">Venus Gold Plated Set</div>
-            <div class="price">$89</div>
-          </div>
-        </article>
+<script>
+    const products = [
+        { id: 1, name: 'Minimalist Watch', img: 'assets/images/products/watch-1.jpg', price: 199 },
+        { id: 2, name: 'Premium Jacket', img: 'assets/images/products/jacket-1.jpg', price: 299 },
+        { id: 3, name: 'Casual Sneakers', img: 'assets/images/products/shoe-1.jpg', price: 120 },
+        { id: 4, name: 'Designer Shirt', img: 'assets/images/products/shirt-1.jpg', price: 89 }
+    ];
 
-        <article class="card">
-          <img src="assets/images/products/clothes-3.jpg" alt="Clothes">
-          <div class="info">
-            <div class="brand">E-commerce platform</div>
-            <div class="name">Minimalist Cotton Tee</div>
-            <div class="price">$39</div>
-          </div>
-        </article>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        <article class="card">
-          <img src="assets/images/products/shoe-4.jpg" alt="Shoe">
-          <div class="info">
-            <div class="brand">E-commerce platform</div>
-            <div class="name">Signature Leather Sneaker</div>
-            <div class="price">$149</div>
-          </div>
-        </article>
-      </div>
-    </section>
-  </main>
+    function renderProducts() {
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = products.map(p => `
+            <div class="product-card">
+                <img src="${p.img}" alt="${p.name}" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='">
+                <h3>${p.name}</h3>
+                <p>$${p.price}</p>
+                <button onclick="addToCart(${p.id})">Add to Bag</button>
+            </div>
+        `).join('');
+    }
 
-  <footer>
-    <p>&copy; <span id="year"></span> E-commerce platform. All rights reserved.</p>
-    <div class="socials">
-      <a href="#"><svg><use href="#fb"/></svg></a>
-      <a href="#"><svg><use href="#tw"/></svg></a>
-      <a href="#"><svg><use href="#ig"/></svg></a>
-    </div>
-  </footer>
+    function addToCart(id) {
+        const product = products.find(p => p.id === id);
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCart();
+    }
 
-  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;">
-    <defs>
-      <symbol id="search" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
-        <circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path>
-      </symbol>
-      <symbol id="user" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
-      </symbol>
-      <symbol id="cart" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
-        <path d="M9 22a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM20 22a1 1 0 1 0 0-2 1 1 0 0 0 0 zM1 1h4l2.6 9.6a2 2 0 0 0 2 1.4h9.4"></path>
-      </symbol>
-      <symbol id="fb" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></symbol>
-      <symbol id="tw" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.223.085c.645 1.956 2.523 3.379 4.752 3.42a9.878 9.878 0 01-6.128 2.105c-.398 0-.79-.023-1.175-.068a13.963 13.963 0 007.548 2.212c9.142 0 14.307-7.477 13.995-14.646A10.025 10.025 0 0024 4.555h-.047z"/></symbol>
-      <symbol id="ig" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163m0-1.087c-3.283 0-3.684.014-4.97.072-4.613.211-6.551 3.146-6.762 6.762-.058 1.286-.072 1.687-.072 4.97s.014 3.684.072 4.97c.211 4.613 3.146 6.551 6.762 6.762 1.286.058 1.687.072 4.97.072s3.684-.014 4.97-.072c4.613-.211 6.551-3.146 6.762-6.762.058-1.286.072-1.687.072-4.97s-.014-3.684-.072-4.97c-.211-4.613-3.146-6.551-6.762-6.762-1.286-.058-1.687-.072-4.97-.072zM12 6.838a5.162 5.162 0 100 10.324 5.162 5.162 0 000-10.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></symbol>
-    </defs>
-  </svg>
+    function updateCart() {
+        document.getElementById('cart-count').innerText = cart.length;
+        const container = document.getElementById('cart-items');
+        container.innerHTML = cart.map((p, index) => `
+            <div style="margin-bottom:1rem">
+                <p>${p.name} - $${p.price} <button onclick="removeFromCart(${index})">x</button></p>
+            </div>
+        `).join('');
+    }
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCart();
+    }
+
+    function toggleCart() {
+        document.getElementById('cart-drawer').classList.toggle('open');
+    }
+
+    document.getElementById('cart-btn').onclick = (e) => { e.preventDefault(); toggleCart(); };
+
+    renderProducts();
+    updateCart();
+</script>
+
 </body>
 </html>
