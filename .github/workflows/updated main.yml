@@ -1,4 +1,4 @@
-name: AI Auto Commit and Deploy
+name: Gemini AI Auto Commit and Deploy
 
 on:
   push:
@@ -20,23 +20,21 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
-      - name: Install Groq SDK
-        run: pip install groq
+      - name: Install Gemini SDK
+        run: pip install --upgrade google-genai
 
-      - name: Run Groq AI to Update Website UI
+      - name: Run Gemini AI to Update Website UI
         env:
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python << 'EOF'
           import os
           import subprocess
           import re
           from pathlib import Path
-          from groq import Groq
-
-          client = Groq(api_key=os.environ["GROQ_API_KEY"])
+          from google import genai
 
           # Detect images
           image_dir = Path("assets/images/products")
@@ -51,145 +49,64 @@ jobs:
 
           prompt = f"""
           ROLE
-          You are a senior full-stack frontend engineer designing a COMPLETE production-ready 2026 modern e-commerce storefront.
-
-          GOAL
-          Generate a fully functional single-page e-commerce application using ONLY HTML, CSS, and Vanilla JavaScript.
+          You are a senior frontend engineer building a premium 2026 modern e-commerce storefront.
 
           BRAND NAME
           E-commerce platform
 
-          AVAILABLE PRODUCT IMAGES
-          Use ONLY these images from assets/images/products/
+          IMPORTANT RULES
+          - Replace every instance of "page" with "E-commerce platform"
+          - All navigation must reflect the new brand name
+          - Use only images from assets/images/products/
+          - Available images:
           {image_list_text}
-
-          --------------------------------------------------
-          CORE FUNCTIONAL REQUIREMENTS
-          --------------------------------------------------
-
-          1. PRODUCT SYSTEM
-          - Dynamic product grid
-          - Product title, price, rating, category
-          - Image gallery hover preview
-          - Quick View modal
-          - Product badges (New / Sale / Trending)
-
-          2. SHOPPING CART
-          - Add to Bag button
-          - Cart stored in localStorage
-          - Slide-in animated cart drawer
-          - Quantity increment/decrement
-          - Remove item
-          - Auto price calculation
-          - Subtotal + tax + total
-          - Empty cart state
-          - Persistent cart after refresh
-
-          3. SEARCH & FILTER
-          - Live search without reload
-          - Category filtering
-          - Price range filtering
-          - Sort by:
-            - Price Low → High
-            - Price High → Low
-            - Popularity
-            - Rating
-
-          4. USER EXPERIENCE
-          - No page reloads
-          - Smooth transitions
-          - Toast notifications:
-            - Added to cart
-            - Removed item
-          - Loading skeleton animations
-          - Hover micro-interactions
-          - Scroll reveal animations
-
-          5. HEADER SYSTEM
-          - Glassmorphism sticky navbar
-          - Live cart counter badge
-          - Search bar
-          - Mobile hamburger menu
-          - Responsive navigation
-
-          6. HERO SECTION
-          - Full width banner
-          - Call-to-action buttons
-          - Animated background gradient
-          - Promotional highlight section
-
-          7. PRODUCT DETAILS MODAL
-          - Open without page navigation
-          - Image preview
-          - Description
-          - Quantity selector
-          - Add to cart from modal
-
-          8. DARK / LIGHT MODE
-          - Toggle switch
-          - Saved in localStorage
-          - Smooth theme transition
-
-          9. PERFORMANCE
-          - Lazy loading images
-          - Minimal DOM reflows
-          - Efficient event delegation
-
-          10. FOOTER
-          - Newsletter subscription UI
-          - Social icons
-          - Quick navigation links
-
-          --------------------------------------------------
-          DESIGN REQUIREMENTS (2026 PREMIUM UI)
-          --------------------------------------------------
-
-          - Apple / Zara style minimal luxury
-          - Glassmorphism effects
-          - Soft shadows
-          - Large whitespace rhythm
-          - Modern system font stack
-          - CSS Grid + Flexbox
-          - Smooth hover elevation
-          - Premium neutral color palette
-          - Fully responsive mobile layout
-
-          --------------------------------------------------
-          TECHNICAL RULES
-          --------------------------------------------------
-
-          - Single file architecture
-          - ALL JavaScript inside <script>
-          - NO frameworks
-          - NO external libraries
-          - Relative image paths ONLY
+          - Image paths MUST be relative
           - Do NOT invent filenames
-          - Handle missing images elegantly
+          - If image not available, show elegant placeholder
 
-          --------------------------------------------------
+          FUNCTIONALITY
+          - Add to Bag (localStorage)
+          - Live cart counter
+          - Animated cart drawer (slide from right)
+          - Quantity increment & removal
+          - Live search filtering
+          - No page reload
+          - Vanilla JavaScript only
+          - All JS inside <script>
+
+          DESIGN REQUIREMENTS (2026 Modern UI)
+          - Large hero section with full-width banner
+          - Glassmorphism sticky header (blur + transparency)
+          - Responsive CSS grid layout
+          - Product cards with hover elevation & smooth transitions
+          - Subtle shadow depth
+          - Modern typography (clean sans-serif system font stack)
+          - Professional spacing & layout rhythm
+          - Smooth button hover animations
+          - Soft fade/slide animations
+          - Elegant neutral color palette
+          - Premium minimalist design (Apple/Zara style)
+
           OUTPUT FORMAT STRICTLY
 
           ---index.html---
           <!DOCTYPE html>
           <html>
-          FULL WORKING APPLICATION
+          ...full working premium 2026 UI document...
           </html>
           """
 
-          completion = client.chat.completions.create(
-              model="openai/gpt-oss-120b",
-              messages=[{"role": "user", "content": prompt}],
-              temperature=1,
-              max_completion_tokens=8192,
-              top_p=1,
-              reasoning_effort="medium",
-              stream=False
+          client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+
+          response = client.models.generate_content(
+              model="gemini-3-flash-preview",
+              contents=prompt
           )
 
-          output = completion.choices[0].message.content
+          output = response.text
 
           if not output:
-              print("AI returned empty response")
+              print("Gemini returned empty response.")
               exit(0)
 
           matches = re.findall(
@@ -199,7 +116,7 @@ jobs:
           )
 
           if not matches:
-              print("No formatted files returned.")
+              print("No properly formatted files returned.")
               exit(0)
 
           for filename, content in matches:
@@ -207,18 +124,18 @@ jobs:
               path.parent.mkdir(parents=True, exist_ok=True)
               path.write_text(content.strip(), encoding="utf-8")
 
-          subprocess.run(["git","config","--global","user.name","ai-bot"])
-          subprocess.run(["git","config","--global","user.email","bot@example.com"])
+          subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
+          subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
+          subprocess.run(["git", "add", "."])
 
-          subprocess.run(["git","add","."])
-
-          result = subprocess.run(["git","diff","--cached","--quiet"])
+          result = subprocess.run(["git", "diff", "--cached", "--quiet"])
 
           if result.returncode != 0:
-              subprocess.run(["git","commit","-m","AI upgraded premium UI"])
-              subprocess.run(["git","push"])
+              subprocess.run(["git", "commit", "-m", "Gemini AI upgraded to 2026 premium UI"])
+              subprocess.run(["git", "push"])
           else:
               print("No changes detected.")
+
           EOF
 
       - name: Configure AWS Credentials
