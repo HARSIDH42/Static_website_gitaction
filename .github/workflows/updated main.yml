@@ -20,7 +20,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
       - name: Install Gemini SDK
         run: pip install --upgrade google-genai
@@ -36,9 +36,7 @@ jobs:
           from pathlib import Path
           from google import genai
 
-          client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-
-          # Detect product images
+          # Detect images
           image_dir = Path("assets/images/products")
           image_dir.mkdir(parents=True, exist_ok=True)
 
@@ -64,34 +62,41 @@ jobs:
           {image_list_text}
           - Image paths MUST be relative
           - Do NOT invent filenames
-          - If image not available show elegant placeholder
+          - If image not available, show elegant placeholder
 
           FUNCTIONALITY
           - Add to Bag (localStorage)
           - Live cart counter
-          - Animated cart drawer
+          - Animated cart drawer (slide from right)
           - Quantity increment & removal
           - Live search filtering
           - No page reload
           - Vanilla JavaScript only
           - All JS inside <script>
 
-          DESIGN REQUIREMENTS
-          - Large hero banner
-          - Glassmorphism sticky header
-          - Responsive CSS grid
-          - Smooth hover transitions
-          - Apple / Zara style minimal UI
-          - Elegant neutral colors
+          DESIGN REQUIREMENTS (2026 Modern UI)
+          - Large hero section with full-width banner
+          - Glassmorphism sticky header (blur + transparency)
+          - Responsive CSS grid layout
+          - Product cards with hover elevation & smooth transitions
+          - Subtle shadow depth
+          - Modern typography (clean sans-serif system font stack)
+          - Professional spacing & layout rhythm
+          - Smooth button hover animations
+          - Soft fade/slide animations
+          - Elegant neutral color palette
+          - Premium minimalist design (Apple/Zara style)
 
           OUTPUT FORMAT STRICTLY
 
           ---index.html---
           <!DOCTYPE html>
           <html>
-          FULL WORKING APPLICATION
+          ...full working premium 2026 UI document...
           </html>
           """
+
+          client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
           response = client.models.generate_content(
               model="gemini-3.1-flash-lite-preview",
@@ -100,11 +105,8 @@ jobs:
 
           output = response.text
 
-          print("\n===== GEMINI OUTPUT =====\n")
-          print(output[:2000])
-
           if not output:
-              print("Gemini returned empty response")
+              print("Gemini returned empty response.")
               exit(0)
 
           matches = re.findall(
@@ -113,27 +115,24 @@ jobs:
               re.DOTALL
           )
 
-          # fallback if Gemini doesn't follow format
           if not matches:
-              print("No formatted files detected. Saving as index.html")
-              Path("index.html").write_text(output.strip(), encoding="utf-8")
-              matches = [("index.html", output)]
+              print("No properly formatted files returned.")
+              exit(0)
 
           for filename, content in matches:
               path = Path(filename.strip())
               path.parent.mkdir(parents=True, exist_ok=True)
               path.write_text(content.strip(), encoding="utf-8")
 
-          subprocess.run(["git","config","--global","user.name","gemini-bot"])
-          subprocess.run(["git","config","--global","user.email","bot@example.com"])
+          subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
+          subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
+          subprocess.run(["git", "add", "."])
 
-          subprocess.run(["git","add","."])
-
-          result = subprocess.run(["git","diff","--cached","--quiet"])
+          result = subprocess.run(["git", "diff", "--cached", "--quiet"])
 
           if result.returncode != 0:
-              subprocess.run(["git","commit","-m","Gemini AI upgraded UI"])
-              subprocess.run(["git","push"])
+              subprocess.run(["git", "commit", "-m", "Gemini AI upgraded to 2026 premium UI"])
+              subprocess.run(["git", "push"])
           else:
               print("No changes detected.")
 
