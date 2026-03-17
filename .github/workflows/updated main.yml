@@ -1,4 +1,4 @@
-name: Gemini AI Auto Commit and Deploy
+name: OpenRouter Claude AI Auto Commit and Deploy
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 jobs:
   ai-commit-deploy:
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
 
@@ -15,216 +16,169 @@ jobs:
 
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Generate Storefront
+      - name: Install Python Dependencies
         run: |
-          python << 'EOF'
+          pip install requests
+
+      - name: Generate Storefront using Claude (OpenRouter)
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          python <<'EOF'
           import os
           import subprocess
+          import re
+          import requests
           from pathlib import Path
 
+          api_key = os.environ.get("OPENROUTER_API_KEY")
+
+          if not api_key:
+              print("Missing OPENROUTER_API_KEY")
+              exit(1)
+
+          # Product image folder
           image_dir = Path("assets/images/products")
           image_dir.mkdir(parents=True, exist_ok=True)
 
-          images = [f.name for f in image_dir.glob("*") if f.suffix.lower() in [".jpg",".jpeg",".png",".webp"]]
+          image_files = [
+              f.name for f in image_dir.glob("*")
+              if f.suffix.lower() in [".jpg",".jpeg",".png",".webp"]
+          ]
 
-          product_html = ""
+          products = []
 
-          for img in images:
+          for img in image_files:
               name = img.split(".")[0].replace("-", " ").title()
-              product_html += f"""
-              <div class="product-card bg-white rounded shadow p-4" data-name="{name}">
-                <img src="assets/images/products/{img}" class="w-full h-64 object-cover rounded">
-                <h3 class="mt-2 font-semibold">{name}</h3>
-                <p>$199</p>
-                <button onclick="addToCart('{name}',199,'assets/images/products/{img}')"
-                class="bg-black text-white px-4 py-2 mt-2 rounded">
-                Add to Bag
-                </button>
-              </div>
-              """
+              products.append({
+                  "name": name,
+                  "image": f"assets/images/products/{img}",
+                  "price": "$199"
+              })
 
-          html = f"""
+          product_text = "\n".join(
+              f"{p['name']} | {p['image']} | {p['price']}"
+              for p in products
+          )
+
+          if not product_text:
+              product_text = "No products available"
+
+          prompt = f"""
+          You are a senior frontend engineer building a modern 2026 ecommerce storefront.
+
+          Use TailwindCSS.
+
+          Products:
+          {product_text}
+
+          Generate responsive product cards.
+
+          Output format:
+
+          ---index.html---
           <!DOCTYPE html>
           <html>
           <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link href="assets/css/styles.css" rel="stylesheet">
           <script src="https://cdn.tailwindcss.com"></script>
-          <title>E-commerce platform</title>
           </head>
 
           <body class="bg-gray-100">
 
           <header class="bg-white shadow p-4 flex justify-between">
-          <h1 class="text-xl font-bold">E-commerce platform</h1>
-
-          <button onclick="toggleCart()" class="relative">
-          🛒
-          <span id="cartCount"
-          class="absolute -top-2 -right-2 bg-black text-white text-xs px-2 py-1 rounded-full">
-          0
-          </span>
-          </button>
-
+          <h1 class="text-2xl font-bold">AI Store</h1>
           </header>
 
           <main class="max-w-7xl mx-auto p-10">
 
-          <input id="searchInput"
-          placeholder="Search products"
-          class="border p-2 mb-6 w-full"
-          onkeyup="searchProducts()">
+          <div class="grid md:grid-cols-4 gap-8">
 
-          <div class="grid md:grid-cols-4 gap-6">
-
-          {product_html}
+          <!-- Product cards -->
 
           </div>
 
           </main>
 
-          <div id="cartDrawer"
-          class="fixed top-0 right-0 w-96 h-full bg-white shadow transform translate-x-full transition duration-300">
-
-          <div class="p-4 border-b flex justify-between">
-          <h2 class="font-semibold">Cart</h2>
-          <button onclick="toggleCart()">✕</button>
-          </div>
-
-          <div id="cartItems" class="p-4"></div>
-
-          <div class="p-4 border-t">
-          Total: $<span id="cartTotal">0</span>
-          </div>
-
-          </div>
-
-          <script>
-
-          var cart = JSON.parse(localStorage.getItem("cart") || "[]");
-
-          function saveCart(){{
-              localStorage.setItem("cart", JSON.stringify(cart));
-              updateCartUI();
-          }}
-
-          function addToCart(name,price,image){{
-
-              var item = cart.find(function(i){{return i.name===name}});
-
-              if(item) item.qty++;
-              else cart.push({{name:name,price:price,image:image,qty:1}});
-
-              saveCart();
-              toggleCart(true);
-          }}
-
-          function removeItem(name){{
-
-              cart = cart.filter(function(i){{return i.name!==name}});
-              saveCart();
-          }}
-
-          function changeQty(name,a){{
-
-              var item = cart.find(function(i){{return i.name===name}});
-
-              if(!item) return;
-
-              item.qty += a;
-
-              if(item.qty<=0) removeItem(name);
-              else saveCart();
-          }}
-
-          function updateCartUI(){{
-
-              var items=document.getElementById("cartItems");
-              var count=document.getElementById("cartCount");
-              var totalEl=document.getElementById("cartTotal");
-
-              if(!items) return;
-
-              items.innerHTML="";
-
-              var total=0;
-              var c=0;
-
-              cart.forEach(function(i){{
-
-                  total += i.price*i.qty;
-                  c += i.qty;
-
-                  items.innerHTML +=
-                  "<div class='flex gap-3 mb-4'>" +
-                  "<img src='"+i.image+"' class='w-14 h-14 object-cover'>" +
-                  "<div>" +
-                  "<h4>"+i.name+"</h4>" +
-                  "<p>$"+i.price+"</p>" +
-                  "<button onclick=\\"changeQty('"+i.name+"',-1)\\">-</button>" +
-                  "<span>"+i.qty+"</span>" +
-                  "<button onclick=\\"changeQty('"+i.name+"',1)\\">+</button>" +
-                  "<button onclick=\\"removeItem('"+i.name+"')\\" class='text-red-500 ml-2'>Remove</button>" +
-                  "</div>" +
-                  "</div>";
-
-              }});
-
-              count.innerText=c;
-              totalEl.innerText=total;
-
-          }}
-
-          function toggleCart(force){{
-
-              var d=document.getElementById("cartDrawer");
-
-              if(force) d.classList.remove("translate-x-full");
-              else d.classList.toggle("translate-x-full");
-
-          }}
-
-          function searchProducts(){{
-
-              var v=document.getElementById("searchInput").value.toLowerCase();
-
-              document.querySelectorAll(".product-card").forEach(function(c){{
-
-                  var name=c.dataset.name.toLowerCase();
-
-                  c.style.display = name.includes(v) ? "block" : "none";
-
-              }});
-          }}
-
-          updateCartUI();
-
-          </script>
-
           </body>
           </html>
           """
 
-          Path("index.html").write_text(html)
+          response = requests.post(
+              "https://openrouter.ai/api/v1/chat/completions",
+              headers={
+                  "Authorization": f"Bearer {api_key}",
+                  "Content-Type": "application/json",
+                  "HTTP-Referer": "https://github.com",
+                  "X-Title": "AI Storefront Generator"
+              },
+              json={
+                  "model": "anthropic/claude-sonnet-4.6",
+                  "messages": [
+                      {"role": "user", "content": prompt}
+                  ]
+              }
+          )
 
-          subprocess.run(["git","config","--global","user.name","ai-bot"])
+          data = response.json()
+
+          if "choices" not in data:
+              print("OpenRouter error:", data)
+              exit(1)
+
+          output = data["choices"][0]["message"]["content"]
+
+          matches = re.findall(
+              r"---(.*?)---\n(.*?)(?=(?:---|$))",
+              output,
+              re.DOTALL
+          )
+
+          if not matches:
+              Path("index.html").write_text(output, encoding="utf-8")
+          else:
+              for filename, content in matches:
+                  path = Path(filename.strip())
+                  path.parent.mkdir(parents=True, exist_ok=True)
+                  path.write_text(content.strip(), encoding="utf-8")
+
+          subprocess.run(["git","config","--global","user.name","openrouter-bot"])
           subprocess.run(["git","config","--global","user.email","bot@example.com"])
+
           subprocess.run(["git","add","."])
 
-          r = subprocess.run(["git","diff","--cached","--quiet"])
+          diff = subprocess.run(["git","diff","--cached","--quiet"])
 
-          if r.returncode != 0:
-              subprocess.run(["git","commit","-m","AI storefront update"])
+          if diff.returncode != 0:
+              subprocess.run(["git","commit","-m","AI generated storefront"])
               subprocess.run(["git","push"])
-
           EOF
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Tailwind
+        run: |
+          npm install -D tailwindcss @tailwindcss/cli
+
+      - name: Build Tailwind CSS
+        run: |
+          mkdir -p src
+          echo "@tailwind base;@tailwind components;@tailwind utilities;" > src/input.css
+          mkdir -p assets/css
+          npx tailwindcss -i ./src/input.css -o ./assets/css/styles.css --minify
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -232,7 +186,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
-
 
       - name: Deploy to S3
         run: |
