@@ -1,4 +1,4 @@
-name: OpenRouter Gemma AI Auto Commit and Deploy
+name: Gemini AI Auto Commit and Deploy
 
 on:
   push:
@@ -8,7 +8,6 @@ on:
 jobs:
   ai-commit-deploy:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
 
@@ -19,33 +18,26 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
-      - name: Install Python Dependencies
-        run: |
-          pip install requests
+      - name: Install Gemini SDK
+        run: pip install --upgrade google-genai
 
-      - name: Generate Storefront using OpenRouter (Gemma 3)
+      - name: Run Gemini AI to Generate Storefront
         env:
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          python <<'EOF'
+          python << 'EOF'
           import os
           import subprocess
           import re
-          import requests
           from pathlib import Path
+          from google import genai
 
-          api_key = os.environ.get("OPENROUTER_API_KEY")
-
-          if not api_key:
-              print("Missing OPENROUTER_API_KEY")
-              exit(1)
-
-          # Ensure product images directory exists
+          # Product image directory
           image_dir = Path("assets/images/products")
           image_dir.mkdir(parents=True, exist_ok=True)
 
@@ -55,8 +47,8 @@ jobs:
               if f.suffix.lower() in [".jpg",".jpeg",".png",".webp"]
           ]
 
+          # Convert images to product list
           products = []
-
           for img in image_files:
               name = img.split(".")[0].replace("-", " ").title()
               products.append({
@@ -74,16 +66,18 @@ jobs:
               product_text = "No products available"
 
           prompt = f"""
-          You are a senior frontend engineer building a modern 2026 ecommerce storefront.
+          ROLE
+          You are a senior frontend engineer building a modern 2026 e-commerce storefront.
 
+          DESIGN
           Use TailwindCSS.
 
-          Products:
+          PRODUCTS
           {product_text}
 
-          Generate responsive product cards.
+          Create responsive product cards using the images above.
 
-          Output format:
+          OUTPUT FORMAT
 
           ---index.html---
           <!DOCTYPE html>
@@ -98,14 +92,14 @@ jobs:
           <body class="bg-gray-100">
 
           <header class="bg-white shadow p-4 flex justify-between">
-          <h1 class="text-2xl font-bold">AI Store</h1>
+          <h1 class="text-2xl font-bold">E-commerce platform</h1>
           </header>
 
           <main class="max-w-7xl mx-auto p-10">
 
           <div class="grid md:grid-cols-4 gap-8">
 
-          <!-- Product cards will be generated here -->
+          <!-- AI should generate product cards here -->
 
           </div>
 
@@ -115,31 +109,18 @@ jobs:
           </html>
           """
 
-          response = requests.post(
-              "https://openrouter.ai/api/v1/chat/completions",
-              headers={
-                  "Authorization": f"Bearer {api_key}",
-                  "Content-Type": "application/json",
-                  "HTTP-Referer": "https://github.com",
-                  "X-Title": "AI Storefront Generator"
-              },
-              json={
-                  "model": "google/gemma-3-27b-it:free",
-                  "max_tokens": 700,
-                  "temperature": 0.7,
-                  "messages": [
-                      {"role": "user", "content": prompt}
-                  ]
-              }
+          client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+
+          response = client.models.generate_content(
+              model="gemini-3-flash-preview",
+              contents=prompt
           )
 
-          data = response.json()
+          output = response.text
 
-          if "choices" not in data:
-              print("OpenRouter error:", data)
-              exit(1)
-
-          output = data["choices"][0]["message"]["content"]
+          if not output:
+              print("Gemini returned empty response")
+              exit(0)
 
           matches = re.findall(
               r"---(.*?)---\n(.*?)(?=(?:---|$))",
@@ -147,35 +128,36 @@ jobs:
               re.DOTALL
           )
 
-          if not matches:
-              Path("index.html").write_text(output, encoding="utf-8")
-          else:
-              for filename, content in matches:
-                  path = Path(filename.strip())
-                  path.parent.mkdir(parents=True, exist_ok=True)
-                  path.write_text(content.strip(), encoding="utf-8")
+          for filename, content in matches:
+              path = Path(filename.strip())
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(content.strip(), encoding="utf-8")
 
-          subprocess.run(["git","config","--global","user.name","openrouter-bot"])
+          subprocess.run(["git","config","--global","user.name","gemini-bot"])
           subprocess.run(["git","config","--global","user.email","bot@example.com"])
-
           subprocess.run(["git","add","."])
 
-          diff = subprocess.run(["git","diff","--cached","--quiet"])
+          result = subprocess.run(["git","diff","--cached","--quiet"])
 
-          if diff.returncode != 0:
+          if result.returncode != 0:
               subprocess.run(["git","commit","-m","AI generated storefront"])
               subprocess.run(["git","push"])
+
           EOF
 
+
+      # Setup Node for Tailwind
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '20'
 
+      # Install Tailwind CLI
       - name: Install Tailwind
         run: |
           npm install -D tailwindcss @tailwindcss/cli
 
+      # Build Tailwind CSS
       - name: Build Tailwind CSS
         run: |
           mkdir -p src
@@ -183,6 +165,8 @@ jobs:
           mkdir -p assets/css
           npx tailwindcss -i ./src/input.css -o ./assets/css/styles.css --minify
 
+
+      # Configure AWS credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -190,6 +174,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
+
+      # Deploy to S3
       - name: Deploy to S3
         run: |
           aws s3 sync . s3://staticwebzsitegit \
