@@ -1,4 +1,4 @@
-name: OpenRouter Claude AI Auto Commit and Deploy
+name: OpenRouter Qwen AI Auto Commit and Deploy
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
         run: |
           pip install requests
 
-      - name: Generate Storefront using Claude (OpenRouter)
+      - name: Generate Storefront using OpenRouter (Qwen)
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
@@ -45,7 +45,6 @@ jobs:
               print("Missing OPENROUTER_API_KEY")
               exit(1)
 
-          # Product image folder
           image_dir = Path("assets/images/products")
           image_dir.mkdir(parents=True, exist_ok=True)
 
@@ -123,7 +122,9 @@ jobs:
                   "X-Title": "AI Storefront Generator"
               },
               json={
-                  "model": "anthropic/claude-sonnet-4.6",
+                  "model": "qwen/qwen-2.5-7b-instruct:free",
+                  "max_tokens": 800,
+                  "temperature": 0.7,
                   "messages": [
                       {"role": "user", "content": prompt}
                   ]
