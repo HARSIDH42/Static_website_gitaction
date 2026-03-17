@@ -13,24 +13,20 @@ jobs:
 
     steps:
 
-      # Checkout repository
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Python setup
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # Install Gemini SDK
       - name: Install Gemini SDK
         run: pip install --upgrade google-genai
 
-      # Run Gemini to generate UI
-      - name: Run Gemini AI to Update Website UI
+      - name: Run Gemini AI to Generate Storefront
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
@@ -41,28 +37,45 @@ jobs:
           from pathlib import Path
           from google import genai
 
+          # Product image directory
           image_dir = Path("assets/images/products")
           image_dir.mkdir(parents=True, exist_ok=True)
 
+          # Detect images
           image_files = [
               f.name for f in image_dir.glob("*")
               if f.suffix.lower() in [".jpg",".jpeg",".png",".webp"]
           ]
 
-          image_list_text = "\n".join(image_files) if image_files else "No images available."
+          # Convert images to product list
+          products = []
+          for img in image_files:
+              name = img.split(".")[0].replace("-", " ").title()
+              products.append({
+                  "name": name,
+                  "image": f"assets/images/products/{img}",
+                  "price": "$199"
+              })
+
+          product_text = "\n".join(
+              f"{p['name']} | {p['image']} | {p['price']}"
+              for p in products
+          )
+
+          if not product_text:
+              product_text = "No products available"
 
           prompt = f"""
           ROLE
-          You are a senior frontend engineer building a premium 2026 modern e-commerce storefront.
+          You are a senior frontend engineer building a modern 2026 e-commerce storefront.
 
-          DESIGN SYSTEM
-          Use TailwindCSS utility classes.
+          DESIGN
+          Use TailwindCSS.
 
-          BRAND NAME
-          E-commerce platform
+          PRODUCTS
+          {product_text}
 
-          Available images:
-          {image_list_text}
+          Create responsive product cards using the images above.
 
           OUTPUT FORMAT
 
@@ -73,9 +86,25 @@ jobs:
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <link href="assets/css/styles.css" rel="stylesheet">
+          <script src="https://cdn.tailwindcss.com"></script>
           </head>
-          <body>
-          Premium Tailwind UI
+
+          <body class="bg-gray-100">
+
+          <header class="bg-white shadow p-4 flex justify-between">
+          <h1 class="text-2xl font-bold">E-commerce platform</h1>
+          </header>
+
+          <main class="max-w-7xl mx-auto p-10">
+
+          <div class="grid md:grid-cols-4 gap-8">
+
+          <!-- AI should generate product cards here -->
+
+          </div>
+
+          </main>
+
           </body>
           </html>
           """
@@ -88,6 +117,10 @@ jobs:
           )
 
           output = response.text
+
+          if not output:
+              print("Gemini returned empty response")
+              exit(0)
 
           matches = re.findall(
               r"---(.*?)---\n(.*?)(?=(?:---|$))",
@@ -107,14 +140,13 @@ jobs:
           result = subprocess.run(["git","diff","--cached","--quiet"])
 
           if result.returncode != 0:
-              subprocess.run(["git","commit","-m","Gemini AI upgraded UI"])
+              subprocess.run(["git","commit","-m","AI generated storefront"])
               subprocess.run(["git","push"])
-          else:
-              print("No changes detected")
+
           EOF
 
 
-      # Node setup for Tailwind
+      # Setup Node for Tailwind
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -142,7 +174,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
-      # Deploy static site to S3
+
+      # Deploy to S3
       - name: Deploy to S3
         run: |
           aws s3 sync . s3://staticwebzsitegit \
