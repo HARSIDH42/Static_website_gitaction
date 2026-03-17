@@ -17,6 +17,9 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      # ------------------------
+      # Python Setup
+      # ------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -25,6 +28,9 @@ jobs:
       - name: Install Gemini SDK
         run: pip install --upgrade google-genai
 
+      # ------------------------
+      # Run Gemini to generate UI
+      # ------------------------
       - name: Run Gemini AI to Update Website UI
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -36,7 +42,6 @@ jobs:
           from pathlib import Path
           from google import genai
 
-          # Detect images
           image_dir = Path("assets/images/products")
           image_dir.mkdir(parents=True, exist_ok=True)
 
@@ -54,45 +59,20 @@ jobs:
           BRAND NAME
           E-commerce platform
 
+          DESIGN SYSTEM
+          Use TailwindCSS utility classes for styling.
+
           IMPORTANT RULES
-          - Replace every instance of "page" with "E-commerce platform"
-          - All navigation must reflect the new brand name
           - Use only images from assets/images/products/
           - Available images:
           {image_list_text}
-          - Image paths MUST be relative
-          - Do NOT invent filenames
-          - If image not available, show elegant placeholder
 
-          FUNCTIONALITY
-          - Add to Bag (localStorage)
-          - Live cart counter
-          - Animated cart drawer (slide from right)
-          - Quantity increment & removal
-          - Live search filtering
-          - No page reload
-          - Vanilla JavaScript only
-          - All JS inside <script>
-
-          DESIGN REQUIREMENTS (2026 Modern UI)
-          - Large hero section with full-width banner
-          - Glassmorphism sticky header (blur + transparency)
-          - Responsive CSS grid layout
-          - Product cards with hover elevation & smooth transitions
-          - Subtle shadow depth
-          - Modern typography (clean sans-serif system font stack)
-          - Professional spacing & layout rhythm
-          - Smooth button hover animations
-          - Soft fade/slide animations
-          - Elegant neutral color palette
-          - Premium minimalist design (Apple/Zara style)
-
-          OUTPUT FORMAT STRICTLY
+          OUTPUT FORMAT
 
           ---index.html---
           <!DOCTYPE html>
           <html>
-          ...full working premium 2026 UI document...
+          ...Tailwind based UI...
           </html>
           """
 
@@ -105,19 +85,11 @@ jobs:
 
           output = response.text
 
-          if not output:
-              print("Gemini returned empty response.")
-              exit(0)
-
           matches = re.findall(
               r"---(.*?)---\n(.*?)(?=(?:---|$))",
               output,
               re.DOTALL
           )
-
-          if not matches:
-              print("No properly formatted files returned.")
-              exit(0)
 
           for filename, content in matches:
               path = Path(filename.strip())
@@ -131,13 +103,33 @@ jobs:
           result = subprocess.run(["git", "diff", "--cached", "--quiet"])
 
           if result.returncode != 0:
-              subprocess.run(["git", "commit", "-m", "Gemini AI upgraded to 2026 premium UI"])
+              subprocess.run(["git", "commit", "-m", "Gemini AI upgraded UI"])
               subprocess.run(["git", "push"])
-          else:
-              print("No changes detected.")
-
           EOF
 
+      # ------------------------
+      # Tailwind Setup
+      # ------------------------
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Tailwind
+        run: |
+          npm init -y
+          npm install -D tailwindcss
+          npx tailwindcss init
+
+      - name: Build Tailwind CSS
+        run: |
+          mkdir -p src
+          echo "@tailwind base;@tailwind components;@tailwind utilities;" > src/input.css
+          npx tailwindcss -i ./src/input.css -o ./assets/css/styles.css --minify
+
+      # ------------------------
+      # AWS Deployment
+      # ------------------------
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
