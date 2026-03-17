@@ -67,48 +67,92 @@ jobs:
 
           prompt = f"""
           ROLE
-          You are a senior frontend engineer building a modern 2026 e-commerce storefront.
-
-          DESIGN
-          Use TailwindCSS.
-
+          You are a world-class senior frontend engineer and UI designer building a cutting-edge 2026 e-commerce storefront. You write clean, semantic, production-ready HTML/CSS/JS in a single file.
+          
+          TECH STACK
+          - TailwindCSS (via CDN, already in <head>)
+          - Vanilla JavaScript (no frameworks, no imports)
+          - Google Fonts (import inside <style> tag)
+          - CSS custom properties for theming
+          
+          AESTHETIC DIRECTION
+          Dark luxury editorial aesthetic. Think high-fashion meets tech:
+          - Background: near-black (#0a0a0f) with subtle grain texture via CSS
+          - Accent: electric indigo (#6366f1) and rose gold (#f4a261)
+          - Typography: "Playfair Display" for headings, "DM Sans" for body (import from Google Fonts)
+          - Cards: glass-morphism effect (backdrop-filter blur, semi-transparent borders)
+          - Hover states: smooth scale + glow shadow transitions
+          - Micro-animations: staggered fade-in on page load using Intersection Observer
+          
           PRODUCTS
           {product_text}
-
-          Create responsive product cards using the images above.
-
-          OUTPUT FORMAT
-
+          
+          JAVASCRIPT FEATURES TO IMPLEMENT
+          1. **Search bar** — live filters product cards by name as user types (no page reload)
+          2. **Sort dropdown** — sort cards by Name A-Z, Name Z-A, Price Low-High, Price High-Low
+          3. **Add to Cart** — each card has an "Add to Cart" button; clicking it:
+             - Adds item to a cart array stored in memory
+             - Animates the cart icon counter badge (bounce effect)
+             - Shows a brief toast notification ("Added to cart!")
+          4. **Cart sidebar** — clicking the cart icon in the header slides in a sidebar panel showing:
+             - List of added items with name and price
+             - Total price
+             - "Clear Cart" button
+             - Closes on clicking outside or pressing Escape
+          5. **Quantity counter** — inside the cart sidebar, each item has +/- buttons to adjust quantity
+          6. **Product modal** — clicking a product image opens a centered modal overlay with:
+             - Larger image view
+             - Product name and price
+             - "Add to Cart" button
+             - Closes on backdrop click or Escape key
+          7. **Empty state** — if search returns no results, show a styled "No products found" message
+          
+          UI COMPONENTS TO INCLUDE
+          - Sticky header with logo, search bar, and cart icon with item count badge
+          - Hero banner section: full-width gradient banner with tagline text and a CTA button
+          - Product grid: responsive (1 col mobile → 2 col tablet → 4 col desktop)
+          - Each product card must contain:
+            * Product image (object-cover, rounded corners)
+            * Product name (bold, truncated if long)
+            * Price in accent color
+            * Star rating display (static, 4–5 stars using Unicode ★)
+            * "Add to Cart" button with hover effect
+          - Footer: minimal dark footer with copyright
+          
+          OUTPUT FORMAT RULES
+          - Output ONLY the file block below — no explanation, no markdown prose outside the block
+          - All CSS goes inside a <style> tag in <head>
+          - All JS goes inside a <script> tag at end of <body>
+          - Do NOT use ES modules or import statements
+          - Do NOT use external JS CDNs other than Tailwind
+          - Image paths must stay exactly as provided — do not modify them
+          
           ---index.html---
           <!DOCTYPE html>
-          <html>
+          <html lang="en">
           <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link href="assets/css/styles.css" rel="stylesheet">
-          <script src="https://cdn.tailwindcss.com"></script>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Store</title>
+            <link href="assets/css/styles.css" rel="stylesheet">
+            <script src="https://cdn.tailwindcss.com"></script>
+            <style>
+              /* Google Fonts, CSS variables, grain texture, glass-morphism, animations — all here */
+            </style>
           </head>
-
-          <body class="bg-gray-100">
-
-          <header class="bg-white shadow p-4 flex justify-between">
-          <h1 class="text-2xl font-bold">E-commerce platform</h1>
-          </header>
-
-          <main class="max-w-7xl mx-auto p-10">
-
-          <div class="grid md:grid-cols-4 gap-8">
-
-          <!-- AI should generate product cards here -->
-
-          </div>
-
-          </main>
-
+          <body>
+            <!-- Sticky Header with search + cart icon -->
+            <!-- Hero Banner -->
+            <!-- Product Grid (AI generates cards here) -->
+            <!-- Cart Sidebar -->
+            <!-- Product Modal -->
+            <!-- Toast notification -->
+            <script>
+              // All JS: search, sort, cart logic, modal, sidebar, toast
+            </script>
           </body>
           </html>
           """
-
           client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
           response = client.models.generate_content(
