@@ -1,4 +1,4 @@
-name: OpenRouter Qwen AI Auto Commit and Deploy
+name: OpenRouter Gemma AI Auto Commit and Deploy
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
         run: |
           pip install requests
 
-      - name: Generate Storefront using OpenRouter (Qwen)
+      - name: Generate Storefront using OpenRouter (Gemma 3)
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
@@ -45,9 +45,11 @@ jobs:
               print("Missing OPENROUTER_API_KEY")
               exit(1)
 
+          # Ensure product images directory exists
           image_dir = Path("assets/images/products")
           image_dir.mkdir(parents=True, exist_ok=True)
 
+          # Detect images
           image_files = [
               f.name for f in image_dir.glob("*")
               if f.suffix.lower() in [".jpg",".jpeg",".png",".webp"]
@@ -103,7 +105,7 @@ jobs:
 
           <div class="grid md:grid-cols-4 gap-8">
 
-          <!-- Product cards -->
+          <!-- Product cards will be generated here -->
 
           </div>
 
@@ -122,8 +124,8 @@ jobs:
                   "X-Title": "AI Storefront Generator"
               },
               json={
-                  "model": "qwen/qwen-2.5-7b-instruct:free",
-                  "max_tokens": 800,
+                  "model": "google/gemma-3-27b-it:free",
+                  "max_tokens": 700,
                   "temperature": 0.7,
                   "messages": [
                       {"role": "user", "content": prompt}
