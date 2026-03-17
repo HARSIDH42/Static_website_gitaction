@@ -3,290 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce platform | Premium Storefront 2026</title>
+    <title>E-commerce platform | Future of Retail</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Outfit', sans-serif; background-color: #fafafa; }
-        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        body { font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
         .product-card:hover .product-image { transform: scale(1.05); }
-        .hero-gradient { background: radial-gradient(circle at top right, #f8fafc 0%, #f1f5f9 100%); }
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        .reveal { transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     </style>
 </head>
-<body class="text-slate-900 overflow-x-hidden">
+<body class="bg-white text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass px-6 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-12">
-            <a href="#" class="text-2xl font-bold tracking-tighter uppercase">Platform<span class="text-indigo-600">.</span></a>
-            <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
-                <a href="#new" class="hover:text-indigo-600 transition-colors">New Arrivals</a>
-                <a href="#men" class="hover:text-indigo-600 transition-colors">Collections</a>
-                <a href="#accessories" class="hover:text-indigo-600 transition-colors">Accessories</a>
-                <a href="#" class="hover:text-indigo-600 transition-colors">Editorial</a>
+    <nav class="fixed top-0 w-full z-50 glass">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-12">
+                <a href="#" class="text-xl font-bold tracking-tighter uppercase">E-commerce platform</a>
+                <div class="hidden md:flex gap-8 text-sm font-medium text-slate-500">
+                    <a href="#" class="hover:text-black transition-colors">New Arrivals</a>
+                    <a href="#" class="hover:text-black transition-colors">Collections</a>
+                    <a href="#" class="hover:text-black transition-colors">Men</a>
+                    <a href="#" class="hover:text-black transition-colors">Women</a>
+                </div>
             </div>
-        </div>
-        <div class="flex items-center gap-6">
-            <button class="p-2 hover:bg-white rounded-full transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            </button>
-            <button class="relative p-2 hover:bg-white rounded-full transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                <span class="absolute top-0 right-0 bg-indigo-600 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">3</span>
-            </button>
-            <button class="md:hidden p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-            </button>
+            <div class="flex items-center gap-6">
+                <button class="p-2 hover:bg-slate-100 rounded-full transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </button>
+                <div class="relative group cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    <span class="absolute -top-2 -right-2 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+                </div>
+                <button class="md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                </button>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center pt-20 overflow-hidden hero-gradient">
-        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="z-10">
-                <span class="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-[0.2em] uppercase bg-white border border-slate-200 rounded-full text-indigo-600">Summer Drop 2026</span>
-                <h1 class="text-7xl md:text-8xl font-bold leading-[0.9] tracking-tighter mb-8">ELEVATE <br><span class="text-slate-400 italic font-light">YOUR</span> ESSENCE</h1>
-                <p class="text-lg text-slate-500 max-w-md mb-10 leading-relaxed">Redefining the digital shopping experience through precision-crafted aesthetics and timeless luxury curation.</p>
+    <section class="relative h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="jacket-1.jpg" alt="Hero" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/20"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+            <div class="max-w-2xl text-white">
+                <span class="inline-block px-4 py-1.5 rounded-full border border-white/30 backdrop-blur-md text-xs font-semibold tracking-widest uppercase mb-6">Winter 2026 Collection</span>
+                <h1 class="text-6xl md:text-8xl font-bold tracking-tight mb-8">Elegance in <br>Every Detail.</h1>
+                <p class="text-lg text-slate-100 mb-10 max-w-md leading-relaxed">Redefining modern silhouettes with sustainable materials and timeless design philosophy.</p>
                 <div class="flex gap-4">
-                    <a href="#shop" class="px-8 py-4 bg-slate-900 text-white font-medium rounded-full hover:bg-indigo-600 transition-all duration-300">Shop Collection</a>
-                    <a href="#" class="px-8 py-4 border border-slate-200 font-medium rounded-full hover:bg-white transition-all duration-300">View Lookbook</a>
-                </div>
-            </div>
-            <div class="relative flex justify-center lg:justify-end">
-                <div class="relative w-full max-w-lg aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl">
-                    <img src="assets/images/products/watch-1.jpg" alt="Featured Product" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                    <div class="absolute bottom-10 left-10 text-white">
-                        <p class="text-sm font-light opacity-80 uppercase tracking-widest">The Chrono Series</p>
-                        <h3 class="text-2xl font-bold">Midnight Edition</h3>
-                    </div>
-                </div>
-                <!-- Abstract Deco -->
-                <div class="absolute -z-10 -top-20 -right-20 w-80 h-80 bg-indigo-100 rounded-full blur-3xl opacity-60"></div>
-                <div class="absolute -z-10 -bottom-20 -left-20 w-64 h-64 bg-slate-200 rounded-full blur-3xl opacity-60"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Categories Grid -->
-    <section class="py-24 bg-white" id="men">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group relative h-[600px] overflow-hidden rounded-[2.5rem] bg-slate-100">
-                    <img src="assets/images/products/jacket-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Outerwear">
-                    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all"></div>
-                    <div class="absolute bottom-12 left-12">
-                        <h2 class="text-3xl font-bold text-white mb-4">Outerwear</h2>
-                        <a href="#" class="inline-flex items-center gap-2 text-white font-medium group-hover:gap-4 transition-all">Explore <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-                    </div>
-                </div>
-                <div class="flex flex-col gap-8">
-                    <div class="group relative h-[284px] overflow-hidden rounded-[2.5rem] bg-slate-100">
-                        <img src="assets/images/products/shoe-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Footwear">
-                        <div class="absolute bottom-10 left-10">
-                            <h2 class="text-2xl font-bold text-white">Footwear</h2>
-                        </div>
-                    </div>
-                    <div class="group relative h-[284px] overflow-hidden rounded-[2.5rem] bg-slate-100">
-                        <img src="assets/images/products/perfume.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Fragrance">
-                        <div class="absolute bottom-10 left-10">
-                            <h2 class="text-2xl font-bold text-white">Fragrance</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="group relative h-[600px] overflow-hidden rounded-[2.5rem] bg-slate-100">
-                    <img src="assets/images/products/jewellery-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Jewellery">
-                    <div class="absolute bottom-12 left-12">
-                        <h2 class="text-3xl font-bold text-white mb-4">Jewellery</h2>
-                        <a href="#" class="inline-flex items-center gap-2 text-white font-medium group-hover:gap-4 transition-all">Explore <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-                    </div>
+                    <a href="#shop" class="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-slate-100 transition-all transform hover:scale-105">Shop the Collection</a>
+                    <a href="#" class="px-8 py-4 rounded-full font-semibold border border-white/50 backdrop-blur-sm text-white hover:bg-white/10 transition-all">Watch Film</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trending Products -->
-    <section class="py-24" id="shop">
-        <div class="container mx-auto px-6">
-            <div class="flex justify-between items-end mb-16">
+    <!-- Category Bento Grid -->
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-[800px] md:h-[600px]">
+            <div class="md:col-span-8 group relative overflow-hidden rounded-3xl bg-slate-100">
+                <img src="watch-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Watches">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8 text-white">
+                    <h3 class="text-2xl font-bold">Chronicles of Time</h3>
+                    <p class="text-sm opacity-80 mb-4">Explore our luxury timepiece collection</p>
+                    <a href="#" class="w-fit text-sm font-semibold border-b border-white pb-1">Shop Collection</a>
+                </div>
+            </div>
+            <div class="md:col-span-4 group relative overflow-hidden rounded-3xl bg-slate-100">
+                <img src="shoe-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Shoes">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8 text-white">
+                    <h3 class="text-2xl font-bold">Performance</h3>
+                    <a href="#" class="w-fit text-sm font-semibold border-b border-white pb-1">Shop Footwear</a>
+                </div>
+            </div>
+            <div class="md:col-span-4 group relative overflow-hidden rounded-3xl bg-slate-100">
+                <img src="jewellery-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Jewellery">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8 text-white">
+                    <h3 class="text-2xl font-bold">Essence</h3>
+                    <a href="#" class="w-fit text-sm font-semibold border-b border-white pb-1">Shop Jewelry</a>
+                </div>
+            </div>
+            <div class="md:col-span-8 group relative overflow-hidden rounded-3xl bg-slate-100">
+                <img src="sports-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sports">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8 text-white">
+                    <h3 class="text-2xl font-bold">Active Living</h3>
+                    <p class="text-sm opacity-80 mb-4">Engineered for the modern athlete</p>
+                    <a href="#" class="w-fit text-sm font-semibold border-b border-white pb-1">Shop Sportswear</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="shop" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-end justify-between mb-12">
                 <div>
-                    <span class="text-indigo-600 font-bold tracking-[0.3em] uppercase text-xs mb-2 block">Curated Selection</span>
-                    <h2 class="text-4xl font-bold">Trending Now</h2>
+                    <h2 class="text-4xl font-bold tracking-tight mb-4">Curated Essentials</h2>
+                    <p class="text-slate-500">Our monthly pick of high-crafted goods.</p>
                 </div>
-                <div class="hidden md:flex gap-4">
-                    <button class="p-3 border border-slate-200 rounded-full hover:bg-slate-900 hover:text-white transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                    </button>
-                    <button class="p-3 border border-slate-200 rounded-full hover:bg-slate-900 hover:text-white transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                    </button>
-                </div>
+                <a href="#" class="text-sm font-bold uppercase tracking-widest border-b-2 border-black pb-1 hover:text-slate-500 hover:border-slate-500 transition-colors">View All</a>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-                
                 <!-- Product 1 -->
                 <div class="product-card group cursor-pointer">
-                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden bg-slate-100 mb-6">
-                        <img src="assets/images/products/shoe-2.jpg" alt="Product" class="product-image w-full h-full object-cover transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">New Arrival</div>
-                        <button class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 bg-white py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 hover:bg-slate-900 hover:text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Quick Add
-                        </button>
+                    <div class="relative aspect-[3/4] overflow-hidden rounded-2xl mb-6 bg-white">
+                        <img src="jacket-5.jpg" class="product-image w-full h-full object-cover transition-transform duration-500" alt="Jacket">
+                        <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">Quick Add</button>
                     </div>
-                    <div class="space-y-1">
-                        <div class="flex justify-between items-start">
-                            <h3 class="font-medium text-lg">Urban Runner Elite</h3>
-                            <span class="font-bold text-slate-400">$210.00</span>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-sm font-medium text-slate-900">Technical Shell Parka</h3>
+                            <p class="text-sm text-slate-500">Outerwear</p>
                         </div>
-                        <p class="text-sm text-slate-400">Footwear • 2 Colors</p>
+                        <p class="text-sm font-bold">$295.00</p>
                     </div>
                 </div>
 
                 <!-- Product 2 -->
                 <div class="product-card group cursor-pointer">
-                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden bg-slate-100 mb-6">
-                        <img src="assets/images/products/watch-3.jpg" alt="Product" class="product-image w-full h-full object-cover transition-transform duration-500">
-                        <button class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 bg-white py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 hover:bg-slate-900 hover:text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Quick Add
-                        </button>
+                    <div class="relative aspect-[3/4] overflow-hidden rounded-2xl mb-6 bg-white">
+                        <img src="watch-2.jpg" class="product-image w-full h-full object-cover transition-transform duration-500" alt="Watch">
+                        <span class="absolute top-4 left-4 bg-black text-white text-[10px] px-2 py-1 rounded-full uppercase tracking-widest font-bold">Sold Out</span>
+                        <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">Notify Me</button>
                     </div>
-                    <div class="space-y-1">
-                        <div class="flex justify-between items-start">
-                            <h3 class="font-medium text-lg">Steel Master Chrono</h3>
-                            <span class="font-bold text-slate-400">$450.00</span>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-sm font-medium text-slate-900">Lunar Horizon Chrono</h3>
+                            <p class="text-sm text-slate-500">Accessories</p>
                         </div>
-                        <p class="text-sm text-slate-400">Accessories • Silver</p>
+                        <p class="text-sm font-bold text-slate-400">$450.00</p>
                     </div>
                 </div>
 
                 <!-- Product 3 -->
                 <div class="product-card group cursor-pointer">
-                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden bg-slate-100 mb-6">
-                        <img src="assets/images/products/jacket-4.jpg" alt="Product" class="product-image w-full h-full object-cover transition-transform duration-500">
-                        <button class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 bg-white py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 hover:bg-slate-900 hover:text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Quick Add
-                        </button>
+                    <div class="relative aspect-[3/4] overflow-hidden rounded-2xl mb-6 bg-white">
+                        <img src="perfume.jpg" class="product-image w-full h-full object-cover transition-transform duration-500" alt="Perfume">
+                        <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">Quick Add</button>
                     </div>
-                    <div class="space-y-1">
-                        <div class="flex justify-between items-start">
-                            <h3 class="font-medium text-lg">Alpine Windbreaker</h3>
-                            <span class="font-bold text-slate-400">$185.00</span>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-sm font-medium text-slate-900">Nuit Absolue Parfum</h3>
+                            <p class="text-sm text-slate-500">Beauty</p>
                         </div>
-                        <p class="text-sm text-slate-400">Outerwear • Olive</p>
+                        <p class="text-sm font-bold">$120.00</p>
                     </div>
                 </div>
 
                 <!-- Product 4 -->
                 <div class="product-card group cursor-pointer">
-                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden bg-slate-100 mb-6">
-                        <img src="assets/images/products/shoe-3.jpg" alt="Product" class="product-image w-full h-full object-cover transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Sale -20%</div>
-                        <button class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 bg-white py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 hover:bg-slate-900 hover:text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Quick Add
-                        </button>
+                    <div class="relative aspect-[3/4] overflow-hidden rounded-2xl mb-6 bg-white">
+                        <img src="shoe-4.jpg" class="product-image w-full h-full object-cover transition-transform duration-500" alt="Shoes">
+                        <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">Quick Add</button>
                     </div>
-                    <div class="space-y-1">
-                        <div class="flex justify-between items-start">
-                            <h3 class="font-medium text-lg">Velocity Knit</h3>
-                            <span class="font-bold text-slate-400">$128.00</span>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-sm font-medium text-slate-900">Velocity Knit Runner</h3>
+                            <p class="text-sm text-slate-500">Footwear</p>
                         </div>
-                        <p class="text-sm text-slate-400">Footwear • Grey Mesh</p>
+                        <p class="text-sm font-bold">$185.00</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Promotional Section -->
-    <section class="py-24 bg-slate-900 text-white overflow-hidden relative">
-        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="order-2 lg:order-1">
-                <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-8">Crafting the Future of <span class="text-indigo-400">Wearable Art.</span></h2>
-                <p class="text-slate-400 text-lg mb-12 max-w-lg">Every piece in our 2026 collection is engineered for the modern nomad. Combining high-tech performance fabrics with avant-garde aesthetics.</p>
-                <div class="grid grid-cols-2 gap-8 mb-12">
-                    <div>
-                        <div class="text-3xl font-bold mb-2">Sustainable</div>
-                        <p class="text-sm text-slate-500">100% Recycled materials in all our packaging.</p>
+    <!-- Promotion Section -->
+    <section class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="relative h-[500px] rounded-[40px] overflow-hidden">
+                <img src="clothes-3.jpg" class="w-full h-full object-cover" alt="Newsletter">
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center text-center p-6">
+                    <div class="max-w-xl text-white">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6">Join the Circle.</h2>
+                        <p class="text-lg opacity-90 mb-8">Sign up for early access to limited drops and exclusive editorial content from our designers.</p>
+                        <form class="flex flex-col sm:flex-row gap-4">
+                            <input type="email" placeholder="Your email address" class="flex-1 px-6 py-4 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white">
+                            <button class="bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-slate-100 transition-colors">Subscribe</button>
+                        </form>
                     </div>
-                    <div>
-                        <div class="text-3xl font-bold mb-2">Modular</div>
-                        <p class="text-sm text-slate-500">Interchangeable elements for versatile styling.</p>
-                    </div>
-                </div>
-                <button class="bg-white text-slate-900 px-10 py-4 rounded-full font-bold hover:bg-indigo-400 transition-all">Read Our Story</button>
-            </div>
-            <div class="order-1 lg:order-2 relative h-[500px]">
-                <img src="assets/images/products/jacket-6.jpg" class="w-full h-full object-cover rounded-[3rem] shadow-2xl" alt="Innovation">
-                <div class="absolute -bottom-6 -left-6 bg-indigo-600 p-8 rounded-[2rem] hidden md:block">
-                    <p class="text-4xl font-black">2026</p>
-                    <p class="text-xs uppercase tracking-[0.3em] font-bold">Innovation Lab</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white pt-24 pb-12">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
-                <div class="space-y-6">
-                    <a href="#" class="text-3xl font-bold tracking-tighter uppercase">Platform<span class="text-indigo-600">.</span></a>
-                    <p class="text-slate-500 leading-relaxed">The pinnacle of digital retail. Exclusive drops, limited editions, and curated premium styles for the global citizen.</p>
-                    <div class="flex gap-4">
-                        <div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                        </div>
-                        <div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                        </div>
-                        <div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
-                        </div>
-                    </div>
+    <footer class="bg-white border-t border-slate-100 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 mb-20">
+                <div class="col-span-2">
+                    <h2 class="text-xl font-bold tracking-tighter uppercase mb-6">E-commerce platform</h2>
+                    <p class="text-slate-500 text-sm leading-relaxed max-w-xs">Crafting the future of retail through sustainable practices and uncompromising quality since 2024.</p>
                 </div>
                 <div>
-                    <h4 class="font-bold uppercase tracking-widest text-sm mb-8">Shop</h4>
-                    <ul class="space-y-4 text-slate-500">
-                        <li><a href="#" class="hover:text-indigo-600 transition-colors">New Arrivals</a></li>
-                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Men's Collection</a></li>
-                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Women's Collection</a></li>
-                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Accessories</a></li>
+                    <h4 class="text-xs font-bold uppercase tracking-widest mb-6">Shop</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-black transition-colors">All Products</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">New Arrivals</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">Archive</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold uppercase tracking-widest text-sm mb-8">Support</h4>
-                    <ul class="space-y-4 text-slate-500">
-                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Track Order</a></li>
-                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Sustainability</a></li>
-                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Shipping & Returns</a></li>
-                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Privacy Policy</a></li>
+                    <h4 class="text-xs font-bold uppercase tracking-widest mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-black transition-colors">Sustainability</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">Careers</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold uppercase tracking-widest text-sm mb-8">Newsletter</h4>
-                    <p class="text-slate-500 text-sm mb-6">Join our elite list for early access to drops.</p>
-                    <div class="relative">
-                        <input type="email" placeholder="Your Email" class="w-full bg-slate-100 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-indigo-600 transition-all outline-none">
-                        <button class="absolute right-2 top-2 bottom-2 bg-slate-900 text-white px-4 rounded-xl hover:bg-indigo-600 transition-all">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                        </button>
-                    </div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest mb-6">Support</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-black transition-colors">Shipping</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">Returns</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest mb-6">Follow</h4>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-black transition-colors">Instagram</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">Pinterest</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors">Twitter</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="border-t border-slate-100 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-slate-400 text-sm">© 2026 E-commerce platform. All rights reserved.</p>
-                <div class="flex gap-8">
-                    <img src="https://img.icons8.com/color/48/000000/visa.png" class="h-6 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer" alt="Visa">
-                    <img src="https://img.icons8.com/color/48/000000/mastercard.png" class="h-6 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer" alt="Mastercard">
-                    <img src="https://img.icons8.com/color/48/000000/apple-pay.png" class="h-6 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer" alt="Apple Pay">
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-slate-100 gap-6">
+                <p class="text-xs text-slate-400">© 2026 E-commerce platform. All rights reserved.</p>
+                <div class="flex gap-8 text-xs text-slate-400">
+                    <a href="#" class="hover:text-black">Privacy Policy</a>
+                    <a href="#" class="hover:text-black">Terms of Service</a>
+                    <a href="#" class="hover:text-black">Accessibility</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <script>
+        // Simple scroll animation reveal
+        window.addEventListener('scroll', () => {
+            const reveals = document.querySelectorAll('.product-card, .grid > div');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const revealTop = el.getBoundingClientRect().top;
+                const revealPoint = 150;
+                if (revealTop < windowHeight - revealPoint) {
+                    el.classList.add('opacity-100');
+                    el.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
