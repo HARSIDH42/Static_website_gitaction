@@ -12,7 +12,6 @@ jobs:
       contents: write
 
     steps:
-
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
@@ -26,7 +25,7 @@ jobs:
       - name: Install Gemini SDK
         run: pip install --upgrade google-genai
 
-      - name: Run Gemini AI to Generate Storefront
+      - name: Run Gemini AI to Update Website UI
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
@@ -37,133 +36,77 @@ jobs:
           from pathlib import Path
           from google import genai
 
-          # Product image directory
+          # Detect images
           image_dir = Path("assets/images/products")
           image_dir.mkdir(parents=True, exist_ok=True)
 
-          # Detect images
           image_files = [
               f.name for f in image_dir.glob("*")
-              if f.suffix.lower() in [".jpg",".jpeg",".png",".webp"]
+              if f.suffix.lower() in [".jpg", ".jpeg", ".png", ".webp"]
           ]
 
-          # Convert images to product list
-          products = []
-          for img in image_files:
-              name = img.split(".")[0].replace("-", " ").title()
-              products.append({
-                  "name": name,
-                  "image": f"assets/images/products/{img}",
-                  "price": "$199"
-              })
-
-          product_text = "\n".join(
-              f"{p['name']} | {p['image']} | {p['price']}"
-              for p in products
-          )
-
-          if not product_text:
-              product_text = "No products available"
+          image_list_text = "\n".join(image_files) if image_files else "No images available."
 
           prompt = f"""
           ROLE
-          You are a world-class senior frontend engineer and UI designer building a cutting-edge 2026 e-commerce storefront. You write clean, semantic, production-ready HTML/CSS/JS in a single file.
-          
-          TECH STACK
-          - TailwindCSS (via CDN, already in <head>)
-          - Vanilla JavaScript (no frameworks, no imports)
-          - Google Fonts (import inside <style> tag)
-          - CSS custom properties for theming
-          
-          AESTHETIC DIRECTION
-          Dark luxury editorial aesthetic. Think high-fashion meets tech:
-          - Background: near-black (#0a0a0f) with subtle grain texture via CSS
-          - Accent: electric indigo (#6366f1) and rose gold (#f4a261)
-          - Typography: "Playfair Display" for headings, "DM Sans" for body (import from Google Fonts)
-          - Cards: glass-morphism effect (backdrop-filter blur, semi-transparent borders)
-          - Hover states: smooth scale + glow shadow transitions
-          - Micro-animations: staggered fade-in on page load using Intersection Observer
-          
-          PRODUCTS
-          {product_text}
-          
-          JAVASCRIPT FEATURES TO IMPLEMENT
-          1. **Search bar** — live filters product cards by name as user types (no page reload)
-          2. **Sort dropdown** — sort cards by Name A-Z, Name Z-A, Price Low-High, Price High-Low
-          3. **Add to Cart** — each card has an "Add to Cart" button; clicking it:
-             - Adds item to a cart array stored in memory
-             - Animates the cart icon counter badge (bounce effect)
-             - Shows a brief toast notification ("Added to cart!")
-          4. **Cart sidebar** — clicking the cart icon in the header slides in a sidebar panel showing:
-             - List of added items with name and price
-             - Total price
-             - "Clear Cart" button
-             - Closes on clicking outside or pressing Escape
-          5. **Quantity counter** — inside the cart sidebar, each item has +/- buttons to adjust quantity
-          6. **Product modal** — clicking a product image opens a centered modal overlay with:
-             - Larger image view
-             - Product name and price
-             - "Add to Cart" button
-             - Closes on backdrop click or Escape key
-          7. **Empty state** — if search returns no results, show a styled "No products found" message
-          
-          UI COMPONENTS TO INCLUDE
-          - Sticky header with logo, search bar, and cart icon with item count badge
-          - Hero banner section: full-width gradient banner with tagline text and a CTA button
-          - Product grid: responsive (1 col mobile → 2 col tablet → 4 col desktop)
-          - Each product card must contain:
-            * Product image (object-cover, rounded corners)
-            * Product name (bold, truncated if long)
-            * Price in accent color
-            * Star rating display (static, 4–5 stars using Unicode ★)
-            * "Add to Cart" button with hover effect
-          - Footer: minimal dark footer with copyright
-          
-          OUTPUT FORMAT RULES
-          - Output ONLY the file block below — no explanation, no markdown prose outside the block
-          - All CSS goes inside a <style> tag in <head>
-          - All JS goes inside a <script> tag at end of <body>
-          - Do NOT use ES modules or import statements
-          - Do NOT use external JS CDNs other than Tailwind
-          - Image paths must stay exactly as provided — do not modify them
-          
+          You are a senior frontend engineer building a premium 2026 modern e-commerce storefront.
+
+          BRAND NAME
+          E-commerce platform
+
+          IMPORTANT RULES
+          - Replace every instance of "page" with "E-commerce platform"
+          - All navigation must reflect the new brand name
+          - Use only images from assets/images/products/
+          - Available images:
+          {image_list_text}
+          - Image paths MUST be relative
+          - Do NOT invent filenames
+          - If image not available, show elegant placeholder
+
+          FUNCTIONALITY
+          - Add to Bag (localStorage)
+          - Live cart counter
+          - Animated cart drawer (slide from right)
+          - Quantity increment & removal
+          - Live search filtering
+          - No page reload
+          - Vanilla JavaScript only
+          - All JS inside <script>
+
+          DESIGN REQUIREMENTS (2026 Modern UI)
+          - Large hero section with full-width banner
+          - Glassmorphism sticky header (blur + transparency)
+          - Responsive CSS grid layout
+          - Product cards with hover elevation & smooth transitions
+          - Subtle shadow depth
+          - Modern typography (clean sans-serif system font stack)
+          - Professional spacing & layout rhythm
+          - Smooth button hover animations
+          - Soft fade/slide animations
+          - Elegant neutral color palette
+          - Premium minimalist design (Apple/Zara style)
+
+          OUTPUT FORMAT STRICTLY
+
           ---index.html---
           <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Store</title>
-            <link href="assets/css/styles.css" rel="stylesheet">
-            <script src="https://cdn.tailwindcss.com"></script>
-            <style>
-              /* Google Fonts, CSS variables, grain texture, glass-morphism, animations — all here */
-            </style>
-          </head>
-          <body>
-            <!-- Sticky Header with search + cart icon -->
-            <!-- Hero Banner -->
-            <!-- Product Grid (AI generates cards here) -->
-            <!-- Cart Sidebar -->
-            <!-- Product Modal -->
-            <!-- Toast notification -->
-            <script>
-              // All JS: search, sort, cart logic, modal, sidebar, toast
-            </script>
-          </body>
+          <html>
+          ...full working premium 2026 UI document...
           </html>
           """
+
           client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
           response = client.models.generate_content(
               model="gemini-3-flash-preview",
               contents=prompt
           )
-
+          
           output = response.text
 
           if not output:
-              print("Gemini returned empty response")
+              print("Gemini returned empty response.")
               exit(0)
 
           matches = re.findall(
@@ -172,45 +115,29 @@ jobs:
               re.DOTALL
           )
 
+          if not matches:
+              print("No properly formatted files returned.")
+              exit(0)
+
           for filename, content in matches:
               path = Path(filename.strip())
               path.parent.mkdir(parents=True, exist_ok=True)
               path.write_text(content.strip(), encoding="utf-8")
 
-          subprocess.run(["git","config","--global","user.name","gemini-bot"])
-          subprocess.run(["git","config","--global","user.email","bot@example.com"])
-          subprocess.run(["git","add","."])
+          subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
+          subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
+          subprocess.run(["git", "add", "."])
 
-          result = subprocess.run(["git","diff","--cached","--quiet"])
+          result = subprocess.run(["git", "diff", "--cached", "--quiet"])
 
           if result.returncode != 0:
-              subprocess.run(["git","commit","-m","AI generated storefront"])
-              subprocess.run(["git","push"])
+              subprocess.run(["git", "commit", "-m", "Gemini AI upgraded to 2026 premium UI"])
+              subprocess.run(["git", "push"])
+          else:
+              print("No changes detected.")
 
           EOF
 
-
-      # Setup Node for Tailwind
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      # Install Tailwind CLI
-      - name: Install Tailwind
-        run: |
-          npm install -D tailwindcss @tailwindcss/cli
-
-      # Build Tailwind CSS
-      - name: Build Tailwind CSS
-        run: |
-          mkdir -p src
-          echo "@tailwind base;@tailwind components;@tailwind utilities;" > src/input.css
-          mkdir -p assets/css
-          npx tailwindcss -i ./src/input.css -o ./assets/css/styles.css --minify
-
-
-      # Configure AWS credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -218,8 +145,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
-
-      # Deploy to S3
       - name: Deploy to S3
         run: |
           aws s3 sync . s3://staticwebzsitegit \
