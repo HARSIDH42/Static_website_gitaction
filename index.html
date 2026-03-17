@@ -1,265 +1,325 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce platform | Future of Retail</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .product-card:hover .product-image { transform: scale(1.05); }
-        .reveal { transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUXE 2026 | Future of Retail</title>
+<link href="assets/css/styles.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .glass-nav {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+    .product-card {
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .product-card:hover {
+        transform: translateY(-8px);
+    }
+</style>
 </head>
-<body class="bg-white text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-12">
-                <a href="#" class="text-xl font-bold tracking-tighter uppercase">E-commerce platform</a>
-                <div class="hidden md:flex gap-8 text-sm font-medium text-slate-500">
-                    <a href="#" class="hover:text-black transition-colors">New Arrivals</a>
-                    <a href="#" class="hover:text-black transition-colors">Collections</a>
-                    <a href="#" class="hover:text-black transition-colors">Men</a>
-                    <a href="#" class="hover:text-black transition-colors">Women</a>
-                </div>
+<body class="bg-[#f8f9fa] text-[#1a1a1a]">
+
+<!-- Modern Navigation -->
+<nav class="glass-nav sticky top-0 z-50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <div class="flex items-center gap-8">
+            <h1 class="text-2xl font-black tracking-tighter uppercase">Luxe<span class="text-indigo-600">.</span></h1>
+            <div class="hidden md:flex gap-6 text-sm font-medium text-gray-500">
+                <a href="#" class="hover:text-black transition-colors">New Arrivals</a>
+                <a href="#" class="hover:text-black transition-colors">Collections</a>
+                <a href="#" class="hover:text-black transition-colors">Sustainability</a>
             </div>
-            <div class="flex items-center gap-6">
-                <button class="p-2 hover:bg-slate-100 rounded-full transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+        <div class="flex items-center gap-5">
+            <button class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </button>
+            <div class="relative p-2 hover:bg-gray-100 rounded-full transition-colors cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span class="absolute top-1 right-1 bg-indigo-600 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">3</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="max-w-7xl mx-auto px-6 py-12">
+    
+    <!-- Filter Bar -->
+    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div>
+            <h2 class="text-4xl font-bold tracking-tight mb-2">Curated Essentials</h2>
+            <p class="text-gray-500">Discover the 2026 Spring/Summer Collection</p>
+        </div>
+        <div class="flex gap-3">
+            <button class="px-5 py-2.5 bg-white border border-gray-200 rounded-full text-sm font-semibold hover:border-black transition-all">Filters</button>
+            <button class="px-5 py-2.5 bg-black text-white rounded-full text-sm font-semibold hover:bg-indigo-600 transition-all">Sort by: Featured</button>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
+
+        <!-- Product Cards -->
+        
+        <!-- Sports 6 -->
+        <div class="product-card group relative">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-4 relative">
+                <img src="assets/images/products/sports-6.jpg" alt="Sports 6" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <button class="absolute top-4 right-4 p-2.5 bg-white/90 backdrop-blur rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                 </button>
-                <div class="relative group cursor-pointer">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                    <span class="absolute -top-2 -right-2 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
-                </div>
-                <button class="md:hidden">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7"/></svg>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="relative h-screen flex items-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="jacket-1.jpg" alt="Hero" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/20"></div>
-        </div>
-        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
-            <div class="max-w-2xl text-white">
-                <span class="inline-block px-4 py-1.5 rounded-full border border-white/30 backdrop-blur-md text-xs font-semibold tracking-widest uppercase mb-6">Winter 2026 Collection</span>
-                <h1 class="text-6xl md:text-8xl font-bold tracking-tight mb-8">Elegance in <br>Every Detail.</h1>
-                <p class="text-lg text-slate-100 mb-10 max-w-md leading-relaxed">Redefining modern silhouettes with sustainable materials and timeless design philosophy.</p>
-                <div class="flex gap-4">
-                    <a href="#shop" class="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-slate-100 transition-all transform hover:scale-105">Shop the Collection</a>
-                    <a href="#" class="px-8 py-4 rounded-full font-semibold border border-white/50 backdrop-blur-sm text-white hover:bg-white/10 transition-all">Watch Film</a>
+                <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <button class="w-full py-3 bg-white/95 backdrop-blur font-bold text-sm rounded-xl shadow-xl hover:bg-black hover:text-white transition-colors">QUICK ADD</button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Category Bento Grid -->
-    <section class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-[800px] md:h-[600px]">
-            <div class="md:col-span-8 group relative overflow-hidden rounded-3xl bg-slate-100">
-                <img src="watch-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Watches">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8 text-white">
-                    <h3 class="text-2xl font-bold">Chronicles of Time</h3>
-                    <p class="text-sm opacity-80 mb-4">Explore our luxury timepiece collection</p>
-                    <a href="#" class="w-fit text-sm font-semibold border-b border-white pb-1">Shop Collection</a>
-                </div>
-            </div>
-            <div class="md:col-span-4 group relative overflow-hidden rounded-3xl bg-slate-100">
-                <img src="shoe-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Shoes">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8 text-white">
-                    <h3 class="text-2xl font-bold">Performance</h3>
-                    <a href="#" class="w-fit text-sm font-semibold border-b border-white pb-1">Shop Footwear</a>
-                </div>
-            </div>
-            <div class="md:col-span-4 group relative overflow-hidden rounded-3xl bg-slate-100">
-                <img src="jewellery-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Jewellery">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8 text-white">
-                    <h3 class="text-2xl font-bold">Essence</h3>
-                    <a href="#" class="w-fit text-sm font-semibold border-b border-white pb-1">Shop Jewelry</a>
-                </div>
-            </div>
-            <div class="md:col-span-8 group relative overflow-hidden rounded-3xl bg-slate-100">
-                <img src="sports-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Sports">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8 text-white">
-                    <h3 class="text-2xl font-bold">Active Living</h3>
-                    <p class="text-sm opacity-80 mb-4">Engineered for the modern athlete</p>
-                    <a href="#" class="w-fit text-sm font-semibold border-b border-white pb-1">Shop Sportswear</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Products -->
-    <section id="shop" class="py-24 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex items-end justify-between mb-12">
+            <div class="flex justify-between items-start">
                 <div>
-                    <h2 class="text-4xl font-bold tracking-tight mb-4">Curated Essentials</h2>
-                    <p class="text-slate-500">Our monthly pick of high-crafted goods.</p>
+                    <h3 class="font-bold text-gray-900">Sports 6</h3>
+                    <p class="text-sm text-gray-500">Premium Performance</p>
                 </div>
-                <a href="#" class="text-sm font-bold uppercase tracking-widest border-b-2 border-black pb-1 hover:text-slate-500 hover:border-slate-500 transition-colors">View All</a>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-                <!-- Product 1 -->
-                <div class="product-card group cursor-pointer">
-                    <div class="relative aspect-[3/4] overflow-hidden rounded-2xl mb-6 bg-white">
-                        <img src="jacket-5.jpg" class="product-image w-full h-full object-cover transition-transform duration-500" alt="Jacket">
-                        <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">Quick Add</button>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-sm font-medium text-slate-900">Technical Shell Parka</h3>
-                            <p class="text-sm text-slate-500">Outerwear</p>
-                        </div>
-                        <p class="text-sm font-bold">$295.00</p>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="product-card group cursor-pointer">
-                    <div class="relative aspect-[3/4] overflow-hidden rounded-2xl mb-6 bg-white">
-                        <img src="watch-2.jpg" class="product-image w-full h-full object-cover transition-transform duration-500" alt="Watch">
-                        <span class="absolute top-4 left-4 bg-black text-white text-[10px] px-2 py-1 rounded-full uppercase tracking-widest font-bold">Sold Out</span>
-                        <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">Notify Me</button>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-sm font-medium text-slate-900">Lunar Horizon Chrono</h3>
-                            <p class="text-sm text-slate-500">Accessories</p>
-                        </div>
-                        <p class="text-sm font-bold text-slate-400">$450.00</p>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="product-card group cursor-pointer">
-                    <div class="relative aspect-[3/4] overflow-hidden rounded-2xl mb-6 bg-white">
-                        <img src="perfume.jpg" class="product-image w-full h-full object-cover transition-transform duration-500" alt="Perfume">
-                        <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">Quick Add</button>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-sm font-medium text-slate-900">Nuit Absolue Parfum</h3>
-                            <p class="text-sm text-slate-500">Beauty</p>
-                        </div>
-                        <p class="text-sm font-bold">$120.00</p>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="product-card group cursor-pointer">
-                    <div class="relative aspect-[3/4] overflow-hidden rounded-2xl mb-6 bg-white">
-                        <img src="shoe-4.jpg" class="product-image w-full h-full object-cover transition-transform duration-500" alt="Shoes">
-                        <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">Quick Add</button>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-sm font-medium text-slate-900">Velocity Knit Runner</h3>
-                            <p class="text-sm text-slate-500">Footwear</p>
-                        </div>
-                        <p class="text-sm font-bold">$185.00</p>
-                    </div>
-                </div>
+                <p class="font-bold text-indigo-600">$199</p>
             </div>
         </div>
-    </section>
 
-    <!-- Promotion Section -->
-    <section class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="relative h-[500px] rounded-[40px] overflow-hidden">
-                <img src="clothes-3.jpg" class="w-full h-full object-cover" alt="Newsletter">
-                <div class="absolute inset-0 bg-black/40 flex items-center justify-center text-center p-6">
-                    <div class="max-w-xl text-white">
-                        <h2 class="text-4xl md:text-5xl font-bold mb-6">Join the Circle.</h2>
-                        <p class="text-lg opacity-90 mb-8">Sign up for early access to limited drops and exclusive editorial content from our designers.</p>
-                        <form class="flex flex-col sm:flex-row gap-4">
-                            <input type="email" placeholder="Your email address" class="flex-1 px-6 py-4 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white">
-                            <button class="bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-slate-100 transition-colors">Subscribe</button>
-                        </form>
-                    </div>
+        <!-- Repeat the structure for other products -->
+        <!-- Jewellery 2 -->
+        <div class="product-card group relative">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-4 relative">
+                <img src="assets/images/products/jewellery-2.jpg" alt="Jewellery 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute top-4 left-4 bg-black text-white text-[10px] px-2 py-1 rounded font-bold uppercase tracking-widest">New Season</div>
+                <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <button class="w-full py-3 bg-white/95 backdrop-blur font-bold text-sm rounded-xl shadow-xl hover:bg-black hover:text-white transition-colors">QUICK ADD</button>
                 </div>
+            </div>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-bold text-gray-900">Jewellery 2</h3>
+                    <p class="text-sm text-gray-500">Artisan Crafted</p>
+                </div>
+                <p class="font-bold text-indigo-600">$199</p>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-100 py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 mb-20">
-                <div class="col-span-2">
-                    <h2 class="text-xl font-bold tracking-tighter uppercase mb-6">E-commerce platform</h2>
-                    <p class="text-slate-500 text-sm leading-relaxed max-w-xs">Crafting the future of retail through sustainable practices and uncompromising quality since 2024.</p>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-widest mb-6">Shop</h4>
-                    <ul class="space-y-4 text-sm text-slate-500">
-                        <li><a href="#" class="hover:text-black transition-colors">All Products</a></li>
-                        <li><a href="#" class="hover:text-black transition-colors">New Arrivals</a></li>
-                        <li><a href="#" class="hover:text-black transition-colors">Archive</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-widest mb-6">Company</h4>
-                    <ul class="space-y-4 text-sm text-slate-500">
-                        <li><a href="#" class="hover:text-black transition-colors">Sustainability</a></li>
-                        <li><a href="#" class="hover:text-black transition-colors">About Us</a></li>
-                        <li><a href="#" class="hover:text-black transition-colors">Careers</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-widest mb-6">Support</h4>
-                    <ul class="space-y-4 text-sm text-slate-500">
-                        <li><a href="#" class="hover:text-black transition-colors">Shipping</a></li>
-                        <li><a href="#" class="hover:text-black transition-colors">Returns</a></li>
-                        <li><a href="#" class="hover:text-black transition-colors">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold uppercase tracking-widest mb-6">Follow</h4>
-                    <ul class="space-y-4 text-sm text-slate-500">
-                        <li><a href="#" class="hover:text-black transition-colors">Instagram</a></li>
-                        <li><a href="#" class="hover:text-black transition-colors">Pinterest</a></li>
-                        <li><a href="#" class="hover:text-black transition-colors">Twitter</a></li>
-                    </ul>
+        <!-- Clothes 3 -->
+        <div class="product-card group relative">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-4 relative">
+                <img src="assets/images/products/clothes-3.jpg" alt="Clothes 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <button class="w-full py-3 bg-white/95 backdrop-blur font-bold text-sm rounded-xl shadow-xl hover:bg-black hover:text-white transition-colors">QUICK ADD</button>
                 </div>
             </div>
-            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-slate-100 gap-6">
-                <p class="text-xs text-slate-400">© 2026 E-commerce platform. All rights reserved.</p>
-                <div class="flex gap-8 text-xs text-slate-400">
-                    <a href="#" class="hover:text-black">Privacy Policy</a>
-                    <a href="#" class="hover:text-black">Terms of Service</a>
-                    <a href="#" class="hover:text-black">Accessibility</a>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-bold text-gray-900">Clothes 3</h3>
+                    <p class="text-sm text-gray-500">Organic Cotton</p>
                 </div>
+                <p class="font-bold text-indigo-600">$199</p>
             </div>
         </div>
-    </footer>
 
-    <script>
-        // Simple scroll animation reveal
-        window.addEventListener('scroll', () => {
-            const reveals = document.querySelectorAll('.product-card, .grid > div');
-            reveals.forEach(el => {
-                const windowHeight = window.innerHeight;
-                const revealTop = el.getBoundingClientRect().top;
-                const revealPoint = 150;
-                if (revealTop < windowHeight - revealPoint) {
-                    el.classList.add('opacity-100');
-                    el.classList.remove('opacity-0', 'translate-y-10');
-                }
-            });
-        });
-    </script>
+        <!-- Shampoo -->
+        <div class="product-card group relative">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-4 relative">
+                <img src="assets/images/products/shampoo.jpg" alt="Shampoo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <button class="w-full py-3 bg-white/95 backdrop-blur font-bold text-sm rounded-xl shadow-xl hover:bg-black hover:text-white transition-colors">QUICK ADD</button>
+                </div>
+            </div>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-bold text-gray-900">Shampoo</h3>
+                    <p class="text-sm text-gray-500">Essential Care</p>
+                </div>
+                <p class="font-bold text-indigo-600">$199</p>
+            </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card group relative">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-4 relative">
+                <img src="assets/images/products/4.jpg" alt="Product 4" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <button class="w-full py-3 bg-white/95 backdrop-blur font-bold text-sm rounded-xl shadow-xl hover:bg-black hover:text-white transition-colors">QUICK ADD</button>
+                </div>
+            </div>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-bold text-gray-900">Studio Series 4</h3>
+                    <p class="text-sm text-gray-500">Limited Edition</p>
+                </div>
+                <p class="font-bold text-indigo-600">$199</p>
+            </div>
+        </div>
+
+        <!-- Shoe 3 -->
+        <div class="product-card group relative">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-4 relative">
+                <img src="assets/images/products/shoe-3.jpg" alt="Shoe 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <button class="w-full py-3 bg-white/95 backdrop-blur font-bold text-sm rounded-xl shadow-xl hover:bg-black hover:text-white transition-colors">QUICK ADD</button>
+                </div>
+            </div>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-bold text-gray-900">Shoe 3</h3>
+                    <p class="text-sm text-gray-500">Street Culture</p>
+                </div>
+                <p class="font-bold text-indigo-600">$199</p>
+            </div>
+        </div>
+
+        <!-- Watch 2 -->
+        <div class="product-card group relative">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-4 relative">
+                <img src="assets/images/products/watch-2.jpg" alt="Watch 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <button class="w-full py-3 bg-white/95 backdrop-blur font-bold text-sm rounded-xl shadow-xl hover:bg-black hover:text-white transition-colors">QUICK ADD</button>
+                </div>
+            </div>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-bold text-gray-900">Watch 2</h3>
+                    <p class="text-sm text-gray-500">Precision Timing</p>
+                </div>
+                <p class="font-bold text-indigo-600">$199</p>
+            </div>
+        </div>
+
+        <!-- Jacket 2 -->
+        <div class="product-card group relative">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-4 relative">
+                <img src="assets/images/products/jacket-2.jpg" alt="Jacket 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <button class="w-full py-3 bg-white/95 backdrop-blur font-bold text-sm rounded-xl shadow-xl hover:bg-black hover:text-white transition-colors">QUICK ADD</button>
+                </div>
+            </div>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-bold text-gray-900">Jacket 2</h3>
+                    <p class="text-sm text-gray-500">All-Weather</p>
+                </div>
+                <p class="font-bold text-indigo-600">$199</p>
+            </div>
+        </div>
+
+        <!-- Perfume -->
+        <div class="product-card group relative">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-4 relative">
+                <img src="assets/images/products/perfume.jpg" alt="Perfume" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <button class="w-full py-3 bg-white/95 backdrop-blur font-bold text-sm rounded-xl shadow-xl hover:bg-black hover:text-white transition-colors">QUICK ADD</button>
+                </div>
+            </div>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-bold text-gray-900">Signature Perfume</h3>
+                    <p class="text-sm text-gray-500">Essence of 2026</p>
+                </div>
+                <p class="font-bold text-indigo-600">$199</p>
+            </div>
+        </div>
+
+        <!-- Sports 1 -->
+        <div class="product-card group relative">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-4 relative">
+                <img src="assets/images/products/sports-1.jpg" alt="Sports 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <button class="w-full py-3 bg-white/95 backdrop-blur font-bold text-sm rounded-xl shadow-xl hover:bg-black hover:text-white transition-colors">QUICK ADD</button>
+                </div>
+            </div>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-bold text-gray-900">Sports 1</h3>
+                    <p class="text-sm text-gray-500">Active Gear</p>
+                </div>
+                <p class="font-bold text-indigo-600">$199</p>
+            </div>
+        </div>
+
+        <!-- Party Wear 1 -->
+        <div class="product-card group relative">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-4 relative">
+                <img src="assets/images/products/party-wear-1.jpg" alt="Party Wear 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <button class="w-full py-3 bg-white/95 backdrop-blur font-bold text-sm rounded-xl shadow-xl hover:bg-black hover:text-white transition-colors">QUICK ADD</button>
+                </div>
+            </div>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-bold text-gray-900">Party Wear 1</h3>
+                    <p class="text-sm text-gray-500">Evening Collection</p>
+                </div>
+                <p class="font-bold text-indigo-600">$199</p>
+            </div>
+        </div>
+
+        <!-- Watch 4 -->
+        <div class="product-card group relative">
+            <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-4 relative">
+                <img src="assets/images/products/watch-4.jpg" alt="Watch 4" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <button class="w-full py-3 bg-white/95 backdrop-blur font-bold text-sm rounded-xl shadow-xl hover:bg-black hover:text-white transition-colors">QUICK ADD</button>
+                </div>
+            </div>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 class="font-bold text-gray-900">Watch 4</h3>
+                    <p class="text-sm text-gray-500">Minimalist Black</p>
+                </div>
+                <p class="font-bold text-indigo-600">$199</p>
+            </div>
+        </div>
+
+        <!-- Add more cards as needed following this pattern... -->
+
+    </div>
+
+    <!-- Infinite Scroll Mockup -->
+    <div class="mt-20 flex justify-center">
+        <button class="px-10 py-4 border-2 border-black rounded-full font-bold hover:bg-black hover:text-white transition-all">LOAD MORE PRODUCTS</button>
+    </div>
+
+</main>
+
+<footer class="bg-white border-t border-gray-100 pt-20 pb-10 mt-20">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <div class="col-span-1 md:col-span-2">
+            <h1 class="text-3xl font-black tracking-tighter uppercase mb-6">Luxe<span class="text-indigo-600">.</span></h1>
+            <p class="text-gray-500 max-w-sm">Designing the future of apparel since 2022. Our 2026 collection focuses on radical transparency and bio-engineered materials.</p>
+        </div>
+        <div>
+            <h4 class="font-bold mb-6">Support</h4>
+            <ul class="space-y-4 text-sm text-gray-600">
+                <li><a href="#" class="hover:text-black">Shipping Policy</a></li>
+                <li><a href="#" class="hover:text-black">Returns & Exchanges</a></li>
+                <li><a href="#" class="hover:text-black">Sizing Guide</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-bold mb-6">Newsletter</h4>
+            <div class="flex gap-2">
+                <input type="email" placeholder="Enter email" class="bg-gray-50 border-none rounded-lg px-4 py-2 w-full focus:ring-2 focus:ring-indigo-600">
+                <button class="bg-black text-white px-4 py-2 rounded-lg text-sm font-bold">Join</button>
+            </div>
+        </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400 uppercase tracking-widest">
+        <p>© 2026 LUXE E-COMMERCE PLATFORM. ALL RIGHTS RESERVED.</p>
+        <div class="flex gap-6">
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+            <a href="#">TikTok</a>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
