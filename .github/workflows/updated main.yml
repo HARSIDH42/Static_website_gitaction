@@ -49,7 +49,7 @@ jobs:
 
           prompt = f"""
           ROLE
-          You are a senior frontend engineer building a premium 2026 modern course website.
+          You are a senior frontend engineer building a premium 2026 modern e-commerce storefront.
 
           BRAND NAME
           E-commerce platform
