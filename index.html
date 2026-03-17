@@ -1,590 +1,380 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://cdn.tailwindcss.com"></script>
-<title>E-commerce platform</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanguard Storefront | 2026 Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .product-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-[#fcfcfc] text-slate-900">
 
-<header class="bg-white shadow p-4 flex justify-between">
-<h1 class="text-xl font-bold">E-commerce platform</h1>
+<!-- Navigation -->
+<nav class="glass-nav sticky top-0 z-50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <div class="flex items-center gap-8">
+            <h1 class="text-2xl font-bold tracking-tighter uppercase">Vanguard</h1>
+            <div class="hidden md:flex gap-6 text-sm font-medium text-gray-500">
+                <a href="#" class="text-black">New Arrivals</a>
+                <a href="#" class="hover:text-black transition-colors">Apparel</a>
+                <a href="#" class="hover:text-black transition-colors">Accessories</a>
+                <a href="#" class="hover:text-black transition-colors">Tech</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-5">
+            <button class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+            <div class="relative p-2 hover:bg-gray-100 rounded-full transition-colors cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                <span class="absolute top-1 right-1 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">3</span>
+            </div>
+        </div>
+    </div>
+</nav>
 
-<button onclick="toggleCart()" class="relative">
-🛒
-<span id="cartCount"
-class="absolute -top-2 -right-2 bg-black text-white text-xs px-2 py-1 rounded-full">
-0
-</span>
-</button>
+<main class="max-w-7xl mx-auto px-6 py-12">
+    <!-- Hero Section -->
+    <header class="mb-16">
+        <span class="text-xs font-bold tracking-[0.3em] uppercase text-gray-400 mb-4 block">Spring/Summer 2026</span>
+        <h2 class="text-5xl font-bold tracking-tight mb-4">Latest Drops</h2>
+        <p class="text-gray-500 max-w-lg text-lg">Curated performance gear and lifestyle essentials for the modern pioneer.</p>
+    </header>
 
-</header>
+    <!-- Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-12">
+        
+        <!-- Sports 6 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/sports-6.jpg" alt="Sports 6" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <span class="absolute top-4 left-4 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Premium</span>
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Sports Elite 6</h3>
+                    <p class="mt-1 text-xs text-gray-500">High-Performance Gear</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
 
-<main class="max-w-7xl mx-auto p-10">
+        <!-- Jewellery 2 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/jewellery-2.jpg" alt="Jewellery 2" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Jewellery 2</h3>
+                    <p class="mt-1 text-xs text-gray-500">Fine Accessories</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
 
-<input id="searchInput"
-placeholder="Search products"
-class="border p-2 mb-6 w-full"
-onkeyup="searchProducts()">
+        <!-- Clothes 3 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/clothes-3.jpg" alt="Clothes 3" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Urban Clothes 3</h3>
+                    <p class="mt-1 text-xs text-gray-500">Essentials</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
 
-<div class="grid md:grid-cols-4 gap-6">
+        <!-- Shampoo -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/shampoo.jpg" alt="Shampoo" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Modern Shampoo</h3>
+                    <p class="mt-1 text-xs text-gray-500">Apothecary</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
 
+        <!-- 4 (Generic Labeling) -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/4.jpg" alt="4" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Minimalist 04</h3>
+                    <p class="mt-1 text-xs text-gray-500">Collection Series</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
 
-    <div class="product-card bg-white rounded shadow p-4" data-name="Sports 6">
-      <img src="assets/images/products/sports-6.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Sports 6</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Sports 6',199,'assets/images/products/sports-6.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Jewellery 2">
-      <img src="assets/images/products/jewellery-2.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Jewellery 2</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Jewellery 2',199,'assets/images/products/jewellery-2.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Clothes 3">
-      <img src="assets/images/products/clothes-3.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Clothes 3</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Clothes 3',199,'assets/images/products/clothes-3.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Shampoo">
-      <img src="assets/images/products/shampoo.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Shampoo</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Shampoo',199,'assets/images/products/shampoo.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="4">
-      <img src="assets/images/products/4.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">4</h3>
-      <p>$199</p>
-      <button onclick="addToCart('4',199,'assets/images/products/4.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Clothes 2">
-      <img src="assets/images/products/clothes-2.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Clothes 2</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Clothes 2',199,'assets/images/products/clothes-2.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="2">
-      <img src="assets/images/products/2.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">2</h3>
-      <p>$199</p>
-      <button onclick="addToCart('2',199,'assets/images/products/2.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Shoe 3">
-      <img src="assets/images/products/shoe-3.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Shoe 3</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Shoe 3',199,'assets/images/products/shoe-3.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Jewellery 1">
-      <img src="assets/images/products/jewellery-1.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Jewellery 1</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Jewellery 1',199,'assets/images/products/jewellery-1.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Watch 2">
-      <img src="assets/images/products/watch-2.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Watch 2</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Watch 2',199,'assets/images/products/watch-2.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Shoe 4">
-      <img src="assets/images/products/shoe-4.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Shoe 4</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Shoe 4',199,'assets/images/products/shoe-4.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Party Wear 1">
-      <img src="assets/images/products/party-wear-1.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Party Wear 1</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Party Wear 1',199,'assets/images/products/party-wear-1.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Jacket 2">
-      <img src="assets/images/products/jacket-2.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Jacket 2</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Jacket 2',199,'assets/images/products/jacket-2.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Shoe 5">
-      <img src="assets/images/products/shoe-5.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Shoe 5</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Shoe 5',199,'assets/images/products/shoe-5.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Jacket 5">
-      <img src="assets/images/products/jacket-5.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Jacket 5</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Jacket 5',199,'assets/images/products/jacket-5.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Shoe 1">
-      <img src="assets/images/products/shoe-1.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Shoe 1</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Shoe 1',199,'assets/images/products/shoe-1.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="1">
-      <img src="assets/images/products/1.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">1</h3>
-      <p>$199</p>
-      <button onclick="addToCart('1',199,'assets/images/products/1.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="3">
-      <img src="assets/images/products/3.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">3</h3>
-      <p>$199</p>
-      <button onclick="addToCart('3',199,'assets/images/products/3.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Jewellery 3">
-      <img src="assets/images/products/jewellery-3.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Jewellery 3</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Jewellery 3',199,'assets/images/products/jewellery-3.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Shorts 1">
-      <img src="assets/images/products/shorts-1.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Shorts 1</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Shorts 1',199,'assets/images/products/shorts-1.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Sports 4">
-      <img src="assets/images/products/sports-4.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Sports 4</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Sports 4',199,'assets/images/products/sports-4.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Jacket 4">
-      <img src="assets/images/products/jacket-4.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Jacket 4</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Jacket 4',199,'assets/images/products/jacket-4.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Clothes 4">
-      <img src="assets/images/products/clothes-4.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Clothes 4</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Clothes 4',199,'assets/images/products/clothes-4.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Sports 2">
-      <img src="assets/images/products/sports-2.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Sports 2</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Sports 2',199,'assets/images/products/sports-2.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Clothes 1">
-      <img src="assets/images/products/clothes-1.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Clothes 1</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Clothes 1',199,'assets/images/products/clothes-1.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Sports 3">
-      <img src="assets/images/products/sports-3.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Sports 3</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Sports 3',199,'assets/images/products/sports-3.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Shoe 2_1">
-      <img src="assets/images/products/shoe-2_1.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Shoe 2_1</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Shoe 2_1',199,'assets/images/products/shoe-2_1.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Watch 1">
-      <img src="assets/images/products/watch-1.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Watch 1</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Watch 1',199,'assets/images/products/watch-1.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Belt">
-      <img src="assets/images/products/belt.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Belt</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Belt',199,'assets/images/products/belt.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Perfume">
-      <img src="assets/images/products/perfume.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Perfume</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Perfume',199,'assets/images/products/perfume.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Sports 5">
-      <img src="assets/images/products/sports-5.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Sports 5</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Sports 5',199,'assets/images/products/sports-5.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Jacket 3">
-      <img src="assets/images/products/jacket-3.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Jacket 3</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Jacket 3',199,'assets/images/products/jacket-3.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Watch 4">
-      <img src="assets/images/products/watch-4.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Watch 4</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Watch 4',199,'assets/images/products/watch-4.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Shirt 1">
-      <img src="assets/images/products/shirt-1.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Shirt 1</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Shirt 1',199,'assets/images/products/shirt-1.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Sports 1">
-      <img src="assets/images/products/sports-1.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Sports 1</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Sports 1',199,'assets/images/products/sports-1.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Watch 3">
-      <img src="assets/images/products/watch-3.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Watch 3</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Watch 3',199,'assets/images/products/watch-3.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Jacket 6">
-      <img src="assets/images/products/jacket-6.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Jacket 6</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Jacket 6',199,'assets/images/products/jacket-6.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Shirt 2">
-      <img src="assets/images/products/shirt-2.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Shirt 2</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Shirt 2',199,'assets/images/products/shirt-2.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Shorts 2">
-      <img src="assets/images/products/shorts-2.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Shorts 2</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Shorts 2',199,'assets/images/products/shorts-2.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Shoe 1_1">
-      <img src="assets/images/products/shoe-1_1.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Shoe 1_1</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Shoe 1_1',199,'assets/images/products/shoe-1_1.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Jacket 1">
-      <img src="assets/images/products/jacket-1.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Jacket 1</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Jacket 1',199,'assets/images/products/jacket-1.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Party Wear 2">
-      <img src="assets/images/products/party-wear-2.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Party Wear 2</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Party Wear 2',199,'assets/images/products/party-wear-2.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
-    <div class="product-card bg-white rounded shadow p-4" data-name="Shoe 2">
-      <img src="assets/images/products/shoe-2.jpg" class="w-full h-64 object-cover rounded">
-      <h3 class="mt-2 font-semibold">Shoe 2</h3>
-      <p>$199</p>
-      <button onclick="addToCart('Shoe 2',199,'assets/images/products/shoe-2.jpg')"
-      class="bg-black text-white px-4 py-2 mt-2 rounded">
-      Add to Bag
-      </button>
-    </div>
-    
+        <!-- Clothes 2 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/clothes-2.jpg" alt="Clothes 2" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Clothes 2</h3>
+                    <p class="mt-1 text-xs text-gray-500">Signature Line</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
 
-</div>
+        <!-- Shoe 3 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/shoe-3.jpg" alt="Shoe 3" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <span class="absolute top-4 right-4 bg-black text-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Trending</span>
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Phantom Shoe 3</h3>
+                    <p class="mt-1 text-xs text-gray-500">Footwear</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
 
+        <!-- Watch 2 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/watch-2.jpg" alt="Watch 2" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Watch Series 2</h3>
+                    <p class="mt-1 text-xs text-gray-500">Precision Timing</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
+
+        <!-- Shoe 4 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/shoe-4.jpg" alt="Shoe 4" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Shoe 4</h3>
+                    <p class="mt-1 text-xs text-gray-500">Activewear</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
+
+        <!-- Party Wear 1 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/party-wear-1.jpg" alt="Party Wear 1" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Party Edition 1</h3>
+                    <p class="mt-1 text-xs text-gray-500">Evening Wear</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
+
+        <!-- Jacket 2 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/jacket-2.jpg" alt="Jacket 2" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Core Jacket 2</h3>
+                    <p class="mt-1 text-xs text-gray-500">Outerwear</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
+
+        <!-- Shoe 5 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/shoe-5.jpg" alt="Shoe 5" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Trail Runner 5</h3>
+                    <p class="mt-1 text-xs text-gray-500">Footwear</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
+
+        <!-- Jacket 5 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/jacket-5.jpg" alt="Jacket 5" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Summit Jacket 5</h3>
+                    <p class="mt-1 text-xs text-gray-500">All-Weather</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
+
+        <!-- Shoe 1 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/shoe-1.jpg" alt="Shoe 1" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Shoe 1</h3>
+                    <p class="mt-1 text-xs text-gray-500">Classic Collection</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
+
+        <!-- Perfume -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/perfume.jpg" alt="Perfume" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Vanguard Perfume</h3>
+                    <p class="mt-1 text-xs text-gray-500">Fragrance</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
+
+        <!-- Watch 1 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/watch-1.jpg" alt="Watch 1" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Watch Series 1</h3>
+                    <p class="mt-1 text-xs text-gray-500">Timeless</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
+
+        <!-- Sports 2 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/sports-2.jpg" alt="Sports 2" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Sports 2</h3>
+                    <p class="mt-1 text-xs text-gray-500">Athletic</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
+
+        <!-- Belt -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/belt.jpg" alt="Belt" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Leather Belt</h3>
+                    <p class="mt-1 text-xs text-gray-500">Accessories</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
+
+        <!-- Jacket 1 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/jacket-1.jpg" alt="Jacket 1" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Icon Jacket 1</h3>
+                    <p class="mt-1 text-xs text-gray-500">Outerwear</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
+
+        <!-- Shoe 2 -->
+        <div class="group product-card">
+            <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img src="assets/images/products/shoe-2.jpg" alt="Shoe 2" class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                <button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md py-3 rounded-xl font-semibold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick Shop</button>
+            </div>
+            <div class="mt-4 flex justify-between">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-900">Shoe 2</h3>
+                    <p class="mt-1 text-xs text-gray-500">Footwear</p>
+                </div>
+                <p class="text-sm font-bold">$199</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Pagination/Footer -->
+    <div class="mt-24 border-t border-gray-100 pt-12 flex flex-col md:flex-row justify-between items-center gap-8">
+        <p class="text-gray-400 text-sm">© 2026 Vanguard Storefront. All rights reserved.</p>
+        <div class="flex gap-8 text-sm font-medium">
+            <a href="#" class="hover:text-black transition-colors">Instagram</a>
+            <a href="#" class="hover:text-black transition-colors">Privacy Policy</a>
+            <a href="#" class="hover:text-black transition-colors">Terms of Service</a>
+        </div>
+    </div>
 </main>
-
-<div id="cartDrawer"
-class="fixed top-0 right-0 w-96 h-full bg-white shadow transform translate-x-full transition duration-300">
-
-<div class="p-4 border-b flex justify-between">
-<h2 class="font-semibold">Cart</h2>
-<button onclick="toggleCart()">✕</button>
-</div>
-
-<div id="cartItems" class="p-4"></div>
-
-<div class="p-4 border-t">
-Total: $<span id="cartTotal">0</span>
-</div>
-
-</div>
-
-<script>
-
-var cart = JSON.parse(localStorage.getItem("cart") || "[]");
-
-function saveCart(){
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartUI();
-}
-
-function addToCart(name,price,image){
-
-    var item = cart.find(function(i){return i.name===name});
-
-    if(item) item.qty++;
-    else cart.push({name:name,price:price,image:image,qty:1});
-
-    saveCart();
-    toggleCart(true);
-}
-
-function removeItem(name){
-
-    cart = cart.filter(function(i){return i.name!==name});
-    saveCart();
-}
-
-function changeQty(name,a){
-
-    var item = cart.find(function(i){return i.name===name});
-
-    if(!item) return;
-
-    item.qty += a;
-
-    if(item.qty<=0) removeItem(name);
-    else saveCart();
-}
-
-function updateCartUI(){
-
-    var items=document.getElementById("cartItems");
-    var count=document.getElementById("cartCount");
-    var totalEl=document.getElementById("cartTotal");
-
-    if(!items) return;
-
-    items.innerHTML="";
-
-    var total=0;
-    var c=0;
-
-    cart.forEach(function(i){
-
-        total += i.price*i.qty;
-        c += i.qty;
-
-        items.innerHTML +=
-        "<div class='flex gap-3 mb-4'>" +
-        "<img src='"+i.image+"' class='w-14 h-14 object-cover'>" +
-        "<div>" +
-        "<h4>"+i.name+"</h4>" +
-        "<p>$"+i.price+"</p>" +
-        "<button onclick=\"changeQty('"+i.name+"',-1)\">-</button>" +
-        "<span>"+i.qty+"</span>" +
-        "<button onclick=\"changeQty('"+i.name+"',1)\">+</button>" +
-        "<button onclick=\"removeItem('"+i.name+"')\" class='text-red-500 ml-2'>Remove</button>" +
-        "</div>" +
-        "</div>";
-
-    });
-
-    count.innerText=c;
-    totalEl.innerText=total;
-
-}
-
-function toggleCart(force){
-
-    var d=document.getElementById("cartDrawer");
-
-    if(force) d.classList.remove("translate-x-full");
-    else d.classList.toggle("translate-x-full");
-
-}
-
-function searchProducts(){
-
-    var v=document.getElementById("searchInput").value.toLowerCase();
-
-    document.querySelectorAll(".product-card").forEach(function(c){
-
-        var name=c.dataset.name.toLowerCase();
-
-        c.style.display = name.includes(v) ? "block" : "none";
-
-    });
-}
-
-updateCartUI();
-
-</script>
 
 </body>
 </html>
