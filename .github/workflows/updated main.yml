@@ -15,55 +15,34 @@ jobs:
 
       - name: Checkout Repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: Install Gemini SDK
-        run: pip install --upgrade google-genai
-
-      - name: Run Gemini AI
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      - name: Generate Storefront
         run: |
           python << 'EOF'
           import os
           import subprocess
-          import re
           from pathlib import Path
-          from google import genai
 
           image_dir = Path("assets/images/products")
           image_dir.mkdir(parents=True, exist_ok=True)
 
-          image_files = [
-              f.name for f in image_dir.glob("*")
-              if f.suffix.lower() in [".jpg",".jpeg",".png",".webp"]
-          ]
-
-          products = []
-
-          for img in image_files:
-              name = img.split(".")[0].replace("-", " ").title()
-              products.append({
-                  "name": name,
-                  "image": f"assets/images/products/{img}",
-                  "price": 199
-              })
+          images = [f.name for f in image_dir.glob("*") if f.suffix.lower() in [".jpg",".jpeg",".png",".webp"]]
 
           product_html = ""
 
-          for p in products:
+          for img in images:
+              name = img.split(".")[0].replace("-", " ").title()
               product_html += f"""
-              <div class="product-card bg-white p-4 rounded shadow" data-name="{p['name']}">
-                <img src="{p['image']}" class="w-full h-64 object-cover">
-                <h3 class="mt-2 font-semibold">{p['name']}</h3>
-                <p>${p['price']}</p>
-                <button onclick="addToCart('{p['name']}',{p['price']},'{p['image']}')" 
+              <div class="product-card bg-white rounded shadow p-4" data-name="{name}">
+                <img src="assets/images/products/{img}" class="w-full h-64 object-cover rounded">
+                <h3 class="mt-2 font-semibold">{name}</h3>
+                <p>$199</p>
+                <button onclick="addToCart('{name}',199,'assets/images/products/{img}')"
                 class="bg-black text-white px-4 py-2 mt-2 rounded">
                 Add to Bag
                 </button>
@@ -77,11 +56,12 @@ jobs:
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <script src="https://cdn.tailwindcss.com"></script>
+          <title>E-commerce platform</title>
           </head>
 
           <body class="bg-gray-100">
 
-          <header class="bg-white p-4 flex justify-between">
+          <header class="bg-white shadow p-4 flex justify-between">
           <h1 class="text-xl font-bold">E-commerce platform</h1>
 
           <button onclick="toggleCart()" class="relative">
@@ -127,94 +107,100 @@ jobs:
 
           <script>
 
-          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+          var cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
           function saveCart(){{
-          localStorage.setItem("cart", JSON.stringify(cart));
-          updateCartUI();
+              localStorage.setItem("cart", JSON.stringify(cart));
+              updateCartUI();
           }}
 
           function addToCart(name,price,image){{
 
-          const item = cart.find(i=>i.name===name);
+              var item = cart.find(function(i){{return i.name===name}});
 
-          if(item) item.qty++;
-          else cart.push({{name,price,image,qty:1}});
+              if(item) item.qty++;
+              else cart.push({{name:name,price:price,image:image,qty:1}});
 
-          saveCart();
-          toggleCart(true);
-
+              saveCart();
+              toggleCart(true);
           }}
 
           function removeItem(name){{
-          cart = cart.filter(i=>i.name!==name);
-          saveCart();
+
+              cart = cart.filter(function(i){{return i.name!==name}});
+              saveCart();
           }}
 
           function changeQty(name,a){{
 
-          const item = cart.find(i=>i.name===name);
+              var item = cart.find(function(i){{return i.name===name}});
 
-          if(!item) return;
+              if(!item) return;
 
-          item.qty += a;
+              item.qty += a;
 
-          if(item.qty<=0) removeItem(name);
-          else saveCart();
-
+              if(item.qty<=0) removeItem(name);
+              else saveCart();
           }}
 
           function updateCartUI(){{
 
-          const items=document.getElementById("cartItems");
-          const count=document.getElementById("cartCount");
-          const totalEl=document.getElementById("cartTotal");
+              var items=document.getElementById("cartItems");
+              var count=document.getElementById("cartCount");
+              var totalEl=document.getElementById("cartTotal");
 
-          items.innerHTML="";
+              if(!items) return;
 
-          let total=0;
-          let c=0;
+              items.innerHTML="";
 
-          cart.forEach(i=>{{
+              var total=0;
+              var c=0;
 
-          total += i.price*i.qty;
-          c+=i.qty;
+              cart.forEach(function(i){{
 
-          items.innerHTML += `
-          <div class="flex gap-3 mb-4">
-          <img src="${{i.image}}" class="w-14 h-14 object-cover">
-          <div>
-          <h4>${{i.name}}</h4>
-          <p>${{i.price}}</p>
-          <button onclick="changeQty('${{i.name}}',-1)">-</button>
-          <span>${{i.qty}}</span>
-          <button onclick="changeQty('${{i.name}}',1)">+</button>
-          </div>
-          </div>
-          `;
-          }});
+                  total += i.price*i.qty;
+                  c += i.qty;
 
-          count.innerText=c;
-          totalEl.innerText=total;
+                  items.innerHTML +=
+                  "<div class='flex gap-3 mb-4'>" +
+                  "<img src='"+i.image+"' class='w-14 h-14 object-cover'>" +
+                  "<div>" +
+                  "<h4>"+i.name+"</h4>" +
+                  "<p>$"+i.price+"</p>" +
+                  "<button onclick=\\"changeQty('"+i.name+"',-1)\\">-</button>" +
+                  "<span>"+i.qty+"</span>" +
+                  "<button onclick=\\"changeQty('"+i.name+"',1)\\">+</button>" +
+                  "<button onclick=\\"removeItem('"+i.name+"')\\" class='text-red-500 ml-2'>Remove</button>" +
+                  "</div>" +
+                  "</div>";
+
+              }});
+
+              count.innerText=c;
+              totalEl.innerText=total;
 
           }}
 
-          function toggleCart(force=false){{
-          const d=document.getElementById("cartDrawer");
+          function toggleCart(force){{
 
-          if(force) d.classList.remove("translate-x-full");
-          else d.classList.toggle("translate-x-full");
+              var d=document.getElementById("cartDrawer");
+
+              if(force) d.classList.remove("translate-x-full");
+              else d.classList.toggle("translate-x-full");
+
           }}
 
           function searchProducts(){{
 
-          const v=document.getElementById("searchInput").value.toLowerCase();
+              var v=document.getElementById("searchInput").value.toLowerCase();
 
-          document.querySelectorAll(".product-card").forEach(c=>{{
-          const name=c.dataset.name.toLowerCase();
-          c.style.display = name.includes(v) ? "block":"none";
-          }});
+              document.querySelectorAll(".product-card").forEach(function(c){{
 
+                  var name=c.dataset.name.toLowerCase();
+
+                  c.style.display = name.includes(v) ? "block" : "none";
+
+              }});
           }}
 
           updateCartUI();
@@ -227,15 +213,16 @@ jobs:
 
           Path("index.html").write_text(html)
 
-          subprocess.run(["git","config","--global","user.name","gemini-bot"])
+          subprocess.run(["git","config","--global","user.name","ai-bot"])
           subprocess.run(["git","config","--global","user.email","bot@example.com"])
           subprocess.run(["git","add","."])
 
-          result=subprocess.run(["git","diff","--cached","--quiet"])
+          r = subprocess.run(["git","diff","--cached","--quiet"])
 
-          if result.returncode!=0:
+          if r.returncode != 0:
               subprocess.run(["git","commit","-m","AI storefront update"])
               subprocess.run(["git","push"])
+
           EOF
 
 
@@ -245,6 +232,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
+
 
       - name: Deploy to S3
         run: |
