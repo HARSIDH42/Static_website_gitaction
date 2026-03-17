@@ -26,7 +26,7 @@ jobs:
       - name: Install Gemini SDK
         run: pip install --upgrade google-genai
 
-      - name: Run Gemini AI to Generate Storefront
+      - name: Run Gemini AI
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
@@ -37,136 +37,208 @@ jobs:
           from pathlib import Path
           from google import genai
 
-          # Product image directory
           image_dir = Path("assets/images/products")
           image_dir.mkdir(parents=True, exist_ok=True)
 
-          # Detect images
           image_files = [
               f.name for f in image_dir.glob("*")
               if f.suffix.lower() in [".jpg",".jpeg",".png",".webp"]
           ]
 
-          # Convert images to product list
           products = []
+
           for img in image_files:
               name = img.split(".")[0].replace("-", " ").title()
               products.append({
                   "name": name,
                   "image": f"assets/images/products/{img}",
-                  "price": "$199"
+                  "price": 199
               })
 
-          product_text = "\n".join(
-              f"{p['name']} | {p['image']} | {p['price']}"
-              for p in products
-          )
+          product_html = ""
 
-          if not product_text:
-              product_text = "No products available"
+          for p in products:
+              product_html += f"""
+              <div class="product-card bg-white p-4 rounded shadow" data-name="{p['name']}">
+                <img src="{p['image']}" class="w-full h-64 object-cover">
+                <h3 class="mt-2 font-semibold">{p['name']}</h3>
+                <p>${p['price']}</p>
+                <button onclick="addToCart('{p['name']}',{p['price']},'{p['image']}')" 
+                class="bg-black text-white px-4 py-2 mt-2 rounded">
+                Add to Bag
+                </button>
+              </div>
+              """
 
-          prompt = f"""
-          ROLE
-          You are a senior frontend engineer building a modern 2026 e-commerce storefront.
-
-          DESIGN
-          Use TailwindCSS.
-
-          PRODUCTS
-          {product_text}
-
-          Create responsive product cards using the images above.
-
-          OUTPUT FORMAT
-
-          ---index.html---
+          html = f"""
           <!DOCTYPE html>
           <html>
           <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link href="assets/css/styles.css" rel="stylesheet">
           <script src="https://cdn.tailwindcss.com"></script>
           </head>
 
           <body class="bg-gray-100">
 
-          <header class="bg-white shadow p-4 flex justify-between">
-          <h1 class="text-2xl font-bold">E-commerce platform</h1>
+          <header class="bg-white p-4 flex justify-between">
+          <h1 class="text-xl font-bold">E-commerce platform</h1>
+
+          <button onclick="toggleCart()" class="relative">
+          🛒
+          <span id="cartCount"
+          class="absolute -top-2 -right-2 bg-black text-white text-xs px-2 py-1 rounded-full">
+          0
+          </span>
+          </button>
+
           </header>
 
           <main class="max-w-7xl mx-auto p-10">
 
-          <div class="grid md:grid-cols-4 gap-8">
+          <input id="searchInput"
+          placeholder="Search products"
+          class="border p-2 mb-6 w-full"
+          onkeyup="searchProducts()">
 
-          <!-- AI should generate product cards here -->
+          <div class="grid md:grid-cols-4 gap-6">
+
+          {product_html}
 
           </div>
 
           </main>
 
+          <div id="cartDrawer"
+          class="fixed top-0 right-0 w-96 h-full bg-white shadow transform translate-x-full transition duration-300">
+
+          <div class="p-4 border-b flex justify-between">
+          <h2 class="font-semibold">Cart</h2>
+          <button onclick="toggleCart()">✕</button>
+          </div>
+
+          <div id="cartItems" class="p-4"></div>
+
+          <div class="p-4 border-t">
+          Total: $<span id="cartTotal">0</span>
+          </div>
+
+          </div>
+
+          <script>
+
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+          function saveCart(){{
+          localStorage.setItem("cart", JSON.stringify(cart));
+          updateCartUI();
+          }}
+
+          function addToCart(name,price,image){{
+
+          const item = cart.find(i=>i.name===name);
+
+          if(item) item.qty++;
+          else cart.push({{name,price,image,qty:1}});
+
+          saveCart();
+          toggleCart(true);
+
+          }}
+
+          function removeItem(name){{
+          cart = cart.filter(i=>i.name!==name);
+          saveCart();
+          }}
+
+          function changeQty(name,a){{
+
+          const item = cart.find(i=>i.name===name);
+
+          if(!item) return;
+
+          item.qty += a;
+
+          if(item.qty<=0) removeItem(name);
+          else saveCart();
+
+          }}
+
+          function updateCartUI(){{
+
+          const items=document.getElementById("cartItems");
+          const count=document.getElementById("cartCount");
+          const totalEl=document.getElementById("cartTotal");
+
+          items.innerHTML="";
+
+          let total=0;
+          let c=0;
+
+          cart.forEach(i=>{{
+
+          total += i.price*i.qty;
+          c+=i.qty;
+
+          items.innerHTML += `
+          <div class="flex gap-3 mb-4">
+          <img src="${{i.image}}" class="w-14 h-14 object-cover">
+          <div>
+          <h4>${{i.name}}</h4>
+          <p>${{i.price}}</p>
+          <button onclick="changeQty('${{i.name}}',-1)">-</button>
+          <span>${{i.qty}}</span>
+          <button onclick="changeQty('${{i.name}}',1)">+</button>
+          </div>
+          </div>
+          `;
+          }});
+
+          count.innerText=c;
+          totalEl.innerText=total;
+
+          }}
+
+          function toggleCart(force=false){{
+          const d=document.getElementById("cartDrawer");
+
+          if(force) d.classList.remove("translate-x-full");
+          else d.classList.toggle("translate-x-full");
+          }}
+
+          function searchProducts(){{
+
+          const v=document.getElementById("searchInput").value.toLowerCase();
+
+          document.querySelectorAll(".product-card").forEach(c=>{{
+          const name=c.dataset.name.toLowerCase();
+          c.style.display = name.includes(v) ? "block":"none";
+          }});
+
+          }}
+
+          updateCartUI();
+
+          </script>
+
           </body>
           </html>
           """
 
-          client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-
-          response = client.models.generate_content(
-              model="gemini-3-flash-preview",
-              contents=prompt
-          )
-
-          output = response.text
-
-          if not output:
-              print("Gemini returned empty response")
-              exit(0)
-
-          matches = re.findall(
-              r"---(.*?)---\n(.*?)(?=(?:---|$))",
-              output,
-              re.DOTALL
-          )
-
-          for filename, content in matches:
-              path = Path(filename.strip())
-              path.parent.mkdir(parents=True, exist_ok=True)
-              path.write_text(content.strip(), encoding="utf-8")
+          Path("index.html").write_text(html)
 
           subprocess.run(["git","config","--global","user.name","gemini-bot"])
           subprocess.run(["git","config","--global","user.email","bot@example.com"])
           subprocess.run(["git","add","."])
 
-          result = subprocess.run(["git","diff","--cached","--quiet"])
+          result=subprocess.run(["git","diff","--cached","--quiet"])
 
-          if result.returncode != 0:
-              subprocess.run(["git","commit","-m","AI generated storefront"])
+          if result.returncode!=0:
+              subprocess.run(["git","commit","-m","AI storefront update"])
               subprocess.run(["git","push"])
-
           EOF
 
 
-      # Setup Node for Tailwind
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      # Install Tailwind CLI
-      - name: Install Tailwind
-        run: |
-          npm install -D tailwindcss @tailwindcss/cli
-
-      # Build Tailwind CSS
-      - name: Build Tailwind CSS
-        run: |
-          mkdir -p src
-          echo "@tailwind base;@tailwind components;@tailwind utilities;" > src/input.css
-          mkdir -p assets/css
-          npx tailwindcss -i ./src/input.css -o ./assets/css/styles.css --minify
-
-
-      # Configure AWS credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -174,8 +246,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
-
-      # Deploy to S3
       - name: Deploy to S3
         run: |
           aws s3 sync . s3://staticwebzsitegit \
