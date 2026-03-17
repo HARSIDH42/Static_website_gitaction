@@ -1,599 +1,292 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce platform | Premium Storefront</title>
+    <title>E-commerce platform | Premium Storefront 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #ffffff;
-            --surface: #fcfcfc;
-            --text-main: #121212;
-            --text-muted: #666666;
-            --accent: #000000;
-            --glass: rgba(255, 255, 255, 0.75);
-            --border: #eeeeee;
-            --shadow: 0 10px 30px rgba(0,0,0,0.05);
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.5;
-        }
-
-        /* Glassmorphism Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            padding: 1.25rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transition);
-        }
-
-        .brand {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: var(--transition);
-        }
-
-        nav a:hover {
-            color: var(--text-muted);
-        }
-
-        .nav-icons {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .cart-trigger {
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .cart-count {
-            background: var(--accent);
-            color: white;
-            font-size: 10px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 6px;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 90vh;
-            width: 100%;
-            background: #f4f4f4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-            margin-bottom: 4rem;
-        }
-
-        .hero-img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.9;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 800px;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(3rem, 8vw, 5rem);
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            padding: 1.2rem 2.5rem;
-            border: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        /* Main E-commerce platform Content */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 5%;
-        }
-
-        .search-bar {
-            margin: 2rem 0 4rem;
-            display: flex;
-            justify-content: center;
-        }
-
-        #search-input {
-            width: 100%;
-            max-width: 600px;
-            padding: 1rem 1.5rem;
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            font-size: 1rem;
-            outline: none;
-            transition: var(--transition);
-            background: var(--surface);
-        }
-
-        #search-input:focus {
-            border-color: var(--accent);
-            box-shadow: var(--shadow);
-        }
-
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 100px;
-        }
-
-        .product-card {
-            background: var(--surface);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow);
-        }
-
-        .product-image-wrap {
-            aspect-ratio: 4/5;
-            overflow: hidden;
-            background: #f9f9f9;
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .product-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-category {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-price {
-            font-weight: 500;
-            color: var(--accent);
-        }
-
-        .add-to-cart-btn {
-            position: absolute;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            background: var(--accent);
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .product-card:hover .add-to-cart-btn {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Cart Drawer */
-        .cart-drawer {
-            position: fixed;
-            top: 0;
-            right: -450px;
-            width: 100%;
-            max-width: 450px;
-            height: 100vh;
-            background: var(--bg);
-            box-shadow: -10px 0 50px rgba(0,0,0,0.1);
-            z-index: 2000;
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            transition: var(--transition);
-        }
-
-        .cart-drawer.active {
-            right: 0;
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1.5rem;
-        }
-
-        .close-cart {
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-
-        .cart-items {
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .cart-item {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            align-items: center;
-        }
-
-        .cart-item img {
-            width: 80px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 6px;
-        }
-
-        .cart-item-info {
-            flex: 1;
-        }
-
-        .cart-item-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .cart-item-controls {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .qty-btn {
-            border: 1px solid var(--border);
-            background: none;
-            width: 28px;
-            height: 28px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .cart-footer {
-            border-top: 1px solid var(--border);
-            padding-top: 2rem;
-        }
-
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(4px);
-            z-index: 1500;
-            display: none;
-        }
-
-        .overlay.active {
-            display: block;
-        }
-
-        footer {
-            background: #f9f9f9;
-            padding: 5rem 5%;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            nav { display: none; }
-            .hero-content h1 { font-size: 2.5rem; }
-            .cart-drawer { max-width: 100%; }
-        }
+        body { font-family: 'Outfit', sans-serif; background-color: #fafafa; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .product-card:hover .product-image { transform: scale(1.05); }
+        .hero-gradient { background: radial-gradient(circle at top right, #f8fafc 0%, #f1f5f9 100%); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="text-slate-900 overflow-x-hidden">
 
-    <header>
-        <div class="brand">E-commerce platform</div>
-        <nav>
-            <ul>
-                <li><a href="#">Collection E-commerce platform</a></li>
-                <li><a href="#">New Arrivals</a></li>
-                <li><a href="#">Editorial</a></li>
-            </ul>
-        </nav>
-        <div class="nav-icons">
-            <div class="cart-trigger" onclick="toggleCart()">
-                BAG <span class="cart-count">0</span>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-12">
+            <a href="#" class="text-2xl font-bold tracking-tighter uppercase">Platform<span class="text-indigo-600">.</span></a>
+            <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
+                <a href="#new" class="hover:text-indigo-600 transition-colors">New Arrivals</a>
+                <a href="#men" class="hover:text-indigo-600 transition-colors">Collections</a>
+                <a href="#accessories" class="hover:text-indigo-600 transition-colors">Accessories</a>
+                <a href="#" class="hover:text-indigo-600 transition-colors">Editorial</a>
             </div>
         </div>
-    </header>
-
-    <div class="hero">
-        <img src="assets/images/products/jacket-4.jpg" alt="Hero" class="hero-img">
-        <div class="hero-content">
-            <h1 id="hero-title">ESSENTIALS 2026</h1>
-            <button class="btn-primary">Explore E-commerce platform</button>
+        <div class="flex items-center gap-6">
+            <button class="p-2 hover:bg-white rounded-full transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </button>
+            <button class="relative p-2 hover:bg-white rounded-full transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span class="absolute top-0 right-0 bg-indigo-600 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">3</span>
+            </button>
+            <button class="md:hidden p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
         </div>
-    </div>
+    </nav>
 
-    <main class="container">
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Search our E-commerce platform catalogue...">
-        </div>
-
-        <div class="product-grid" id="product-grid">
-            <!-- Products injected by JS -->
-        </div>
-    </main>
-
-    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
-
-    <div class="cart-drawer" id="cart-drawer">
-        <div class="cart-header">
-            <h3>Your Bag</h3>
-            <span class="close-cart" onclick="toggleCart()">&times;</span>
-        </div>
-        <div class="cart-items" id="cart-items-container">
-            <!-- Cart items injected by JS -->
-        </div>
-        <div class="cart-footer">
-            <div class="total-row">
-                <span>Total</span>
-                <span id="cart-total">$0.00</span>
-            </div>
-            <button class="btn-primary" style="width: 100%;">Checkout</button>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 E-commerce platform Store. Premium minimalist design.</p>
-        <p style="margin-top: 10px;">The official E-commerce platform digital experience.</p>
-    </footer>
-
-    <script>
-        const products = [
-            { id: 1, name: "Minimalist Chrono", price: 240, category: "Accessories", img: "assets/images/products/watch-1.jpg" },
-            { id: 2, name: "Premium Leather Belt", price: 85, category: "Accessories", img: "assets/images/products/belt.jpg" },
-            { id: 3, name: "Urban Utility Jacket", price: 195, category: "Outerwear", img: "assets/images/products/jacket-1.jpg" },
-            { id: 4, name: "Classic White Tee", price: 45, category: "Apparel", img: "assets/images/products/clothes-1.jpg" },
-            { id: 5, name: "Night Bloom Parfum", price: 120, category: "Grooming", img: "assets/images/products/perfume.jpg" },
-            { id: 6, name: "Performance Runner", price: 160, category: "Footwear", img: "assets/images/products/shoe-1.jpg" },
-            { id: 7, name: "Tech Knit Shorts", price: 65, category: "Apparel", img: "assets/images/products/shorts-1.jpg" },
-            { id: 8, name: "Silver Link Chain", price: 310, category: "Jewellery", img: "assets/images/products/jewellery-1.jpg" },
-            { id: 9, name: "Oxford Button Down", price: 85, category: "Apparel", img: "assets/images/products/shirt-1.jpg" },
-            { id: 10, name: "Silk Party Wear", price: 299, category: "Occasion", img: "assets/images/products/party-wear-1.jpg" },
-            { id: 11, name: "Botanical Shampoo", price: 28, category: "Grooming", img: "assets/images/products/shampoo.jpg" },
-            { id: 12, name: "Legacy Sports Cap", price: 40, category: "Sports", img: "assets/images/products/sports-1.jpg" }
-        ];
-
-        let cart = JSON.parse(localStorage.getItem('ecommerce_cart')) || [];
-
-        function init() {
-            renderProducts(products);
-            updateCartUI();
-            
-            document.getElementById('search-input').addEventListener('input', (e) => {
-                const term = e.target.value.toLowerCase();
-                const filtered = products.filter(p => 
-                    p.name.toLowerCase().includes(term) || 
-                    p.category.toLowerCase().includes(term)
-                );
-                renderProducts(filtered);
-            });
-        }
-
-        function renderProducts(items) {
-            const grid = document.getElementById('product-grid');
-            grid.innerHTML = items.map(product => `
-                <div class="product-card">
-                    <div class="product-image-wrap">
-                        <img src="${product.img}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/400x500?text=Product'">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">${product.category}</div>
-                        <div class="product-title">${product.name}</div>
-                        <div class="product-price">$${product.price}</div>
-                    </div>
-                    <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 5v14M5 12h14"/>
-                        </svg>
-                    </button>
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center pt-20 overflow-hidden hero-gradient">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="z-10">
+                <span class="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-[0.2em] uppercase bg-white border border-slate-200 rounded-full text-indigo-600">Summer Drop 2026</span>
+                <h1 class="text-7xl md:text-8xl font-bold leading-[0.9] tracking-tighter mb-8">ELEVATE <br><span class="text-slate-400 italic font-light">YOUR</span> ESSENCE</h1>
+                <p class="text-lg text-slate-500 max-w-md mb-10 leading-relaxed">Redefining the digital shopping experience through precision-crafted aesthetics and timeless luxury curation.</p>
+                <div class="flex gap-4">
+                    <a href="#shop" class="px-8 py-4 bg-slate-900 text-white font-medium rounded-full hover:bg-indigo-600 transition-all duration-300">Shop Collection</a>
+                    <a href="#" class="px-8 py-4 border border-slate-200 font-medium rounded-full hover:bg-white transition-all duration-300">View Lookbook</a>
                 </div>
-            `).join('');
-        }
+            </div>
+            <div class="relative flex justify-center lg:justify-end">
+                <div class="relative w-full max-w-lg aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl">
+                    <img src="assets/images/products/watch-1.jpg" alt="Featured Product" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                    <div class="absolute bottom-10 left-10 text-white">
+                        <p class="text-sm font-light opacity-80 uppercase tracking-widest">The Chrono Series</p>
+                        <h3 class="text-2xl font-bold">Midnight Edition</h3>
+                    </div>
+                </div>
+                <!-- Abstract Deco -->
+                <div class="absolute -z-10 -top-20 -right-20 w-80 h-80 bg-indigo-100 rounded-full blur-3xl opacity-60"></div>
+                <div class="absolute -z-10 -bottom-20 -left-20 w-64 h-64 bg-slate-200 rounded-full blur-3xl opacity-60"></div>
+            </div>
+        </div>
+    </section>
 
-        function toggleCart() {
-            document.getElementById('cart-drawer').classList.toggle('active');
-            document.getElementById('overlay').classList.toggle('active');
-        }
-
-        function addToCart(id) {
-            const product = products.find(p => p.id === id);
-            const existing = cart.find(item => item.id === id);
-
-            if (existing) {
-                existing.quantity += 1;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-
-            saveAndUpdate();
-            if(!document.getElementById('cart-drawer').classList.contains('active')) {
-                toggleCart();
-            }
-        }
-
-        function updateQuantity(id, delta) {
-            const item = cart.find(i => i.id === id);
-            if (item) {
-                item.quantity += delta;
-                if (item.quantity <= 0) {
-                    cart = cart.filter(i => i.id !== id);
-                }
-                saveAndUpdate();
-            }
-        }
-
-        function saveAndUpdate() {
-            localStorage.setItem('ecommerce_cart', JSON.stringify(cart));
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            const container = document.getElementById('cart-items-container');
-            const counter = document.querySelector('.cart-count');
-            const totalEl = document.getElementById('cart-total');
-
-            let total = 0;
-            let count = 0;
-
-            container.innerHTML = cart.map(item => {
-                total += item.price * item.quantity;
-                count += item.quantity;
-                return `
-                    <div class="cart-item">
-                        <img src="${item.img}" alt="${item.name}">
-                        <div class="cart-item-info">
-                            <div class="cart-item-title">${item.name}</div>
-                            <div class="product-price">$${item.price}</div>
-                            <div class="cart-item-controls">
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                                <span>${item.quantity}</span>
-                                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                            </div>
+    <!-- Categories Grid -->
+    <section class="py-24 bg-white" id="men">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group relative h-[600px] overflow-hidden rounded-[2.5rem] bg-slate-100">
+                    <img src="assets/images/products/jacket-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Outerwear">
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all"></div>
+                    <div class="absolute bottom-12 left-12">
+                        <h2 class="text-3xl font-bold text-white mb-4">Outerwear</h2>
+                        <a href="#" class="inline-flex items-center gap-2 text-white font-medium group-hover:gap-4 transition-all">Explore <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <div class="group relative h-[284px] overflow-hidden rounded-[2.5rem] bg-slate-100">
+                        <img src="assets/images/products/shoe-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Footwear">
+                        <div class="absolute bottom-10 left-10">
+                            <h2 class="text-2xl font-bold text-white">Footwear</h2>
                         </div>
                     </div>
-                `;
-            }).join('');
+                    <div class="group relative h-[284px] overflow-hidden rounded-[2.5rem] bg-slate-100">
+                        <img src="assets/images/products/perfume.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Fragrance">
+                        <div class="absolute bottom-10 left-10">
+                            <h2 class="text-2xl font-bold text-white">Fragrance</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative h-[600px] overflow-hidden rounded-[2.5rem] bg-slate-100">
+                    <img src="assets/images/products/jewellery-1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Jewellery">
+                    <div class="absolute bottom-12 left-12">
+                        <h2 class="text-3xl font-bold text-white mb-4">Jewellery</h2>
+                        <a href="#" class="inline-flex items-center gap-2 text-white font-medium group-hover:gap-4 transition-all">Explore <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            if (cart.length === 0) {
-                container.innerHTML = `<p style="text-align:center; color: var(--text-muted); margin-top: 2rem;">Your Bag is empty.</p>`;
-            }
+    <!-- Trending Products -->
+    <section class="py-24" id="shop">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <span class="text-indigo-600 font-bold tracking-[0.3em] uppercase text-xs mb-2 block">Curated Selection</span>
+                    <h2 class="text-4xl font-bold">Trending Now</h2>
+                </div>
+                <div class="hidden md:flex gap-4">
+                    <button class="p-3 border border-slate-200 rounded-full hover:bg-slate-900 hover:text-white transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <button class="p-3 border border-slate-200 rounded-full hover:bg-slate-900 hover:text-white transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
+                </div>
+            </div>
 
-            counter.innerText = count;
-            totalEl.innerText = `$${total.toFixed(2)}`;
-        }
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+                
+                <!-- Product 1 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden bg-slate-100 mb-6">
+                        <img src="assets/images/products/shoe-2.jpg" alt="Product" class="product-image w-full h-full object-cover transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">New Arrival</div>
+                        <button class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 bg-white py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 hover:bg-slate-900 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Quick Add
+                        </button>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-medium text-lg">Urban Runner Elite</h3>
+                            <span class="font-bold text-slate-400">$210.00</span>
+                        </div>
+                        <p class="text-sm text-slate-400">Footwear • 2 Colors</p>
+                    </div>
+                </div>
 
-        // Initialize the E-commerce platform experience
-        window.onload = init;
+                <!-- Product 2 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden bg-slate-100 mb-6">
+                        <img src="assets/images/products/watch-3.jpg" alt="Product" class="product-image w-full h-full object-cover transition-transform duration-500">
+                        <button class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 bg-white py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 hover:bg-slate-900 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Quick Add
+                        </button>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-medium text-lg">Steel Master Chrono</h3>
+                            <span class="font-bold text-slate-400">$450.00</span>
+                        </div>
+                        <p class="text-sm text-slate-400">Accessories • Silver</p>
+                    </div>
+                </div>
 
-        // Visual header effect on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.padding = "0.8rem 5%";
-                header.style.background = "rgba(255, 255, 255, 0.95)";
-            } else {
-                header.style.padding = "1.25rem 5%";
-                header.style.background = "var(--glass)";
-            }
-        });
-    </script>
+                <!-- Product 3 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden bg-slate-100 mb-6">
+                        <img src="assets/images/products/jacket-4.jpg" alt="Product" class="product-image w-full h-full object-cover transition-transform duration-500">
+                        <button class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 bg-white py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 hover:bg-slate-900 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Quick Add
+                        </button>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-medium text-lg">Alpine Windbreaker</h3>
+                            <span class="font-bold text-slate-400">$185.00</span>
+                        </div>
+                        <p class="text-sm text-slate-400">Outerwear • Olive</p>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="relative aspect-[3/4] rounded-3xl overflow-hidden bg-slate-100 mb-6">
+                        <img src="assets/images/products/shoe-3.jpg" alt="Product" class="product-image w-full h-full object-cover transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Sale -20%</div>
+                        <button class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 bg-white py-3 rounded-2xl font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 hover:bg-slate-900 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Quick Add
+                        </button>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-medium text-lg">Velocity Knit</h3>
+                            <span class="font-bold text-slate-400">$128.00</span>
+                        </div>
+                        <p class="text-sm text-slate-400">Footwear • Grey Mesh</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotional Section -->
+    <section class="py-24 bg-slate-900 text-white overflow-hidden relative">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="order-2 lg:order-1">
+                <h2 class="text-5xl md:text-6xl font-bold leading-tight mb-8">Crafting the Future of <span class="text-indigo-400">Wearable Art.</span></h2>
+                <p class="text-slate-400 text-lg mb-12 max-w-lg">Every piece in our 2026 collection is engineered for the modern nomad. Combining high-tech performance fabrics with avant-garde aesthetics.</p>
+                <div class="grid grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <div class="text-3xl font-bold mb-2">Sustainable</div>
+                        <p class="text-sm text-slate-500">100% Recycled materials in all our packaging.</p>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold mb-2">Modular</div>
+                        <p class="text-sm text-slate-500">Interchangeable elements for versatile styling.</p>
+                    </div>
+                </div>
+                <button class="bg-white text-slate-900 px-10 py-4 rounded-full font-bold hover:bg-indigo-400 transition-all">Read Our Story</button>
+            </div>
+            <div class="order-1 lg:order-2 relative h-[500px]">
+                <img src="assets/images/products/jacket-6.jpg" class="w-full h-full object-cover rounded-[3rem] shadow-2xl" alt="Innovation">
+                <div class="absolute -bottom-6 -left-6 bg-indigo-600 p-8 rounded-[2rem] hidden md:block">
+                    <p class="text-4xl font-black">2026</p>
+                    <p class="text-xs uppercase tracking-[0.3em] font-bold">Innovation Lab</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white pt-24 pb-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                <div class="space-y-6">
+                    <a href="#" class="text-3xl font-bold tracking-tighter uppercase">Platform<span class="text-indigo-600">.</span></a>
+                    <p class="text-slate-500 leading-relaxed">The pinnacle of digital retail. Exclusive drops, limited editions, and curated premium styles for the global citizen.</p>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </div>
+                        <div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                        </div>
+                        <div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold uppercase tracking-widest text-sm mb-8">Shop</h4>
+                    <ul class="space-y-4 text-slate-500">
+                        <li><a href="#" class="hover:text-indigo-600 transition-colors">New Arrivals</a></li>
+                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Men's Collection</a></li>
+                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Women's Collection</a></li>
+                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold uppercase tracking-widest text-sm mb-8">Support</h4>
+                    <ul class="space-y-4 text-slate-500">
+                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Track Order</a></li>
+                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Sustainability</a></li>
+                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Shipping & Returns</a></li>
+                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold uppercase tracking-widest text-sm mb-8">Newsletter</h4>
+                    <p class="text-slate-500 text-sm mb-6">Join our elite list for early access to drops.</p>
+                    <div class="relative">
+                        <input type="email" placeholder="Your Email" class="w-full bg-slate-100 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-indigo-600 transition-all outline-none">
+                        <button class="absolute right-2 top-2 bottom-2 bg-slate-900 text-white px-4 rounded-xl hover:bg-indigo-600 transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-100 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-slate-400 text-sm">© 2026 E-commerce platform. All rights reserved.</p>
+                <div class="flex gap-8">
+                    <img src="https://img.icons8.com/color/48/000000/visa.png" class="h-6 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer" alt="Visa">
+                    <img src="https://img.icons8.com/color/48/000000/mastercard.png" class="h-6 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer" alt="Mastercard">
+                    <img src="https://img.icons8.com/color/48/000000/apple-pay.png" class="h-6 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer" alt="Apple Pay">
+                </div>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
