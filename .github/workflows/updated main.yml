@@ -48,25 +48,22 @@ jobs:
           image_list_text = "\n".join(image_files) if image_files else "No images available."
 
           prompt = f"""
-            ROLE
+          ROLE
           You are a senior frontend engineer building a premium 2026 modern e-commerce storefront.
-          
+
           BRAND NAME
-          NovaCart
-          
-          WEBSITE IDEA
-          A premium Smart Gadgets Store selling modern tech accessories and devices such as wireless earbuds, smart watches, portable chargers, mechanical keyboards, gaming accessories, and phone gadgets.
-          
+          E-commerce platform
+
           IMPORTANT RULES
-          - Replace every instance of "page" with "NovaCart"
-          - All navigation must reflect the NovaCart brand
+          - Replace every instance of "page" with "E-commerce platform"
+          - All navigation must reflect the new brand name
           - Use only images from assets/images/products/
           - Available images:
           {image_list_text}
           - Image paths MUST be relative
           - Do NOT invent filenames
           - If image not available, show elegant placeholder
-          
+
           FUNCTIONALITY
           - Add to Bag (localStorage)
           - Live cart counter
@@ -76,9 +73,9 @@ jobs:
           - No page reload
           - Vanilla JavaScript only
           - All JS inside <script>
-          
+
           DESIGN REQUIREMENTS (2026 Modern UI)
-          - Large hero section with full-width banner promoting smart gadgets
+          - Large hero section with full-width banner
           - Glassmorphism sticky header (blur + transparency)
           - Responsive CSS grid layout
           - Product cards with hover elevation & smooth transitions
@@ -87,23 +84,11 @@ jobs:
           - Professional spacing & layout rhythm
           - Smooth button hover animations
           - Soft fade/slide animations
-          - Elegant neutral color palette with subtle tech accents
-          - Premium minimalist design inspired by Apple and modern tech stores
-          
-          PRODUCT CATEGORIES
-          - Wireless Earbuds
-          - Smart Watches
-          - Mechanical Keyboards
-          - Gaming Accessories
-          - Portable Chargers
-          - Phone Accessories
-          
-          HERO SECTION CONTENT
-          Headline: Upgrade Your Everyday Tech
-          Subheadline: Discover premium gadgets designed for performance, style, and productivity.
-          
+          - Elegant neutral color palette
+          - Premium minimalist design (Apple/Zara style)
+
           OUTPUT FORMAT STRICTLY
-          
+
           ---index.html---
           <!DOCTYPE html>
           <html>
@@ -117,7 +102,7 @@ jobs:
               model="gemini-3-flash-preview",
               contents=prompt
           )
-          
+
           output = response.text
 
           if not output:
@@ -163,11 +148,8 @@ jobs:
       - name: Deploy to S3
         run: |
           aws s3 sync . s3://staticwebzsitegit \
-            --exclude "*" \
-            --include "index.html" \
-            --include "assets/*" \
-            --include "assets/images/*" \
-            --include "assets/images/products/*" \
-            --include "*.css" \
-            --include "*.js" \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "__pycache__/*" \
+            --exclude "*.py" \
             --delete
