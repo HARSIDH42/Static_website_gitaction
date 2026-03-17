@@ -163,8 +163,11 @@ jobs:
       - name: Deploy to S3
         run: |
           aws s3 sync . s3://staticwebzsitegit \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --exclude "__pycache__/*" \
-            --exclude "*.py" \
+            --exclude "*" \
+            --include "index.html" \
+            --include "assets/*" \
+            --include "assets/images/*" \
+            --include "assets/images/products/*" \
+            --include "*.css" \
+            --include "*.js" \
             --delete
