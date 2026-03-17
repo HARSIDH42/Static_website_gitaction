@@ -12,25 +12,24 @@ jobs:
       contents: write
 
     steps:
+
+      # Checkout repository
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # ------------------------
-      # Python Setup
-      # ------------------------
+      # Python setup
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
+      # Install Gemini SDK
       - name: Install Gemini SDK
         run: pip install --upgrade google-genai
 
-      # ------------------------
       # Run Gemini to generate UI
-      # ------------------------
       - name: Run Gemini AI to Update Website UI
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -47,7 +46,7 @@ jobs:
 
           image_files = [
               f.name for f in image_dir.glob("*")
-              if f.suffix.lower() in [".jpg", ".jpeg", ".png", ".webp"]
+              if f.suffix.lower() in [".jpg",".jpeg",".png",".webp"]
           ]
 
           image_list_text = "\n".join(image_files) if image_files else "No images available."
@@ -56,15 +55,13 @@ jobs:
           ROLE
           You are a senior frontend engineer building a premium 2026 modern e-commerce storefront.
 
+          DESIGN SYSTEM
+          Use TailwindCSS utility classes.
+
           BRAND NAME
           E-commerce platform
 
-          DESIGN SYSTEM
-          Use TailwindCSS utility classes for styling.
-
-          IMPORTANT RULES
-          - Use only images from assets/images/products/
-          - Available images:
+          Available images:
           {image_list_text}
 
           OUTPUT FORMAT
@@ -72,7 +69,14 @@ jobs:
           ---index.html---
           <!DOCTYPE html>
           <html>
-          ...Tailwind based UI...
+          <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link href="assets/css/styles.css" rel="stylesheet">
+          </head>
+          <body>
+          Premium Tailwind UI
+          </body>
           </html>
           """
 
@@ -96,40 +100,41 @@ jobs:
               path.parent.mkdir(parents=True, exist_ok=True)
               path.write_text(content.strip(), encoding="utf-8")
 
-          subprocess.run(["git", "config", "--global", "user.name", "gemini-bot"])
-          subprocess.run(["git", "config", "--global", "user.email", "bot@example.com"])
-          subprocess.run(["git", "add", "."])
+          subprocess.run(["git","config","--global","user.name","gemini-bot"])
+          subprocess.run(["git","config","--global","user.email","bot@example.com"])
+          subprocess.run(["git","add","."])
 
-          result = subprocess.run(["git", "diff", "--cached", "--quiet"])
+          result = subprocess.run(["git","diff","--cached","--quiet"])
 
           if result.returncode != 0:
-              subprocess.run(["git", "commit", "-m", "Gemini AI upgraded UI"])
-              subprocess.run(["git", "push"])
+              subprocess.run(["git","commit","-m","Gemini AI upgraded UI"])
+              subprocess.run(["git","push"])
+          else:
+              print("No changes detected")
           EOF
 
-      # ------------------------
-      # Tailwind Setup
-      # ------------------------
+
+      # Node setup for Tailwind
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
+      # Install Tailwind CLI
       - name: Install Tailwind
         run: |
-          npm init -y
-          npm install -D tailwindcss
-          npx tailwindcss init
+          npm install -D tailwindcss @tailwindcss/cli
 
+      # Build Tailwind CSS
       - name: Build Tailwind CSS
         run: |
           mkdir -p src
           echo "@tailwind base;@tailwind components;@tailwind utilities;" > src/input.css
+          mkdir -p assets/css
           npx tailwindcss -i ./src/input.css -o ./assets/css/styles.css --minify
 
-      # ------------------------
-      # AWS Deployment
-      # ------------------------
+
+      # Configure AWS credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -137,6 +142,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
 
+      # Deploy static site to S3
       - name: Deploy to S3
         run: |
           aws s3 sync . s3://staticwebzsitegit \
